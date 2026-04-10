@@ -801,6 +801,55 @@ async function loadSinAgendar(){
   }catch(e){ console.warn('sin-agendar loader:', e); }
 }
 loadSinAgendar();
+
+function updateSinAgendarLive(){
+  const _today = new Date().toISOString().slice(0,10);
+  const pb = (DATA.pending_bookeo||[]).filter(x=>!x.in_calendar && x.flight_date >= _today);
+  const pv = (DATA.pending_viator||[]).filter(x=>!x.in_calendar && x.flight_date >= _today);
+  const all = [...pb.map(b=>({...b, marca:'BK'})), ...pv.map(v=>({...v, marca:'VT'}))];
+  const totalPax = all.reduce((s,b)=>s+(+b.pax||0),0);
+
+  const sec = document.getElementById('sin-agendar');
+  const body = document.getElementById('sa-body');
+  document.getElementById('sa-count').textContent = all.length;
+  document.getElementById('sa-pax').textContent = totalPax;
+  document.getElementById('sa-window').textContent = _today + ' →';
+  document.getElementById('sa-time').textContent = DATA.generated_at || new Date().toLocaleTimeString('es-MX');
+  document.getElementById('sa-sources').innerHTML =
+    `Bookeo <b>${pb.length}</b> · Viator <b>${pv.length}</b> · En correo, NO en calendario`;
+  sec.style.display = 'block';
+
+  if(!all.length){
+    body.innerHTML = '<div class="empty">✅ Todas las reservas están en el calendario</div>';
+    return;
+  }
+
+  const byDay = {};
+  for(const b of all){ const d = b.flight_date||'sin-fecha'; (byDay[d]=byDay[d]||[]).push(b); }
+  const hoy = _today;
+  const mnD = new Date(); mnD.setDate(mnD.getDate()+1);
+  const manana = mnD.toISOString().slice(0,10);
+  let html = '<table><thead><tr><th>Fuente</th><th>Fecha</th><th>Pax</th><th>Cliente</th><th>Contacto</th><th>Referencia</th></tr></thead><tbody>';
+  const days = Object.keys(byDay).sort();
+  for(const d of days){
+    const paxDay = byDay[d].reduce((s,b)=>s+(+b.pax||0),0);
+    let label = d;
+    if(d===hoy) label += ' · HOY';
+    else if(d===manana) label += ' · MAÑANA';
+    html += `<tr class="day-header"><td colspan="6">${label} — ${byDay[d].length} reservas / ${paxDay} pax</td></tr>`;
+    for(const b of byDay[d]){
+      const cls = d===hoy?'hoy':(d===manana?'manana':'');
+      const mc = b.marca==='BK'?'m-bk':'m-m2';
+      const name = b.customer_name || b.ref || '—';
+      const em = b.email ? `<a href="mailto:${b.email}">${b.email}</a>` : '';
+      const ph = b.phone ? ` · ${b.phone}` : '';
+      const ref = b.ref || b.booking_id || '';
+      html += `<tr class="${cls}"><td><span class="marca-tag ${mc}">${b.marca}</span></td><td>${d}</td><td><b>${b.pax||'?'}</b></td><td>${name}</td><td>${em}${ph}</td><td><code>${ref}</code></td></tr>`;
+    }
+  }
+  html += '</tbody></table>';
+  body.innerHTML = html;
+}
 </script>
 
 <section class="stats" id="stats"></section>
@@ -1086,8 +1135,8 @@ async function refreshData(){
     Object.assign(DATA, fresh);
     refreshUI();
 
-    // También recargar panel sin agendar
-    try{ await loadSinAgendar(); }catch(e2){ console.warn('sin-agendar reload:', e2); }
+    // Actualizar banner SIN AGENDAR con datos en vivo
+    updateSinAgendarLive();
 
     const when = new Date().toLocaleTimeString('es-MX',{hour:'2-digit',minute:'2-digit',second:'2-digit'});
     const nEv = DATA.events.length;
