@@ -1122,7 +1122,7 @@ async function refreshData(){
   try{
     label.textContent = 'Leyendo 9 calendarios + Gmail…';
     const controller = new AbortController();
-    const timeout = setTimeout(()=>controller.abort(), 45000); // 45s timeout
+    const timeout = setTimeout(()=>controller.abort(), 90000); // 90s timeout
     const res = await fetch(APPS_SCRIPT_URL, {signal:controller.signal});
     clearTimeout(timeout);
     if(!res.ok) throw new Error('HTTP ' + res.status);
@@ -1153,7 +1153,7 @@ async function refreshData(){
   }catch(e){
     console.error(e);
     let msg = e.name === 'AbortError'
-      ? '✗ Timeout — Google tardó más de 45s. Intenta de nuevo.'
+      ? '✗ Timeout — Google tardó más de 90s. Intenta de nuevo.'
       : `✗ Error: ${e.message}`;
     showToast(msg, 'err');
     btn.classList.add('err');
