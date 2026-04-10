@@ -83,6 +83,20 @@
     display:flex; align-items:center; gap:7px;
   }
   .tab:hover{color:var(--ink); background:rgba(255,255,255,.04)}
+  @media(max-width:768px){
+    header{padding:14px 12px; gap:10px}
+    .brand .logo{width:34px; height:34px; font-size:17px; border-radius:10px}
+    .brand h1{font-size:16px}
+    .brand .sub{font-size:10px}
+    .tabs{gap:3px; padding:3px}
+    .tab{padding:7px 10px; font-size:11px; gap:4px}
+    .cta-refresh{padding:8px 12px; font-size:11.5px; gap:5px; margin-left:0}
+  }
+  @media(max-width:480px){
+    header{flex-direction:column; align-items:stretch}
+    .tabs{order:2; justify-content:center}
+    .cta-refresh{order:3; width:100%; justify-content:center}
+  }
   .tab.active{
     background:var(--grad-1); color:#fff;
     box-shadow:0 6px 20px -6px rgba(66,133,244,.65);
@@ -195,6 +209,16 @@
     display:grid; grid-template-columns:repeat(auto-fit, minmax(185px, 1fr));
     gap:14px; padding:22px 28px 8px;
   }
+  @media(max-width:768px){
+    .stats{grid-template-columns:repeat(3, 1fr); gap:8px; padding:14px 10px 6px}
+    .card{padding:10px 12px}
+    .card .v{font-size:20px}
+    .card .k{font-size:9.5px}
+    .card .hint{font-size:9.5px}
+  }
+  @media(max-width:480px){
+    .stats{grid-template-columns:repeat(2, 1fr)}
+  }
   .card{
     background:linear-gradient(180deg, var(--surface), var(--surface2));
     border:1px solid var(--border);
@@ -229,9 +253,14 @@
     position:sticky; top:88px; z-index:30;
   }
   @media (max-width: 860px){
-    .filters{ padding:14px 16px; gap:8px; position:static; }
+    .filters{ padding:14px 12px; gap:8px; position:static; }
     .filters > input#q,
     .filters > select{ width:100%; min-width:0; flex:1 1 100%; }
+  }
+  @media(max-width:768px){
+    .filters{padding:10px 8px; gap:6px; top:60px}
+    .filters > input#q{font-size:13px; padding:8px 10px}
+    .filters > select{font-size:13px; padding:8px 6px}
   }
   .filters input,.filters select{
     background:var(--surface2); border:1px solid var(--border);
@@ -690,27 +719,28 @@
 
   /* ── Panel SIN AGENDAR (gap detector Turitop ↔ Calendar) ───────── */
   #sin-agendar{
-    margin:14px 28px 0; padding:16px 20px;
+    margin:14px 16px 0; padding:16px 14px;
     background:#fff4f4; color:#3a0a0a;
     border-left:5px solid #c1121f; border-radius:10px;
     font-family:'Inter','Google Sans',sans-serif;
     box-shadow:0 2px 12px rgba(193,18,31,.12);
+    overflow:hidden;
   }
-  #sin-agendar h2{margin:0 0 6px; font-size:17px; font-weight:800; color:#8b0a14; letter-spacing:.2px}
+  #sin-agendar h2{margin:0 0 6px; font-size:16px; font-weight:800; color:#8b0a14; letter-spacing:.2px}
   #sin-agendar .window{margin:0 0 10px; font-size:11px; color:#7a2b2b; opacity:.85}
-  #sin-agendar table{width:100%; border-collapse:separate; border-spacing:14px 0; font-size:12.5px; background:#fff; border-radius:6px; overflow:hidden}
-  #sin-agendar th{text-align:left; background:#fbe7e7; color:#8b0a14; padding:10px 14px; font-weight:700; border-bottom:2px solid #f0c8c8; white-space:nowrap}
-  #sin-agendar td{padding:10px 14px; border-bottom:1px solid #f5dede; color:#3a0a0a; vertical-align:middle}
-  #sin-agendar th:first-child, #sin-agendar td:first-child{padding-left:22px; width:70px}
-  #sin-agendar th:nth-child(2), #sin-agendar td:nth-child(2){width:78px; white-space:nowrap; font-variant-numeric:tabular-nums}
-  #sin-agendar th:nth-child(3), #sin-agendar td:nth-child(3){width:54px; text-align:center}
-  #sin-agendar th:nth-child(4), #sin-agendar td:nth-child(4){min-width:200px}
-  #sin-agendar th:nth-child(5), #sin-agendar td:nth-child(5){min-width:220px}
-  #sin-agendar th:nth-child(6), #sin-agendar td:nth-child(6){min-width:220px}
-  #sin-agendar th:last-child, #sin-agendar td:last-child{padding-right:22px}
-  #sin-agendar tr.day-header td{padding-left:22px!important}
+  #sa-body{overflow-x:auto; -webkit-overflow-scrolling:touch}
+  #sin-agendar table{width:100%; border-collapse:collapse; font-size:12.5px; background:#fff; border-radius:6px; table-layout:auto}
+  #sin-agendar th{text-align:left; background:#fbe7e7; color:#8b0a14; padding:8px 10px; font-weight:700; border-bottom:2px solid #f0c8c8; white-space:nowrap; position:sticky; top:0; z-index:2}
+  #sin-agendar td{padding:8px 10px; border-bottom:1px solid #f5dede; color:#3a0a0a; vertical-align:middle}
+  #sin-agendar th:first-child, #sin-agendar td:first-child{padding-left:10px; width:50px}
+  #sin-agendar th:nth-child(2), #sin-agendar td:nth-child(2){white-space:nowrap; font-variant-numeric:tabular-nums}
+  #sin-agendar th:nth-child(3), #sin-agendar td:nth-child(3){width:45px; text-align:center}
+  #sin-agendar th:nth-child(4), #sin-agendar td:nth-child(4){white-space:nowrap}
+  #sin-agendar th:nth-child(5), #sin-agendar td:nth-child(5){word-break:break-all}
+  #sin-agendar th:nth-child(6), #sin-agendar td:nth-child(6){word-break:break-all}
+  #sin-agendar tr.day-header td{padding-left:10px!important}
   #sin-agendar tr.day-header td:first-child{border-top-left-radius:4px; border-bottom-left-radius:4px}
-  #sin-agendar tr.day-header td{background:#f9d8d8; font-weight:700; color:#8b0a14}
+  #sin-agendar tr.day-header td{background:#f9d8d8; font-weight:700; color:#8b0a14; font-size:12px}
   #sin-agendar tr.hoy td{background:#ffe0e0; font-weight:600}
   #sin-agendar tr.manana td{background:#fff1dc}
   #sin-agendar .marca-tag{display:inline-block; padding:1px 6px; border-radius:4px; font-size:10px; font-weight:700}
@@ -718,6 +748,15 @@
   #sin-agendar .m-m2{background:#d4e4ff; color:#0a2b7a}
   #sin-agendar .m-bk{background:#e8d4ff; color:#3a0a7a}
   #sin-agendar .empty{padding:14px; text-align:center; color:#4a7a4a; background:#effbef; border-radius:6px; font-weight:600}
+  @media(max-width:768px){
+    #sin-agendar{margin:10px 8px 0; padding:12px 8px}
+    #sin-agendar h2{font-size:14px}
+    #sin-agendar table{font-size:11.5px}
+    #sin-agendar th, #sin-agendar td{padding:6px 6px}
+    #sin-agendar th:first-child, #sin-agendar td:first-child{padding-left:6px; width:40px}
+    #sin-agendar th:nth-child(5), #sin-agendar td:nth-child(5),
+    #sin-agendar th:nth-child(6), #sin-agendar td:nth-child(6){display:none}
+  }
   @media print { #sin-agendar{display:none!important} }
 </style>
 </head>
