@@ -840,7 +840,7 @@ function updateSinAgendarLive(){
     for(const b of byDay[d]){
       const cls = d===hoy?'hoy':(d===manana?'manana':'');
       const mc = b.marca==='BK'?'m-bk':'m-m2';
-      const name = b.customer_name || b.ref || '—';
+      const name = b.name || b.customer_name || b.ref || '—';
       const em = b.email ? `<a href="mailto:${b.email}">${b.email}</a>` : '';
       const ph = b.phone ? ` · ${b.phone}` : '';
       const ref = b.ref || b.booking_id || '';
