@@ -41,7 +41,7 @@ function doGet(e) {
 function buildDashboardData() {
   const now = new Date();
   const today = new Date(now.getFullYear(), now.getMonth(), now.getDate());
-  const end = new Date(today.getTime() + 14*24*60*60*1000);
+  const end = new Date(today.getTime() + 30*24*60*60*1000); // 30 días para cubrir todos los vuelos
   const todayStr = fmt(today);
 
   // 1 — Calendar events
@@ -97,7 +97,8 @@ function fetchAllCalendarEvents(start, end) {
 
 function parseCalendarEvent(ev, calName) {
   const title = ev.getTitle() || '';
-  const desc = ev.getDescription() || '';
+  const descRaw = ev.getDescription() || '';
+  const desc = descRaw.replace(/<[^>]*>/g, ' '); // strip HTML tags for parsing
   const start = ev.getStartTime();
   const dateStr = fmt(start);
   const timeStr = Utilities.formatDate(start, TZ, 'HH:mm');
@@ -354,7 +355,7 @@ function matchToCalendar(emails, events, source) {
     const nameTokens = tokenize(searchName);
 
     for (const ev of dayEvents) {
-      const evText = (ev.title_raw + ' ' + ev.email + ' ' + ev.phone + ' ' + ev.name).toLowerCase();
+      const evText = (ev.title_raw + ' ' + ev.email + ' ' + ev.phone + ' ' + ev.name + ' ' + ev.reserva).toLowerCase();
 
       // Match by reference (Viator)
       if (source === 'viator' && em.ref && evText.includes(em.ref.toLowerCase())) {
