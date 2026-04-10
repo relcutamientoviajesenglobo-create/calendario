@@ -732,11 +732,13 @@
     </div>
   </div>
   <div class="tabs">
-    <button class="tab active" data-view="pending">⚡ Calendario vs Correo</button>
+    <button class="tab active" data-view="pending">⚡ En Calendario vs Correo</button>
     <button class="tab" data-view="dashboard">📊 Resumen</button>
-    <button id="btnRefresh" class="cta-refresh" title="Conecta EN VIVO a Google Calendar + Gmail de weflymx@gmail.com · 9 calendarios · ~10 seg">
+    <button class="tab" data-view="table">📋 Tabla</button>
+    <button class="tab" data-view="calendar">📅 Calendario</button>
+    <button id="btnRefresh" class="cta-refresh" title="Traer datos reales del calendario weflymx@gmail.com">
       <span class="cta-icon">↻</span>
-      <span class="cta-label">Actualizar en vivo</span>
+      <span class="cta-label">Actualizar</span>
     </button>
   </div>
 </header>
@@ -748,15 +750,11 @@
   <div id="sa-body"></div>
 </section>
 <script>
-const SIN_AGENDAR_DATA = {"generated_at":"2026-04-09 15:05","window":"2026-04-09 \u2192 2026-04-16","fuentes":{"Turitop":{"total":7,"matched":7,"sin_agendar":0},"Bookeo":{"total":19,"matched":19,"sin_agendar":0}},"total_fuentes":26,"total_sin_agendar":0,"bookings":[]};
 async function loadSinAgendar(){
   try{
-    let data;
-    try{
-      const r = await fetch('reservas_sin_agendar.json?ts='+Date.now());
-      if(r.ok) data = await r.json();
-    }catch(e){}
-    if(!data) data = SIN_AGENDAR_DATA;
+    const d = {"generated_at": "2026-04-09 07:16", "window": "2026-04-02 → 2026-04-16", "fuentes": {"Turitop": {"total": 29, "matched": 21, "sin_agendar": 8}, "Bookeo": {"total": 63, "matched": 61, "sin_agendar": 2}}, "total_fuentes": 92, "total_sin_agendar": 10, "bookings": [{"reserva": "G465-260326-3", "marca": "M1", "fecha": "2026-04-03", "hora": "05:00", "pax": 2, "nombre": "Velma Valdez", "email": "velmorales@yahoo.com", "phone": "+529566841395", "producto": "Transporte Redondo CDMX + Vuelo en Globo + Desayuno en Cueva + Visita a la Zona Arqueológica", "total": "6510.00", "fuente": "Turitop"}, {"reserva": "G465-260402-5", "marca": "M1", "fecha": "2026-04-03", "hora": "06:00", "pax": 4, "nombre": "Clinton Carr", "email": "zvruwink@gmail.com", "phone": "+17154510440", "producto": "Vuelo Compartido Promo", "total": "6489.00", "fuente": "Turitop"}, {"reserva": "G465-260315-1", "marca": "M1", "fecha": "2026-04-03", "hora": "06:00", "pax": 2, "nombre": "Juan Manuel Serrano Fernández", "email": "serrano.juanma@gmail.com", "phone": "+50660279598", "producto": "Vuelo Compartido Promo", "total": "4179.00", "fuente": "Turitop"}, {"reserva": "G465-260402-2", "marca": "M1", "fecha": "2026-04-03", "hora": "06:00", "pax": 4, "nombre": "Nidia Colmenares", "email": "nicol-425@hotmail.com", "phone": "+573143325706", "producto": "Vuelo Compartido Promo", "total": "6489.00", "fuente": "Turitop"}, {"reserva": "BK-023", "marca": "BK", "fecha": "2026-04-04", "hora": "04:30", "pax": 2, "nombre": "Lizeth Rodriguez Montero", "email": "lizethromo.243@gmail.com", "phone": "+5548326336", "producto": "ALL INCLUSIVE", "total": "", "fuente": "Bookeo"}, {"reserva": "G465-260306-2", "marca": "M1", "fecha": "2026-04-07", "hora": "06:00", "pax": 6, "nombre": "Farah Naime Curi", "email": "farah.nc00@gmail.com", "phone": "+527224303371", "producto": "Vuelo Compartido Promo", "total": "5964.00", "fuente": "Turitop"}, {"reserva": "G465-260407-1", "marca": "M1", "fecha": "2026-04-08", "hora": "06:00", "pax": 1, "nombre": "Max Burton", "email": "maxburton2000@aol.com", "phone": "+447926336883", "producto": "Vuelo Privado", "total": "7800.00", "fuente": "Turitop"}, {"reserva": "G465-260329-2", "marca": "M1", "fecha": "2026-04-10", "hora": "05:00", "pax": 3, "nombre": "DIANA JAZMIN ROBAYO ZIPA", "email": "DYROBAYOZ@GMAIL.COM", "phone": "+573184314557", "producto": "Transporte Redondo CDMX + Vuelo en Globo + Desayuno en Cueva + Visita a la Zona Arqueológica", "total": "9765.00", "fuente": "Turitop"}, {"reserva": "BK-001", "marca": "BK", "fecha": "2026-04-14", "hora": "06:00", "pax": 2, "nombre": "Alejandro Ivan Mendoza Ibarrola", "email": "lic.amendozaibarrola@gmail.com", "phone": "+5542160493", "producto": "Vuelo Compartido + Desayuno en", "total": "", "fuente": "Bookeo"}, {"reserva": "G465-260106-2", "marca": "M1", "fecha": "2026-04-14", "hora": "06:00", "pax": 9, "nombre": "camilo ocampo", "email": "camiloocampob@gmail.com", "phone": "+573104249881", "producto": "Vuelo Compartido Promo", "total": "9576.00", "fuente": "Turitop"}]}; const r = {ok:true,json:async()=>d};
+    if(!r.ok) return;
+    const data = await r.json();
     const sec = document.getElementById('sin-agendar');
     const body = document.getElementById('sa-body');
     document.getElementById('sa-window').textContent = data.window || '';
@@ -859,13 +857,6 @@ loadSinAgendar();
 
   <!-- PENDING - TWO COLUMNS -->
   <div class="view active" id="v-pending">
-
-    <!-- ALERTAS OPERATIVAS — visible en pantalla principal -->
-    <div class="panel" id="alerts-panel-main" style="margin-bottom:18px">
-      <h2 style="display:flex;align-items:center;gap:10px"><span class="dot" style="background:var(--bad)"></span>Alertas operativas</h2>
-      <div class="alerts-list" id="alerts-main"></div>
-    </div>
-
     <div class="pending-grid">
 
       <!-- LEFT: EN CALENDARIO -->
@@ -972,15 +963,12 @@ function showToast(msg, kind){
 function renderStatsCards(){
   const totalPax = DATA.events.reduce((a,e)=>a+(e.pax||0),0);
   const totalPaxConf = DATA.events.filter(e=>e.status==='confirmado').reduce((a,e)=>a+(e.pax||0),0);
-  const overweightPax = DATA.events.reduce((a,e)=>{
-    if(!e.weights) return a;
-    return a + e.weights.filter(w=>w>95).length;
-  },0);
+  const totalWeight = DATA.events.reduce((a,e)=>a+(e.total_weight||0),0);
   const st = DATA.stats || {};
   const cards = [
     {k:'Eventos en calendario', v:DATA.events.length.toLocaleString(), h:`${st.date_min||''} → ${st.date_max||''}`, cls:''},
     {k:'Pasajeros totales', v:totalPax.toLocaleString(), h:`${totalPaxConf} confirmados`, cls:'accent'},
-    {k:'Pasajeros sobre peso', v:overweightPax, h:overweightPax>0?'exceden 95 kg máx permitido':'todos dentro del límite', cls:overweightPax>0?'warn':'accent'},
+    {k:'Peso registrado', v:totalWeight.toLocaleString()+' kg', h:'crítico para globos', cls:'accent'},
     {k:'Pendientes de registrar', v:st.pending_bookeo_missing ?? st.pending_bookeo_count ?? 0, h:`${st.pending_viator_missing ?? 0} viator sin match`, cls:'warn'},
     {k:'Correos Bookeo', v:st.bookeo_emails_total ?? (DATA.bookeo_emails||[]).length, h:'últimos ~7 días', cls:''},
     {k:'Correos Viator', v:st.viator_emails_total ?? (DATA.viator_emails||[]).length, h:'últimos ~7 días', cls:''},
@@ -1049,64 +1037,33 @@ function refreshUI(){
   try{ if(typeof renderAlerts==='function') renderAlerts(); }catch(e){ console.warn(e); }
 }
 
-// ── Apps Script URL — PEGAR AQUÍ la URL de tu Web App desplegada ──
-const APPS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbzNrFU6Co5_BlJuE4kyJkE3hAaw7S2fo6O2bA08AgiMXI94RJrRtpxmCI2CNZyrDbuxeQ/exec';
-// Ejemplo: 'https://script.google.com/macros/s/AKfycbx.../exec'
-
 async function refreshData(){
   const btn = document.getElementById('btnRefresh');
   btn.classList.remove('ok','err');
   btn.classList.add('loading');
   const label = btn.querySelector('.cta-label');
   const origLabel = label.textContent;
-  label.textContent = 'Conectando a Google…';
-
-  if(!APPS_SCRIPT_URL){
-    showToast('⚠ Falta configurar APPS_SCRIPT_URL en el código. Lee la guía de setup.', 'err');
-    btn.classList.remove('loading');
-    btn.classList.add('err');
-    setTimeout(()=>btn.classList.remove('err'), 4000);
-    label.textContent = origLabel;
-    return;
-  }
-
+  label.textContent = 'Actualizando';
   try{
-    label.textContent = 'Leyendo 9 calendarios + Gmail…';
-    const controller = new AbortController();
-    const timeout = setTimeout(()=>controller.abort(), 45000); // 45s timeout
-    const res = await fetch(APPS_SCRIPT_URL, {signal:controller.signal});
-    clearTimeout(timeout);
+    throw new Error('Modo STANDALONE: datos embebidos. Para datos en vivo usa la versión con JSON separados.');
     if(!res.ok) throw new Error('HTTP ' + res.status);
     const fresh = await res.json();
-    if(fresh.error) throw new Error(fresh.error);
-    if(!fresh || !Array.isArray(fresh.events)) throw new Error('Respuesta inválida del servidor');
-
+    if(!fresh || !Array.isArray(fresh.events)) throw new Error('JSON inválido');
     // Replace DATA contents in place (DATA is const)
     for(const k of Object.keys(DATA)) delete DATA[k];
     Object.assign(DATA, fresh);
     refreshUI();
-
     // También recargar panel sin agendar
     try{ await loadSinAgendar(); }catch(e2){ console.warn('sin-agendar reload:', e2); }
-
     const when = new Date().toLocaleTimeString('es-MX',{hour:'2-digit',minute:'2-digit',second:'2-digit'});
     const nEv = DATA.events.length;
     const nPax = DATA.events.reduce((a,e)=>a+(e.pax||0),0);
-    const nMail = (DATA.pending_bookeo||[]).length + (DATA.pending_viator||[]).length;
-    showToast(`✓ EN VIVO · ${nEv} vuelos · ${nPax} pax · ${nMail} correos · ${when}`, 'ok');
+    showToast(`✓ Datos actualizados · ${nEv} vuelos · ${nPax} pax · ${when}`, 'ok');
     btn.classList.add('ok');
     setTimeout(()=>btn.classList.remove('ok'), 2500);
-
-    // Update generated_at
-    const genEl = document.getElementById('gen');
-    if(genEl) genEl.textContent = fresh.generated_at?.replace('T',' ').slice(0,19) || when;
-
   }catch(e){
     console.error(e);
-    let msg = e.name === 'AbortError'
-      ? '✗ Timeout — Google tardó más de 45s. Intenta de nuevo.'
-      : `✗ Error: ${e.message}`;
-    showToast(msg, 'err');
+    showToast(`✗ No se pudo actualizar: ${e.message}. Verifica que wefly-data.json exista junto al HTML.`, 'err');
     btn.classList.add('err');
     setTimeout(()=>btn.classList.remove('err'), 3500);
   }finally{
@@ -1150,14 +1107,11 @@ $$('.tab').forEach(t=>{
 // ── Stats cards ─────────────────
 const totalPax = DATA.events.reduce((a,e)=>a+(e.pax||0),0);
 const totalPaxConf = DATA.events.filter(e=>e.status==='confirmado').reduce((a,e)=>a+(e.pax||0),0);
-const overweightPax2 = DATA.events.reduce((a,e)=>{
-  if(!e.weights) return a;
-  return a + e.weights.filter(w=>w>95).length;
-},0);
+const totalWeight = DATA.events.reduce((a,e)=>a+(e.total_weight||0),0);
 const cards = [
   {k:'Eventos en calendario', v:DATA.events.length.toLocaleString(), h:`${DATA.stats.date_min} → ${DATA.stats.date_max}`, cls:''},
   {k:'Pasajeros totales', v:totalPax.toLocaleString(), h:`${totalPaxConf} confirmados`, cls:'accent'},
-  {k:'Pasajeros sobre peso', v:overweightPax2, h:overweightPax2>0?'exceden 95 kg máx permitido':'todos dentro del límite', cls:overweightPax2>0?'warn':'accent'},
+  {k:'Peso registrado', v:totalWeight.toLocaleString()+' kg', h:'crítico para globos', cls:'accent'},
   {k:'Pendientes de registrar', v:DATA.stats.pending_bookeo_count, h:`${DATA.stats.pending_bookeo_unread} sin abrir`, cls:'warn'},
   {k:'Correos Bookeo', v:DATA.stats.bookeo_emails_total, h:'últimos ~7 días', cls:''},
   {k:'Correos Viator', v:DATA.stats.viator_emails_total, h:'últimos ~7 días', cls:''},
@@ -1305,11 +1259,10 @@ function renderPending(){
 
   // Mail column — SOLO correos cuya reserva NO está aún en el calendario.
   // Los que ya están en calendario se descartan para no duplicar trabajo mental.
-  const _today = new Date().toISOString().slice(0,10);
-  const pb = (DATA.pending_bookeo||[]).filter(x=>!x.in_calendar && x.flight_date >= _today);
-  const pv = (DATA.pending_viator||[]).filter(x=>!x.in_calendar && x.flight_date >= _today);
-  const alreadyBookeo = (DATA.pending_bookeo||[]).filter(x=>x.in_calendar && x.flight_date >= _today).length;
-  const alreadyViator = (DATA.pending_viator||[]).filter(x=>x.in_calendar && x.flight_date >= _today).length;
+  const pb = (DATA.pending_bookeo||[]).filter(x=>!x.in_calendar);
+  const pv = (DATA.pending_viator||[]).filter(x=>!x.in_calendar);
+  const alreadyBookeo = (DATA.pending_bookeo||[]).filter(x=>x.in_calendar).length;
+  const alreadyViator = (DATA.pending_viator||[]).filter(x=>x.in_calendar).length;
   const allMail = [
     ...pb.map(x=>({...x, kind:'bookeo'})),
     ...pv.map(x=>({...x, kind:'viator'}))
@@ -1471,39 +1424,37 @@ $('#modal').addEventListener('click',e=>{if(e.target.id==='modal')closeModal()})
     </tbody>`;
 })();
 
-// ── Alertas panel (Resumen + Pantalla principal) ─────────────────
-function renderAlerts(){
+// ── Alertas panel (Resumen) ─────────────────
+(function renderAlerts(){
+  const list = $('#alerts-list');
+  if(!list) return;
   const today = new Date().toISOString().slice(0,10);
   const items = [];
 
-  // 1. Vuelos HOY/MAÑANA aún en correo (no en calendario)
-  const _td = today;
-  const allPend = [
-    ...(DATA.pending_bookeo||[]).filter(x=>!x.in_calendar && x.flight_date>=_td).map(x=>({...x,kind:'bookeo'})),
-    ...(DATA.pending_viator||[]).filter(x=>!x.in_calendar && x.flight_date>=_td).map(x=>({...x,kind:'viator'}))
-  ];
-  allPend.forEach(p=>{
-    const du = daysUntil(p.flight_date);
-    if(du<=1 && du>=0){
-      items.push({
-        cls:'warn', icon:'🕐',
-        title:`${p.kind==='viator'?p.ref:p.name||'(sin nombre)'}`,
-        sub:`Vuelo ${du===0?'HOY':'MAÑANA'} · ${p.flight_date_raw||p.flight_date||''} · aún en correo`
-      });
-    }
-  });
-
-  // 2. Sobrepeso
+  // Sobrepeso
   DATA.events.filter(e=>e.overweight && e.date>=today)
     .sort((a,b)=>a.date.localeCompare(b.date))
     .slice(0,10)
     .forEach(e=>items.push({
       cls:'bad', icon:'⚠',
       title:`${e.name||''}`,
-      sub:`${e.date} · ${e.calendar||''} · ${e.total_weight} kg (límite ${DATA.stats.weight_limit_kg||95})`
+      sub:`${e.date} · ${e.calendar||''} · ${e.total_weight} kg (límite ${DATA.stats.weight_limit_kg})`
     }));
 
-  // 3. Celebraciones próximas (15 días)
+  // Pendientes <24h
+  const allPend = [...DATA.pending_bookeo.map(x=>({...x,kind:'bookeo'})), ...DATA.pending_viator.map(x=>({...x,kind:'viator'}))];
+  allPend.forEach(p=>{
+    const du = daysUntil(p.flight_date);
+    if(du<=1 && du>=0){
+      items.push({
+        cls:'', icon:'🕐',
+        title:`${p.kind==='viator'?p.ref:p.name||'(sin nombre)'}`,
+        sub:`Vuelo ${du===0?'HOY':'MAÑANA'} · ${p.flight_date_raw||''} · aún en correo`
+      });
+    }
+  });
+
+  // Celebraciones próximas (15 días)
   const limit = new Date(); limit.setDate(limit.getDate()+15);
   const limitStr = limit.toISOString().slice(0,10);
   DATA.events.filter(e=>e.celebration && e.date>=today && e.date<=limitStr)
@@ -1515,21 +1466,10 @@ function renderAlerts(){
       sub:`${e.date} · celebración detectada`
     }));
 
-  const html = items.length
+  list.innerHTML = items.length
     ? items.map(i=>`<div class="alert-item ${i.cls}"><div><b>${i.icon} ${esc(i.title)}</b><div class="small">${esc(i.sub)}</div></div></div>`).join('')
     : '<div class="empty-state small">Sin alertas activas 🎉</div>';
-
-  // Render en AMBOS paneles (Resumen y pantalla principal)
-  const list = $('#alerts-list');
-  if(list) list.innerHTML = html;
-  const main = $('#alerts-main');
-  if(main) main.innerHTML = html;
-
-  // Ocultar panel principal si no hay alertas
-  const panel = $('#alerts-panel-main');
-  if(panel) panel.style.display = items.length ? '' : 'none';
-}
-renderAlerts();
+})();
 
 // ── Ruta del día · PDF (abre ventana imprimible) ─────────────────
 function printRoute(){
