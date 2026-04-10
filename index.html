@@ -804,8 +804,9 @@ loadSinAgendar();
 
 function updateSinAgendarLive(){
   const _today = new Date().toISOString().slice(0,10);
-  const pb = (DATA.pending_bookeo||[]).filter(x=>!x.in_calendar && x.flight_date >= _today);
-  const pv = (DATA.pending_viator||[]).filter(x=>!x.in_calendar && x.flight_date >= _today);
+  const _limit = new Date(Date.now()+15*864e5).toISOString().slice(0,10);
+  const pb = (DATA.pending_bookeo||[]).filter(x=>!x.in_calendar && x.flight_date >= _today && x.flight_date <= _limit);
+  const pv = (DATA.pending_viator||[]).filter(x=>!x.in_calendar && x.flight_date >= _today && x.flight_date <= _limit);
   const all = [...pb.map(b=>({...b, marca:'BK'})), ...pv.map(v=>({...v, marca:'VT'}))];
   const totalPax = all.reduce((s,b)=>s+(+b.pax||0),0);
 
@@ -813,7 +814,7 @@ function updateSinAgendarLive(){
   const body = document.getElementById('sa-body');
   document.getElementById('sa-count').textContent = all.length;
   document.getElementById('sa-pax').textContent = totalPax;
-  document.getElementById('sa-window').textContent = _today + ' →';
+  document.getElementById('sa-window').textContent = _today + ' → ' + _limit;
   document.getElementById('sa-time').textContent = DATA.generated_at || new Date().toLocaleTimeString('es-MX');
   document.getElementById('sa-sources').innerHTML =
     `Bookeo <b>${pb.length}</b> · Viator <b>${pv.length}</b> · En correo, NO en calendario`;
@@ -1355,10 +1356,11 @@ function renderPending(){
   // Mail column — SOLO correos cuya reserva NO está aún en el calendario.
   // Los que ya están en calendario se descartan para no duplicar trabajo mental.
   const _today = new Date().toISOString().slice(0,10);
-  const pb = (DATA.pending_bookeo||[]).filter(x=>!x.in_calendar && x.flight_date >= _today);
-  const pv = (DATA.pending_viator||[]).filter(x=>!x.in_calendar && x.flight_date >= _today);
-  const alreadyBookeo = (DATA.pending_bookeo||[]).filter(x=>x.in_calendar && x.flight_date >= _today).length;
-  const alreadyViator = (DATA.pending_viator||[]).filter(x=>x.in_calendar && x.flight_date >= _today).length;
+  const _limit = new Date(Date.now()+15*864e5).toISOString().slice(0,10);
+  const pb = (DATA.pending_bookeo||[]).filter(x=>!x.in_calendar && x.flight_date >= _today && x.flight_date <= _limit);
+  const pv = (DATA.pending_viator||[]).filter(x=>!x.in_calendar && x.flight_date >= _today && x.flight_date <= _limit);
+  const alreadyBookeo = (DATA.pending_bookeo||[]).filter(x=>x.in_calendar && x.flight_date >= _today && x.flight_date <= _limit).length;
+  const alreadyViator = (DATA.pending_viator||[]).filter(x=>x.in_calendar && x.flight_date >= _today && x.flight_date <= _limit).length;
   const allMail = [
     ...pb.map(x=>({...x, kind:'bookeo'})),
     ...pv.map(x=>({...x, kind:'viator'}))
