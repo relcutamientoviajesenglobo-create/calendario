@@ -1257,7 +1257,7 @@ async function refreshData(){
     modalStage.textContent = 'Leyendo 9 calendarios + Gmail…';
     label.textContent = 'Actualizando…';
     const controller = new AbortController();
-    const timeout = setTimeout(()=>controller.abort(), 90000); // 90s timeout
+    const timeout = setTimeout(()=>controller.abort(), 120000); // 120s timeout
     const res = await fetch(APPS_SCRIPT_URL, {signal:controller.signal});
     clearTimeout(timeout);
     if(!res.ok) throw new Error('HTTP ' + res.status);
