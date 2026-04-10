@@ -1,0 +1,1631 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>WE FLY · Logística</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Google+Sans:wght@400;500;700&family=Google+Sans+Text:wght@400;500;700&family=Google+Sans+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#0a0e1a;
+    --bg2:#0d1322;
+    --surface:#121a2e;
+    --surface2:#1a2340;
+    --surface3:#232d52;
+    --border:rgba(255,255,255,.08);
+    --border-2:rgba(255,255,255,.14);
+    --ink:#f5f7ff;
+    --ink-2:#c8cfe5;
+    --mut:#8892b0;
+    --brand:#8ab4f8;          /* Google blue soft */
+    --brand-2:#4285f4;
+    --good:#81c995;           /* Google green soft */
+    --warn:#fdd663;           /* Google yellow soft */
+    --bad:#f28b82;            /* Google red soft */
+    --purple:#c58af9;
+    --pink:#ff8bcb;
+    --teal:#78d9ec;
+    --grad-1:linear-gradient(135deg,#4285f4 0%,#8ab4f8 50%,#c58af9 100%);
+    --grad-2:linear-gradient(135deg,#81c995 0%,#78d9ec 100%);
+    --grad-3:linear-gradient(135deg,#fdd663 0%,#f28b82 100%);
+    --glow:0 0 0 1px rgba(138,180,248,.25), 0 20px 60px -20px rgba(66,133,244,.35);
+    --shadow-sm:0 1px 2px rgba(0,0,0,.3), 0 1px 1px rgba(0,0,0,.2);
+    --shadow-md:0 6px 18px -6px rgba(0,0,0,.55), 0 2px 6px rgba(0,0,0,.35);
+    --shadow-lg:0 24px 60px -20px rgba(0,0,0,.6), 0 8px 24px rgba(0,0,0,.35);
+    --r-sm:8px; --r-md:12px; --r-lg:16px; --r-xl:22px;
+  }
+  *{box-sizing:border-box; -webkit-font-smoothing:antialiased; -moz-osx-font-smoothing:grayscale}
+  html,body{margin:0; padding:0}
+  body{
+    font-family:'Google Sans Text','Google Sans','Plus Jakarta Sans',-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;
+    background:
+      radial-gradient(1200px 700px at 10% -10%, rgba(66,133,244,.12), transparent 60%),
+      radial-gradient(900px 600px at 100% 10%, rgba(197,138,249,.10), transparent 60%),
+      radial-gradient(800px 500px at 50% 100%, rgba(120,217,236,.08), transparent 60%),
+      var(--bg);
+    color:var(--ink);
+    font-size:14px;
+    line-height:1.5;
+    min-height:100vh;
+  }
+  h1,h2,h3,h4{font-family:'Google Sans','Plus Jakarta Sans',sans-serif; letter-spacing:-.02em; margin:0}
+  code,.mono{font-family:'Google Sans Mono','JetBrains Mono',monospace}
+
+  /* ── Header ─────────────────────────────────── */
+  header{
+    padding:22px 28px;
+    border-bottom:1px solid var(--border);
+    background:linear-gradient(180deg, rgba(18,26,46,.92), rgba(18,26,46,.6));
+    backdrop-filter:blur(14px);
+    -webkit-backdrop-filter:blur(14px);
+    position:sticky; top:0; z-index:40;
+    display:flex; align-items:center; justify-content:space-between; gap:20px; flex-wrap:wrap;
+  }
+  .brand{display:flex; align-items:center; gap:14px}
+  .brand .logo{
+    width:44px; height:44px; border-radius:14px;
+    background:var(--grad-1);
+    display:grid; place-items:center;
+    font-size:22px; box-shadow:var(--glow);
+  }
+  .brand h1{font-size:22px; font-weight:700}
+  .brand .sub{color:var(--mut); font-size:12px; margin-top:2px; font-weight:500}
+  .brand .sub b{color:var(--brand); font-weight:600}
+
+  .tabs{display:flex; gap:6px; background:var(--surface); padding:5px; border-radius:14px; border:1px solid var(--border)}
+  .tab{
+    padding:9px 16px; background:transparent; border:0; border-radius:10px;
+    color:var(--ink-2); cursor:pointer; font-size:13px; font-weight:600;
+    font-family:inherit; transition:all .2s ease;
+    display:flex; align-items:center; gap:7px;
+  }
+  .tab:hover{color:var(--ink); background:rgba(255,255,255,.04)}
+  .tab.active{
+    background:var(--grad-1); color:#fff;
+    box-shadow:0 6px 20px -6px rgba(66,133,244,.65);
+  }
+
+  /* ── CTA Refresh ─────────────────────────────── */
+  .cta-refresh{
+    margin-left:10px;
+    padding:10px 20px;
+    background:var(--grad-1);
+    color:#fff;
+    border:0;
+    border-radius:12px;
+    font-family:'Google Sans','Plus Jakarta Sans',sans-serif;
+    font-weight:700;
+    font-size:13.5px;
+    letter-spacing:.01em;
+    cursor:pointer;
+    display:inline-flex;
+    align-items:center;
+    gap:9px;
+    box-shadow:0 10px 28px -10px rgba(66,133,244,.85), 0 0 0 1px rgba(138,180,248,.35) inset;
+    transition:transform .15s ease, box-shadow .2s ease, filter .2s ease, opacity .2s;
+    position:relative;
+    overflow:hidden;
+  }
+  .cta-refresh::before{
+    content:'';
+    position:absolute; inset:0;
+    background:linear-gradient(120deg, transparent 30%, rgba(255,255,255,.22) 50%, transparent 70%);
+    transform:translateX(-120%);
+    transition:transform .6s ease;
+    pointer-events:none;
+  }
+  .cta-refresh:hover{
+    transform:translateY(-1px);
+    box-shadow:0 14px 34px -10px rgba(66,133,244,1), 0 0 0 1px rgba(138,180,248,.5) inset;
+    filter:brightness(1.06);
+  }
+  .cta-refresh:hover::before{ transform:translateX(120%); }
+  .cta-refresh:active{ transform:translateY(0); }
+  .cta-refresh .cta-icon{
+    font-size:17px;
+    display:inline-block;
+    transition:transform .3s ease;
+  }
+  .cta-refresh.loading{
+    pointer-events:none;
+    opacity:.85;
+  }
+  .cta-refresh.loading .cta-icon{
+    animation:spin 1s linear infinite;
+  }
+  .cta-refresh.loading .cta-label::after{
+    content:'...';
+    animation:dots 1.2s steps(4,end) infinite;
+  }
+  .cta-refresh.ok{
+    background:linear-gradient(135deg,#34a853 0%,#81c995 100%);
+    box-shadow:0 14px 34px -10px rgba(129,201,149,.9);
+  }
+  .cta-refresh.err{
+    background:linear-gradient(135deg,#ea4335 0%,#f28b82 100%);
+    box-shadow:0 14px 34px -10px rgba(242,139,130,.9);
+  }
+  @keyframes spin{ to{ transform:rotate(-360deg) } }
+  @keyframes dots{ 0%{content:''} 25%{content:'.'} 50%{content:'..'} 75%{content:'...'} }
+
+  /* ── Already registered chip ─────────────── */
+  .already-chip{
+    margin:0 0 14px;
+    padding:10px 14px;
+    background:linear-gradient(135deg, rgba(129,201,149,.14), rgba(120,217,236,.08));
+    border:1px solid rgba(129,201,149,.35);
+    border-radius:10px;
+    color:var(--good);
+    font-family:'Google Sans Text',sans-serif;
+    font-size:12.5px;
+    font-weight:500;
+    line-height:1.45;
+  }
+  .already-chip b{ color:#c3ecc9; font-weight:700; }
+
+  /* ── Toast ─────────────────────────────── */
+  .toast{
+    position:fixed;
+    top:86px; right:24px;
+    background:var(--surface2);
+    color:var(--ink);
+    padding:14px 20px;
+    border-radius:12px;
+    border:1px solid var(--border-2);
+    box-shadow:var(--shadow-lg);
+    font-family:'Google Sans','Plus Jakarta Sans',sans-serif;
+    font-weight:600;
+    font-size:13px;
+    z-index:100;
+    opacity:0;
+    transform:translateY(-12px);
+    pointer-events:none;
+    transition:opacity .25s ease, transform .25s ease;
+    max-width:360px;
+  }
+  .toast.show{ opacity:1; transform:translateY(0); }
+  .toast.ok{ border-color:rgba(129,201,149,.5); box-shadow:0 20px 50px -12px rgba(129,201,149,.45); }
+  .toast.err{ border-color:rgba(242,139,130,.5); box-shadow:0 20px 50px -12px rgba(242,139,130,.45); }
+
+  /* ── Stats grid ─────────────────────────────── */
+  .stats{
+    display:grid; grid-template-columns:repeat(auto-fit, minmax(185px, 1fr));
+    gap:14px; padding:22px 28px 8px;
+  }
+  .card{
+    background:linear-gradient(180deg, var(--surface), var(--surface2));
+    border:1px solid var(--border);
+    border-radius:var(--r-lg);
+    padding:16px 18px;
+    box-shadow:var(--shadow-sm);
+    position:relative; overflow:hidden;
+    transition:all .2s ease;
+  }
+  .card::before{
+    content:''; position:absolute; inset:0 0 auto 0; height:3px;
+    background:var(--grad-1); opacity:.8;
+  }
+  .card:hover{transform:translateY(-2px); border-color:var(--border-2); box-shadow:var(--shadow-md)}
+  .card .k{color:var(--mut); font-size:11px; font-weight:600; text-transform:uppercase; letter-spacing:.7px}
+  .card .v{font-family:'Google Sans',sans-serif; font-size:28px; font-weight:700; margin-top:6px; letter-spacing:-.02em}
+  .card .hint{color:var(--mut); font-size:11px; margin-top:3px; font-weight:500}
+  .card.accent::before{background:var(--grad-2)}
+  .card.warn::before{background:var(--grad-3)}
+  .card .v.warn-text{color:var(--warn)}
+  .card .v.good-text{color:var(--good)}
+  .card .v.bad-text{color:var(--bad)}
+
+  /* ── Filters ─────────────────────────────────── */
+  .filters{
+    display:flex; gap:10px; padding:16px 28px; flex-wrap:wrap;
+    background:rgba(18,26,46,.75);
+    backdrop-filter:blur(14px);
+    -webkit-backdrop-filter:blur(14px);
+    border-top:1px solid var(--border);
+    border-bottom:1px solid var(--border);
+    position:sticky; top:88px; z-index:30;
+  }
+  @media (max-width: 860px){
+    .filters{ padding:14px 16px; gap:8px; position:static; }
+    .filters > input#q,
+    .filters > select{ width:100%; min-width:0; flex:1 1 100%; }
+  }
+  .filters input,.filters select{
+    background:var(--surface2); border:1px solid var(--border);
+    color:var(--ink); padding:10px 12px; border-radius:var(--r-md);
+    font-size:13px; font-family:inherit; font-weight:500;
+    min-width:150px; transition:all .15s ease;
+  }
+  .filters input::placeholder{color:var(--mut)}
+  .filters input:focus,.filters select:focus{
+    outline:0; border-color:var(--brand); box-shadow:0 0 0 3px rgba(138,180,248,.15);
+  }
+
+  /* ── Date range · XL, simple, responsive ───── */
+  .date-range{
+    display:flex; align-items:center; gap:14px;
+    background:linear-gradient(135deg, rgba(66,133,244,.14), rgba(197,138,249,.08));
+    border:2px solid rgba(138,180,248,.35);
+    border-radius:18px;
+    padding:14px 18px;
+    flex-wrap:wrap;
+    box-shadow:0 10px 30px -12px rgba(66,133,244,.35), inset 0 1px 0 rgba(255,255,255,.06);
+    width:100%;
+    margin:4px 0;
+    box-sizing:border-box;
+  }
+  .date-field{
+    display:flex; flex-direction:column; gap:6px;
+    flex:1 1 220px;
+    min-width:0;
+  }
+  .date-field label{
+    font-family:'Google Sans',sans-serif;
+    font-size:11px;
+    font-weight:800;
+    text-transform:uppercase;
+    letter-spacing:.12em;
+    color:var(--brand);
+    padding-left:4px;
+  }
+  .filters .date-range input[type="date"]{
+    width:100%;
+    min-width:0;
+    padding:18px 20px;
+    font-size:18px;
+    font-weight:700;
+    font-family:'Google Sans',sans-serif;
+    background:var(--surface2);
+    border:2px solid rgba(138,180,248,.4);
+    border-radius:14px;
+    color:var(--ink);
+    cursor:pointer;
+    color-scheme:dark;
+    letter-spacing:.01em;
+    box-shadow:inset 0 2px 6px rgba(0,0,0,.25);
+    box-sizing:border-box;
+  }
+  .filters .date-range input[type="date"]:hover{
+    border-color:var(--brand);
+    background:var(--surface3);
+  }
+  .filters .date-range input[type="date"]:focus{
+    outline:0;
+    border-color:var(--brand);
+    box-shadow:0 0 0 4px rgba(138,180,248,.22), inset 0 2px 6px rgba(0,0,0,.25);
+  }
+  /* Icono del calendario · blanco */
+  .filters .date-range input[type="date"]::-webkit-calendar-picker-indicator{
+    filter:brightness(0) invert(1);
+    cursor:pointer;
+    opacity:1;
+    transform:scale(1.6);
+    margin-left:8px;
+    padding:4px;
+  }
+  .filters .date-range input[type="date"]::-webkit-calendar-picker-indicator:hover{
+    filter:brightness(0) invert(1) drop-shadow(0 0 4px rgba(138,180,248,.8));
+  }
+  .date-arrow{
+    font-size:28px;
+    color:var(--brand);
+    font-weight:800;
+    user-select:none;
+    padding:22px 0 0;
+    flex:0 0 auto;
+  }
+  .date-presets{
+    display:flex; gap:10px;
+    flex:1 1 auto;
+    padding-top:22px;
+    flex-wrap:wrap;
+  }
+  .filters .preset{
+    padding:16px 26px;
+    min-width:0;
+    font-size:15px;
+    font-weight:700;
+    font-family:'Google Sans',sans-serif;
+    background:var(--surface2);
+    color:var(--ink);
+    border:2px solid var(--border-2);
+    border-radius:999px;
+    cursor:pointer;
+    transition:all .18s ease;
+    flex:1 1 auto;
+    box-shadow:0 4px 12px -4px rgba(0,0,0,.4);
+  }
+  .filters .preset:hover{
+    background:var(--surface3);
+    border-color:var(--brand);
+    transform:translateY(-1px);
+    box-shadow:0 10px 22px -8px rgba(66,133,244,.5);
+  }
+  .filters .preset.active{
+    background:var(--grad-1);
+    border-color:transparent;
+    color:#fff;
+    box-shadow:0 12px 28px -8px rgba(66,133,244,.85), 0 0 0 2px rgba(138,180,248,.4);
+  }
+
+  /* Tablet */
+  @media (max-width: 860px){
+    .date-range{
+      gap:12px;
+      padding:14px;
+    }
+    .date-field{ flex:1 1 100%; }
+    .date-arrow{ display:none; }
+    .date-presets{
+      width:100%;
+      padding-top:4px;
+      border-top:1px dashed rgba(138,180,248,.25);
+      margin-top:6px;
+      padding-top:14px;
+    }
+    .filters .date-range input[type="date"]{
+      font-size:17px; padding:16px 18px;
+    }
+    .filters .preset{ padding:14px 20px; font-size:14px; }
+  }
+  /* Móvil */
+  @media (max-width: 520px){
+    .date-range{ padding:12px; border-radius:14px; }
+    .filters .date-range input[type="date"]{
+      font-size:16px; padding:14px 16px; border-radius:12px;
+    }
+    .date-field label{ font-size:10.5px; }
+    .filters .preset{
+      padding:13px 16px; font-size:14px;
+      flex:1 1 calc(50% - 5px);
+    }
+  }
+  .filters button{
+    background:var(--surface2); color:var(--ink); border:1px solid var(--border);
+    padding:10px 16px; border-radius:var(--r-md); font-weight:600; cursor:pointer;
+    font-family:inherit; font-size:13px; transition:all .15s ease;
+    display:flex; align-items:center; gap:6px;
+  }
+  .filters button:hover{background:var(--surface3); border-color:var(--border-2)}
+  .filters button.primary{background:var(--grad-1); border-color:transparent; color:#fff}
+  .filters button.primary:hover{filter:brightness(1.1)}
+
+  /* ── Main views ─────────────────────────────── */
+  main{padding:24px 28px 60px}
+  .view{display:none; animation:fadeIn .3s ease}
+  .view.active{display:block}
+  @keyframes fadeIn{from{opacity:0; transform:translateY(4px)} to{opacity:1; transform:translateY(0)}}
+
+  .panel{
+    background:var(--surface); border:1px solid var(--border);
+    border-radius:var(--r-xl); padding:22px;
+    box-shadow:var(--shadow-sm);
+  }
+  .panel h2{font-size:15px; font-weight:700; margin-bottom:14px; display:flex; align-items:center; gap:10px}
+  .panel h2 .dot{width:8px; height:8px; border-radius:50%; background:var(--brand)}
+  .panel h3{font-size:14px; font-weight:600; margin-bottom:12px; color:var(--ink-2)}
+  .panel + .panel{margin-top:18px}
+  .grid-2{display:grid; grid-template-columns:1fr 1fr; gap:18px}
+  @media(max-width:1100px){.grid-2{grid-template-columns:1fr}}
+
+  /* ── Table ─────────────────────────────────── */
+  .tbl-count{color:var(--mut); font-size:12px; margin-bottom:10px; font-weight:500}
+  table{
+    width:100%; border-collapse:separate; border-spacing:0;
+    background:var(--surface); border:1px solid var(--border);
+    border-radius:var(--r-lg); overflow:hidden;
+  }
+  thead th{
+    background:var(--surface2); text-align:left; padding:12px 14px;
+    font-size:11px; font-weight:700; text-transform:uppercase; letter-spacing:.7px;
+    color:var(--mut); border-bottom:1px solid var(--border); position:sticky; top:152px; z-index:5;
+  }
+  td{padding:12px 14px; border-bottom:1px solid var(--border); vertical-align:top; font-size:13px}
+  tbody tr:hover td{background:rgba(138,180,248,.04)}
+  tbody tr:last-child td{border-bottom:0}
+
+  .badge{
+    display:inline-flex; align-items:center; gap:4px;
+    padding:3px 9px; border-radius:999px; font-size:11px; font-weight:600;
+    font-family:'Google Sans',sans-serif;
+  }
+  .b-confirmado{background:rgba(129,201,149,.15); color:var(--good); border:1px solid rgba(129,201,149,.3)}
+  .b-cancelado{background:rgba(242,139,130,.15); color:var(--bad); border:1px solid rgba(242,139,130,.3)}
+  .b-pendiente{background:rgba(253,214,99,.15); color:var(--warn); border:1px solid rgba(253,214,99,.3)}
+  .b-para_grafico,.b-para_lista,.b-para_registro{background:rgba(138,180,248,.15); color:var(--brand); border:1px solid rgba(138,180,248,.3)}
+
+  .pill{
+    display:inline-block; padding:3px 9px; border-radius:var(--r-sm);
+    background:var(--surface3); font-size:11px; color:var(--ink-2); font-weight:600;
+    border:1px solid var(--border);
+  }
+  .pill.bookeo{background:rgba(129,201,149,.1); color:var(--good); border-color:rgba(129,201,149,.25)}
+  .pill.vgmx{background:rgba(138,180,248,.1); color:var(--brand); border-color:rgba(138,180,248,.25)}
+  .pill.viator{background:rgba(253,214,99,.1); color:var(--warn); border-color:rgba(253,214,99,.25)}
+
+  .num{font-family:'Google Sans',sans-serif; font-weight:700; font-size:14px}
+  .weight-chip{font-family:'Google Sans Mono',monospace; background:var(--surface3); padding:2px 8px; border-radius:6px; font-size:11px; font-weight:600; color:var(--ink-2)}
+
+  /* ── Two column pending view ───────────────── */
+  .pending-grid{display:grid; grid-template-columns:1.05fr .95fr; gap:20px}
+  @media(max-width:1200px){.pending-grid{grid-template-columns:1fr}}
+
+  .col{
+    background:var(--surface); border:1px solid var(--border);
+    border-radius:var(--r-xl); overflow:hidden;
+    box-shadow:var(--shadow-md);
+  }
+  .col .head{
+    padding:18px 22px; border-bottom:1px solid var(--border);
+    display:flex; align-items:flex-start; justify-content:space-between; gap:12px;
+    position:relative;
+  }
+  .col.cal .head{background:linear-gradient(135deg, rgba(129,201,149,.08), rgba(138,180,248,.04))}
+  .col.mail .head{background:linear-gradient(135deg, rgba(253,214,99,.08), rgba(242,139,130,.04))}
+  .col .head h2{font-size:17px; font-weight:700; display:flex; align-items:center; gap:10px}
+  .col .head .icon{
+    width:34px; height:34px; border-radius:10px;
+    display:grid; place-items:center; font-size:16px;
+  }
+  .col.cal .icon{background:rgba(129,201,149,.15); color:var(--good)}
+  .col.mail .icon{background:rgba(253,214,99,.15); color:var(--warn)}
+  .col .head .sub{color:var(--mut); font-size:12px; margin-top:3px; font-weight:500}
+  .col .head .stat{text-align:right}
+  .col .head .stat .big{font-family:'Google Sans',sans-serif; font-size:26px; font-weight:700; line-height:1}
+  .col .head .stat .lbl{color:var(--mut); font-size:11px; text-transform:uppercase; letter-spacing:.6px; font-weight:600; margin-top:4px}
+
+  .col .body{max-height:72vh; overflow:auto; padding:10px}
+  .col .body::-webkit-scrollbar{width:8px}
+  .col .body::-webkit-scrollbar-track{background:transparent}
+  .col .body::-webkit-scrollbar-thumb{background:var(--surface3); border-radius:4px}
+
+  .subhead{
+    font-size:11px; color:var(--mut); font-weight:700; text-transform:uppercase;
+    letter-spacing:.8px; padding:14px 14px 8px 14px;
+    display:flex; align-items:center; justify-content:space-between;
+  }
+  .subhead .count{
+    background:var(--surface3); color:var(--ink-2);
+    padding:2px 8px; border-radius:999px; font-size:11px;
+  }
+
+  .entry{
+    padding:14px 16px; border-radius:var(--r-md); margin:6px 8px;
+    background:var(--surface2); border:1px solid var(--border);
+    transition:all .15s ease;
+  }
+  .entry:hover{border-color:var(--border-2); background:var(--surface3)}
+  .entry.unread{
+    border-left:3px solid var(--warn);
+    background:linear-gradient(90deg, rgba(253,214,99,.08), var(--surface2) 30%);
+  }
+  .entry .row1{display:flex; align-items:center; justify-content:space-between; gap:10px; margin-bottom:6px}
+  .entry .name{font-family:'Google Sans',sans-serif; font-weight:600; font-size:14px; color:var(--ink)}
+  .entry .name.locked{color:var(--ink-2); font-style:italic}
+  .entry .tag{
+    font-size:10px; font-weight:700; text-transform:uppercase; letter-spacing:.6px;
+    padding:3px 8px; border-radius:999px; display:inline-flex; align-items:center; gap:4px;
+    flex-shrink:0;
+  }
+  .entry.unread .tag{background:rgba(253,214,99,.18); color:var(--warn); border:1px solid rgba(253,214,99,.35)}
+  .entry:not(.unread) .tag{background:rgba(138,180,248,.12); color:var(--brand); border:1px solid rgba(138,180,248,.25)}
+  .entry .meta{
+    display:flex; flex-wrap:wrap; gap:6px; margin-top:8px; font-size:11.5px;
+  }
+  .entry .meta span{
+    background:rgba(255,255,255,.04); padding:3px 9px; border-radius:6px;
+    color:var(--ink-2); font-weight:500; border:1px solid var(--border);
+  }
+  .entry .meta .m-date{color:var(--brand); background:rgba(138,180,248,.08); border-color:rgba(138,180,248,.2)}
+  .entry .meta .m-pax{color:var(--teal); background:rgba(120,217,236,.08); border-color:rgba(120,217,236,.2)}
+  .entry .meta .m-price{color:var(--good); background:rgba(129,201,149,.08); border-color:rgba(129,201,149,.2)}
+  .entry .meta .m-received{color:var(--mut)}
+  .entry .lock-note{
+    margin-top:8px; font-size:11px; color:var(--mut);
+    padding:6px 10px; background:rgba(253,214,99,.05);
+    border-radius:6px; border:1px dashed rgba(253,214,99,.25);
+  }
+
+  .cal-entry{
+    padding:12px 14px; margin:4px 8px; border-radius:10px;
+    display:flex; align-items:center; justify-content:space-between; gap:10px;
+    transition:background .15s ease;
+  }
+  .cal-entry:hover{background:rgba(138,180,248,.04)}
+  .cal-entry .left{flex:1; min-width:0}
+  .cal-entry .name{font-family:'Google Sans',sans-serif; font-weight:600; font-size:13.5px; white-space:nowrap; overflow:hidden; text-overflow:ellipsis}
+  .cal-entry .sub{color:var(--mut); font-size:11px; margin-top:2px; display:flex; gap:8px; flex-wrap:wrap}
+  .cal-entry .right{text-align:right; flex-shrink:0}
+  .cal-entry .right .pax{font-family:'Google Sans',sans-serif; font-weight:700; font-size:15px}
+  .cal-entry .right .wt{color:var(--mut); font-size:10px}
+
+  /* ── Dashboard charts (bars) ───────────────── */
+  .bar-row{margin:10px 0}
+  .bar-row .lbl{display:flex; justify-content:space-between; font-size:12px; margin-bottom:5px}
+  .bar-row .lbl .name{font-weight:600; color:var(--ink)}
+  .bar-row .lbl .val{color:var(--mut); font-weight:500}
+  .bar-track{height:8px; background:var(--surface3); border-radius:4px; overflow:hidden}
+  .bar-fill{height:100%; border-radius:4px; background:var(--grad-1); transition:width .4s ease}
+  .bar-fill.g2{background:var(--grad-2)}
+  .bar-fill.g3{background:var(--grad-3)}
+
+  /* ── Calendar view ─────────────────────────── */
+  .month-header{display:flex; align-items:center; justify-content:space-between; margin-bottom:18px}
+  .month-header h2{font-size:22px; font-weight:700; text-transform:capitalize}
+  .month-header button{
+    background:var(--surface2); border:1px solid var(--border); color:var(--ink);
+    padding:9px 16px; border-radius:var(--r-md); cursor:pointer; font-weight:600;
+    font-family:inherit; font-size:13px; transition:all .15s ease;
+  }
+  .month-header button:hover{background:var(--surface3); border-color:var(--border-2)}
+
+  .calgrid{
+    display:grid; grid-template-columns:repeat(7,1fr); gap:6px;
+    background:var(--surface); border:1px solid var(--border);
+    border-radius:var(--r-xl); padding:14px; box-shadow:var(--shadow-sm);
+  }
+  .dow{
+    text-align:center; color:var(--mut); font-size:11px; padding:8px;
+    text-transform:uppercase; font-weight:700; letter-spacing:.6px;
+  }
+  .day{
+    min-height:108px; background:var(--surface2); border:1px solid var(--border);
+    border-radius:var(--r-md); padding:8px 10px; cursor:pointer; transition:all .15s ease;
+    position:relative; overflow:hidden;
+  }
+  .day:hover{border-color:var(--brand); transform:translateY(-1px); box-shadow:var(--shadow-md)}
+  .day .dn{font-family:'Google Sans',sans-serif; font-weight:700; font-size:15px}
+  .day .m{color:var(--mut); font-size:11px; margin-top:4px; font-weight:500}
+  .day .m b{color:var(--ink); font-family:'Google Sans',sans-serif}
+  .day.today{border-color:var(--brand); box-shadow:0 0 0 2px rgba(138,180,248,.3)}
+  .day.today .dn{color:var(--brand)}
+  .day.empty{opacity:.3; cursor:default}
+  .day .bar{
+    height:4px; border-radius:2px; margin-top:6px;
+    background:var(--grad-1);
+  }
+  .day .bar.g2{background:var(--grad-2)}
+  .day .bar.g3{background:var(--grad-3)}
+
+  /* ── Modal ─────────────────────────────────── */
+  .modal{
+    position:fixed; inset:0; background:rgba(5,8,16,.78);
+    backdrop-filter:blur(8px); -webkit-backdrop-filter:blur(8px);
+    display:none; align-items:center; justify-content:center; z-index:100; padding:24px;
+    animation:fadeIn .2s ease;
+  }
+  .modal.open{display:flex}
+  .modal .box{
+    background:var(--surface); border:1px solid var(--border-2);
+    border-radius:var(--r-xl); max-width:940px; width:100%; max-height:84vh;
+    overflow:auto; padding:26px; box-shadow:var(--shadow-lg);
+  }
+  .modal h2{font-size:20px; font-weight:700; margin-bottom:18px}
+  .modal .close{
+    float:right; background:var(--surface2); border:1px solid var(--border);
+    color:var(--ink); padding:8px 14px; border-radius:var(--r-md); cursor:pointer;
+    font-family:inherit; font-weight:600; font-size:13px;
+  }
+  .modal .close:hover{background:var(--surface3)}
+  .modal .event-card{
+    padding:16px; border:1px solid var(--border); border-radius:var(--r-md);
+    margin-bottom:12px; background:var(--surface2);
+  }
+  .modal .event-card .title{font-family:'Google Sans',sans-serif; font-weight:700; font-size:15px; margin-bottom:8px}
+  .modal .event-card .chips{display:flex; flex-wrap:wrap; gap:6px; font-size:12px}
+  .modal .event-card .chips span{background:rgba(255,255,255,.04); padding:4px 10px; border-radius:6px; border:1px solid var(--border)}
+
+  a{color:var(--brand); text-decoration:none; font-weight:500}
+  a:hover{text-decoration:underline}
+  .empty-state{padding:40px 20px; text-align:center; color:var(--mut)}
+  .empty-state .emoji{font-size:40px; opacity:.5}
+  .empty-state p{margin-top:10px; font-size:13px}
+  .small{font-size:11px; color:var(--mut); font-weight:500}
+
+  /* ── Alert badges on cal-entry ───────────── */
+  .alert-chip{
+    display:inline-flex; align-items:center; gap:3px;
+    padding:2px 7px; border-radius:999px; font-size:10px; font-weight:700;
+    text-transform:uppercase; letter-spacing:.4px; margin-left:4px;
+  }
+  .alert-chip.over{background:rgba(242,139,130,.15); color:var(--bad); border:1px solid rgba(242,139,130,.35)}
+  .alert-chip.celeb{background:rgba(197,138,249,.15); color:var(--purple); border:1px solid rgba(197,138,249,.35)}
+  .alert-chip.soon{background:rgba(253,214,99,.18); color:var(--warn); border:1px solid rgba(253,214,99,.4)}
+  .cal-entry.has-alert{border-left:3px solid var(--bad); background:rgba(242,139,130,.04)}
+  .cal-entry a.wrap{color:inherit; text-decoration:none; display:flex; width:100%; align-items:center; justify-content:space-between; gap:10px}
+  .cal-entry a.wrap:hover{text-decoration:none}
+
+  /* ── Mover a Calendario button ───────────── */
+  .entry .actions{margin-top:10px; display:flex; gap:8px; flex-wrap:wrap}
+  .btn-move{
+    background:var(--grad-2); color:#0a0e1a; border:0;
+    padding:8px 14px; border-radius:8px; font-weight:700; font-size:12px;
+    font-family:inherit; cursor:pointer; text-decoration:none;
+    display:inline-flex; align-items:center; gap:6px;
+    transition:all .15s ease;
+  }
+  .btn-move:hover{filter:brightness(1.1); transform:translateY(-1px); text-decoration:none}
+  .entry .meta .m-soon{color:var(--warn); background:rgba(253,214,99,.1); border-color:rgba(253,214,99,.3); font-weight:700}
+
+  /* ── Totals by day table ─────────────────── */
+  .totals-table{width:100%; border-collapse:collapse; font-size:12.5px}
+  .totals-table th{
+    text-align:left; padding:8px 10px; color:var(--mut);
+    font-weight:600; font-size:11px; text-transform:uppercase; letter-spacing:.5px;
+    border-bottom:1px solid var(--border);
+  }
+  .totals-table td{padding:9px 10px; border-bottom:1px solid var(--border)}
+  .totals-table td .op{font-family:'Google Sans Mono',monospace; font-size:11px; color:var(--mut)}
+  .totals-table td.val{font-family:'Google Sans',sans-serif; font-weight:700}
+  .totals-table tr:hover td{background:rgba(255,255,255,.02)}
+  .totals-table .date-cell{font-family:'Google Sans',sans-serif; font-weight:700; color:var(--brand)}
+  .totals-table .weight-bad{color:var(--bad)}
+
+  /* ── Alerts panel ─────────────────────────── */
+  .alerts-list{display:flex; flex-direction:column; gap:8px; max-height:320px; overflow:auto}
+  .alert-item{
+    padding:10px 14px; background:var(--surface2); border-radius:10px;
+    border-left:3px solid var(--warn);
+    font-size:12.5px; display:flex; justify-content:space-between; gap:10px;
+  }
+  .alert-item.bad{border-left-color:var(--bad); background:rgba(242,139,130,.05)}
+  .alert-item.purple{border-left-color:var(--purple); background:rgba(197,138,249,.05)}
+  .alert-item b{font-family:'Google Sans',sans-serif}
+  .alert-item .right{color:var(--mut); font-size:11px; white-space:nowrap}
+
+  /* ── Print (ruta del día PDF) ─────────────── */
+  @media print {
+    body{background:#fff; color:#111}
+    header,.filters,.tabs,.stats,.modal,.view{display:none!important}
+  }
+
+  /* Scrollbars */
+  ::-webkit-scrollbar{width:10px; height:10px}
+  ::-webkit-scrollbar-track{background:var(--bg)}
+  ::-webkit-scrollbar-thumb{background:var(--surface3); border-radius:5px}
+  ::-webkit-scrollbar-thumb:hover{background:var(--brand)}
+
+  /* ── Panel SIN AGENDAR (gap detector Turitop ↔ Calendar) ───────── */
+  #sin-agendar{
+    margin:14px 28px 0; padding:16px 20px;
+    background:#fff4f4; color:#3a0a0a;
+    border-left:5px solid #c1121f; border-radius:10px;
+    font-family:'Inter','Google Sans',sans-serif;
+    box-shadow:0 2px 12px rgba(193,18,31,.12);
+  }
+  #sin-agendar h2{margin:0 0 6px; font-size:17px; font-weight:800; color:#8b0a14; letter-spacing:.2px}
+  #sin-agendar .window{margin:0 0 10px; font-size:11px; color:#7a2b2b; opacity:.85}
+  #sin-agendar table{width:100%; border-collapse:separate; border-spacing:14px 0; font-size:12.5px; background:#fff; border-radius:6px; overflow:hidden}
+  #sin-agendar th{text-align:left; background:#fbe7e7; color:#8b0a14; padding:10px 14px; font-weight:700; border-bottom:2px solid #f0c8c8; white-space:nowrap}
+  #sin-agendar td{padding:10px 14px; border-bottom:1px solid #f5dede; color:#3a0a0a; vertical-align:middle}
+  #sin-agendar th:first-child, #sin-agendar td:first-child{padding-left:22px; width:70px}
+  #sin-agendar th:nth-child(2), #sin-agendar td:nth-child(2){width:78px; white-space:nowrap; font-variant-numeric:tabular-nums}
+  #sin-agendar th:nth-child(3), #sin-agendar td:nth-child(3){width:54px; text-align:center}
+  #sin-agendar th:nth-child(4), #sin-agendar td:nth-child(4){min-width:200px}
+  #sin-agendar th:nth-child(5), #sin-agendar td:nth-child(5){min-width:220px}
+  #sin-agendar th:nth-child(6), #sin-agendar td:nth-child(6){min-width:220px}
+  #sin-agendar th:last-child, #sin-agendar td:last-child{padding-right:22px}
+  #sin-agendar tr.day-header td{padding-left:22px!important}
+  #sin-agendar tr.day-header td:first-child{border-top-left-radius:4px; border-bottom-left-radius:4px}
+  #sin-agendar tr.day-header td{background:#f9d8d8; font-weight:700; color:#8b0a14}
+  #sin-agendar tr.hoy td{background:#ffe0e0; font-weight:600}
+  #sin-agendar tr.manana td{background:#fff1dc}
+  #sin-agendar .marca-tag{display:inline-block; padding:1px 6px; border-radius:4px; font-size:10px; font-weight:700}
+  #sin-agendar .m-m1{background:#ffd9a8; color:#7a3a0a}
+  #sin-agendar .m-m2{background:#d4e4ff; color:#0a2b7a}
+  #sin-agendar .m-bk{background:#e8d4ff; color:#3a0a7a}
+  #sin-agendar .empty{padding:14px; text-align:center; color:#4a7a4a; background:#effbef; border-radius:6px; font-weight:600}
+  @media print { #sin-agendar{display:none!important} }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="brand">
+    <div class="logo">✈</div>
+    <div>
+      <h1>WE FLY · Logística de Vuelos</h1>
+      <div class="sub">Data viva · Gmail + Google Calendar · <b id="gen"></b></div>
+    </div>
+  </div>
+  <div class="tabs">
+    <button class="tab active" data-view="pending">⚡ Calendario vs Correo</button>
+    <button class="tab" data-view="dashboard">📊 Resumen</button>
+    <button id="btnRefresh" class="cta-refresh" title="Conecta EN VIVO a Google Calendar + Gmail de weflymx@gmail.com · 9 calendarios · ~10 seg">
+      <span class="cta-icon">↻</span>
+      <span class="cta-label">Actualizar en vivo</span>
+    </button>
+  </div>
+</header>
+<div id="toast" class="toast" aria-live="polite"></div>
+
+<section id="sin-agendar" style="display:none">
+  <h2>⚠️ RESERVAS SIN AGENDAR — <span id="sa-count">0</span> reservas · <span id="sa-pax">0</span> pax</h2>
+  <p class="window">Turitop + Bookeo ↔ Google Calendar · ventana <span id="sa-window">—</span> · actualizado <span id="sa-time">—</span> · <span id="sa-sources"></span></p>
+  <div id="sa-body"></div>
+</section>
+<script>
+const SIN_AGENDAR_DATA = {"generated_at":"2026-04-09 15:05","window":"2026-04-09 \u2192 2026-04-16","fuentes":{"Turitop":{"total":7,"matched":7,"sin_agendar":0},"Bookeo":{"total":19,"matched":19,"sin_agendar":0}},"total_fuentes":26,"total_sin_agendar":0,"bookings":[]};
+async function loadSinAgendar(){
+  try{
+    let data;
+    try{
+      const r = await fetch('reservas_sin_agendar.json?ts='+Date.now());
+      if(r.ok) data = await r.json();
+    }catch(e){}
+    if(!data) data = SIN_AGENDAR_DATA;
+    const sec = document.getElementById('sin-agendar');
+    const body = document.getElementById('sa-body');
+    document.getElementById('sa-window').textContent = data.window || '';
+    document.getElementById('sa-time').textContent = data.generated_at || '';
+    document.getElementById('sa-count').textContent = data.total_sin_agendar ?? data.sin_agendar ?? 0;
+    const pax = (data.bookings||[]).reduce((s,b)=>s+(+b.pax||0),0);
+    document.getElementById('sa-pax').textContent = pax;
+    if(data.fuentes){
+      const f = data.fuentes;
+      document.getElementById('sa-sources').innerHTML =
+        `Turitop <b>${f.Turitop.sin_agendar}/${f.Turitop.total}</b> · Bookeo <b>${f.Bookeo.sin_agendar}/${f.Bookeo.total}</b>`;
+    }
+    sec.style.display = 'block';
+    if(!data.bookings || !data.bookings.length){
+      body.innerHTML = '<div class="empty">✅ Todas las reservas están en el calendario</div>';
+      return;
+    }
+    // agrupar por fecha
+    const byDay = {};
+    for(const b of data.bookings){ (byDay[b.fecha] = byDay[b.fecha]||[]).push(b); }
+    const hoy = new Date().toISOString().slice(0,10);
+    const mnD = new Date(); mnD.setDate(mnD.getDate()+1);
+    const manana = mnD.toISOString().slice(0,10);
+    let html = '<table><thead><tr><th>Marca</th><th>Hora</th><th>Pax</th><th>Cliente</th><th>Contacto</th><th>Producto</th><th>Reserva</th></tr></thead><tbody>';
+    const days = Object.keys(byDay).sort();
+    for(const d of days){
+      const paxDay = byDay[d].reduce((s,b)=>s+(+b.pax||0),0);
+      let label = d;
+      if(d===hoy) label += ' · HOY';
+      else if(d===manana) label += ' · MAÑANA';
+      html += `<tr class="day-header"><td colspan="7">${label} — ${byDay[d].length} reservas / ${paxDay} pax</td></tr>`;
+      for(const b of byDay[d].sort((a,c)=>(a.hora||'').localeCompare(c.hora||''))){
+        const cls = d===hoy?'hoy':(d===manana?'manana':'');
+        const mc = b.marca==='M1'?'m-m1':(b.marca==='BK'?'m-bk':'m-m2');
+        const em = b.email ? `<a href="mailto:${b.email}">${b.email}</a>` : '';
+        const ph = b.phone ? ` · ${b.phone}` : '';
+        html += `<tr class="${cls}"><td><span class="marca-tag ${mc}">${b.marca}</span></td><td>${b.hora||''}</td><td><b>${b.pax}</b></td><td>${b.nombre||''}</td><td>${em}${ph}</td><td>${b.producto||''}</td><td><code>${b.reserva}</code></td></tr>`;
+      }
+    }
+    html += '</tbody></table>';
+    body.innerHTML = html;
+  }catch(e){ console.warn('sin-agendar loader:', e); }
+}
+loadSinAgendar();
+</script>
+
+<section class="stats" id="stats"></section>
+
+<div class="filters">
+  <input id="q" placeholder="🔎 Buscar nombre, teléfono, hotel, correo…">
+  <select id="fcal"><option value="">Todos los calendarios</option></select>
+  <select id="fstatus"><option value="">Todos los estados</option></select>
+  <div class="date-range">
+    <div class="date-field">
+      <label for="fdate1">Desde</label>
+      <input type="date" id="fdate1">
+    </div>
+    <div class="date-arrow">→</div>
+    <div class="date-field">
+      <label for="fdate2">Hasta</label>
+      <input type="date" id="fdate2">
+    </div>
+    <div class="date-presets">
+      <button type="button" class="preset" data-preset="today">Hoy</button>
+      <button type="button" class="preset" data-preset="tomorrow">Mañana</button>
+    </div>
+  </div>
+  <button onclick="clearFilters()">↻ Limpiar</button>
+  <button class="primary" onclick="exportCSV()">📥 Exportar CSV</button>
+  <button class="primary" onclick="printRoute()">🖨 Ruta del día · PDF</button>
+</div>
+
+<main>
+
+  <!-- DASHBOARD -->
+  <div class="view" id="v-dashboard">
+    <div class="grid-2">
+      <div class="panel">
+        <h2><span class="dot"></span>Actividad por operador</h2>
+        <div id="by-cal"></div>
+      </div>
+      <div class="panel">
+        <h2><span class="dot" style="background:var(--warn)"></span>Días con más pasajeros (top 12)</h2>
+        <div id="top-days"></div>
+      </div>
+    </div>
+    <div class="grid-2" style="margin-top:18px">
+      <div class="panel">
+        <h2><span class="dot" style="background:var(--bad)"></span>Alertas operativas</h2>
+        <div class="alerts-list" id="alerts-list"></div>
+      </div>
+      <div class="panel">
+        <h2><span class="dot" style="background:var(--good)"></span>Totales por día · operador</h2>
+        <div style="max-height:360px; overflow:auto">
+          <table class="totals-table" id="totals-table"></table>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- PENDING - TWO COLUMNS -->
+  <div class="view active" id="v-pending">
+    <div class="pending-grid">
+
+      <!-- LEFT: EN CALENDARIO -->
+      <div class="col cal">
+        <div class="head">
+          <div>
+            <h2><span class="icon">✓</span>En Calendario</h2>
+            <div class="sub">Pasajeros ya registrados, listos para logística</div>
+          </div>
+          <div class="stat">
+            <div class="big" id="cal-n">—</div>
+            <div class="lbl">Pasajeros</div>
+          </div>
+        </div>
+        <div class="body">
+          <div class="subhead">
+            <span>Próximos vuelos</span>
+            <span class="count" id="cal-count">—</span>
+          </div>
+          <div id="cal-list"></div>
+        </div>
+      </div>
+
+      <!-- RIGHT: EN CORREO, NO EN CALENDARIO -->
+      <div class="col mail">
+        <div class="head">
+          <div>
+            <h2><span class="icon">✉</span>En Correo · No en Calendario</h2>
+            <div class="sub">Reservas pendientes de registrar en Calendar</div>
+          </div>
+          <div class="stat">
+            <div class="big" id="mail-n">—</div>
+            <div class="lbl">Reservas</div>
+          </div>
+        </div>
+        <div class="body">
+          <!-- Unread group -->
+          <div class="subhead">
+            <span>🔒 Correos NO abiertos — data mínima</span>
+            <span class="count" id="unread-count">—</span>
+          </div>
+          <div id="unread-list"></div>
+
+          <!-- Read group -->
+          <div class="subhead" style="margin-top:14px">
+            <span>📖 Correos ya abiertos — data completa</span>
+            <span class="count" id="read-count">—</span>
+          </div>
+          <div id="read-list"></div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- TABLE -->
+  <div class="view" id="v-table">
+    <div class="tbl-count" id="tbl-count"></div>
+    <table>
+      <thead><tr>
+        <th>Fecha</th><th>Hora</th><th>Operador</th><th>Nombre</th><th>Pax</th><th>Peso</th>
+        <th>Estado</th><th>Staff</th><th>Pickup</th><th>Tel</th><th></th>
+      </tr></thead>
+      <tbody id="tbody"></tbody>
+    </table>
+  </div>
+
+  <!-- CALENDAR GRID -->
+  <div class="view" id="v-calendar">
+    <div class="month-header">
+      <button onclick="prevMonth()">◀ Anterior</button>
+      <h2 id="month-title"></h2>
+      <button onclick="nextMonth()">Siguiente ▶</button>
+    </div>
+    <div class="calgrid" id="calgrid"></div>
+  </div>
+
+</main>
+
+<div class="modal" id="modal"><div class="box">
+  <button class="close" onclick="closeModal()">Cerrar ✕</button>
+  <h2 id="m-title"></h2>
+  <div id="m-body"></div>
+</div></div>
+
+<script>
+const DATA = {"events": [{"calendar": "weflymx@gmail.com", "id": "5rlksmjafo9hpapoc3bgsof4sd", "title_raw": "✅ *2P Juan Carlos García", "name": "Juan Carlos García", "datetime": "2026-04-08T04:30", "date": "2026-04-08", "time": "04:30", "status": "confirmado", "pax": 2, "weights": [78, 60], "total_weight": 138, "service": "ALL INCLUSIVE + Transporte redondo + Desayuno La Cueva + Pirámides con guía certificado", "includes": ["Cueva", "Desayuno", "Pirámides", "Transporte"], "phone": "+54 91126902239", "email": "danielaespitia255@hotmail.com", "reserva": "1574604073806051", "total": "", "pickup": "Hotel Conde, Pescaditos Número 15, Colonia Centro, Centro, Cuauhtémoc, 06070 Ciudad de México, CDMX", "staff": "Débora", "html_link": "https://www.google.com/calendar/event?eid=NXJsa3NtamFmbzlocGFwb2MzYmdzb2Y0c2Qgd2VmbHlteEBt&ctz=America/Mexico_City", "overweight": false, "celebration": false}, {"calendar": "weflymx@gmail.com", "id": "728uvgva2e9ck3ni8e4md58tkq", "title_raw": "✅.*3P Patricia Villarreal NC", "name": "Patricia Villarreal", "datetime": "2026-04-08T04:30", "date": "2026-04-08", "time": "04:30", "status": "confirmado", "pax": 3, "weights": [77, 104, 72], "total_weight": 253, "service": "Vuelo Privado en Teotihuacán + Desayuno Cueva + Transporte privado", "includes": ["Cueva", "Desayuno", "Transporte"], "phone": "+1 2108492842", "email": "pata2196@yahoo.com", "reserva": "1574603083827617", "total": "16,692 MXN", "pickup": "Gran Hotel Ciudad de México, 16 de Septiembre 82, Centro Histórico de la Cdad. de México, Centro, Cuauhtémoc, 06000 Ciudad de México, CDMX", "staff": "Débora", "html_link": "https://www.google.com/calendar/event?eid=NzI4dXZndmEyZTljazNuaThlNG1kNTh0a3Egd2VmbHlteEBt&ctz=America/Mexico_City", "overweight": false, "celebration": false}, {"calendar": "weflymx@gmail.com", "id": "2ksffmdb2ig8q5qj2fdcbhb1p5", "title_raw": "✅.*4P Ana Eisenhauer", "name": "Ana Eisenhauer", "datetime": "2026-04-08T06:00", "date": "2026-04-08", "time": "06:00", "status": "confirmado", "pax": 4, "weights": [77, 82, 75, 77], "total_weight": 311, "service": "Vuelo Compartido en Teotihuacán Promo Lunes a Viernes", "includes": [], "phone": "5554581734", "email": "ana.eisenhauer@gmail.com", "reserva": "1574603301860157", "total": "", "pickup": "", "staff": "Débora", "html_link": "https://www.google.com/calendar/event?eid=MmtzZmZtZGIyaWc4cTVxajJmZGNiaGIxcDUgd2VmbHlteEBt&ctz=America/Mexico_City", "overweight": false, "celebration": false}, {"calendar": "weflymx@gmail.com", "id": "33k6224qjiaanbgs9mgtg9vm2e", "title_raw": "✅.*3P Óscar Daniel Gerardo Moya", "name": "Óscar Daniel Gerardo Moya", "datetime": "2026-04-08T06:00", "date": "2026-04-08", "time": "06:00", "status": "confirmado", "pax": 3, "weights": [120, 75, 87, 25], "total_weight": 307, "service": "Vuelo Compartido + Desayuno en Cueva + Sesión de Fotos", "includes": ["Cueva", "Desayuno"], "phone": "5566778630", "email": "dthmy23@gmail.com", "reserva": "1574604016832937", "total": "", "pickup": "", "staff": "Débora", "html_link": "https://www.google.com/calendar/event?eid=MzNrNjIyNHFqaWFhbmJnczltZ3RnOXZtMmUgd2VmbHlteEBt&ctz=America/Mexico_City", "overweight": false, "celebration": false}, {"calendar": "weflymx@gmail.com", "id": "0bec8knu0dnk1hecpb47q4hnlg", "title_raw": ".*3P Rachel, Kelly, Leah Van Dissel", "name": "Rachel, Kelly, Leah Van Dissel", "datetime": "2026-04-09T04:30", "date": "2026-04-09", "time": "04:30", "status": "confirmado", "pax": 3, "weights": [], "total_weight": 0, "service": "Vuelo Compartido + Transporte Grupal + Acceso a las pirámides de Teotihuacán + Buffet", "includes": ["Buffet", "Pirámides", "Transporte"], "phone": "+1 2165135389", "email": "rvandissel2@gmail.com", "reserva": "1574603303146913", "total": "", "pickup": "", "staff": "Débora", "html_link": "https://www.google.com/calendar/event?eid=MGJlYzhrbnUwZG5rMWhlY3BiNDdxNGhubGcgd2VmbHlteEBt&ctz=America/Mexico_City", "overweight": false, "celebration": false}, {"calendar": "weflymx@gmail.com", "id": "1sucvm9t2l4a6r7184qgsfm5i3", "title_raw": ".*2P Jonathan David Cortés Triana NC", "name": "Jonathan David Cortés Triana", "datetime": "2026-04-09T04:30", "date": "2026-04-09", "time": "04:30", "status": "confirmado", "pax": 2, "weights": [76, 74], "total_weight": 150, "service": "Entrega de Anillo en Teotihuacan + Desayuno Cueva + Ramo de flores, chocolates + Banner + Transporte Privado + Sesión de fotos + Pirámides con guía", "includes": ["Banner", "Cueva", "Desayuno", "Pirámides", "Transporte"], "phone": "+57 3002040501", "email": "jonathancortes23@gmail.com", "reserva": "1574603279999471", "total": "", "pickup": "Yácatas 356, Dep. 16, Narvarte Poniente, Benito Juárez, CDMX.", "staff": "Débora", "html_link": "https://www.google.com/calendar/event?eid=MXN1Y3ZtOXQybDRhNnI3MTg0cWdzZm01aTMgd2VmbHlteEBt&ctz=America/Mexico_City", "overweight": false, "celebration": false}, {"calendar": "weflymx@gmail.com", "id": "69dep9rcg67ko2b3ur65hs0osf", "title_raw": ".*1P Olga Vargas Pereira", "name": "Olga Vargas Pereira", "datetime": "2026-04-09T04:30", "date": "2026-04-09", "time": "04:30", "status": "confirmado", "pax": 1, "weights": [56], "total_weight": 56, "service": "ALL INCLUSIVE + Transporte redondo + Desayuno La Cueva + Pirámides con guía certificado", "includes": ["Cueva", "Desayuno", "Pirámides", "Transporte"], "phone": "+506 83092715", "email": "olgavape04@gmail.com", "reserva": "1574604073780832", "total": "", "pickup": "", "staff": "Débora", "html_link": "https://www.google.com/calendar/event?eid=NjlkZXA5cmNnNjdrbzJiM3VyNjVoczBvc2Ygd2VmbHlteEBt&ctz=America/Mexico_City", "overweight": false, "celebration": false}, {"calendar": "weflymx@gmail.com", "id": "6cddhjjj7i0ah9le0cg7n9tvvc", "title_raw": ".*2P Lisa Deady", "name": "Lisa Deady", "datetime": "2026-04-09T04:30", "date": "2026-04-09", "time": "04:30", "status": "confirmado", "pax": 2, "weights": [72, 94], "total_weight": 166, "service": "ALL INCLUSIVE + Transporte redondo + Desayuno La Cueva + Pirámides con guía certificado", "includes": ["Cueva", "Desayuno", "Pirámides", "Transporte"], "phone": "+353 863626650", "email": "lisadeady@gmail.com", "reserva": "1574603297089546", "total": "", "pickup": "", "staff": "Débora", "html_link": "https://www.google.com/calendar/event?eid=NmNkZGhqamo3aTBhaDlsZTBjZzduOXR2dmMgd2VmbHlteEBt&ctz=America/Mexico_City", "overweight": false, "celebration": false}, {"calendar": "weflymx@gmail.com", "id": "6ib48atv1s03rds5gsulabp9kg", "title_raw": ".🏨*6P Jose Miguel Varela Ramírez", "name": "Jose Miguel Varela Ramírez", "datetime": "2026-04-09T04:30", "date": "2026-04-09", "time": "04:30", "status": "confirmado", "pax": 6, "weights": [85, 140, 95, 68, 75, 120, 70], "total_weight": 653, "service": "ALL INCLUSIVE + Transporte redondo + Desayuno La Cueva + Pirámides con guía certificado", "includes": ["Cueva", "Desayuno", "Pirámides", "Transporte"], "phone": "", "email": "miguelvarelafotografo@gmail.com", "reserva": "1574603266321286", "total": "", "pickup": "Hotel Fontan Reforma", "staff": "Débora", "html_link": "https://www.google.com/calendar/event?eid=NmliNDhhdHYxczAzcmRzNWdzdWxhYnA5a2cgd2VmbHlteEBt&ctz=America/Mexico_City", "overweight": true, "celebration": false}, {"calendar": "weflymx@gmail.com", "id": "6qet87kcktcon2hosj2okn85bg", "title_raw": ".*2P Conor Flanagan", "name": "Conor Flanagan", "datetime": "2026-04-09T04:30", "date": "2026-04-09", "time": "04:30", "status": "confirmado", "pax": 2, "weights": [70, 70], "total_weight": 140, "service": "ALL INCLUSIVE + Transporte redondo + Desayuno La Cueva + Pirámides con guía certificado", "includes": ["Cueva", "Desayuno", "Pirámides", "Transporte"], "phone": "+353 857758629", "email": "flanagan_conor@hotmail.com", "reserva": "1574603297089546", "total": "", "pickup": "", "staff": "Débora", "html_link": "https://www.google.com/calendar/event?eid=NnFldDg3a2NrdGNvbjJob3NqMm9rbjg1Ymcgd2VmbHlteEBt&ctz=America/Mexico_City", "overweight": false, "celebration": false}, {"calendar": "weflymx@gmail.com", "id": "7aa39ei8ql84der9n41u7arvsi", "title_raw": ".*5P Jesus Eduardo Gonzalez Valencia", "name": "Jesus Eduardo Gonzalez Valencia", "datetime": "2026-04-09T04:30", "date": "2026-04-09", "time": "04:30", "status": "confirmado", "pax": 5, "weights": [88, 93, 49, 60, 28], "total_weight": 318, "service": "ALL INCLUSIVE + Transporte redondo + Desayuno La Cueva + Pirámides con guía certificado", "includes": ["Cueva", "Desayuno", "Pirámides", "Transporte"], "phone": "+1 7149557158", "email": "lalogonzalez777@hotmail.com", "reserva": "1574603302527258", "total": "", "pickup": "", "staff": "Débora", "html_link": "https://www.google.com/calendar/event?eid=N2FhMzllaThxbDg0ZGVyOW40MXU3YXJ2c2kgd2VmbHlteEBt&ctz=America/Mexico_City", "overweight": false, "celebration": false}, {"calendar": "weflymx@gmail.com", "id": "1s199j6rndqp5g7bh3b5l9b3fs", "title_raw": "❓.*4P Kristin Noonan", "name": "Kristin Noonan", "datetime": "2026-04-09T06:00", "date": "2026-04-09", "time": "06:00", "status": "tentativo", "pax": 4, "weights": [77, 94, 34, 20], "total_weight": 225, "service": "Vuelo Compartido en Teotihuacán Promo Lunes a Viernes + Sesión de fotos + Cueva + Pirámides con guía", "includes": ["Cueva", "Pirámides"], "phone": "+44 37994277", "email": "kmnoonan12@gmail.com", "reserva": "1574603317254998", "total": "", "pickup": "", "staff": "Débora", "html_link": "https://www.google.com/calendar/event?eid=MXMxOTlqNnJuZHFwNWc3YmgzYjVsOWIzZnMgd2VmbHlteEBt&ctz=America/Mexico_City", "overweight": false, "celebration": false}, {"calendar": "weflymx@gmail.com", "id": "4uhn4gfi2h5nmscd5srqjmcagc", "title_raw": "✅.*2P Nicola Smith", "name": "Nicola Smith", "datetime": "2026-04-09T06:00", "date": "2026-04-09", "time": "06:00", "status": "confirmado", "pax": 2, "weights": [80, 85], "total_weight": 165, "service": "Vuelo Compartido en Teotihuacán Promo Lunes a Viernes", "includes": [], "phone": "+44 7707797501", "email": "smithygurll@live.co.uk", "reserva": "1574604082183934", "total": "", "pickup": "", "staff": "Débora", "html_link": "https://www.google.com/calendar/event?eid=NHVobjRnZmkyaDVubXNjZDVzcnFqbWNhZ2Mgd2VmbHlteEBt&ctz=America/Mexico_City", "overweight": false, "celebration": false}, {"calendar": "weflymx@gmail.com", "id": "61cbji8d195rg69fo53gi9t13j", "title_raw": ".*2P Amy Guerrero", "name": "Amy Guerrero", "datetime": "2026-04-09T06:00", "date": "2026-04-09", "time": "06:00", "status": "confirmado", "pax": 2, "weights": [52, 95], "total_weight": 147, "service": "Vuelo Compartido en Teotihuacán Promo Lunes a Viernes", "includes": [], "phone": "+1 7175385703", "email": "amykguerrero@gmail.com", "reserva": "1574603313819232", "total": "", "pickup": "", "staff": "Débora", "html_link": "https://www.google.com/calendar/event?eid=NjFjYmppOGQxOTVyZzY5Zm81M2dpOXQxM2ogd2VmbHlteEBt&ctz=America/Mexico_City", "overweight": false, "celebration": false}, {"calendar": "weflymx@gmail.com", "id": "652633i9okf6c2phekq821kc75", "title_raw": ".*2P María Raquel Delgado Salas", "name": "María Raquel Delgado Salas", "datetime": "2026-04-09T06:00", "date": "2026-04-09", "time": "06:00", "status": "confirmado", "pax": 2, "weights": [62, 73], "total_weight": 135, "service": "Vuelo Compartido en Teotihuacán Promo Lunes a Viernes", "includes": [], "phone": "+506 87376199", "email": "raqueldelsa17@gmail.com", "reserva": "1574604086944195", "total": "", "pickup": "", "staff": "Débora", "html_link": "https://www.google.com/calendar/event?eid=NjUyNjMzaTlva2Y2YzJwaGVrcTgyMWtjNzUgd2VmbHlteEBt&ctz=America/Mexico_City", "overweight": false, "celebration": false}, {"calendar": "weflymx@gmail.com", "id": "0qeiipg7af00rdg41o67s0k2i5", "title_raw": "*2P Jose Sanchez", "name": "Jose Sanchez", "datetime": "2026-04-10T04:30", "date": "2026-04-10", "time": "04:30", "status": "confirmado", "pax": 2, "weights": [70, 79], "total_weight": 149, "service": "Vuelo Compartido + Transporte Grupal + Acceso a las pirámides de Teotihuacán + Buffet + VIDEO DRONE", "includes": ["Buffet", "Drone", "Pirámides", "Transporte"], "phone": "+1 3466969866", "email": "z4zanchez@yahoo.com", "reserva": "1574603253314000", "total": "", "pickup": "", "staff": "Débora", "html_link": "https://www.google.com/calendar/event?eid=MHFlaWlwZzdhZjAwcmRnNDFvNjdzMGsyaTUgd2VmbHlteEBt&ctz=America/Mexico_City", "overweight": false, "celebration": false}, {"calendar": "weflymx@gmail.com", "id": "6skn38l17r1lvedc7grlunhq3e", "title_raw": "*4P Gema Varela", "name": "Gema Varela", "datetime": "2026-04-10T04:30", "date": "2026-04-10", "time": "04:30", "status": "confirmado", "pax": 4, "weights": [81, 82, 68, 70], "total_weight": 301, "service": "ALL INCLUSIVE + Transporte redondo + Desayuno La Cueva + Pirámides con guía certificado", "includes": ["Cueva", "Desayuno", "Pirámides", "Transporte"], "phone": "+1 4148378657", "email": "gemavarela121@gmail.com", "reserva": "1574604069978704", "total": "", "pickup": "", "staff": "Débora", "html_link": "https://www.google.com/calendar/event?eid=NnNrbjM4bDE3cjFsdmVkYzdncmx1bmhxM2Ugd2VmbHlteEBt&ctz=America/Mexico_City", "overweight": false, "celebration": false}, {"calendar": "weflymx@gmail.com", "id": "31618lnvui7j4hutofuoarrmuo", "title_raw": "*2P Leana Gutierrez (TE)", "name": "Leana Gutierrez", "datetime": "2026-04-10T05:00", "date": "2026-04-10", "time": "05:00", "status": "confirmado", "pax": 2, "weights": [65, 59], "total_weight": 124, "service": "Vuelo Compartido + Transporte Express desde CDMX + Desayuno en cueva", "includes": ["Cueva", "Desayuno", "Transporte"], "phone": "+1 (619) 710-7679", "email": "ileanaggutierrez@gmail.com", "reserva": "1574603231207890", "total": "", "pickup": "", "staff": "Débora", "html_link": "https://www.google.com/calendar/event?eid=MzE2MThsbnZ1aTdqNGh1dG9mdW9hcnJtdW8gd2VmbHlteEBt&ctz=America/Mexico_City", "overweight": false, "celebration": false}, {"calendar": "weflymx@gmail.com", "id": "3ftjo57nh2ir3ojrave866dsge", "title_raw": "*4P David Rojas NC", "name": "David Rojas", "datetime": "2026-04-10T06:00", "date": "2026-04-10", "time": "06:00", "status": "confirmado", "pax": 4, "weights": [88, 72, 45, 22], "total_weight": 227, "service": "Vuelo Privado en Teotihuacán", "includes": [], "phone": "+1 2036856260", "email": "davidrflores71@gmail.com", "reserva": "1574604014150954", "total": "", "pickup": "", "staff": "Débora", "html_link": "https://www.google.com/calendar/event?eid=M2Z0am81N25oMmlyM29qcmF2ZTg2NmRzZ2Ugd2VmbHlteEBt&ctz=America/Mexico_City", "overweight": false, "celebration": false}, {"calendar": "weflymx@gmail.com", "id": "6d61fdi187i8v7g4vmapalerbd", "title_raw": "*2P Alberto Rivera Cespedes", "name": "Alberto Rivera Cespedes", "datetime": "2026-04-10T06:00", "date": "2026-04-10", "time": "06:00", "status": "confirmado", "pax": 2, "weights": [72, 75], "total_weight": 147, "service": "Vuelo Compartido en Teotihuacán Promo Lunes a Viernes + Desayuno Cueva", "includes": ["Cueva", "Desayuno"], "phone": "+506 88615562", "email": "aljorice06@gmail.com", "reserva": "1574603203526263", "total": "", "pickup": "", "staff": "Débora", "html_link": "https://www.google.com/calendar/event?eid=NmQ2MWZkaTE4N2k4djdnNHZtYXBhbGVyYmQgd2VmbHlteEBt&ctz=America/Mexico_City", "overweight": false, "celebration": false}, {"calendar": "weflymx@gmail.com", "id": "6k7e3lok701tggl0n80nubv589", "title_raw": "2P Byron Solis", "name": "Byron Solis", "datetime": "2026-04-10T06:00", "date": "2026-04-10", "time": "06:00", "status": "confirmado", "pax": 2, "weights": [120, 80, 25], "total_weight": 225, "service": "Vuelo Compartido en Teotihuacán Promo Lunes a Viernes", "includes": [], "phone": "+506 60461441", "email": "bsolisrodriguez1994@gmail.com", "reserva": "1574604016762910", "total": "", "pickup": "", "staff": "Débora", "html_link": "https://www.google.com/calendar/event?eid=Nms3ZTNsb2s3MDF0Z2dsMG44MG51YnY1ODkgd2VmbHlteEBt&ctz=America/Mexico_City", "overweight": false, "celebration": false}, {"calendar": "weflymx@gmail.com", "id": "1g0h88mn7n8qjj6ngmh0emlbg7", "title_raw": "2P RICARDO MONTAÑO 📌mismo grupo", "name": "RICARDO MONTAÑO", "datetime": "2026-04-11T04:30", "date": "2026-04-11", "time": "04:30", "status": "confirmado", "pax": 2, "weights": [75, 69], "total_weight": 144, "service": "ALL INCLUSIVE + Transporte redondo + Desayuno La Cueva + Pirámides con guía certificado", "includes": ["Cueva", "Desayuno", "Pirámides", "Transporte"], "phone": "+57 3164040913", "email": "ricardomontano1484@gmail.com", "reserva": "1574604087752473", "total": "", "pickup": "", "staff": "Débora", "html_link": "https://www.google.com/calendar/event?eid=MWcwaDg4bW43bjhxamo2bmdtaDBlbWxiZzcgd2VmbHlteEBt&ctz=America/Mexico_City", "overweight": false, "celebration": false}, {"calendar": "weflymx@gmail.com", "id": "373akjd7ooopqe6qneou95i8eu", "title_raw": "*2P Santiago Lezama García", "name": "Santiago Lezama García", "datetime": "2026-04-11T04:30", "date": "2026-04-11", "time": "04:30", "status": "confirmado", "pax": 2, "weights": [86, 70], "total_weight": 156, "service": "Vuelo Compartido + Transporte Grupal + Acceso a las pirámides de Teotihuacán + Buffet + Banner", "includes": ["Banner", "Buffet", "Cueva", "Pirámides", "Transporte"], "phone": "+52 5638215377", "email": "santiagolezgar@gmail.com", "reserva": "1574603261787494", "total": "", "pickup": "", "staff": "Débora", "html_link": "https://www.google.com/calendar/event?eid=MzczYWtqZDdvb29wcWU2cW5lb3U5NWk4ZXUgd2VmbHlteEBt&ctz=America/Mexico_City", "overweight": false, "celebration": true}, {"calendar": "weflymx@gmail.com", "id": "4p5eobcn8tc83e2fal60adq4d1", "title_raw": "*2P Juan Camilo Becerra 📌mismo grupo", "name": "Juan Camilo Becerra", "datetime": "2026-04-11T04:30", "date": "2026-04-11", "time": "04:30", "status": "confirmado", "pax": 2, "weights": [84, 48], "total_weight": 132, "service": "ALL INCLUSIVE + Transporte redondo + Desayuno La Cueva + Pirámides con guía certificado", "includes": ["Cueva", "Desayuno", "Pirámides", "Transporte"], "phone": "+57 3174319809", "email": "becerralombana@gmail.com", "reserva": "1574603277252559", "total": "", "pickup": "", "staff": "Débora", "html_link": "https://www.google.com/calendar/event?eid=NHA1ZW9iY244dGM4M2UyZmFsNjBhZHE0ZDEgd2VmbHlteEBt&ctz=America/Mexico_City", "overweight": false, "celebration": false}, {"calendar": "weflymx@gmail.com", "id": "506nhnfc53lq7ji7u57jb3ldli", "title_raw": "*2P Ivonne Castillo Lopez", "name": "Ivonne Castillo Lopez", "datetime": "2026-04-11T04:30", "date": "2026-04-11", "time": "04:30", "status": "confirmado", "pax": 2, "weights": [68, 101], "total_weight": 169, "service": "ALL INCLUSIVE + Transporte redondo + Desayuno La Cueva + Pirámides con guía certificado", "includes": ["Cueva", "Desayuno", "Pirámides", "Transporte"], "phone": "+52 6144278213", "email": "ivoncastl@hotmail.com", "reserva": "1574603263022597", "total": "", "pickup": "", "staff": "Débora", "html_link": "https://www.google.com/calendar/event?eid=NTA2bmhuZmM1M2xxN2ppN3U1N2piM2xkbGkgd2VmbHlteEBt&ctz=America/Mexico_City", "overweight": false, "celebration": false}, {"calendar": "weflymx@gmail.com", "id": "5j4ml2tle4l2u4scp4m96e4gfh", "title_raw": "MODIFICADO 2p Maria Claudia Lombana 📌mismo grupo", "name": "Maria Claudia Lombana", "datetime": "2026-04-11T04:30", "date": "2026-04-11", "time": "04:30", "status": "modificado", "pax": 2, "weights": [64, 73], "total_weight": 137, "service": "ALL INCLUSIVE + Transporte redondo + Desayuno La Cueva + Pirámides con guía certificado", "includes": ["Cueva", "Desayuno", "Pirámides", "Transporte"], "phone": "+57 3155772170", "email": "mclombana@adl.co", "reserva": "1574604083508410", "total": "", "pickup": "", "staff": "Débora", "html_link": "https://www.google.com/calendar/event?eid=NWo0bWwydGxlNGwydTRzY3A0bTk2ZTRnZmggd2VmbHlteEBt&ctz=America/Mexico_City", "overweight": false, "celebration": false}, {"calendar": "weflymx@gmail.com", "id": "6bcqus0u80vn8imnk349g2h8lq", "title_raw": "*2P María Valeria Azofeifa Torres", "name": "María Valeria Azofeifa Torres", "datetime": "2026-04-11T04:30", "date": "2026-04-11", "time": "04:30", "status": "confirmado", "pax": 2, "weights": [17], "total_weight": 17, "service": "Vuelo Compartido + Transporte Grupal + Acceso a las pirámides de Teotihuacán + Buffet", "includes": ["Buffet", "Pirámides", "Transporte"], "phone": "+506 87083061", "email": "valeazo26@gmail.com", "reserva": "1574603254728994", "total": "", "pickup": "", "staff": "Débora", "html_link": "https://www.google.com/calendar/event?eid=NmJjcXVzMHU4MHZuOGltbmszNDlnMmg4bHEgd2VmbHlteEBt&ctz=America/Mexico_City", "overweight": false, "celebration": false}, {"calendar": "weflymx@gmail.com", "id": "3frvfgm7lvklon2upgkn0tqdov", "title_raw": "*2P Tonatiuh Vazquez Vilchis NC", "name": "Tonatiuh Vazquez Vilchis", "datetime": "2026-04-11T06:00", "date": "2026-04-11", "time": "06:00", "status": "confirmado", "pax": 2, "weights": [80, 70], "total_weight": 150, "service": "Vuelo Privado en Teotihuacán", "includes": [], "phone": "+52 2461112974", "email": "tonashow4@hotmail.com", "reserva": "1574603237891479", "total": "", "pickup": "", "staff": "Débora", "html_link": "https://www.google.com/calendar/event?eid=M2ZydmZnbTdsdmtsb24ydXBna24wdHFkb3Ygd2VmbHlteEBt&ctz=America/Mexico_City", "overweight": false, "celebration": false}, {"calendar": "weflymx@gmail.com", "id": "4nvf4uoca021t8e5eb24fo192p", "title_raw": "2P KATHERINE ZAHUNA RUIZ", "name": "KATHERINE ZAHUNA RUIZ", "datetime": "2026-04-12T06:00", "date": "2026-04-12", "time": "06:00", "status": "confirmado", "pax": 2, "weights": [69, 90], "total_weight": 159, "service": "Vuelo Compartido - Fin de semana", "includes": [], "phone": "5536707996", "email": "kate.zaru08@gmail.com", "reserva": "1574603238460896", "total": "", "pickup": "", "staff": "Débora", "html_link": "https://www.google.com/calendar/event?eid=NG52ZjR1b2NhMDIxdDhlNWViMjRmbzE5MnAgd2VmbHlteEBt&ctz=America/Mexico_City", "overweight": false, "celebration": false}, {"calendar": "weflymx@gmail.com", "id": "2st8tn1sbud1uolo6qhjrl41ni", "title_raw": "3P Esteban Montero Hernández", "name": "Esteban Montero Hernández", "datetime": "2026-04-13T04:30", "date": "2026-04-13", "time": "04:30", "status": "confirmado", "pax": 3, "weights": [85, 60, 33], "total_weight": 178, "service": "Vuelo Compartido + Transporte Grupal + Acceso a las pirámides de Teotihuacán + Buffet", "includes": ["Buffet", "Pirámides", "Transporte"], "phone": "+506 8836 8100", "email": "estemh@gmail.com", "reserva": "1574603234607095", "total": "", "pickup": "", "staff": "Débora", "html_link": "https://www.google.com/calendar/event?eid=MnN0OHRuMXNidWQxdW9sbzZxaGpybDQxbmkgd2VmbHlteEBt&ctz=America/Mexico_City", "overweight": false, "celebration": false}, {"calendar": "weflymx@gmail.com", "id": "54rkccvufjcg8r316741llrn52", "title_raw": "2P Audrie Sham", "name": "Audrie Sham", "datetime": "2026-04-13T04:30", "date": "2026-04-13", "time": "04:30", "status": "confirmado", "pax": 2, "weights": [56, 102], "total_weight": 158, "service": "ALL INCLUSIVE + Transporte redondo + Desayuno La Cueva + Pirámides con guía certificado", "includes": ["Cueva", "Desayuno", "Pirámides", "Transporte"], "phone": "+1 4038882809", "email": "audrie.sham@gmail.com", "reserva": "1574604064805962", "total": "", "pickup": "", "staff": "Débora", "html_link": "https://www.google.com/calendar/event?eid=NTRya2NjdnVmamNnOHIzMTY3NDFsbHJuNTIgd2VmbHlteEBt&ctz=America/Mexico_City", "overweight": false, "celebration": false}, {"calendar": "weflymx@gmail.com", "id": "7f1mifojhvpsc94iqih708a5b9", "title_raw": "7P Viviana Romero Florez", "name": "Viviana Romero Florez", "datetime": "2026-04-13T04:30", "date": "2026-04-13", "time": "04:30", "status": "confirmado", "pax": 7, "weights": [70, 86, 61, 61, 79, 72, 70], "total_weight": 499, "service": "Vuelo Compartido + Transporte Grupal + Acceso a las pirámides de Teotihuacán + Buffet + Video drone", "includes": ["Buffet", "Drone", "Pirámides", "Transporte"], "phone": "+57 3143771511", "email": "romervi@gmail.com", "reserva": "1574603227506647", "total": "", "pickup": "", "staff": "Débora", "html_link": "https://www.google.com/calendar/event?eid=N2YxbWlmb2podnBzYzk0aXFpaDcwOGE1Yjkgd2VmbHlteEBt&ctz=America/Mexico_City", "overweight": false, "celebration": false}, {"calendar": "weflymx@gmail.com", "id": "7mtfdt0dableugkt0kk5us18q2", "title_raw": "3P Cesar Melchor Hernandez Escalante", "name": "Cesar Melchor Hernandez Escalante", "datetime": "2026-04-13T04:30", "date": "2026-04-13", "time": "04:30", "status": "confirmado", "pax": 3, "weights": [110, 90, 84, 15], "total_weight": 299, "service": "ALL INCLUSIVE + Transporte redondo + Desayuno La Cueva + Pirámides con guía certificado", "includes": ["Cueva", "Desayuno", "Pirámides", "Transporte"], "phone": "6644933757", "email": "cesarher0698@gmail.com", "reserva": "1574603301461555", "total": "", "pickup": "", "staff": "Débora", "html_link": "https://www.google.com/calendar/event?eid=N210ZmR0MGRhYmxldWdrdDBrazV1czE4cTIgd2VmbHlteEBt&ctz=America/Mexico_City", "overweight": false, "celebration": false}, {"calendar": "weflymx@gmail.com", "id": "4e54b9253h5i9urekg5t4c509i", "title_raw": "2P Faustine Adriansen", "name": "Faustine Adriansen", "datetime": "2026-04-13T06:00", "date": "2026-04-13", "time": "06:00", "status": "confirmado", "pax": 2, "weights": [55, 70], "total_weight": 125, "service": "Vuelo Compartido en Teotihuacán Promo Lunes a Viernes", "includes": [], "phone": "+33 783009747", "email": "faustine.a@hotmail.com", "reserva": "1574603065396875", "total": "", "pickup": "", "staff": "Débora", "html_link": "https://www.google.com/calendar/event?eid=NGU1NGI5MjUzaDVpOXVyZWtnNXQ0YzUwOWkgd2VmbHlteEBt&ctz=America/Mexico_City", "overweight": false, "celebration": false}, {"calendar": "weflymx@gmail.com", "id": "0vorpbn8rh5u62u881ihs1eqdk", "title_raw": "3P Emily Leon", "name": "Emily Leon", "datetime": "2026-04-14T04:30", "date": "2026-04-14", "time": "04:30", "status": "confirmado", "pax": 3, "weights": [73], "total_weight": 73, "service": "Vuelo Compartido + Transporte Grupal + Acceso a las pirámides de Teotihuacán + Buffet", "includes": ["Buffet", "Pirámides", "Transporte"], "phone": "+1 8189137878", "email": "emily.leon24@yahoo.com", "reserva": "1574604032985086", "total": "", "pickup": "", "staff": "Débora", "html_link": "https://www.google.com/calendar/event?eid=MHZvcnBibjhyaDV1NjJ1ODgxaWhzMWVxZGsgd2VmbHlteEBt&ctz=America/Mexico_City", "overweight": false, "celebration": false}, {"calendar": "weflymx@gmail.com", "id": "60a58vefcn02nqhucl1lplh6ld", "title_raw": "2P Karla Yuviana Rivera Salas", "name": "Karla Yuviana Rivera Salas", "datetime": "2026-04-14T04:30", "date": "2026-04-14", "time": "04:30", "status": "confirmado", "pax": 2, "weights": [68, 80], "total_weight": 148, "service": "ALL INCLUSIVE + Transporte redondo + Desayuno La Cueva + Pirámides con guía certificado", "includes": ["Cueva", "Desayuno", "Pirámides", "Transporte"], "phone": "+52 6464000480", "email": "karlayuviana.rivera@outlook.com", "reserva": "1574603198046618", "total": "7,000 MXN", "pickup": "", "staff": "Débora", "html_link": "https://www.google.com/calendar/event?eid=NjBhNTh2ZWZjbjAybnFodWNsMWxwbGg2bGQgd2VmbHlteEBt&ctz=America/Mexico_City", "overweight": false, "celebration": false}, {"calendar": "weflymx@gmail.com", "id": "2rn1k8kahu0f6ft3qoie3md4si", "title_raw": "3P Antonio Bernal", "name": "Antonio Bernal", "datetime": "2026-04-14T06:00", "date": "2026-04-14", "time": "06:00", "status": "confirmado", "pax": 3, "weights": [90, 60, 65], "total_weight": 215, "service": "Vuelo Compartido en Teotihuacán Promo Lunes a Viernes + Desayuno Cueva", "includes": ["Cueva", "Desayuno"], "phone": "5517855455", "email": "antonio.bernal77@gmail.com", "reserva": "1574604035938213", "total": "", "pickup": "", "staff": "Débora", "html_link": "https://www.google.com/calendar/event?eid=MnJuMWs4a2FodTBmNmZ0M3FvaWUzbWQ0c2kgd2VmbHlteEBt&ctz=America/Mexico_City", "overweight": false, "celebration": false}, {"calendar": "weflymx@gmail.com", "id": "5ht7eqsp94jcfjia00bom2617m", "title_raw": "2p Dwight Van Thillo", "name": "Dwight Van Thillo", "datetime": "2026-04-14T06:00", "date": "2026-04-14", "time": "06:00", "status": "confirmado", "pax": 2, "weights": [65, 62], "total_weight": 127, "service": "Vuelo Compartido en Teotihuacán Promo Lunes a Viernes", "includes": [], "phone": "+32 472695490", "email": "dwight.van.thillo@gmail.com", "reserva": "1574512119475646", "total": "", "pickup": "", "staff": "Débora", "html_link": "https://www.google.com/calendar/event?eid=NWh0N2Vxc3A5NGpjZmppYTAwYm9tMjYxN20gd2VmbHlteEBt&ctz=America/Mexico_City", "overweight": false, "celebration": false}, {"calendar": "weflymx@gmail.com", "id": "1cih553nllr2iogr97ekchs959", "title_raw": "2P William Eustace", "name": "William Eustace", "datetime": "2026-04-15T04:30", "date": "2026-04-15", "time": "04:30", "status": "confirmado", "pax": 2, "weights": [85, 60], "total_weight": 145, "service": "ALL INCLUSIVE + Transporte redondo + Desayuno La Cueva + Pirámides con guía certificado", "includes": ["Cueva", "Desayuno", "Pirámides", "Transporte"], "phone": "+61 432362605", "email": "william.p.eustace@outlook.com", "reserva": "1574604077182039", "total": "", "pickup": "", "staff": "Débora", "html_link": "https://www.google.com/calendar/event?eid=MWNpaDU1M25sbHIyaW9ncjk3ZWtjaHM5NTkgd2VmbHlteEBt&ctz=America/Mexico_City", "overweight": false, "celebration": false}, {"calendar": "weflymx@gmail.com", "id": "33ibussji7n2rg1iph002crols", "title_raw": "2P Adam Noon", "name": "Adam Noon", "datetime": "2026-04-17T04:30", "date": "2026-04-17", "time": "04:30", "status": "confirmado", "pax": 2, "weights": [81, 54], "total_weight": 135, "service": "ALL INCLUSIVE + Transporte redondo + Desayuno La Cueva + Pirámides con guía certificado", "includes": ["Cueva", "Desayuno", "Pirámides", "Transporte"], "phone": "+1 3109625816", "email": "adamtania418@hotmail.com", "reserva": "1574603218673744", "total": "", "pickup": "", "staff": "Débora", "html_link": "https://www.google.com/calendar/event?eid=MzNpYnVzc2ppN24ycmcxaXBoMDAyY3JvbHMgd2VmbHlteEBt&ctz=America/Mexico_City", "overweight": false, "celebration": false}, {"calendar": "weflymx@gmail.com", "id": "53ulta3pcukl7hnf55qsfgaqdv", "title_raw": "1P Jessica Johnson", "name": "Jessica Johnson", "datetime": "2026-04-17T04:30", "date": "2026-04-17", "time": "04:30", "status": "confirmado", "pax": 1, "weights": [77], "total_weight": 77, "service": "ALL INCLUSIVE + Transporte redondo + Desayuno La Cueva + Pirámides con guía certificado", "includes": ["Cueva", "Desayuno", "Pirámides", "Transporte"], "phone": "+1 9168028371", "email": "jj012197@gmail.com", "reserva": "1574604085135147", "total": "", "pickup": "", "staff": "Débora", "html_link": "https://www.google.com/calendar/event?eid=NTN1bHRhM3BjdWtsN2huZjU1cXNmZ2FxZHYgd2VmbHlteEBt&ctz=America/Mexico_City", "overweight": false, "celebration": false}, {"calendar": "weflymx@gmail.com", "id": "6tbbmsfao155hujpgifjd7me3i", "title_raw": "1P Karina Garcia", "name": "Karina Garcia", "datetime": "2026-04-17T04:30", "date": "2026-04-17", "time": "04:30", "status": "confirmado", "pax": 1, "weights": [57], "total_weight": 57, "service": "ALL INCLUSIVE + Transporte redondo + Desayuno La Cueva + Pirámides con guía certificado", "includes": ["Cueva", "Desayuno", "Pirámides", "Transporte"], "phone": "+1 7135157115", "email": "karinadaniella@yahoo.com", "reserva": "1574604076208199", "total": "", "pickup": "", "staff": "Débora", "html_link": "https://www.google.com/calendar/event?eid=NnRiYm1zZmFvMTU1aHVqcGdpZmpkN21lM2kgd2VmbHlteEBt&ctz=America/Mexico_City", "overweight": false, "celebration": false}, {"calendar": "weflymx@gmail.com", "id": "79aednqj98vf13jaqfu3dn0js7", "title_raw": "8P Jordan Dykman", "name": "Jordan Dykman", "datetime": "2026-04-17T04:30", "date": "2026-04-17", "time": "04:30", "status": "confirmado", "pax": 8, "weights": [68, 77, 82, 64, 68, 62, 70, 77], "total_weight": 568, "service": "Vuelo Compartido + Transporte Grupal + Acceso a las pirámides de Teotihuacán + Desayuno Buffet", "includes": ["Buffet", "Desayuno", "Pirámides", "Transporte"], "phone": "+19738203330", "email": "jndykman@gmail.com", "reserva": "1574603014555187", "total": "", "pickup": "", "staff": "Débora", "html_link": "https://www.google.com/calendar/event?eid=NzlhZWRucWo5OHZmMTNqYXFmdTNkbjBqczcgd2VmbHlteEBt&ctz=America/Mexico_City", "overweight": false, "celebration": false}, {"calendar": "weflymx@gmail.com", "id": "6hapcmgqrgmjfojuu8u8e4l17l", "title_raw": "15P Hannah Kelly", "name": "Hannah Kelly", "datetime": "2026-04-17T06:00", "date": "2026-04-17", "time": "06:00", "status": "confirmado", "pax": 15, "weights": [64, 60, 60, 58, 85, 85, 85, 90, 72, 70, 66, 68, 85, 52, 65], "total_weight": 1065, "service": "Vuelo Compartido en Teotihuacán Promo Lunes a Viernes", "includes": [], "phone": "+353 870956671", "email": "hannahkelly.kelly@gmail.com", "reserva": "1574603291332594", "total": "", "pickup": "", "staff": "Débora", "html_link": "https://www.google.com/calendar/event?eid=NmhhcGNtZ3FyZ21qZm9qdXU4dThlNGwxN2wgd2VmbHlteEBt&ctz=America/Mexico_City", "overweight": false, "celebration": false}, {"calendar": "weflymx@gmail.com", "id": "4luf3enj2cfomgn47ip9vjfm5a", "title_raw": "MODIFICADO 2P Lizeth Rodriguez Montero", "name": "Lizeth Rodriguez Montero", "datetime": "2026-04-18T04:30", "date": "2026-04-18", "time": "04:30", "status": "modificado", "pax": 2, "weights": [70, 60], "total_weight": 130, "service": "ALL INCLUSIVE + Transporte redondo + Desayuno La Cueva + Pirámides con guía certificado", "includes": ["Cueva", "Desayuno", "Pirámides", "Transporte"], "phone": "5548326336", "email": "lizethromo.243@gmail.com", "reserva": "1574603317995866", "total": "", "pickup": "", "staff": "Débora", "html_link": "https://www.google.com/calendar/event?eid=NGx1ZjNlbmoyY2ZvbWduNDdpcDl2amZtNWEgd2VmbHlteEBt&ctz=America/Mexico_City", "overweight": false, "celebration": false}, {"calendar": "weflymx@gmail.com", "id": "5s9u3r3ar9g0b3a9raq4jbaspk", "title_raw": "3P Ramiro Iglesias Torres", "name": "Ramiro Iglesias Torres", "datetime": "2026-04-18T04:30", "date": "2026-04-18", "time": "04:30", "status": "confirmado", "pax": 3, "weights": [103, 68, 54], "total_weight": 225, "service": "ALL INCLUSIVE + Transporte redondo + Desayuno La Cueva + Pirámides con guía certificado + Video drone", "includes": ["Cueva", "Desayuno", "Drone", "Pirámides", "Transporte"], "phone": "+17142482454", "email": "iglesiasramiro@icloud.com", "reserva": "1574604016525935", "total": "", "pickup": "", "staff": "Débora", "html_link": "https://www.google.com/calendar/event?eid=NXM5dTNyM2FyOWcwYjNhOXJhcTRqYmFzcGsgd2VmbHlteEBt&ctz=America/Mexico_City", "overweight": false, "celebration": false}, {"calendar": "weflymx@gmail.com", "id": "70gh80e1teja7dk57f8os65fm1", "title_raw": "2P Alannah Lavelle", "name": "Alannah Lavelle", "datetime": "2026-04-18T04:30", "date": "2026-04-18", "time": "04:30", "status": "confirmado", "pax": 2, "weights": [68, 80], "total_weight": 148, "service": "ALL INCLUSIVE + Transporte redondo + Desayuno La Cueva + Pirámides con guía certificado", "includes": ["Cueva", "Desayuno", "Pirámides", "Transporte"], "phone": "+353 874337524", "email": "lavellal@tcd.ie", "reserva": "1574603127567692", "total": "", "pickup": "", "staff": "Débora", "html_link": "https://www.google.com/calendar/event?eid=NzBnaDgwZTF0ZWphN2RrNTdmOG9zNjVmbTEgd2VmbHlteEBt&ctz=America/Mexico_City", "overweight": false, "celebration": false}, {"calendar": "weflymx@gmail.com", "id": "0tjulstlm4jrlfib78o50oqnoi", "title_raw": "3P Emily, Malia, Pipi Nelson", "name": "Emily, Malia, Pipi Nelson", "datetime": "2026-04-19T04:30", "date": "2026-04-19", "time": "04:30", "status": "confirmado", "pax": 3, "weights": [68], "total_weight": 68, "service": "Vuelo Compartido + Transporte Grupal + Acceso a las pirámides de Teotihuacán + Buffet", "includes": ["Buffet", "Pirámides", "Transporte"], "phone": "+1 2188205625", "email": "emilycnelson0@gmail.com", "reserva": "1574604061006025", "total": "", "pickup": "", "staff": "Débora", "html_link": "https://www.google.com/calendar/event?eid=MHRqdWxzdGxtNGpybGZpYjc4bzUwb3Fub2kgd2VmbHlteEBt&ctz=America/Mexico_City", "overweight": false, "celebration": false}, {"calendar": "weflymx@gmail.com", "id": "3rohu3433uqba0b58uukh8lekc", "title_raw": "2P Juan Gabriel González Cisneros", "name": "Juan Gabriel González Cisneros", "datetime": "2026-04-19T06:00", "date": "2026-04-19", "time": "06:00", "status": "confirmado", "pax": 2, "weights": [82, 80], "total_weight": 162, "service": "Vuelo Compartido - Fin de semana", "includes": [], "phone": "", "email": "juangabmbm@gmail.com", "reserva": "1574604021069884", "total": "", "pickup": "", "staff": "Débora", "html_link": "https://www.google.com/calendar/event?eid=M3JvaHUzNDMzdXFiYTBiNTh1dWtoOGxla2Mgd2VmbHlteEBt&ctz=America/Mexico_City", "overweight": false, "celebration": false}, {"calendar": "weflymx@gmail.com", "id": "5q3o79j7dvdgplfe91kbav3m0f", "title_raw": "2P Julie Hendy", "name": "Julie Hendy", "datetime": "2026-04-19T06:00", "date": "2026-04-19", "time": "06:00", "status": "confirmado", "pax": 2, "weights": [61, 81], "total_weight": 142, "service": "Vuelo Compartido - Fin de semana", "includes": [], "phone": "+1 6198029183", "email": "bowenandjulie@gmail.com", "reserva": "1574604021069884", "total": "", "pickup": "", "staff": "Débora", "html_link": "https://www.google.com/calendar/event?eid=NXEzbzc5ajdkdmRncGxmZTkxa2JhdjNtMGYgd2VmbHlteEBt&ctz=America/Mexico_City", "overweight": false, "celebration": false}, {"calendar": "weflymx@gmail.com", "id": "2hl73fkn8qqf3gebodv9ppvsvb", "title_raw": "2P Cornelius Moller NC", "name": "Cornelius Moller", "datetime": "2026-04-20T04:30", "date": "2026-04-20", "time": "04:30", "status": "confirmado", "pax": 2, "weights": [84, 82], "total_weight": 166, "service": "Vuelo Privado en Teotihuacán + Transporte privado + Pirámides con guía", "includes": ["Pirámides", "Transporte"], "phone": "+61431739578", "email": "corneliusmoller@gmail.com", "reserva": "1574603283937254", "total": "", "pickup": "Pick up pendiente", "staff": "Débora", "html_link": "https://www.google.com/calendar/event?eid=MmhsNzNma244cXFmM2dlYm9kdjlwcHZzdmIgd2VmbHlteEBt&ctz=America/Mexico_City", "overweight": false, "celebration": false}, {"calendar": "weflymx@gmail.com", "id": "501o4oeqedo6hcrq24k13ore41", "title_raw": "2P Catalina Rengifo", "name": "Catalina Rengifo", "datetime": "2026-04-20T04:30", "date": "2026-04-20", "time": "04:30", "status": "confirmado", "pax": 2, "weights": [56, 59], "total_weight": 115, "service": "ALL INCLUSIVE + Transporte redondo + Desayuno La Cueva + Pirámides con guía certificado", "includes": ["Cueva", "Desayuno", "Pirámides", "Transporte"], "phone": "+57 3014493697", "email": "catalina.rengifo16@gmail.com", "reserva": "1574604073471229", "total": "", "pickup": "", "staff": "Débora", "html_link": "https://www.google.com/calendar/event?eid=NTAxbzRvZXFlZG82aGNycTI0azEzb3JlNDEgd2VmbHlteEBt&ctz=America/Mexico_City", "overweight": false, "celebration": false}, {"calendar": "weflymx@gmail.com", "id": "4oe6k9te9gls1d5qbt32iog4eg", "title_raw": "2P Nicole Caceres", "name": "Nicole Caceres", "datetime": "2026-04-20T06:00", "date": "2026-04-20", "time": "06:00", "status": "confirmado", "pax": 2, "weights": [79, 47], "total_weight": 126, "service": "Vuelo Compartido en Teotihuacán Promo Lunes a Viernes", "includes": [], "phone": "+1 3472568723", "email": "nicolencaceres@gmail.com", "reserva": "1574603225268102", "total": "", "pickup": "", "staff": "Débora", "html_link": "https://www.google.com/calendar/event?eid=NG9lNms5dGU5Z2xzMWQ1cWJ0MzJpb2c0ZWcgd2VmbHlteEBt&ctz=America/Mexico_City", "overweight": false, "celebration": false}, {"calendar": "weflymx@gmail.com", "id": "6rp198ctp2cu1fls5hnm5uv6tf", "title_raw": "2P Charlotte Joguet", "name": "Charlotte Joguet", "datetime": "2026-04-20T06:00", "date": "2026-04-20", "time": "06:00", "status": "confirmado", "pax": 2, "weights": [58, 54], "total_weight": 112, "service": "Vuelo Compartido en Teotihuacán Promo Lunes a Viernes", "includes": [], "phone": "+33 632418702", "email": "acharlottejoguet@gmail.com", "reserva": "1574604089118715", "total": "", "pickup": "", "staff": "Débora", "html_link": "https://www.google.com/calendar/event?eid=NnJwMTk4Y3RwMmN1MWZsczVobm01dXY2dGYgd2VmbHlteEBt&ctz=America/Mexico_City", "overweight": false, "celebration": false}, {"calendar": "weflymx@gmail.com", "id": "25137cm3ptfo0buati2tbao77g", "title_raw": "2P Daniela Rodriguez Bautista", "name": "Daniela Rodriguez Bautista", "datetime": "2026-04-22T06:00", "date": "2026-04-22", "time": "06:00", "status": "confirmado", "pax": 2, "weights": [61, 87], "total_weight": 148, "service": "Vuelo Compartido en Teotihuacán Promo Lunes a Viernes + Cueva", "includes": ["Cueva"], "phone": "+57 3208173213", "email": "danielarodriguezbau@gmail.com", "reserva": "1574604023310034", "total": "", "pickup": "", "staff": "Débora", "html_link": "https://www.google.com/calendar/event?eid=MjUxMzdjbTNwdGZvMGJ1YXRpMnRiYW83N2cgd2VmbHlteEBt&ctz=America/Mexico_City", "overweight": false, "celebration": false}, {"calendar": "weflymx@gmail.com", "id": "4dh1rkpnasl4lpm2ienddkt602", "title_raw": "3P Carmen Sarahí Portela Silva", "name": "Carmen Sarahí Portela Silva", "datetime": "2026-04-23T04:30", "date": "2026-04-23", "time": "04:30", "status": "confirmado", "pax": 3, "weights": [90, 61, 65], "total_weight": 216, "service": "ALL INCLUSIVE + Transporte redondo + Desayuno La Cueva + Pirámides con guía certificado", "includes": ["Cueva", "Desayuno", "Pirámides", "Transporte"], "phone": "6121559744", "email": "sportela86@gmail.com", "reserva": "1574604046527170", "total": "", "pickup": "", "staff": "Débora", "html_link": "https://www.google.com/calendar/event?eid=NGRoMXJrcG5hc2w0bHBtMmllbmRka3Q2MDIgd2VmbHlteEBt&ctz=America/Mexico_City", "overweight": false, "celebration": false}, {"calendar": "weflymx@gmail.com", "id": "2cofkknt3165av3mq20hqdv1bv", "title_raw": "2P Ignacio Puyal Velo", "name": "Ignacio Puyal Velo", "datetime": "2026-04-23T06:00", "date": "2026-04-23", "time": "06:00", "status": "confirmado", "pax": 2, "weights": [75, 57], "total_weight": 132, "service": "Vuelo Privado en Teotihuacán", "includes": [], "phone": "+34 615656113", "email": "ignaciopuyal@gmail.com", "reserva": "1574604074780133", "total": "", "pickup": "", "staff": "Débora", "html_link": "https://www.google.com/calendar/event?eid=MmNvZmtrbnQzMTY1YXYzbXEyMGhxZHYxYnYgd2VmbHlteEBt&ctz=America/Mexico_City", "overweight": false, "celebration": false}], "bookeo_emails": [{"name": "Jessica Johnson", "flight_date_raw": "viernes, 17 abril 2026", "flight_date": "2026-04-17", "hour": "4:30", "experience": "ALL INCLUSIVE", "pax": "1 adulto", "price": "3640 MXN", "received": "mar, 7 abr 2026, 11:58 p.m.", "unread": true, "source": "bookeo"}, {"name": "María Raquel Delgado Salas", "flight_date_raw": "jueves, 9 abril 2026", "flight_date": "2026-04-09", "hour": "6:00", "experience": "Vuelo Compartido Promo L-V", "pax": "", "price": "", "received": "mar, 7 abr 2026, 8:14 p.m.", "unread": true, "source": "bookeo"}, {"name": "Olga Vargas Pereira", "flight_date_raw": "jueves, 9 abril 2026", "flight_date": "2026-04-09", "hour": "4:30", "experience": "ALL INCLUSIVE", "pax": "1 adulto", "price": "3640 MXN", "received": "mar, 7 abr 2026, 4:44 p.m.", "unread": false, "source": "bookeo"}, {"name": "Karina Garcia", "flight_date_raw": "viernes, 17 abril 2026", "flight_date": "2026-04-17", "hour": "4:30", "experience": "ALL INCLUSIVE", "pax": "1 adulto", "price": "3640 MXN", "received": "mar, 7 abr 2026, 4:17 p.m.", "unread": false, "source": "bookeo"}, {"name": "Ignacio Puyal Velo", "flight_date_raw": "jueves, 23 abril 2026", "flight_date": "2026-04-23", "hour": "6:00", "experience": "Vuelo Privado en Teotihuacán", "pax": "2 adultos", "price": "7800 MXN", "received": "mar, 7 abr 2026, 1:39 p.m.", "unread": false, "source": "bookeo"}, {"name": "Alex Reavley", "flight_date_raw": "jueves, 7 mayo 2026", "flight_date": "2026-05-07", "hour": "4:30", "experience": "ALL INCLUSIVE", "pax": "2 adultos", "price": "7280 MXN", "received": "mar, 7 abr 2026, 11:32 a.m.", "unread": false, "source": "bookeo"}, {"name": "Nicole Bansal", "flight_date_raw": "martes, 5 mayo 2026", "flight_date": "2026-05-05", "hour": "4:30", "experience": "", "pax": "", "price": "", "received": "mar, 7 abr 2026, 10:14 a.m.", "unread": false, "source": "bookeo"}, {"name": "Catalina Rengifo", "flight_date_raw": "lunes, 20 abril 2026", "flight_date": "2026-04-20", "hour": "4:30", "experience": "ALL INCLUSIVE", "pax": "2 adultos", "price": "7280 MXN", "received": "lun, 6 abr 2026, 11:12 p.m.", "unread": false, "source": "bookeo"}, {"name": "Fernando Nino", "flight_date_raw": "domingo, 17 mayo 2026", "flight_date": "2026-05-17", "hour": "4:30", "experience": "ALL INCLUSIVE", "pax": "2 adultos", "price": "", "received": "lun, 6 abr 2026, 9:28 p.m.", "unread": false, "source": "bookeo"}, {"name": "William Eustace", "flight_date_raw": "lunes, 15 junio 2026", "flight_date": "2026-06-15", "hour": "4:30", "experience": "", "pax": "2 adultos", "price": "", "received": "lun, 6 abr 2026, 9:07 p.m.", "unread": false, "source": "bookeo"}, {"name": "Audrie Sham", "flight_date_raw": "lunes, 13 abril 2026", "flight_date": "2026-04-13", "hour": "", "experience": "", "pax": "2 adultos", "price": "", "received": "lun, 6 abr 2026, 2:17 p.m.", "unread": false, "source": "bookeo"}, {"name": "Brett Murray", "flight_date_raw": "martes, 7 abril 2026", "flight_date": "2026-04-07", "hour": "", "experience": "", "pax": "", "price": "", "received": "lun, 6 abr 2026, 1:41 p.m.", "unread": false, "source": "bookeo"}, {"name": "Maximilian Spraul", "flight_date_raw": "martes, 7 abril 2026", "flight_date": "2026-04-07", "hour": "", "experience": "", "pax": "", "price": "", "received": "lun, 6 abr 2026, 12:38 p.m.", "unread": false, "source": "bookeo"}, {"name": "Bianca Mendez", "flight_date_raw": "martes, 7 abril 2026", "flight_date": "2026-04-07", "hour": "", "experience": "", "pax": "2 adultos", "price": "", "received": "lun, 6 abr 2026, 11:32 a.m.", "unread": false, "source": "bookeo"}, {"name": "Emily Malia Pipi Nelson Bertelsen Eitel", "flight_date_raw": "domingo, 19 abril 2026", "flight_date": "2026-04-19", "hour": "", "experience": "", "pax": "", "price": "", "received": "lun, 6 abr 2026, 10:57 a.m.", "unread": false, "source": "bookeo"}, {"name": "Lana Quelle", "flight_date_raw": "martes, 7 abril 2026", "flight_date": "2026-04-07", "hour": "", "experience": "", "pax": "", "price": "", "received": "lun, 6 abr 2026, 10:54 a.m.", "unread": false, "source": "bookeo"}, {"name": "Maurice Koster", "flight_date_raw": "sábado, 2 mayo 2026", "flight_date": "2026-05-02", "hour": "4:30", "experience": "ALL INCLUSIVE", "pax": "2 adultos", "price": "7280 MXN", "received": "lun, 6 abr 2026, 8:55 a.m.", "unread": false, "source": "bookeo"}, {"name": "Gema Varela", "flight_date_raw": "viernes, 10 abril 2026", "flight_date": "2026-04-10", "hour": "4:30", "experience": "ALL INCLUSIVE", "pax": "4 adultos", "price": "14560 MXN", "received": "lun, 6 abr 2026, 8:49 a.m.", "unread": false, "source": "bookeo"}, {"name": "Johannes Goerling", "flight_date_raw": "martes, 7 abril 2026", "flight_date": "2026-04-07", "hour": "", "experience": "", "pax": "", "price": "", "received": "dom, 5 abr 2026, 7:17 p.m.", "unread": false, "source": "bookeo"}, {"name": "Carina Affinito", "flight_date_raw": "sábado, 6 junio 2026", "flight_date": "2026-06-06", "hour": "", "experience": "", "pax": "2 adultos", "price": "", "received": "dom, 5 abr 2026, 3:49 p.m.", "unread": false, "source": "bookeo"}, {"name": "Dillon Rix", "flight_date_raw": "martes, 7 abril 2026", "flight_date": "2026-04-07", "hour": "", "experience": "", "pax": "", "price": "", "received": "dom, 5 abr 2026, 2:59 p.m.", "unread": false, "source": "bookeo"}, {"name": "Kristine Stahl", "flight_date_raw": "jueves, 21 mayo 2026", "flight_date": "2026-05-21", "hour": "", "experience": "", "pax": "", "price": "", "received": "dom, 5 abr 2026, 12:59 p.m.", "unread": false, "source": "bookeo"}, {"name": "Sarah Hemmer", "flight_date_raw": "martes, 28 abril 2026", "flight_date": "2026-04-28", "hour": "", "experience": "", "pax": "", "price": "", "received": "sáb, 4 abr 2026, 6:34 p.m.", "unread": false, "source": "bookeo"}, {"name": "Carmen Sarahí Portela Silva", "flight_date_raw": "jueves, 23 abril 2026", "flight_date": "2026-04-23", "hour": "4:30", "experience": "ALL INCLUSIVE", "pax": "3 adultos", "price": "10920 MXN", "received": "sáb, 4 abr 2026, 10:25 a.m.", "unread": false, "source": "bookeo"}, {"name": "Antonio Bernal", "flight_date_raw": "martes, 14 abril 2026", "flight_date": "2026-04-14", "hour": "", "experience": "", "pax": "", "price": "", "received": "vie, 3 abr 2026, 2:47 p.m.", "unread": false, "source": "bookeo"}, {"name": "Naomie Guillaume", "flight_date_raw": "sábado, 25 abril 2026", "flight_date": "2026-04-25", "hour": "", "experience": "", "pax": "1 adulto", "price": "", "received": "vie, 3 abr 2026, 2:03 p.m.", "unread": false, "source": "bookeo"}, {"name": "Ashley Diaz", "flight_date_raw": "sábado, 25 abril 2026", "flight_date": "2026-04-25", "hour": "", "experience": "", "pax": "1 adulto", "price": "", "received": "vie, 3 abr 2026, 1:56 p.m.", "unread": false, "source": "bookeo"}, {"name": "Emily Leon", "flight_date_raw": "martes, 14 abril 2026", "flight_date": "2026-04-14", "hour": "", "experience": "", "pax": "", "price": "", "received": "vie, 3 abr 2026, 1:23 p.m.", "unread": false, "source": "bookeo"}, {"name": "Umme Hossain", "flight_date_raw": "sábado, 25 abril 2026", "flight_date": "2026-04-25", "hour": "", "experience": "", "pax": "2 adultos", "price": "", "received": "vie, 3 abr 2026, 12:53 p.m.", "unread": false, "source": "bookeo"}, {"name": "Luisa Fernanda Higuera Joseph", "flight_date_raw": "sábado, 4 abril 2026", "flight_date": "2026-04-04", "hour": "6:00", "experience": "Vuelo Compartido Fin de semana", "pax": "4 adultos", "price": "11440 MXN", "received": "vie, 3 abr 2026, 10:48 a.m.", "unread": false, "source": "bookeo"}, {"name": "Deborah Hernandez", "flight_date_raw": "domingo, 5 abril 2026", "flight_date": "2026-04-05", "hour": "6:00", "experience": "Vuelo Compartido Fin de semana", "pax": "1 adulto", "price": "3068 MXN", "received": "vie, 3 abr 2026, 10:44 a.m.", "unread": false, "source": "bookeo"}, {"name": "Scott Kirton", "flight_date_raw": "lunes, 18 mayo 2026", "flight_date": "2026-05-18", "hour": "4:30", "experience": "ALL INCLUSIVE", "pax": "2 adultos", "price": "7280 MXN", "received": "vie, 3 abr 2026, 7:54 a.m.", "unread": false, "source": "bookeo"}, {"name": "Marina Juez Egea", "flight_date_raw": "viernes, 29 mayo 2026", "flight_date": "2026-05-29", "hour": "", "experience": "", "pax": "2 adultos", "price": "", "received": "vie, 3 abr 2026, 3:07 a.m.", "unread": false, "source": "bookeo"}, {"name": "Roberto Carlos Diaz Sanchez", "flight_date_raw": "lunes, 6 abril 2026", "flight_date": "2026-04-06", "hour": "", "experience": "", "pax": "4 adultos", "price": "", "received": "vie, 3 abr 2026, 12:41 a.m.", "unread": false, "source": "bookeo"}, {"name": "Alejandra Molano Jaramillo", "flight_date_raw": "lunes, 6 abril 2026", "flight_date": "2026-04-06", "hour": "", "experience": "", "pax": "2 adultos", "price": "", "received": "jue, 2 abr 2026, 8:01 p.m.", "unread": false, "source": "bookeo"}, {"name": "Jhon Roldan", "flight_date_raw": "viernes, 3 abril 2026", "flight_date": "2026-04-03", "hour": "", "experience": "", "pax": "", "price": "", "received": "jue, 2 abr 2026, 4:18 p.m.", "unread": false, "source": "bookeo"}, {"name": "Juan Gabriel González Cisneros", "flight_date_raw": "domingo, 19 abril 2026", "flight_date": "2026-04-19", "hour": "", "experience": "", "pax": "2 adultos", "price": "", "received": "jue, 2 abr 2026, 1:00 p.m.", "unread": false, "source": "bookeo"}, {"name": "Julie Hendy", "flight_date_raw": "domingo, 19 abril 2026", "flight_date": "2026-04-19", "hour": "", "experience": "", "pax": "2 adultos", "price": "", "received": "jue, 2 abr 2026, 12:42 p.m.", "unread": false, "source": "bookeo"}, {"name": "Daniela Rodriguez Bautista", "flight_date_raw": "miércoles, 22 abril 2026", "flight_date": "2026-04-22", "hour": "", "experience": "", "pax": "", "price": "", "received": "jue, 2 abr 2026, 11:16 a.m.", "unread": false, "source": "bookeo"}, {"name": "Minerva Gisselle Gutiérrez Temosihui", "flight_date_raw": "domingo, 5 abril 2026", "flight_date": "2026-04-05", "hour": "", "experience": "", "pax": "1 adulto", "price": "", "received": "mié, 1 abr 2026, 8:46 p.m.", "unread": false, "source": "bookeo"}, {"name": "Kevin Mathew", "flight_date_raw": "viernes, 24 abril 2026", "flight_date": "2026-04-24", "hour": "", "experience": "", "pax": "", "price": "", "received": "mié, 1 abr 2026, 8:46 p.m.", "unread": false, "source": "bookeo"}], "viator_emails": [{"ref": "BR-1382301789", "flight_date_raw": "Sat, Apr 11, 2026", "flight_date": "2026-04-11", "received": "mar, 7 abr 2026, 5:27 a.m.", "status": "nueva", "unread": false, "source": "viator"}, {"ref": "BR-1382240783", "flight_date_raw": "Tue, Apr 07, 2026", "flight_date": "2026-04-07", "received": "lun, 6 abr 2026, 11:48 p.m.", "status": "nueva", "unread": false, "source": "viator"}, {"ref": "BR-1382240453", "flight_date_raw": "Tue, Apr 07, 2026", "flight_date": "2026-04-07", "received": "lun, 6 abr 2026, 11:47 p.m.", "status": "nueva", "unread": false, "source": "viator"}, {"ref": "BR-1382091439", "flight_date_raw": "Tue, Apr 21, 2026", "flight_date": "2026-04-21", "received": "lun, 6 abr 2026, 3:08 p.m.", "status": "nueva", "unread": false, "source": "viator"}, {"ref": "BR-1381561931", "flight_date_raw": "Sat, Apr 11, 2026", "flight_date": "2026-04-11", "received": "dom, 5 abr 2026, 11:43 a.m.", "status": "modificada", "unread": false, "source": "viator"}, {"ref": "BR-1353331877", "flight_date_raw": "Wed, Apr 08, 2026", "flight_date": "2026-04-08", "received": "dom, 5 abr 2026, 9:09 a.m.", "status": "modificada", "unread": false, "source": "viator"}, {"ref": "BR-1376014351", "flight_date_raw": "Thu, Apr 23, 2026", "flight_date": "2026-04-23", "received": "dom, 29 mar 2026, 11:22 p.m.", "status": "modificada", "unread": false, "source": "viator"}, {"ref": "BR-1381108497", "flight_date_raw": "Sat, May 16, 2026", "flight_date": "2026-05-16", "received": "sáb, 4 abr 2026, 9:13 a.m.", "status": "modificada", "unread": false, "source": "viator"}, {"ref": "BR-1378071733", "flight_date_raw": "Sun, Mar 29, 2026", "flight_date": "2026-03-29", "received": "sáb, 28 mar 2026, 9:42 a.m.", "status": "nueva", "unread": false, "source": "viator"}, {"ref": "BR-?", "flight_date_raw": "Sat, May 16, 2026", "flight_date": "2026-05-16", "received": "sáb, 4 abr 2026, 9:23 a.m.", "status": "cancelada", "unread": false, "source": "viator"}, {"ref": "BR-1376581459", "flight_date_raw": "Mon, Apr 06, 2026", "flight_date": "2026-04-06", "received": "mar, 24 mar 2026, 11:14 a.m.", "status": "nueva", "unread": false, "source": "viator"}, {"ref": "BR-1378145803", "flight_date_raw": "Sun, Mar 29, 2026", "flight_date": "2026-03-29", "received": "sáb, 28 mar 2026, 12:35 p.m.", "status": "nueva", "unread": false, "source": "viator"}, {"ref": "BR-1378312285", "flight_date_raw": "Mon, Mar 30, 2026", "flight_date": "2026-03-30", "received": "sáb, 28 mar 2026, 8:19 p.m.", "status": "nueva", "unread": false, "source": "viator"}, {"ref": "BR-1374641781", "flight_date_raw": "Reservations,yo", "flight_date": "", "received": "jue, 26 mar 2026, 6:52 a.m.", "status": "forwarded", "unread": false, "source": "viator"}, {"ref": "BR-1379561075", "flight_date_raw": "Mon, May 04, 2026", "flight_date": "2026-05-04", "received": "mar, 31 mar 2026, 1:45 p.m.", "status": "modificada", "unread": false, "source": "viator"}], "pending_bookeo": [{"name": "Jessica Johnson", "flight_date_raw": "viernes, 17 abril 2026", "flight_date": "2026-04-17", "hour": "4:30", "experience": "ALL INCLUSIVE", "pax": "1 adulto", "price": "3640 MXN", "received": "mar, 7 abr 2026, 11:58 p.m.", "unread": true, "source": "bookeo", "in_calendar": true, "calendar_event_id": "53ulta3pcukl7hnf55qsfgaqdv", "calendar_name": "Jessica Johnson"}, {"name": "María Raquel Delgado Salas", "flight_date_raw": "jueves, 9 abril 2026", "flight_date": "2026-04-09", "hour": "6:00", "experience": "Vuelo Compartido Promo L-V", "pax": "", "price": "", "received": "mar, 7 abr 2026, 8:14 p.m.", "unread": true, "source": "bookeo", "in_calendar": true, "calendar_event_id": "652633i9okf6c2phekq821kc75", "calendar_name": "María Raquel Delgado Salas"}, {"name": "Olga Vargas Pereira", "flight_date_raw": "jueves, 9 abril 2026", "flight_date": "2026-04-09", "hour": "4:30", "experience": "ALL INCLUSIVE", "pax": "1 adulto", "price": "3640 MXN", "received": "mar, 7 abr 2026, 4:44 p.m.", "unread": false, "source": "bookeo", "in_calendar": true, "calendar_event_id": "69dep9rcg67ko2b3ur65hs0osf", "calendar_name": "Olga Vargas Pereira"}, {"name": "Karina Garcia", "flight_date_raw": "viernes, 17 abril 2026", "flight_date": "2026-04-17", "hour": "4:30", "experience": "ALL INCLUSIVE", "pax": "1 adulto", "price": "3640 MXN", "received": "mar, 7 abr 2026, 4:17 p.m.", "unread": false, "source": "bookeo", "in_calendar": true, "calendar_event_id": "6tbbmsfao155hujpgifjd7me3i", "calendar_name": "Karina Garcia"}, {"name": "Ignacio Puyal Velo", "flight_date_raw": "jueves, 23 abril 2026", "flight_date": "2026-04-23", "hour": "6:00", "experience": "Vuelo Privado en Teotihuacán", "pax": "2 adultos", "price": "7800 MXN", "received": "mar, 7 abr 2026, 1:39 p.m.", "unread": false, "source": "bookeo", "in_calendar": true, "calendar_event_id": "2cofkknt3165av3mq20hqdv1bv", "calendar_name": "Ignacio Puyal Velo"}, {"name": "Alex Reavley", "flight_date_raw": "jueves, 7 mayo 2026", "flight_date": "2026-05-07", "hour": "4:30", "experience": "ALL INCLUSIVE", "pax": "2 adultos", "price": "7280 MXN", "received": "mar, 7 abr 2026, 11:32 a.m.", "unread": false, "source": "bookeo", "in_calendar": false, "calendar_event_id": "", "calendar_name": ""}, {"name": "Nicole Bansal", "flight_date_raw": "martes, 5 mayo 2026", "flight_date": "2026-05-05", "hour": "4:30", "experience": "", "pax": "", "price": "", "received": "mar, 7 abr 2026, 10:14 a.m.", "unread": false, "source": "bookeo", "in_calendar": false, "calendar_event_id": "", "calendar_name": ""}, {"name": "Catalina Rengifo", "flight_date_raw": "lunes, 20 abril 2026", "flight_date": "2026-04-20", "hour": "4:30", "experience": "ALL INCLUSIVE", "pax": "2 adultos", "price": "7280 MXN", "received": "lun, 6 abr 2026, 11:12 p.m.", "unread": false, "source": "bookeo", "in_calendar": true, "calendar_event_id": "501o4oeqedo6hcrq24k13ore41", "calendar_name": "Catalina Rengifo"}, {"name": "Fernando Nino", "flight_date_raw": "domingo, 17 mayo 2026", "flight_date": "2026-05-17", "hour": "4:30", "experience": "ALL INCLUSIVE", "pax": "2 adultos", "price": "", "received": "lun, 6 abr 2026, 9:28 p.m.", "unread": false, "source": "bookeo", "in_calendar": false, "calendar_event_id": "", "calendar_name": ""}, {"name": "William Eustace", "flight_date_raw": "lunes, 15 junio 2026", "flight_date": "2026-06-15", "hour": "4:30", "experience": "", "pax": "2 adultos", "price": "", "received": "lun, 6 abr 2026, 9:07 p.m.", "unread": false, "source": "bookeo", "in_calendar": false, "calendar_event_id": "", "calendar_name": ""}, {"name": "Audrie Sham", "flight_date_raw": "lunes, 13 abril 2026", "flight_date": "2026-04-13", "hour": "", "experience": "", "pax": "2 adultos", "price": "", "received": "lun, 6 abr 2026, 2:17 p.m.", "unread": false, "source": "bookeo", "in_calendar": true, "calendar_event_id": "54rkccvufjcg8r316741llrn52", "calendar_name": "Audrie Sham"}, {"name": "Brett Murray", "flight_date_raw": "martes, 7 abril 2026", "flight_date": "2026-04-07", "hour": "", "experience": "", "pax": "", "price": "", "received": "lun, 6 abr 2026, 1:41 p.m.", "unread": false, "source": "bookeo", "in_calendar": false, "calendar_event_id": "", "calendar_name": ""}, {"name": "Maximilian Spraul", "flight_date_raw": "martes, 7 abril 2026", "flight_date": "2026-04-07", "hour": "", "experience": "", "pax": "", "price": "", "received": "lun, 6 abr 2026, 12:38 p.m.", "unread": false, "source": "bookeo", "in_calendar": false, "calendar_event_id": "", "calendar_name": ""}, {"name": "Bianca Mendez", "flight_date_raw": "martes, 7 abril 2026", "flight_date": "2026-04-07", "hour": "", "experience": "", "pax": "2 adultos", "price": "", "received": "lun, 6 abr 2026, 11:32 a.m.", "unread": false, "source": "bookeo", "in_calendar": false, "calendar_event_id": "", "calendar_name": ""}, {"name": "Emily Malia Pipi Nelson Bertelsen Eitel", "flight_date_raw": "domingo, 19 abril 2026", "flight_date": "2026-04-19", "hour": "", "experience": "", "pax": "", "price": "", "received": "lun, 6 abr 2026, 10:57 a.m.", "unread": false, "source": "bookeo", "in_calendar": true, "calendar_event_id": "0tjulstlm4jrlfib78o50oqnoi", "calendar_name": "Emily, Malia, Pipi Nelson"}, {"name": "Lana Quelle", "flight_date_raw": "martes, 7 abril 2026", "flight_date": "2026-04-07", "hour": "", "experience": "", "pax": "", "price": "", "received": "lun, 6 abr 2026, 10:54 a.m.", "unread": false, "source": "bookeo", "in_calendar": false, "calendar_event_id": "", "calendar_name": ""}, {"name": "Maurice Koster", "flight_date_raw": "sábado, 2 mayo 2026", "flight_date": "2026-05-02", "hour": "4:30", "experience": "ALL INCLUSIVE", "pax": "2 adultos", "price": "7280 MXN", "received": "lun, 6 abr 2026, 8:55 a.m.", "unread": false, "source": "bookeo", "in_calendar": false, "calendar_event_id": "", "calendar_name": ""}, {"name": "Gema Varela", "flight_date_raw": "viernes, 10 abril 2026", "flight_date": "2026-04-10", "hour": "4:30", "experience": "ALL INCLUSIVE", "pax": "4 adultos", "price": "14560 MXN", "received": "lun, 6 abr 2026, 8:49 a.m.", "unread": false, "source": "bookeo", "in_calendar": true, "calendar_event_id": "6skn38l17r1lvedc7grlunhq3e", "calendar_name": "Gema Varela"}, {"name": "Johannes Goerling", "flight_date_raw": "martes, 7 abril 2026", "flight_date": "2026-04-07", "hour": "", "experience": "", "pax": "", "price": "", "received": "dom, 5 abr 2026, 7:17 p.m.", "unread": false, "source": "bookeo", "in_calendar": false, "calendar_event_id": "", "calendar_name": ""}, {"name": "Carina Affinito", "flight_date_raw": "sábado, 6 junio 2026", "flight_date": "2026-06-06", "hour": "", "experience": "", "pax": "2 adultos", "price": "", "received": "dom, 5 abr 2026, 3:49 p.m.", "unread": false, "source": "bookeo", "in_calendar": false, "calendar_event_id": "", "calendar_name": ""}, {"name": "Dillon Rix", "flight_date_raw": "martes, 7 abril 2026", "flight_date": "2026-04-07", "hour": "", "experience": "", "pax": "", "price": "", "received": "dom, 5 abr 2026, 2:59 p.m.", "unread": false, "source": "bookeo", "in_calendar": false, "calendar_event_id": "", "calendar_name": ""}, {"name": "Kristine Stahl", "flight_date_raw": "jueves, 21 mayo 2026", "flight_date": "2026-05-21", "hour": "", "experience": "", "pax": "", "price": "", "received": "dom, 5 abr 2026, 12:59 p.m.", "unread": false, "source": "bookeo", "in_calendar": false, "calendar_event_id": "", "calendar_name": ""}, {"name": "Sarah Hemmer", "flight_date_raw": "martes, 28 abril 2026", "flight_date": "2026-04-28", "hour": "", "experience": "", "pax": "", "price": "", "received": "sáb, 4 abr 2026, 6:34 p.m.", "unread": false, "source": "bookeo", "in_calendar": false, "calendar_event_id": "", "calendar_name": ""}, {"name": "Carmen Sarahí Portela Silva", "flight_date_raw": "jueves, 23 abril 2026", "flight_date": "2026-04-23", "hour": "4:30", "experience": "ALL INCLUSIVE", "pax": "3 adultos", "price": "10920 MXN", "received": "sáb, 4 abr 2026, 10:25 a.m.", "unread": false, "source": "bookeo", "in_calendar": true, "calendar_event_id": "4dh1rkpnasl4lpm2ienddkt602", "calendar_name": "Carmen Sarahí Portela Silva"}, {"name": "Antonio Bernal", "flight_date_raw": "martes, 14 abril 2026", "flight_date": "2026-04-14", "hour": "", "experience": "", "pax": "", "price": "", "received": "vie, 3 abr 2026, 2:47 p.m.", "unread": false, "source": "bookeo", "in_calendar": true, "calendar_event_id": "2rn1k8kahu0f6ft3qoie3md4si", "calendar_name": "Antonio Bernal"}, {"name": "Naomie Guillaume", "flight_date_raw": "sábado, 25 abril 2026", "flight_date": "2026-04-25", "hour": "", "experience": "", "pax": "1 adulto", "price": "", "received": "vie, 3 abr 2026, 2:03 p.m.", "unread": false, "source": "bookeo", "in_calendar": false, "calendar_event_id": "", "calendar_name": ""}, {"name": "Ashley Diaz", "flight_date_raw": "sábado, 25 abril 2026", "flight_date": "2026-04-25", "hour": "", "experience": "", "pax": "1 adulto", "price": "", "received": "vie, 3 abr 2026, 1:56 p.m.", "unread": false, "source": "bookeo", "in_calendar": false, "calendar_event_id": "", "calendar_name": ""}, {"name": "Emily Leon", "flight_date_raw": "martes, 14 abril 2026", "flight_date": "2026-04-14", "hour": "", "experience": "", "pax": "", "price": "", "received": "vie, 3 abr 2026, 1:23 p.m.", "unread": false, "source": "bookeo", "in_calendar": true, "calendar_event_id": "0vorpbn8rh5u62u881ihs1eqdk", "calendar_name": "Emily Leon"}, {"name": "Umme Hossain", "flight_date_raw": "sábado, 25 abril 2026", "flight_date": "2026-04-25", "hour": "", "experience": "", "pax": "2 adultos", "price": "", "received": "vie, 3 abr 2026, 12:53 p.m.", "unread": false, "source": "bookeo", "in_calendar": false, "calendar_event_id": "", "calendar_name": ""}, {"name": "Luisa Fernanda Higuera Joseph", "flight_date_raw": "sábado, 4 abril 2026", "flight_date": "2026-04-04", "hour": "6:00", "experience": "Vuelo Compartido Fin de semana", "pax": "4 adultos", "price": "11440 MXN", "received": "vie, 3 abr 2026, 10:48 a.m.", "unread": false, "source": "bookeo", "in_calendar": false, "calendar_event_id": "", "calendar_name": ""}, {"name": "Deborah Hernandez", "flight_date_raw": "domingo, 5 abril 2026", "flight_date": "2026-04-05", "hour": "6:00", "experience": "Vuelo Compartido Fin de semana", "pax": "1 adulto", "price": "3068 MXN", "received": "vie, 3 abr 2026, 10:44 a.m.", "unread": false, "source": "bookeo", "in_calendar": false, "calendar_event_id": "", "calendar_name": ""}, {"name": "Scott Kirton", "flight_date_raw": "lunes, 18 mayo 2026", "flight_date": "2026-05-18", "hour": "4:30", "experience": "ALL INCLUSIVE", "pax": "2 adultos", "price": "7280 MXN", "received": "vie, 3 abr 2026, 7:54 a.m.", "unread": false, "source": "bookeo", "in_calendar": false, "calendar_event_id": "", "calendar_name": ""}, {"name": "Marina Juez Egea", "flight_date_raw": "viernes, 29 mayo 2026", "flight_date": "2026-05-29", "hour": "", "experience": "", "pax": "2 adultos", "price": "", "received": "vie, 3 abr 2026, 3:07 a.m.", "unread": false, "source": "bookeo", "in_calendar": false, "calendar_event_id": "", "calendar_name": ""}, {"name": "Roberto Carlos Diaz Sanchez", "flight_date_raw": "lunes, 6 abril 2026", "flight_date": "2026-04-06", "hour": "", "experience": "", "pax": "4 adultos", "price": "", "received": "vie, 3 abr 2026, 12:41 a.m.", "unread": false, "source": "bookeo", "in_calendar": false, "calendar_event_id": "", "calendar_name": ""}, {"name": "Alejandra Molano Jaramillo", "flight_date_raw": "lunes, 6 abril 2026", "flight_date": "2026-04-06", "hour": "", "experience": "", "pax": "2 adultos", "price": "", "received": "jue, 2 abr 2026, 8:01 p.m.", "unread": false, "source": "bookeo", "in_calendar": false, "calendar_event_id": "", "calendar_name": ""}, {"name": "Jhon Roldan", "flight_date_raw": "viernes, 3 abril 2026", "flight_date": "2026-04-03", "hour": "", "experience": "", "pax": "", "price": "", "received": "jue, 2 abr 2026, 4:18 p.m.", "unread": false, "source": "bookeo", "in_calendar": false, "calendar_event_id": "", "calendar_name": ""}, {"name": "Juan Gabriel González Cisneros", "flight_date_raw": "domingo, 19 abril 2026", "flight_date": "2026-04-19", "hour": "", "experience": "", "pax": "2 adultos", "price": "", "received": "jue, 2 abr 2026, 1:00 p.m.", "unread": false, "source": "bookeo", "in_calendar": true, "calendar_event_id": "3rohu3433uqba0b58uukh8lekc", "calendar_name": "Juan Gabriel González Cisneros"}, {"name": "Julie Hendy", "flight_date_raw": "domingo, 19 abril 2026", "flight_date": "2026-04-19", "hour": "", "experience": "", "pax": "2 adultos", "price": "", "received": "jue, 2 abr 2026, 12:42 p.m.", "unread": false, "source": "bookeo", "in_calendar": true, "calendar_event_id": "5q3o79j7dvdgplfe91kbav3m0f", "calendar_name": "Julie Hendy"}, {"name": "Daniela Rodriguez Bautista", "flight_date_raw": "miércoles, 22 abril 2026", "flight_date": "2026-04-22", "hour": "", "experience": "", "pax": "", "price": "", "received": "jue, 2 abr 2026, 11:16 a.m.", "unread": false, "source": "bookeo", "in_calendar": true, "calendar_event_id": "25137cm3ptfo0buati2tbao77g", "calendar_name": "Daniela Rodriguez Bautista"}, {"name": "Minerva Gisselle Gutiérrez Temosihui", "flight_date_raw": "domingo, 5 abril 2026", "flight_date": "2026-04-05", "hour": "", "experience": "", "pax": "1 adulto", "price": "", "received": "mié, 1 abr 2026, 8:46 p.m.", "unread": false, "source": "bookeo", "in_calendar": false, "calendar_event_id": "", "calendar_name": ""}, {"name": "Kevin Mathew", "flight_date_raw": "viernes, 24 abril 2026", "flight_date": "2026-04-24", "hour": "", "experience": "", "pax": "", "price": "", "received": "mié, 1 abr 2026, 8:46 p.m.", "unread": false, "source": "bookeo", "in_calendar": false, "calendar_event_id": "", "calendar_name": ""}], "pending_viator": [{"ref": "BR-1382301789", "flight_date_raw": "Sat, Apr 11, 2026", "flight_date": "2026-04-11", "received": "mar, 7 abr 2026, 5:27 a.m.", "status": "nueva", "unread": false, "source": "viator", "in_calendar": false, "calendar_event_id": "", "calendar_name": ""}, {"ref": "BR-1382240783", "flight_date_raw": "Tue, Apr 07, 2026", "flight_date": "2026-04-07", "received": "lun, 6 abr 2026, 11:48 p.m.", "status": "nueva", "unread": false, "source": "viator", "in_calendar": false, "calendar_event_id": "", "calendar_name": ""}, {"ref": "BR-1382240453", "flight_date_raw": "Tue, Apr 07, 2026", "flight_date": "2026-04-07", "received": "lun, 6 abr 2026, 11:47 p.m.", "status": "nueva", "unread": false, "source": "viator", "in_calendar": false, "calendar_event_id": "", "calendar_name": ""}, {"ref": "BR-1382091439", "flight_date_raw": "Tue, Apr 21, 2026", "flight_date": "2026-04-21", "received": "lun, 6 abr 2026, 3:08 p.m.", "status": "nueva", "unread": false, "source": "viator", "in_calendar": false, "calendar_event_id": "", "calendar_name": ""}, {"ref": "BR-1381561931", "flight_date_raw": "Sat, Apr 11, 2026", "flight_date": "2026-04-11", "received": "dom, 5 abr 2026, 11:43 a.m.", "status": "modificada", "unread": false, "source": "viator", "in_calendar": false, "calendar_event_id": "", "calendar_name": ""}, {"ref": "BR-1353331877", "flight_date_raw": "Wed, Apr 08, 2026", "flight_date": "2026-04-08", "received": "dom, 5 abr 2026, 9:09 a.m.", "status": "modificada", "unread": false, "source": "viator", "in_calendar": false, "calendar_event_id": "", "calendar_name": ""}, {"ref": "BR-1376014351", "flight_date_raw": "Thu, Apr 23, 2026", "flight_date": "2026-04-23", "received": "dom, 29 mar 2026, 11:22 p.m.", "status": "modificada", "unread": false, "source": "viator", "in_calendar": false, "calendar_event_id": "", "calendar_name": ""}, {"ref": "BR-1381108497", "flight_date_raw": "Sat, May 16, 2026", "flight_date": "2026-05-16", "received": "sáb, 4 abr 2026, 9:13 a.m.", "status": "modificada", "unread": false, "source": "viator", "in_calendar": false, "calendar_event_id": "", "calendar_name": ""}, {"ref": "BR-1378071733", "flight_date_raw": "Sun, Mar 29, 2026", "flight_date": "2026-03-29", "received": "sáb, 28 mar 2026, 9:42 a.m.", "status": "nueva", "unread": false, "source": "viator", "in_calendar": false, "calendar_event_id": "", "calendar_name": ""}, {"ref": "BR-?", "flight_date_raw": "Sat, May 16, 2026", "flight_date": "2026-05-16", "received": "sáb, 4 abr 2026, 9:23 a.m.", "status": "cancelada", "unread": false, "source": "viator", "in_calendar": false, "calendar_event_id": "", "calendar_name": ""}, {"ref": "BR-1376581459", "flight_date_raw": "Mon, Apr 06, 2026", "flight_date": "2026-04-06", "received": "mar, 24 mar 2026, 11:14 a.m.", "status": "nueva", "unread": false, "source": "viator", "in_calendar": false, "calendar_event_id": "", "calendar_name": ""}, {"ref": "BR-1378145803", "flight_date_raw": "Sun, Mar 29, 2026", "flight_date": "2026-03-29", "received": "sáb, 28 mar 2026, 12:35 p.m.", "status": "nueva", "unread": false, "source": "viator", "in_calendar": false, "calendar_event_id": "", "calendar_name": ""}, {"ref": "BR-1378312285", "flight_date_raw": "Mon, Mar 30, 2026", "flight_date": "2026-03-30", "received": "sáb, 28 mar 2026, 8:19 p.m.", "status": "nueva", "unread": false, "source": "viator", "in_calendar": false, "calendar_event_id": "", "calendar_name": ""}, {"ref": "BR-1374641781", "flight_date_raw": "Reservations,yo", "flight_date": "", "received": "jue, 26 mar 2026, 6:52 a.m.", "status": "forwarded", "unread": false, "source": "viator", "in_calendar": false, "calendar_event_id": "", "calendar_name": ""}, {"ref": "BR-1379561075", "flight_date_raw": "Mon, May 04, 2026", "flight_date": "2026-05-04", "received": "mar, 31 mar 2026, 1:45 p.m.", "status": "modificada", "unread": false, "source": "viator", "in_calendar": false, "calendar_event_id": "", "calendar_name": ""}], "stats": {"total_events": 57, "total_pax": 160, "by_calendar": {"VIATOR / TRIP ADVISOR": 154, "WE FLY - BOOKEO": 208, "VGMX": 369}, "by_status": {"confirmado": 54, "tentativo": 1, "modificado": 2}, "by_date": {"2026-01-02": {"events": 20, "pax": 48}, "2026-01-03": {"events": 16, "pax": 49}, "2026-01-04": {"events": 13, "pax": 36}, "2026-01-05": {"events": 13, "pax": 36}, "2026-01-06": {"events": 5, "pax": 16}, "2026-01-07": {"events": 6, "pax": 13}, "2026-01-08": {"events": 3, "pax": 6}, "2026-01-09": {"events": 4, "pax": 12}, "2026-01-10": {"events": 7, "pax": 18}, "2026-01-11": {"events": 10, "pax": 25}, "2026-01-12": {"events": 8, "pax": 22}, "2026-01-13": {"events": 8, "pax": 17}, "2026-01-14": {"events": 4, "pax": 10}, "2026-01-15": {"events": 8, "pax": 24}, "2026-01-16": {"events": 11, "pax": 30}, "2026-01-17": {"events": 10, "pax": 21}, "2026-01-18": {"events": 9, "pax": 25}, "2026-01-19": {"events": 15, "pax": 39}, "2026-01-20": {"events": 5, "pax": 11}, "2026-01-21": {"events": 3, "pax": 6}, "2026-01-22": {"events": 5, "pax": 14}, "2026-01-23": {"events": 5, "pax": 16}, "2026-01-24": {"events": 11, "pax": 32}, "2026-01-25": {"events": 12, "pax": 23}, "2026-01-26": {"events": 5, "pax": 11}, "2026-01-27": {"events": 2, "pax": 6}, "2026-01-28": {"events": 8, "pax": 29}, "2026-01-29": {"events": 3, "pax": 7}, "2026-01-30": {"events": 6, "pax": 13}, "2026-01-31": {"events": 3, "pax": 9}, "2026-02-01": {"events": 4, "pax": 9}, "2026-02-02": {"events": 9, "pax": 17}, "2026-02-03": {"events": 7, "pax": 20}, "2026-02-04": {"events": 9, "pax": 21}, "2026-02-05": {"events": 3, "pax": 8}, "2026-02-06": {"events": 5, "pax": 12}, "2026-02-07": {"events": 9, "pax": 24}, "2026-02-08": {"events": 6, "pax": 11}, "2026-02-09": {"events": 14, "pax": 29}, "2026-02-10": {"events": 4, "pax": 14}, "2026-02-11": {"events": 1, "pax": 2}, "2026-02-12": {"events": 10, "pax": 22}, "2026-02-13": {"events": 7, "pax": 22}, "2026-02-14": {"events": 14, "pax": 36}, "2026-02-15": {"events": 11, "pax": 23}, "2026-02-16": {"events": 7, "pax": 22}, "2026-02-17": {"events": 10, "pax": 30}, "2026-02-18": {"events": 12, "pax": 30}, "2026-02-19": {"events": 9, "pax": 24}, "2026-02-20": {"events": 6, "pax": 16}, "2026-02-21": {"events": 4, "pax": 9}, "2026-02-22": {"events": 8, "pax": 23}, "2026-02-23": {"events": 9, "pax": 23}, "2026-02-24": {"events": 7, "pax": 16}, "2026-02-25": {"events": 3, "pax": 10}, "2026-02-26": {"events": 6, "pax": 16}, "2026-02-27": {"events": 12, "pax": 33}, "2026-02-28": {"events": 6, "pax": 11}, "2026-03-01": {"events": 9, "pax": 23}, "2026-03-02": {"events": 6, "pax": 14}, "2026-03-03": {"events": 3, "pax": 6}, "2026-03-04": {"events": 2, "pax": 4}, "2026-03-05": {"events": 1, "pax": 7}, "2026-03-06": {"events": 5, "pax": 10}, "2026-03-07": {"events": 7, "pax": 20}, "2026-03-08": {"events": 9, "pax": 19}, "2026-03-09": {"events": 8, "pax": 21}, "2026-03-10": {"events": 8, "pax": 14}, "2026-03-11": {"events": 3, "pax": 8}, "2026-03-12": {"events": 1, "pax": 2}, "2026-03-13": {"events": 10, "pax": 26}, "2026-03-14": {"events": 8, "pax": 23}, "2026-03-15": {"events": 7, "pax": 16}, "2026-03-16": {"events": 11, "pax": 21}, "2026-03-17": {"events": 6, "pax": 10}, "2026-03-18": {"events": 4, "pax": 8}, "2026-03-19": {"events": 6, "pax": 15}, "2026-03-20": {"events": 8, "pax": 20}, "2026-03-21": {"events": 6, "pax": 14}, "2026-03-22": {"events": 12, "pax": 32}, "2026-03-23": {"events": 10, "pax": 25}, "2026-03-24": {"events": 4, "pax": 10}, "2026-03-25": {"events": 4, "pax": 8}, "2026-03-26": {"events": 2, "pax": 4}, "2026-03-27": {"events": 3, "pax": 8}, "2026-03-28": {"events": 7, "pax": 20}, "2026-03-29": {"events": 6, "pax": 22}, "2026-03-30": {"events": 10, "pax": 34}, "2026-03-31": {"events": 2, "pax": 9}, "2026-04-01": {"events": 5, "pax": 14}, "2026-04-02": {"events": 15, "pax": 43}, "2026-04-03": {"events": 9, "pax": 29}, "2026-04-04": {"events": 8, "pax": 19}, "2026-04-05": {"events": 9, "pax": 27}, "2026-04-06": {"events": 8, "pax": 33}, "2026-04-07": {"events": 3, "pax": 5}, "2026-04-08": {"events": 4, "pax": 8}, "2026-04-10": {"events": 4, "pax": 12}, "2026-04-17": {"events": 4, "pax": 11}, "2026-04-23": {"events": 3, "pax": 9}, "2026-04-09": {"events": 4, "pax": 8}, "2026-04-11": {"events": 1, "pax": 2}, "2026-04-12": {"events": 1, "pax": 3}, "2026-04-14": {"events": 1, "pax": 2}, "2026-04-16": {"events": 1, "pax": 5}, "2026-04-18": {"events": 2, "pax": 4}, "2026-04-19": {"events": 2, "pax": 4}, "2026-04-20": {"events": 1, "pax": 2}, "2026-04-24": {"events": 2, "pax": 4}}, "date_min": "2026-01-02", "date_max": "2026-04-24", "pending_bookeo_count": 15, "pending_bookeo_unread": 2, "pending_viator_count": 5, "bookeo_emails_total": 49, "viator_emails_total": 19, "overweight_count": 1, "celebration_count": 38, "weight_limit_kg": 900, "pending_viator_unread": 0, "window_start": "2026-04-08", "window_end": "2026-04-23", "window_events": 57, "source_of_truth": "weflymx@gmail.com", "pending_bookeo_matched": 15, "pending_bookeo_missing": 0, "pending_viator_matched": 0, "pending_viator_missing": 5}, "totals_by_day": {"2026-04-08": {"events": 4, "pax": 12}, "2026-04-09": {"events": 11, "pax": 31}, "2026-04-10": {"events": 6, "pax": 16}, "2026-04-11": {"events": 7, "pax": 14}, "2026-04-12": {"events": 1, "pax": 2}, "2026-04-13": {"events": 5, "pax": 17}, "2026-04-14": {"events": 4, "pax": 10}, "2026-04-15": {"events": 1, "pax": 2}, "2026-04-17": {"events": 5, "pax": 27}, "2026-04-18": {"events": 3, "pax": 7}, "2026-04-19": {"events": 3, "pax": 7}, "2026-04-20": {"events": 4, "pax": 8}, "2026-04-22": {"events": 1, "pax": 2}, "2026-04-23": {"events": 2, "pax": 5}}, "generated_at": "2026-04-08T17:28:47", "missing_bookeo": [], "missing_viator": [{"ref": "BR-1382301789", "flight_date_raw": "Sat, Apr 11, 2026", "flight_date": "2026-04-11", "received": "mar, 7 abr 2026, 5:27 a.m.", "status": "nueva", "unread": false, "source": "viator", "in_calendar": false, "calendar_event_id": "", "calendar_name": ""}, {"ref": "BR-1382091439", "flight_date_raw": "Tue, Apr 21, 2026", "flight_date": "2026-04-21", "received": "lun, 6 abr 2026, 3:08 p.m.", "status": "nueva", "unread": false, "source": "viator", "in_calendar": false, "calendar_event_id": "", "calendar_name": ""}, {"ref": "BR-1381561931", "flight_date_raw": "Sat, Apr 11, 2026", "flight_date": "2026-04-11", "received": "dom, 5 abr 2026, 11:43 a.m.", "status": "modificada", "unread": false, "source": "viator", "in_calendar": false, "calendar_event_id": "", "calendar_name": ""}, {"ref": "BR-1353331877", "flight_date_raw": "Wed, Apr 08, 2026", "flight_date": "2026-04-08", "received": "dom, 5 abr 2026, 9:09 a.m.", "status": "modificada", "unread": false, "source": "viator", "in_calendar": false, "calendar_event_id": "", "calendar_name": ""}, {"ref": "BR-1376014351", "flight_date_raw": "Thu, Apr 23, 2026", "flight_date": "2026-04-23", "received": "dom, 29 mar 2026, 11:22 p.m.", "status": "modificada", "unread": false, "source": "viator", "in_calendar": false, "calendar_event_id": "", "calendar_name": ""}]};
+const $ = s => document.querySelector(s);
+const $$ = s => document.querySelectorAll(s);
+const esc = s => (s||'').toString().replace(/[<>&"]/g,c=>({'<':'&lt;','>':'&gt;','&':'&amp;','"':'&quot;'}[c]));
+
+$('#gen').textContent = DATA.generated_at.replace('T',' ');
+
+// ── Refresh CTA ─────────────────
+function showToast(msg, kind){
+  const t = document.getElementById('toast');
+  if(!t) return;
+  t.className = 'toast show ' + (kind||'');
+  t.textContent = msg;
+  clearTimeout(window._toastT);
+  window._toastT = setTimeout(()=>{ t.className = 'toast'; }, 4200);
+}
+
+function renderStatsCards(){
+  const totalPax = DATA.events.reduce((a,e)=>a+(e.pax||0),0);
+  const totalPaxConf = DATA.events.filter(e=>e.status==='confirmado').reduce((a,e)=>a+(e.pax||0),0);
+  const overweightPax = DATA.events.reduce((a,e)=>{
+    if(!e.weights) return a;
+    return a + e.weights.filter(w=>w>95).length;
+  },0);
+  const st = DATA.stats || {};
+  const cards = [
+    {k:'Eventos en calendario', v:DATA.events.length.toLocaleString(), h:`${st.date_min||''} → ${st.date_max||''}`, cls:''},
+    {k:'Pasajeros totales', v:totalPax.toLocaleString(), h:`${totalPaxConf} confirmados`, cls:'accent'},
+    {k:'Pasajeros sobre peso', v:overweightPax, h:overweightPax>0?'exceden 95 kg máx permitido':'todos dentro del límite', cls:overweightPax>0?'warn':'accent'},
+    {k:'Pendientes de registrar', v:st.pending_bookeo_missing ?? st.pending_bookeo_count ?? 0, h:`${st.pending_viator_missing ?? 0} viator sin match`, cls:'warn'},
+    {k:'Correos Bookeo', v:st.bookeo_emails_total ?? (DATA.bookeo_emails||[]).length, h:'últimos ~7 días', cls:''},
+    {k:'Correos Viator', v:st.viator_emails_total ?? (DATA.viator_emails||[]).length, h:'últimos ~7 días', cls:''},
+  ];
+  const el = $('#stats');
+  if(el) el.innerHTML = cards.map(c=>`
+    <div class="card ${c.cls}">
+      <div class="k">${c.k}</div>
+      <div class="v">${c.v}</div>
+      <div class="hint">${c.h}</div>
+    </div>`).join('');
+}
+
+function renderDashboardBars(){
+  const byCal = $('#by-cal');
+  const st = DATA.stats || {};
+  if(byCal && st.by_calendar){
+    const entries = Object.entries(st.by_calendar).sort((a,b)=>b[1]-a[1]);
+    const max = Math.max(...entries.map(x=>x[1]),1);
+    byCal.innerHTML = entries.map(([c,n],i)=>{
+      const pax = DATA.events.filter(e=>e.calendar===c).reduce((a,e)=>a+(e.pax||0),0);
+      const cls = i===0?'':(i===1?'g2':'g3');
+      return `<div class="bar-row">
+        <div class="lbl"><span class="name">${esc(c)}</span><span class="val">${n} vuelos · <b>${pax}</b> pax</span></div>
+        <div class="bar-track"><div class="bar-fill ${cls}" style="width:${n/max*100}%"></div></div>
+      </div>`;
+    }).join('');
+  }
+  const topDays = $('#top-days');
+  if(topDays && st.by_date){
+    const sorted = Object.entries(st.by_date).sort((a,b)=>b[1].pax-a[1].pax).slice(0,12);
+    const mx = sorted[0]?.[1].pax||1;
+    topDays.innerHTML = sorted.map(([d,info])=>`
+      <div class="bar-row">
+        <div class="lbl"><span class="name">${d}</span><span class="val">${info.pax} pax · ${info.events} vuelos</span></div>
+        <div class="bar-track"><div class="bar-fill g3" style="width:${info.pax/mx*100}%"></div></div>
+      </div>`).join('');
+  }
+}
+
+function refreshUI(){
+  $('#gen').textContent = (DATA.generated_at||'').replace('T',' ');
+  // repopulate filter dropdowns
+  if(typeof fcal!=='undefined' && DATA.stats && DATA.stats.by_calendar){
+    const cur = fcal.value;
+    fcal.innerHTML = '<option value="">Todos los calendarios</option>';
+    Object.keys(DATA.stats.by_calendar).sort().forEach(c=>{
+      fcal.insertAdjacentHTML('beforeend',`<option value="${esc(c)}">${esc(c)} (${DATA.stats.by_calendar[c]})</option>`);
+    });
+    if([...fcal.options].some(o=>o.value===cur)) fcal.value = cur;
+  }
+  if(typeof fstatus!=='undefined' && DATA.stats && DATA.stats.by_status){
+    const cur = fstatus.value;
+    fstatus.innerHTML = '<option value="">Todos los estados</option>';
+    Object.keys(DATA.stats.by_status).sort().forEach(s=>{
+      fstatus.insertAdjacentHTML('beforeend',`<option value="${esc(s)}">${esc(s||'(sin)')} (${DATA.stats.by_status[s]})</option>`);
+    });
+    if([...fstatus.options].some(o=>o.value===cur)) fstatus.value = cur;
+  }
+  try{ renderStatsCards(); }catch(e){ console.warn(e); }
+  try{ renderDashboardBars(); }catch(e){ console.warn(e); }
+  try{ if(typeof renderTable==='function') renderTable(); }catch(e){ console.warn(e); }
+  try{ if(typeof renderPending==='function') renderPending(); }catch(e){ console.warn(e); }
+  try{ if(typeof renderCal==='function') renderCal(); }catch(e){ console.warn(e); }
+  try{ if(typeof renderTotals==='function') renderTotals(); }catch(e){ console.warn(e); }
+  try{ if(typeof renderAlerts==='function') renderAlerts(); }catch(e){ console.warn(e); }
+}
+
+// ── Apps Script URL — PEGAR AQUÍ la URL de tu Web App desplegada ──
+const APPS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbzNrFU6Co5_BlJuE4kyJkE3hAaw7S2fo6O2bA08AgiMXI94RJrRtpxmCI2CNZyrDbuxeQ/exec';
+// Ejemplo: 'https://script.google.com/macros/s/AKfycbx.../exec'
+
+async function refreshData(){
+  const btn = document.getElementById('btnRefresh');
+  btn.classList.remove('ok','err');
+  btn.classList.add('loading');
+  const label = btn.querySelector('.cta-label');
+  const origLabel = label.textContent;
+  label.textContent = 'Conectando a Google…';
+
+  if(!APPS_SCRIPT_URL){
+    showToast('⚠ Falta configurar APPS_SCRIPT_URL en el código. Lee la guía de setup.', 'err');
+    btn.classList.remove('loading');
+    btn.classList.add('err');
+    setTimeout(()=>btn.classList.remove('err'), 4000);
+    label.textContent = origLabel;
+    return;
+  }
+
+  try{
+    label.textContent = 'Leyendo 9 calendarios + Gmail…';
+    const controller = new AbortController();
+    const timeout = setTimeout(()=>controller.abort(), 45000); // 45s timeout
+    const res = await fetch(APPS_SCRIPT_URL, {signal:controller.signal});
+    clearTimeout(timeout);
+    if(!res.ok) throw new Error('HTTP ' + res.status);
+    const fresh = await res.json();
+    if(fresh.error) throw new Error(fresh.error);
+    if(!fresh || !Array.isArray(fresh.events)) throw new Error('Respuesta inválida del servidor');
+
+    // Replace DATA contents in place (DATA is const)
+    for(const k of Object.keys(DATA)) delete DATA[k];
+    Object.assign(DATA, fresh);
+    refreshUI();
+
+    // También recargar panel sin agendar
+    try{ await loadSinAgendar(); }catch(e2){ console.warn('sin-agendar reload:', e2); }
+
+    const when = new Date().toLocaleTimeString('es-MX',{hour:'2-digit',minute:'2-digit',second:'2-digit'});
+    const nEv = DATA.events.length;
+    const nPax = DATA.events.reduce((a,e)=>a+(e.pax||0),0);
+    const nMail = (DATA.pending_bookeo||[]).length + (DATA.pending_viator||[]).length;
+    showToast(`✓ EN VIVO · ${nEv} vuelos · ${nPax} pax · ${nMail} correos · ${when}`, 'ok');
+    btn.classList.add('ok');
+    setTimeout(()=>btn.classList.remove('ok'), 2500);
+
+    // Update generated_at
+    const genEl = document.getElementById('gen');
+    if(genEl) genEl.textContent = fresh.generated_at?.replace('T',' ').slice(0,19) || when;
+
+  }catch(e){
+    console.error(e);
+    let msg = e.name === 'AbortError'
+      ? '✗ Timeout — Google tardó más de 45s. Intenta de nuevo.'
+      : `✗ Error: ${e.message}`;
+    showToast(msg, 'err');
+    btn.classList.add('err');
+    setTimeout(()=>btn.classList.remove('err'), 3500);
+  }finally{
+    btn.classList.remove('loading');
+    label.textContent = origLabel;
+  }
+}
+
+document.getElementById('btnRefresh')?.addEventListener('click', refreshData);
+// Keyboard shortcut: Cmd/Ctrl + R handled by browser; use "U" key
+document.addEventListener('keydown', (e)=>{
+  if((e.key==='u' || e.key==='U') && !e.metaKey && !e.ctrlKey && !e.altKey){
+    const tag = (e.target.tagName||'').toLowerCase();
+    if(tag==='input' || tag==='textarea' || tag==='select') return;
+    refreshData();
+  }
+});
+
+// ── Init filter dropdowns ─────────────────
+const fcal=$('#fcal'), fstatus=$('#fstatus');
+Object.keys(DATA.stats.by_calendar).sort().forEach(c=>{
+  fcal.insertAdjacentHTML('beforeend',`<option value="${esc(c)}">${esc(c)} (${DATA.stats.by_calendar[c]})</option>`);
+});
+Object.keys(DATA.stats.by_status).sort().forEach(s=>{
+  fstatus.insertAdjacentHTML('beforeend',`<option value="${esc(s)}">${esc(s||'(sin)')} (${DATA.stats.by_status[s]})</option>`);
+});
+
+// ── Tabs ─────────────────
+$$('.tab').forEach(t=>{
+  t.addEventListener('click',()=>{
+    $$('.tab').forEach(x=>x.classList.remove('active'));
+    $$('.view').forEach(x=>x.classList.remove('active'));
+    t.classList.add('active');
+    $('#v-'+t.dataset.view).classList.add('active');
+    if(t.dataset.view==='calendar') renderCal();
+    if(t.dataset.view==='table') renderTable();
+    if(t.dataset.view==='pending') renderPending();
+  });
+});
+
+// ── Stats cards ─────────────────
+const totalPax = DATA.events.reduce((a,e)=>a+(e.pax||0),0);
+const totalPaxConf = DATA.events.filter(e=>e.status==='confirmado').reduce((a,e)=>a+(e.pax||0),0);
+const overweightPax2 = DATA.events.reduce((a,e)=>{
+  if(!e.weights) return a;
+  return a + e.weights.filter(w=>w>95).length;
+},0);
+const cards = [
+  {k:'Eventos en calendario', v:DATA.events.length.toLocaleString(), h:`${DATA.stats.date_min} → ${DATA.stats.date_max}`, cls:''},
+  {k:'Pasajeros totales', v:totalPax.toLocaleString(), h:`${totalPaxConf} confirmados`, cls:'accent'},
+  {k:'Pasajeros sobre peso', v:overweightPax2, h:overweightPax2>0?'exceden 95 kg máx permitido':'todos dentro del límite', cls:overweightPax2>0?'warn':'accent'},
+  {k:'Pendientes de registrar', v:DATA.stats.pending_bookeo_count, h:`${DATA.stats.pending_bookeo_unread} sin abrir`, cls:'warn'},
+  {k:'Correos Bookeo', v:DATA.stats.bookeo_emails_total, h:'últimos ~7 días', cls:''},
+  {k:'Correos Viator', v:DATA.stats.viator_emails_total, h:'últimos ~7 días', cls:''},
+];
+$('#stats').innerHTML = cards.map(c=>`
+  <div class="card ${c.cls}">
+    <div class="k">${c.k}</div>
+    <div class="v">${c.v}</div>
+    <div class="hint">${c.h}</div>
+  </div>`).join('');
+
+// ── Dashboard bars ─────────────────
+(function(){
+  const byCal = $('#by-cal');
+  const entries = Object.entries(DATA.stats.by_calendar).sort((a,b)=>b[1]-a[1]);
+  const max = Math.max(...entries.map(x=>x[1]));
+  byCal.innerHTML = entries.map(([c,n],i)=>{
+    const pax = DATA.events.filter(e=>e.calendar===c).reduce((a,e)=>a+(e.pax||0),0);
+    const cls = i===0?'':(i===1?'g2':'g3');
+    return `<div class="bar-row">
+      <div class="lbl"><span class="name">${esc(c)}</span><span class="val">${n} vuelos · <b>${pax}</b> pax</span></div>
+      <div class="bar-track"><div class="bar-fill ${cls}" style="width:${n/max*100}%"></div></div>
+    </div>`;
+  }).join('');
+
+  const topDays = $('#top-days');
+  const sorted = Object.entries(DATA.stats.by_date).sort((a,b)=>b[1].pax-a[1].pax).slice(0,12);
+  const mx = sorted[0]?.[1].pax||1;
+  topDays.innerHTML = sorted.map(([d,info])=>`
+    <div class="bar-row">
+      <div class="lbl"><span class="name">${d}</span><span class="val">${info.pax} pax · ${info.events} vuelos</span></div>
+      <div class="bar-track"><div class="bar-fill g3" style="width:${info.pax/mx*100}%"></div></div>
+    </div>`).join('');
+})();
+
+// ── Filtering helper ─────────────────
+function filtered(){
+  const q = $('#q').value.toLowerCase();
+  const c = fcal.value, s = fstatus.value;
+  const d1 = $('#fdate1').value, d2 = $('#fdate2').value;
+  return DATA.events.filter(e=>{
+    if(c && e.calendar!==c) return false;
+    if(s && e.status!==s) return false;
+    if(d1 && e.date<d1) return false;
+    if(d2 && e.date>d2) return false;
+    if(q){
+      const hay = `${e.name} ${e.phone} ${e.email} ${e.pickup} ${e.staff} ${e.title_raw}`.toLowerCase();
+      if(!hay.includes(q)) return false;
+    }
+    return true;
+  });
+}
+
+// ── Table view ─────────────────
+function renderTable(){
+  const rows = filtered();
+  $('#tbl-count').textContent = `${rows.length} eventos filtrados`;
+  const tb = $('#tbody');
+  const shortCal = c => c.split(' ')[0].replace('/','').toLowerCase();
+  tb.innerHTML = rows.slice(0,500).map(e=>`<tr>
+    <td><span class="num">${e.date||''}</span></td>
+    <td>${e.time||''}</td>
+    <td><span class="pill ${shortCal(e.calendar||'')}">${esc(e.calendar||'')}</span></td>
+    <td><b>${esc(e.name||'')}</b></td>
+    <td><span class="num">${e.pax||0}</span></td>
+    <td>${e.total_weight?`<span class="weight-chip">${e.total_weight}kg</span>`:''}</td>
+    <td><span class="badge b-${e.status||'none'}">${esc(e.status||'')}</span></td>
+    <td>${esc(e.staff||'')}</td>
+    <td>${esc(e.pickup||'')}</td>
+    <td>${esc(e.phone||'')}</td>
+    <td>${e.html_link?`<a href="${e.html_link}" target="_blank">↗</a>`:''}</td>
+  </tr>`).join('');
+  if(rows.length>500){
+    tb.insertAdjacentHTML('beforeend',`<tr><td colspan="11" class="small" style="text-align:center">… y ${rows.length-500} más (afina filtros)</td></tr>`);
+  }
+}
+
+// ── Date helpers ─────────────────
+function daysUntil(dateStr){
+  if(!dateStr) return 999;
+  const t = new Date(); t.setHours(0,0,0,0);
+  const d = new Date(dateStr+'T00:00:00');
+  return Math.round((d-t)/86400000);
+}
+// Build Google Calendar prefill URL from a pending mail entry
+function gcalUrl(e){
+  const name = e.kind==='viator'?('Viator '+(e.ref||'')):(e.name||'WE FLY');
+  const date = (e.flight_date||'').replace(/-/g,'');
+  if(!date) return '';
+  let h = (e.hour||'06:00').toString().trim();
+  h = h.replace(/[^\d:]/g,'');
+  if(!/:/.test(h)) h = (h||'6')+':00';
+  let [hh,mm] = h.split(':');
+  hh = (hh||'6').padStart(2,'0'); mm = (mm||'00').padStart(2,'0');
+  const start = date+'T'+hh+mm+'00';
+  const eh = String((parseInt(hh)+2)%24).padStart(2,'0');
+  const end = date+'T'+eh+mm+'00';
+  const details = [
+    e.pax?`Pax: ${e.pax}`:'',
+    e.price?`Precio: ${e.price}`:'',
+    e.experience?`Experiencia: ${e.experience}`:'',
+    `Fuente: ${e.kind||''}`,
+    e.received?`Recibido: ${e.received}`:'',
+  ].filter(Boolean).join('\n');
+  const text = encodeURIComponent(name);
+  const det  = encodeURIComponent(details);
+  return `https://calendar.google.com/calendar/u/0/r/eventedit?text=${text}&dates=${start}/${end}&details=${det}`;
+}
+
+// ── Pending (two columns) ─────────────────
+function renderPending(){
+  const evs = filtered();
+  // Upcoming calendar list: dates >= today, sorted asc
+  const today = new Date().toISOString().slice(0,10);
+  const upcoming = evs.filter(e=>e.date>=today).sort((a,b)=>a.date.localeCompare(b.date) || (a.time||'').localeCompare(b.time||''));
+  const paxSum = upcoming.reduce((a,e)=>a+(e.pax||0),0);
+  $('#cal-n').textContent = paxSum.toLocaleString();
+  $('#cal-count').textContent = `${upcoming.length} vuelos`;
+  const shortCal = c => (c||'').split(' ')[0].replace('/','').toLowerCase();
+  $('#cal-list').innerHTML = upcoming.map(e=>{
+    const du = daysUntil(e.date);
+    const chips = [];
+    if(e.overweight) chips.push(`<span class="alert-chip over" title="Excede ${DATA.stats.weight_limit_kg} kg">⚠ PESO</span>`);
+    if(e.celebration) chips.push(`<span class="alert-chip celeb" title="Celebración">🎂</span>`);
+    if(du<=1) chips.push(`<span class="alert-chip soon">${du===0?'HOY':'MAÑANA'}</span>`);
+    const hasAlert = e.overweight ? 'has-alert' : '';
+    const inner = `<div class="left">
+        <div class="name">${esc(e.name||'')} ${chips.join('')}</div>
+        <div class="sub">
+          <span>📅 ${e.date}${e.time?' · '+e.time:''}</span>
+          <span class="pill ${shortCal(e.calendar)}">${esc(e.calendar||'')}</span>
+          ${e.staff?`<span>👤 ${esc(e.staff)}</span>`:''}
+          ${e.pickup?`<span>🏨 ${esc(e.pickup.slice(0,28))}${e.pickup.length>28?'…':''}</span>`:''}
+        </div>
+      </div>
+      <div class="right">
+        <div class="pax">${e.pax||0}<span class="small" style="font-weight:400"> px</span></div>
+        ${e.total_weight?`<div class="wt ${e.overweight?'weight-bad':''}">${e.total_weight} kg</div>`:''}
+      </div>`;
+    if(e.html_link){
+      return `<div class="cal-entry ${hasAlert}"><a class="wrap" href="${e.html_link}" target="_blank" rel="noopener">${inner}</a></div>`;
+    }
+    return `<div class="cal-entry ${hasAlert}">${inner}</div>`;
+  }).join('') || '<div class="empty-state"><div class="emoji">📭</div><p>Sin vuelos próximos con los filtros actuales</p></div>';
+
+  // Mail column — SOLO correos cuya reserva NO está aún en el calendario.
+  // Los que ya están en calendario se descartan para no duplicar trabajo mental.
+  const _today = new Date().toISOString().slice(0,10);
+  const pb = (DATA.pending_bookeo||[]).filter(x=>!x.in_calendar && x.flight_date >= _today);
+  const pv = (DATA.pending_viator||[]).filter(x=>!x.in_calendar && x.flight_date >= _today);
+  const alreadyBookeo = (DATA.pending_bookeo||[]).filter(x=>x.in_calendar && x.flight_date >= _today).length;
+  const alreadyViator = (DATA.pending_viator||[]).filter(x=>x.in_calendar && x.flight_date >= _today).length;
+  const allMail = [
+    ...pb.map(x=>({...x, kind:'bookeo'})),
+    ...pv.map(x=>({...x, kind:'viator'}))
+  ];
+  $('#mail-n').textContent = allMail.length;
+
+  const unread = allMail.filter(x=>x.unread);
+  const read   = allMail.filter(x=>!x.unread);
+  $('#unread-count').textContent = unread.length;
+  $('#read-count').textContent = read.length;
+
+  // Banner informativo: cuántos ya están en calendario y se ocultaron
+  const alreadyTotal = alreadyBookeo + alreadyViator;
+  const mailHeader = $('#mail-col-header') || document.querySelector('.mail-column .column-header') || document.querySelector('[data-col="mail"] .column-header');
+  const existingChip = document.getElementById('already-chip');
+  if(existingChip) existingChip.remove();
+  if(alreadyTotal > 0){
+    const chip = document.createElement('div');
+    chip.id = 'already-chip';
+    chip.className = 'already-chip';
+    chip.innerHTML = `✓ <b>${alreadyTotal}</b> correo${alreadyTotal!==1?'s':''} ya registrado${alreadyTotal!==1?'s':''} en el calendario (${alreadyBookeo} Bookeo${alreadyViator?` · ${alreadyViator} Viator`:''}) — ocultos de esta vista`;
+    const mailCol = document.querySelector('#v-pending .col-mail, #v-pending .mail, #v-pending [class*="mail"]')
+                 || $('#unread-list')?.parentElement;
+    if(mailCol) mailCol.insertBefore(chip, mailCol.firstChild);
+  }
+
+  const renderEntry = (e, locked) => {
+    const name = e.kind==='viator' ? (e.ref||'(Viator)') : (e.name||'(sin nombre)');
+    const source = e.kind==='viator' ? 'Viator' : 'Bookeo';
+    const du = daysUntil(e.flight_date);
+    const soon = du<=1 && du>=0;
+    const lockTag = locked
+      ? `<span class="tag">🔒 No abierto</span>`
+      : `<span class="tag">📖 Abierto</span>`;
+    const meta = [];
+    if(e.flight_date_raw||e.flightDate) meta.push(`<span class="m-date">📅 ${esc(e.flight_date_raw||e.flightDate)}</span>`);
+    if(soon) meta.push(`<span class="m-soon">⚠ ${du===0?'VUELO HOY':'VUELO MAÑANA'}</span>`);
+    if(e.hour) meta.push(`<span>🕐 ${esc(e.hour)}</span>`);
+    if(e.pax) meta.push(`<span class="m-pax">👥 ${esc(e.pax)}</span>`);
+    if(e.price) meta.push(`<span class="m-price">💰 ${esc(e.price)}</span>`);
+    if(e.experience) meta.push(`<span>${esc(e.experience)}</span>`);
+    if(e.status && e.kind==='viator') meta.push(`<span>${esc(e.status)}</span>`);
+    meta.push(`<span class="m-received">${esc(source)} · ${esc(e.received)}</span>`);
+    const lockNote = locked
+      ? `<div class="lock-note">Sólo data del asunto y vista previa. No se abrió el correo para no confundir al equipo.</div>`
+      : '';
+    const gUrl = gcalUrl(e);
+    const actions = gUrl
+      ? `<div class="actions"><a class="btn-move" href="${gUrl}" target="_blank" rel="noopener">→ Mover a Calendario</a></div>`
+      : '';
+    return `<div class="entry ${locked?'unread':''}${soon?' soon':''}">
+      <div class="row1">
+        <div class="name ${locked?'locked':''}">${esc(name)}</div>
+        ${lockTag}
+      </div>
+      <div class="meta">${meta.join('')}</div>
+      ${lockNote}
+      ${actions}
+    </div>`;
+  };
+
+  $('#unread-list').innerHTML = unread.map(e=>renderEntry(e,true)).join('')
+    || '<div class="empty-state small">Ningún correo sin abrir pendiente. 🎉</div>';
+  $('#read-list').innerHTML = read.map(e=>renderEntry(e,false)).join('')
+    || '<div class="empty-state small">Sin pendientes abiertos</div>';
+}
+
+// ── Calendar view ─────────────────
+let curY=2026, curM=3;
+const MESES=['Enero','Febrero','Marzo','Abril','Mayo','Junio','Julio','Agosto','Septiembre','Octubre','Noviembre','Diciembre'];
+function renderCal(){
+  $('#month-title').textContent = `${MESES[curM]} ${curY}`;
+  const grid = $('#calgrid'); grid.innerHTML='';
+  ['Dom','Lun','Mar','Mié','Jue','Vie','Sáb'].forEach(d=>{
+    const el=document.createElement('div'); el.className='dow'; el.textContent=d; grid.appendChild(el);
+  });
+  const first = new Date(curY,curM,1), startDow = first.getDay();
+  const daysInM = new Date(curY,curM+1,0).getDate();
+  const today = new Date().toISOString().slice(0,10);
+  for(let i=0;i<startDow;i++){const el=document.createElement('div'); el.className='day empty'; grid.appendChild(el)}
+  const evs = filtered();
+  // Find max pax for scaling
+  const perDay = {};
+  for(let d=1;d<=daysInM;d++){
+    const ds = `${curY}-${String(curM+1).padStart(2,'0')}-${String(d).padStart(2,'0')}`;
+    perDay[ds] = evs.filter(e=>e.date===ds);
+  }
+  const maxPax = Math.max(1, ...Object.values(perDay).map(arr=>arr.reduce((a,e)=>a+(e.pax||0),0)));
+  for(let d=1;d<=daysInM;d++){
+    const ds = `${curY}-${String(curM+1).padStart(2,'0')}-${String(d).padStart(2,'0')}`;
+    const dayEvs = perDay[ds];
+    const pax = dayEvs.reduce((a,e)=>a+(e.pax||0),0);
+    const el = document.createElement('div');
+    el.className = 'day'+(ds===today?' today':'');
+    const barCls = pax > maxPax*0.66 ? 'g3' : (pax > maxPax*0.33 ? 'g2' : '');
+    el.innerHTML = `<div class="dn">${d}</div>` + (dayEvs.length?`<div class="m">${dayEvs.length} vuelos · <b>${pax}</b> pax</div><div class="bar ${barCls}"></div>`:'');
+    if(dayEvs.length) el.onclick=()=>openDay(ds,dayEvs);
+    grid.appendChild(el);
+  }
+}
+function prevMonth(){curM--;if(curM<0){curM=11;curY--}renderCal()}
+function nextMonth(){curM++;if(curM>11){curM=0;curY++}renderCal()}
+
+function openDay(d, evs){
+  $('#m-title').textContent = `${d} · ${evs.length} vuelos · ${evs.reduce((a,e)=>a+(e.pax||0),0)} pasajeros`;
+  $('#m-body').innerHTML = evs.map(e=>`
+    <div class="event-card">
+      <div class="title">${esc(e.name||'')} <span class="badge b-${e.status}">${esc(e.status||'')}</span> <span class="pill ${(e.calendar||'').split(' ')[0].replace('/','').toLowerCase()}">${esc(e.calendar||'')}</span></div>
+      <div class="chips">
+        ${e.time?`<span>🕐 ${e.time}</span>`:''}
+        ${e.pax?`<span>👥 ${e.pax} px</span>`:''}
+        ${e.total_weight?`<span>⚖ ${e.total_weight} kg</span>`:''}
+        ${e.phone?`<span>📞 ${esc(e.phone)}</span>`:''}
+        ${e.pickup?`<span>🏨 ${esc(e.pickup)}</span>`:''}
+        ${e.staff?`<span>👤 ${esc(e.staff)}</span>`:''}
+      </div>
+      ${e.html_link?`<div style="margin-top:10px"><a href="${e.html_link}" target="_blank">Abrir en Google Calendar ↗</a></div>`:''}
+    </div>`).join('');
+  $('#modal').classList.add('open');
+}
+function closeModal(){$('#modal').classList.remove('open')}
+$('#modal').addEventListener('click',e=>{if(e.target.id==='modal')closeModal()});
+
+// ── Totals by day × operator (Resumen panel) ─────────────────
+(function renderTotals(){
+  const td = DATA.totals_by_day || {};
+  const dates = Object.keys(td).sort();
+  const today = new Date().toISOString().slice(0,10);
+  const future = dates.filter(d=>d>=today).slice(0,20);
+  const tbl = $('#totals-table');
+  if(!tbl) return;
+  const ops = new Set();
+  future.forEach(d=>Object.keys(td[d]).forEach(op=>ops.add(op)));
+  const opList = [...ops].sort();
+  tbl.innerHTML = `
+    <thead><tr>
+      <th>Fecha</th>
+      ${opList.map(op=>`<th>${esc(op)}</th>`).join('')}
+      <th>Total pax</th>
+      <th>Peso</th>
+    </tr></thead>
+    <tbody>
+    ${future.map(d=>{
+      const row = td[d];
+      let tp=0, tw=0;
+      const cells = opList.map(op=>{
+        const s = row[op]||{pax:0,weight:0,events:0};
+        tp+=s.pax; tw+=s.weight;
+        return s.events?`<td class="val">${s.pax}<span class="op"> · ${s.events}v</span></td>`:`<td class="op">—</td>`;
+      }).join('');
+      const tooHeavy = tw > DATA.stats.weight_limit_kg*3; // >3 vuelos saturados
+      return `<tr>
+        <td class="date-cell">${d}</td>
+        ${cells}
+        <td class="val">${tp}</td>
+        <td class="val ${tooHeavy?'weight-bad':''}">${tw.toLocaleString()} kg</td>
+      </tr>`;
+    }).join('')}
+    </tbody>`;
+})();
+
+// ── Alertas panel (Resumen) ─────────────────
+(function renderAlerts(){
+  const list = $('#alerts-list');
+  if(!list) return;
+  const today = new Date().toISOString().slice(0,10);
+  const items = [];
+
+  // Sobrepeso
+  DATA.events.filter(e=>e.overweight && e.date>=today)
+    .sort((a,b)=>a.date.localeCompare(b.date))
+    .slice(0,10)
+    .forEach(e=>items.push({
+      cls:'bad', icon:'⚠',
+      title:`${e.name||''}`,
+      sub:`${e.date} · ${e.calendar||''} · ${e.total_weight} kg (límite ${DATA.stats.weight_limit_kg})`
+    }));
+
+  // Pendientes <24h
+  const _td = new Date().toISOString().slice(0,10);
+  const allPend = [...DATA.pending_bookeo.filter(x=>x.flight_date>=_td).map(x=>({...x,kind:'bookeo'})), ...DATA.pending_viator.filter(x=>x.flight_date>=_td).map(x=>({...x,kind:'viator'}))];
+  allPend.forEach(p=>{
+    const du = daysUntil(p.flight_date);
+    if(du<=1 && du>=0){
+      items.push({
+        cls:'', icon:'🕐',
+        title:`${p.kind==='viator'?p.ref:p.name||'(sin nombre)'}`,
+        sub:`Vuelo ${du===0?'HOY':'MAÑANA'} · ${p.flight_date_raw||''} · aún en correo`
+      });
+    }
+  });
+
+  // Celebraciones próximas (15 días)
+  const limit = new Date(); limit.setDate(limit.getDate()+15);
+  const limitStr = limit.toISOString().slice(0,10);
+  DATA.events.filter(e=>e.celebration && e.date>=today && e.date<=limitStr)
+    .sort((a,b)=>a.date.localeCompare(b.date))
+    .slice(0,10)
+    .forEach(e=>items.push({
+      cls:'purple', icon:'🎂',
+      title:`${e.name||''}`,
+      sub:`${e.date} · celebración detectada`
+    }));
+
+  list.innerHTML = items.length
+    ? items.map(i=>`<div class="alert-item ${i.cls}"><div><b>${i.icon} ${esc(i.title)}</b><div class="small">${esc(i.sub)}</div></div></div>`).join('')
+    : '<div class="empty-state small">Sin alertas activas 🎉</div>';
+})();
+
+// ── Ruta del día · PDF (abre ventana imprimible) ─────────────────
+function printRoute(){
+  const today = new Date().toISOString().slice(0,10);
+  const evs = DATA.events
+    .filter(e=>e.date===today)
+    .sort((a,b)=>(a.time||'').localeCompare(b.time||''));
+  const totalPax = evs.reduce((a,e)=>a+(e.pax||0),0);
+  const totalKg  = evs.reduce((a,e)=>a+(e.total_weight||0),0);
+  const html = `<!doctype html><html><head><meta charset="utf-8"><title>Ruta WE FLY · ${today}</title>
+<link href="https://fonts.googleapis.com/css2?family=Google+Sans:wght@400;500;700&family=Google+Sans+Text:wght@400;500&display=swap" rel="stylesheet">
+<style>
+body{font-family:'Google Sans Text','Google Sans',sans-serif;padding:36px;color:#111;max-width:960px;margin:0 auto}
+h1{font-family:'Google Sans',sans-serif;margin:0 0 4px;font-size:24px;letter-spacing:-.02em}
+.sub{color:#666;font-size:13px;margin-bottom:20px}
+table{width:100%;border-collapse:collapse;margin-top:8px}
+th{background:#f5f7fa;text-align:left;padding:10px 8px;font-size:11px;text-transform:uppercase;letter-spacing:.5px;border-bottom:2px solid #333;font-family:'Google Sans',sans-serif}
+td{padding:10px 8px;border-bottom:1px solid #e5e7eb;font-size:12.5px;vertical-align:top}
+tr:nth-child(even) td{background:#fafbfc}
+.num{font-family:'Google Sans',sans-serif;font-weight:700;text-align:right}
+.totals{margin-top:24px;padding:16px 20px;background:#f5f7fa;border-radius:10px;font-family:'Google Sans',sans-serif;display:flex;gap:30px;font-size:14px}
+.totals b{display:block;font-size:20px;margin-top:2px}
+.foot{margin-top:28px;font-size:11px;color:#888;border-top:1px solid #e5e7eb;padding-top:12px}
+@media print{body{padding:20px}.totals{background:#eee}}
+</style></head><body>
+<h1>✈ Ruta WE FLY · ${today}</h1>
+<div class="sub">${evs.length} vuelos programados · ${totalPax} pasajeros · generado ${new Date().toLocaleString('es-MX')}</div>
+<table>
+  <thead><tr><th>Hora</th><th>Operador</th><th>Pasajero</th><th class="num">Pax</th><th class="num">Peso</th><th>Pickup</th><th>Staff</th><th>Tel</th></tr></thead>
+  <tbody>
+  ${evs.map(e=>`<tr>
+    <td><b>${esc(e.time||'—')}</b></td>
+    <td>${esc(e.calendar||'')}</td>
+    <td><b>${esc(e.name||'')}</b>${e.celebration?' 🎂':''}${e.overweight?' ⚠':''}</td>
+    <td class="num">${e.pax||0}</td>
+    <td class="num">${e.total_weight?e.total_weight+' kg':''}</td>
+    <td>${esc(e.pickup||'')}</td>
+    <td>${esc(e.staff||'')}</td>
+    <td>${esc(e.phone||'')}</td>
+  </tr>`).join('')}
+  </tbody>
+</table>
+<div class="totals">
+  <div>Vuelos<b>${evs.length}</b></div>
+  <div>Pasajeros<b>${totalPax}</b></div>
+  <div>Peso total<b>${totalKg.toLocaleString()} kg</b></div>
+</div>
+<div class="foot">WE FLY · Logística de vuelos · Origen: Río Lerma 98 · Destino final: Ángel de la Independencia</div>
+</body></html>`;
+  const w = window.open('', '_blank');
+  w.document.open(); w.document.write(html); w.document.close();
+  setTimeout(()=>{ try{ w.focus(); w.print(); }catch(_){} }, 700);
+}
+
+// ── CSV export ─────────────────
+function exportCSV(){
+  const rows = filtered();
+  const header = ['date','time','calendar','name','pax','total_weight','status','staff','pickup','phone','email'];
+  const lines = [header.join(',')];
+  rows.forEach(e=>{
+    lines.push(header.map(h=>{
+      const v = (e[h]??'').toString().replace(/"/g,'""');
+      return /[,"\n]/.test(v)?`"${v}"`:v;
+    }).join(','));
+  });
+  const blob = new Blob([lines.join('\n')],{type:'text/csv;charset=utf-8'});
+  const a = document.createElement('a');
+  a.href = URL.createObjectURL(blob);
+  a.download = `wefly-logistica-${new Date().toISOString().slice(0,10)}.csv`;
+  a.click();
+}
+function clearFilters(){
+  $('#q').value=''; fcal.value=''; fstatus.value=''; $('#fdate1').value=''; $('#fdate2').value='';
+  renderTable(); renderCal(); renderPending();
+}
+['q','fcal','fstatus','fdate1','fdate2'].forEach(id=>{
+  $('#'+id).addEventListener('input',()=>{renderTable(); renderCal(); renderPending(); $$('.preset').forEach(p=>p.classList.remove('active'));});
+});
+
+// ── Date presets ─────────────────
+(function(){
+  const pad = n => String(n).padStart(2,'0');
+  const iso = d => `${d.getFullYear()}-${pad(d.getMonth()+1)}-${pad(d.getDate())}`;
+  function applyPreset(key){
+    const now = new Date();
+    let from, to;
+    if(key==='today'){ from = to = iso(now); }
+    else if(key==='tomorrow'){ const t=new Date(now); t.setDate(t.getDate()+1); from=to=iso(t); }
+    else if(key==='week'){
+      const day = (now.getDay()+6)%7; // lunes=0
+      const mon = new Date(now); mon.setDate(now.getDate()-day);
+      const sun = new Date(mon); sun.setDate(mon.getDate()+6);
+      from = iso(mon); to = iso(sun);
+    }
+    else if(key==='7d'){ const e=new Date(now); e.setDate(now.getDate()+7); from=iso(now); to=iso(e); }
+    else if(key==='15d'){ const e=new Date(now); e.setDate(now.getDate()+15); from=iso(now); to=iso(e); }
+    else if(key==='month'){
+      from = iso(new Date(now.getFullYear(), now.getMonth(), 1));
+      to   = iso(new Date(now.getFullYear(), now.getMonth()+1, 0));
+    }
+    $('#fdate1').value = from;
+    $('#fdate2').value = to;
+    renderTable(); renderCal(); renderPending();
+  }
+  $$('.preset').forEach(btn=>{
+    btn.addEventListener('click',()=>{
+      $$('.preset').forEach(p=>p.classList.remove('active'));
+      btn.classList.add('active');
+      applyPreset(btn.dataset.preset);
+    });
+  });
+})();
+
+// Initial render
+renderTable(); renderPending();
+</script>
+</body>
+</html>

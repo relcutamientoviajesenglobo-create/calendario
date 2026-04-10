@@ -1,0 +1,19 @@
+{
+  "generated_at": "2026-04-09 15:06",
+  "window": "2026-04-09 → 2026-04-16",
+  "fuentes": {
+    "Turitop": {
+      "total": 7,
+      "matched": 7,
+      "sin_agendar": 0
+    },
+    "Bookeo": {
+      "total": 19,
+      "matched": 19,
+      "sin_agendar": 0
+    }
+  },
+  "total_fuentes": 26,
+  "total_sin_agendar": 0,
+  "bookings": []
+}
