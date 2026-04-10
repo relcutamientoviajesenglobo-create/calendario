@@ -165,6 +165,92 @@
   @keyframes spin{ to{ transform:rotate(-360deg) } }
   @keyframes dots{ 0%{content:''} 25%{content:'.'} 50%{content:'..'} 75%{content:'...'} }
 
+  /* ── Loading Modal ───────────────────────── */
+  .loading-modal{
+    position:fixed; inset:0; z-index:9999;
+    display:flex; align-items:center; justify-content:center;
+    background:rgba(10,12,20,.82);
+    backdrop-filter:blur(12px); -webkit-backdrop-filter:blur(12px);
+    opacity:0; pointer-events:none;
+    transition:opacity .35s ease;
+  }
+  .loading-modal.active{ opacity:1; pointer-events:auto; }
+  .loading-modal .modal-card{
+    background:linear-gradient(145deg, #1a1d2e 0%, #12141f 100%);
+    border:1px solid rgba(138,180,248,.18);
+    border-radius:20px;
+    padding:44px 48px 38px;
+    text-align:center;
+    box-shadow:0 30px 80px -20px rgba(0,0,0,.7), 0 0 0 1px rgba(138,180,248,.08) inset;
+    max-width:380px; width:90%;
+    transform:scale(.92) translateY(12px);
+    transition:transform .4s cubic-bezier(.16,1,.3,1);
+  }
+  .loading-modal.active .modal-card{ transform:scale(1) translateY(0); }
+
+  .loading-modal .orbit-wrap{
+    width:80px; height:80px; margin:0 auto 28px; position:relative;
+  }
+  .loading-modal .orbit{
+    position:absolute; inset:0;
+    border:3px solid transparent;
+    border-radius:50%;
+    border-top-color:#8ab4f8;
+    animation:orbit-spin 1.1s cubic-bezier(.55,.15,.45,.85) infinite;
+  }
+  .loading-modal .orbit:nth-child(2){
+    inset:8px;
+    border-top-color:#81c995;
+    animation-duration:1.6s;
+    animation-direction:reverse;
+  }
+  .loading-modal .orbit:nth-child(3){
+    inset:16px;
+    border-top-color:#fdd663;
+    animation-duration:2.1s;
+  }
+  .loading-modal .orbit-core{
+    position:absolute; inset:24px;
+    background:var(--grad-1);
+    border-radius:50%;
+    display:flex; align-items:center; justify-content:center;
+    font-size:20px;
+    animation:pulse-core 2s ease-in-out infinite;
+  }
+  @keyframes orbit-spin{ to{ transform:rotate(360deg) } }
+  @keyframes pulse-core{ 0%,100%{transform:scale(1); opacity:1} 50%{transform:scale(.88); opacity:.7} }
+
+  .loading-modal .modal-title{
+    font-family:'Google Sans','Plus Jakarta Sans',sans-serif;
+    font-size:17px; font-weight:700; color:#e8eaed;
+    margin-bottom:8px;
+  }
+  .loading-modal .modal-sub{
+    font-size:13px; color:var(--ink-2);
+    line-height:1.5;
+  }
+  .loading-modal .modal-sub .stage{
+    display:inline-block;
+    color:#8ab4f8;
+    font-weight:600;
+    min-width:220px;
+  }
+  .loading-modal .modal-dots{
+    margin-top:18px;
+    display:flex; align-items:center; justify-content:center; gap:6px;
+  }
+  .loading-modal .modal-dots span{
+    width:7px; height:7px; border-radius:50%;
+    background:#8ab4f8; opacity:.25;
+    animation:dot-bounce .9s ease-in-out infinite;
+  }
+  .loading-modal .modal-dots span:nth-child(2){ animation-delay:.15s; }
+  .loading-modal .modal-dots span:nth-child(3){ animation-delay:.3s; }
+  @keyframes dot-bounce{
+    0%,80%,100%{opacity:.25; transform:scale(1)}
+    40%{opacity:1; transform:scale(1.4)}
+  }
+
   /* ── Already registered chip ─────────────── */
   .already-chip{
     margin:0 0 14px;
@@ -1144,11 +1230,17 @@ const APPS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbxRkiUCiHUAPmbS
 
 async function refreshData(){
   const btn = document.getElementById('btnRefresh');
+  const modal = document.getElementById('loadingModal');
+  const modalStage = document.getElementById('modalStage');
   btn.classList.remove('ok','err');
   btn.classList.add('loading');
   const label = btn.querySelector('.cta-label');
   const origLabel = label.textContent;
-  label.textContent = 'Conectando a Google…';
+
+  // Show modal
+  modalStage.textContent = 'Conectando a Google…';
+  modal.classList.add('active');
+  document.body.style.overflow = 'hidden';
 
   if(!APPS_SCRIPT_URL){
     showToast('⚠ Falta configurar APPS_SCRIPT_URL en el código. Lee la guía de setup.', 'err');
@@ -1156,19 +1248,26 @@ async function refreshData(){
     btn.classList.add('err');
     setTimeout(()=>btn.classList.remove('err'), 4000);
     label.textContent = origLabel;
+    modal.classList.remove('active');
+    document.body.style.overflow = '';
     return;
   }
 
   try{
-    label.textContent = 'Leyendo 9 calendarios + Gmail…';
+    modalStage.textContent = 'Leyendo 9 calendarios + Gmail…';
+    label.textContent = 'Actualizando…';
     const controller = new AbortController();
     const timeout = setTimeout(()=>controller.abort(), 90000); // 90s timeout
     const res = await fetch(APPS_SCRIPT_URL, {signal:controller.signal});
     clearTimeout(timeout);
     if(!res.ok) throw new Error('HTTP ' + res.status);
+
+    modalStage.textContent = 'Procesando datos…';
     const fresh = await res.json();
     if(fresh.error) throw new Error(fresh.error);
     if(!fresh || !Array.isArray(fresh.events)) throw new Error('Respuesta inválida del servidor');
+
+    modalStage.textContent = 'Actualizando dashboard…';
 
     // Replace DATA contents in place (DATA is const)
     for(const k of Object.keys(DATA)) delete DATA[k];
@@ -1201,6 +1300,8 @@ async function refreshData(){
   }finally{
     btn.classList.remove('loading');
     label.textContent = origLabel;
+    modal.classList.remove('active');
+    document.body.style.overflow = '';
   }
 }
 
@@ -1736,5 +1837,22 @@ function clearFilters(){
 // Initial render
 renderTable(); renderPending();
 </script>
+<!-- Loading Modal -->
+<div id="loadingModal" class="loading-modal" role="dialog" aria-label="Cargando datos en vivo">
+  <div class="modal-card">
+    <div class="orbit-wrap">
+      <div class="orbit"></div>
+      <div class="orbit"></div>
+      <div class="orbit"></div>
+      <div class="orbit-core">🎈</div>
+    </div>
+    <div class="modal-title">Actualizando en vivo</div>
+    <div class="modal-sub">
+      <span class="stage" id="modalStage">Conectando a Google…</span><br>
+      9 calendarios + Gmail
+    </div>
+    <div class="modal-dots"><span></span><span></span><span></span></div>
+  </div>
+</div>
 </body>
 </html>
