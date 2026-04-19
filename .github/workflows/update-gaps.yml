@@ -14,10 +14,6 @@ concurrency:
   group: update-gaps
   cancel-in-progress: false
 
-defaults:
-  run:
-    shell: bash
-
 jobs:
   refresh:
     runs-on: ubuntu-latest
@@ -35,99 +31,123 @@ jobs:
         with:
           python-version: '3.11'
 
-      - name: Recreate _sistema/.env from secrets
+      - name: Run everything in one step (bulletproof)
+        id: run_all
+        shell: bash --noprofile --norc {0}   # NO -e ni -o pipefail
+        env:
+          TURITOP_M1_SHORT_ID:   ${{ secrets.TURITOP_M1_SHORT_ID }}
+          TURITOP_M1_SECRET_KEY: ${{ secrets.TURITOP_M1_SECRET_KEY }}
+          TURITOP_M2_SHORT_ID:   ${{ secrets.TURITOP_M2_SHORT_ID }}
+          TURITOP_M2_SECRET_KEY: ${{ secrets.TURITOP_M2_SECRET_KEY }}
+          APPS_SCRIPT_URL:       ${{ secrets.APPS_SCRIPT_URL }}
+          GITHUB_TOKEN:          ${{ secrets.GITHUB_TOKEN }}
+          GH_REPO:               ${{ github.repository }}
         run: |
           set +e
-          mkdir -p _sistema
-          {
-            echo "TURITOP_M1_SHORT_ID=${{ secrets.TURITOP_M1_SHORT_ID }}"
-            echo "TURITOP_M1_SECRET_KEY=${{ secrets.TURITOP_M1_SECRET_KEY }}"
-            echo "TURITOP_M1_LABEL=Globos Aerostaticos Teotihuacan"
-            echo "TURITOP_M2_SHORT_ID=${{ secrets.TURITOP_M2_SHORT_ID }}"
-            echo "TURITOP_M2_SECRET_KEY=${{ secrets.TURITOP_M2_SECRET_KEY }}"
-            echo "TURITOP_M2_LABEL=Vuelos en Globo MX"
-            echo "APPS_SCRIPT_URL=${{ secrets.APPS_SCRIPT_URL }}"
-          } > _sistema/.env
-          lines=$(wc -l < _sistema/.env)
-          echo "[step 3] env creado: $lines lineas"
-          exit 0
-
-      - name: Refresh Turitop bookings (best-effort)
-        run: |
-          set +e
-          cd _sistema
-          python3 wefly_turitop_client.py 2>&1
-          rc=$?
-          if [ $rc -eq 0 ] && [ -f turitop_bookings.json ]; then
-            cp turitop_bookings.json gap-detector/turitop_all.json
-            echo "[step 4] Turitop OK"
-          else
-            echo "[step 4] Turitop falló (rc=$rc). Usando turitop_all.json previo."
-          fi
-          exit 0
-
-      - name: Build calendar_events.json
-        run: |
-          set +e
-          cd _sistema/gap-detector
-          python3 build_calendar_events.py 2>&1
-          rc=$?
-          echo "[step 5] build_calendar_events rc=$rc"
-          exit 0
-
-      - name: Run gap detector
-        run: |
-          set +e
-          cd _sistema/gap-detector
-          python3 gap_detector.py 2>&1
-          rc=$?
-          echo "[step 6] gap_detector rc=$rc"
-          exit 0
-
-      - name: Stage and detect changes
-        id: changes
-        run: |
-          set +e
-          git add -A 2>&1
-          git reset -- _sistema/.env _sistema/turitop_raw_M1.json _sistema/turitop_raw_M2.json _sistema/turitop_bookings.json >/dev/null 2>&1
-          git diff --cached --quiet
-          rc=$?
-          if [ $rc -eq 0 ]; then
+          echo "━━━━━━━━━━ [1] Validando secrets ━━━━━━━━━━"
+          if [ -z "$APPS_SCRIPT_URL" ]; then
+            echo "❌ FATAL: APPS_SCRIPT_URL no configurado en GitHub Secrets"
+            echo "Ve a: Settings → Secrets and variables → Actions → New repository secret"
             echo "changed=false" >> $GITHUB_OUTPUT
-            echo "[step 7] Sin cambios."
-          else
-            echo "changed=true" >> $GITHUB_OUTPUT
-            echo "[step 7] Archivos modificados:"
-            git diff --cached --name-only
-          fi
-          exit 0
-
-      - name: Commit & push (best-effort)
-        if: steps.changes.outputs.changed == 'true'
-        run: |
-          set +e
-          git config user.name  "wefly-bot"
-          git config user.email "wefly-bot@users.noreply.github.com"
-          git commit -m "auto: refresh gaps $(date -u +%Y-%m-%dT%H:%MZ)" 2>&1
-          commit_rc=$?
-          echo "[step 8a] commit rc=$commit_rc"
-          if [ $commit_rc -ne 0 ]; then
             exit 0
           fi
-          git remote set-url origin "https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}.git"
-          git push origin HEAD:main 2>&1
+          echo "✅ APPS_SCRIPT_URL presente ($(echo -n "$APPS_SCRIPT_URL" | wc -c) chars)"
+          echo "✅ TURITOP_M1_SHORT_ID: ${TURITOP_M1_SHORT_ID:-'<not set>'}"
+          echo "✅ TURITOP_M2_SHORT_ID: ${TURITOP_M2_SHORT_ID:-'<not set>'}"
+
+          echo ""
+          echo "━━━━━━━━━━ [2] Escribiendo .env ━━━━━━━━━━"
+          mkdir -p _sistema
+          {
+            echo "TURITOP_M1_SHORT_ID=$TURITOP_M1_SHORT_ID"
+            echo "TURITOP_M1_SECRET_KEY=$TURITOP_M1_SECRET_KEY"
+            echo "TURITOP_M1_LABEL=Globos Aerostaticos Teotihuacan"
+            echo "TURITOP_M2_SHORT_ID=$TURITOP_M2_SHORT_ID"
+            echo "TURITOP_M2_SECRET_KEY=$TURITOP_M2_SECRET_KEY"
+            echo "TURITOP_M2_LABEL=Vuelos en Globo MX"
+            echo "APPS_SCRIPT_URL=$APPS_SCRIPT_URL"
+          } > _sistema/.env
+          echo "✅ .env creado"
+
+          echo ""
+          echo "━━━━━━━━━━ [3] Refresh Turitop (best-effort) ━━━━━━━━━━"
+          cd _sistema
+          python3 wefly_turitop_client.py
+          turitop_rc=$?
+          cd ..
+          if [ $turitop_rc -eq 0 ] && [ -f _sistema/turitop_bookings.json ]; then
+            cp _sistema/turitop_bookings.json _sistema/gap-detector/turitop_all.json
+            echo "✅ Turitop refresh OK"
+          else
+            echo "⚠️  Turitop no disponible (rc=$turitop_rc). Usando turitop_all.json del último commit."
+          fi
+
+          echo ""
+          echo "━━━━━━━━━━ [4] Build calendar_events.json ━━━━━━━━━━"
+          cd _sistema/gap-detector
+          python3 build_calendar_events.py
+          build_rc=$?
+          cd ../..
+          if [ $build_rc -ne 0 ]; then
+            echo "❌ build_calendar_events falló (rc=$build_rc). Saltando gap_detector."
+            echo "changed=false" >> $GITHUB_OUTPUT
+            exit 0
+          fi
+          echo "✅ calendar_events.json generado"
+
+          echo ""
+          echo "━━━━━━━━━━ [5] Gap detector ━━━━━━━━━━"
+          cd _sistema/gap-detector
+          python3 gap_detector.py
+          gap_rc=$?
+          cd ../..
+          if [ $gap_rc -ne 0 ]; then
+            echo "⚠️  gap_detector rc=$gap_rc (probable pre-check falló)"
+          else
+            echo "✅ gap_detector OK"
+          fi
+
+          echo ""
+          echo "━━━━━━━━━━ [6] Detectar cambios ━━━━━━━━━━"
+          git add -A
+          git reset -- _sistema/.env _sistema/turitop_raw_M1.json _sistema/turitop_raw_M2.json _sistema/turitop_bookings.json >/dev/null 2>&1
+          git diff --cached --quiet
+          diff_rc=$?
+          if [ $diff_rc -eq 0 ]; then
+            echo "ℹ️  Sin cambios."
+            echo "changed=false" >> $GITHUB_OUTPUT
+            exit 0
+          fi
+          echo "changed=true" >> $GITHUB_OUTPUT
+          echo "Modificados:"
+          git diff --cached --name-only
+
+          echo ""
+          echo "━━━━━━━━━━ [7] Commit & push ━━━━━━━━━━"
+          git config user.name  "wefly-bot"
+          git config user.email "wefly-bot@users.noreply.github.com"
+          git commit -m "auto: refresh gaps $(date -u +%Y-%m-%dT%H:%MZ)"
+          commit_rc=$?
+          if [ $commit_rc -ne 0 ]; then
+            echo "⚠️  Commit falló (rc=$commit_rc)"
+            exit 0
+          fi
+          git remote set-url origin "https://x-access-token:${GITHUB_TOKEN}@github.com/${GH_REPO}.git"
+          git push origin HEAD:main
           push_rc=$?
-          echo "[step 8b] push rc=$push_rc"
-          if [ $push_rc -ne 0 ]; then
-            echo "HINT: Settings → Actions → General → Workflow permissions → 'Read and write permissions'"
+          if [ $push_rc -eq 0 ]; then
+            echo "✅ Push OK"
+          else
+            echo "⚠️  Push falló (rc=$push_rc). Verifica:"
+            echo "   Settings → Actions → General → Workflow permissions"
+            echo "   Marca 'Read and write permissions'"
           fi
           exit 0
 
       - name: Write job summary
         if: always()
+        shell: bash --noprofile --norc {0}
         run: |
           set +e
-          python3 .github/workflows/summary.py 2>&1
-          rc=$?
-          echo "[step 9] summary rc=$rc"
+          python3 .github/workflows/summary.py
           exit 0
