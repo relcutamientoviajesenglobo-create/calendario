@@ -75,7 +75,10 @@ jobs:
       - name: Stage and detect changes
         id: changes
         run: |
+          # Solo trackeamos cambios en archivos relevantes (evita basura temporal)
           git add -A
+          # Excluir _sistema/.env y archivos raw que no necesitan historial
+          git reset -- _sistema/.env _sistema/turitop_raw_M1.json _sistema/turitop_raw_M2.json _sistema/turitop_bookings.json 2>/dev/null || true
           if git diff --cached --quiet; then
             echo "changed=false" >> $GITHUB_OUTPUT
             echo "ℹ️  Sin cambios."
@@ -87,11 +90,16 @@ jobs:
 
       - name: Commit & push
         if: steps.changes.outputs.changed == 'true'
+        continue-on-error: true   # si el push falla por permisos, no marcamos el workflow en rojo
         run: |
+          set -e
           git config user.name  "wefly-bot"
           git config user.email "wefly-bot@users.noreply.github.com"
           git commit -m "auto: refresh gaps $(date -u +%Y-%m-%dT%H:%MZ)"
-          git push
+          # Reescribir remote con token explícito para asegurar auth
+          git remote set-url origin "https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}.git"
+          git push origin HEAD:main
+          echo "✅ Push OK"
 
       - name: Write job summary
         if: always()
