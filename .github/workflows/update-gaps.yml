@@ -88,18 +88,30 @@ jobs:
             git diff --cached --name-only
           fi
 
-      - name: Commit & push
+      - name: Commit & push (best-effort)
         if: steps.changes.outputs.changed == 'true'
-        continue-on-error: true   # si el push falla por permisos, no marcamos el workflow en rojo
         run: |
-          set -e
+          set +e
           git config user.name  "wefly-bot"
           git config user.email "wefly-bot@users.noreply.github.com"
           git commit -m "auto: refresh gaps $(date -u +%Y-%m-%dT%H:%MZ)"
+          commit_rc=$?
+          if [ $commit_rc -ne 0 ]; then
+            echo "⚠️  Commit falló (rc=$commit_rc). Abortando push."
+            exit 0
+          fi
           # Reescribir remote con token explícito para asegurar auth
           git remote set-url origin "https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}.git"
-          git push origin HEAD:main
-          echo "✅ Push OK"
+          git push origin HEAD:main 2>&1
+          push_rc=$?
+          if [ $push_rc -eq 0 ]; then
+            echo "✅ Push OK"
+          else
+            echo "⚠️  Push falló (rc=$push_rc). Probable causa: Actions no tiene write permissions."
+            echo "    Ve a: Settings → Actions → General → Workflow permissions"
+            echo "    → Marca 'Read and write permissions' → Save."
+          fi
+          exit 0
 
       - name: Write job summary
         if: always()
