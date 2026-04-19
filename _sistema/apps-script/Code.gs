@@ -35,18 +35,30 @@ function doGet(e) {
       const from = (e.parameter.from) ? parseDate(e.parameter.from) : addDays(new Date(), -7);
       const to   = (e.parameter.to)   ? parseDate(e.parameter.to)   : addDays(new Date(), 30);
       const flat = buildFlatEvents(from, to);
-      return ContentService.createTextOutput(JSON.stringify(flat))
-        .setMimeType(ContentService.MimeType.JSON);
+      return jsonOut(flat);
+    }
+    if (action === 'gaps_flat') {
+      // Sistema completo de gap detection en Apps Script (no requiere GitHub Actions)
+      const from = (e.parameter.from) ? e.parameter.from : fmt(addDays(new Date(), -1));
+      const to   = (e.parameter.to)   ? e.parameter.to   : fmt(addDays(new Date(), 15));
+      return jsonOut(buildGapsFlat(from, to));
+    }
+    if (action === 'turitop') {
+      // Solo Turitop, útil para debug
+      const from = (e.parameter.from) ? e.parameter.from : fmt(addDays(new Date(), -1));
+      const to   = (e.parameter.to)   ? e.parameter.to   : fmt(addDays(new Date(), 30));
+      return jsonOut(fetchAllTuritop(from, to));
     }
     const data = buildDashboardData();
-    return ContentService.createTextOutput(JSON.stringify(data))
-      .setMimeType(ContentService.MimeType.JSON);
+    return jsonOut(data);
   } catch(err) {
-    return ContentService.createTextOutput(JSON.stringify({
-      error: err.message,
-      stack: err.stack
-    })).setMimeType(ContentService.MimeType.JSON);
+    return jsonOut({ error: err.message, stack: err.stack });
   }
+}
+
+function jsonOut(obj) {
+  return ContentService.createTextOutput(JSON.stringify(obj))
+    .setMimeType(ContentService.MimeType.JSON);
 }
 
 // Devuelve eventos en el formato que consume gap_detector.py:
@@ -555,7 +567,303 @@ function tokenize(str) {
     ?.filter(t => !STOP_WORDS.has(t)) || [];
 }
 
-// ── Test helper (run from script editor) ──────────────
+// ══════════════════════════════════════════════════════
+// TURITOP API CLIENT  (OAuth2 + chunking bisección)
+// Credenciales en PropertiesService → NO en el código
+// Correr turitopSetup() UNA VEZ para configurarlas.
+// ══════════════════════════════════════════════════════
+
+const TURITOP_BASE = 'https://app.turitop.com/v1';
+
+function turitopSetup() {
+  // ⚠️ Correr esto UNA VEZ desde el editor de Apps Script.
+  // Después BORRAR los valores de este file y re-deploy.
+  // Los valores quedan cifrados en Script Properties.
+  PropertiesService.getScriptProperties().setProperties({
+    M1_SHORT_ID:   'G465',
+    M1_SECRET_KEY: 'b67MC9U2k1GaBe8Rl2fuloUx1250MGPo',
+    M2_SHORT_ID:   'V212',
+    M2_SECRET_KEY: 'iVvdGOT5AhG83UHaZY3gWNhNfIrmUu6h',
+  });
+  Logger.log('✅ Turitop credentials guardadas en Script Properties');
+}
+
+function turitopAuth(shortId, secretKey) {
+  const res = UrlFetchApp.fetch(TURITOP_BASE + '/authorization/grant', {
+    method: 'post',
+    contentType: 'application/json',
+    payload: JSON.stringify({
+      grant_type: 'client_credentials',
+      short_id: shortId,
+      secret_key: secretKey,
+    }),
+    muteHttpExceptions: true,
+  });
+  const code = res.getResponseCode();
+  const body = res.getContentText();
+  if (code !== 200) throw new Error('Turitop auth ' + shortId + ' HTTP ' + code + ': ' + body.slice(0, 200));
+  return JSON.parse(body).access_token;
+}
+
+function turitopGetBookings(accessToken, dateFrom, dateTo) {
+  const all = [];
+  function fetchChunk(from, to) {
+    const res = UrlFetchApp.fetch(TURITOP_BASE + '/booking/getbookings', {
+      method: 'post',
+      contentType: 'application/json',
+      payload: JSON.stringify({
+        access_token: accessToken,
+        bookings_date_from: from,
+        bookings_date_to: to,
+        limit: 500,
+      }),
+      muteHttpExceptions: true,
+    });
+    const code = res.getResponseCode();
+    const body = res.getContentText();
+    if (code !== 200) throw new Error('Turitop bookings HTTP ' + code + ' [' + from + '..' + to + ']: ' + body.slice(0, 200));
+    const data = JSON.parse(body);
+    const bookings = data.bookings || data.results || (Array.isArray(data) ? data : []);
+    if (bookings.length >= 100) {
+      const mid = midDateStr(from, to);
+      if (mid === from || mid === to) {
+        all.push.apply(all, bookings);
+      } else {
+        fetchChunk(from, mid);
+        fetchChunk(addDaysStr(mid, 1), to);
+      }
+    } else {
+      all.push.apply(all, bookings);
+    }
+  }
+  fetchChunk(dateFrom, dateTo);
+  return all;
+}
+
+function normalizeTuritopBooking(b, marca) {
+  const fecha = b.date_event_iso8601 || b.date_event || b.fecha_evento || b.event_date || '';
+  const hora  = b.time_event || b.time_start || b.hora_evento || '';
+  const pax   = (b.participants_adult || 0) + (b.participants_child || 0) + (b.participants_infant || 0)
+                 || b.participants || b.pax || 0;
+  return {
+    reserva:  b.booking_code || b.code || b.reserva || '',
+    marca:    marca,
+    fecha:    (fecha || '').slice(0, 10),
+    hora:     hora,
+    pax:      Number(pax) || 0,
+    nombre:   (b.client_name || b.name || '').toLowerCase(),
+    email:    (b.client_email || b.email || '').toLowerCase(),
+    phone:    b.client_phone || b.phone || '',
+    producto: b.product_name || b.product || '',
+    total:    b.total || b.amount || '',
+    archivada: !!b.archivada || !!b.archived,
+  };
+}
+
+function fetchAllTuritop(dateFromStr, dateToStr) {
+  const props = PropertiesService.getScriptProperties();
+  const marcas = [
+    { slot: 'M1', shortId: props.getProperty('M1_SHORT_ID'), secret: props.getProperty('M1_SECRET_KEY') },
+    { slot: 'M2', shortId: props.getProperty('M2_SHORT_ID'), secret: props.getProperty('M2_SECRET_KEY') },
+  ];
+  // Turitop filtra por fecha de creación, no de evento.
+  // Abrir ventana amplia y filtrar client-side.
+  const creationFrom = addDaysStr(dateFromStr, -365);
+  const creationTo   = addDaysStr(dateToStr, 7);
+
+  const all = [];
+  const errors = [];
+  for (const m of marcas) {
+    if (!m.shortId || !m.secret) {
+      errors.push(m.slot + ': credenciales no configuradas (correr turitopSetup)');
+      continue;
+    }
+    try {
+      const token = turitopAuth(m.shortId, m.secret);
+      const raw = turitopGetBookings(token, creationFrom, creationTo);
+      for (const b of raw) {
+        const n = normalizeTuritopBooking(b, m.slot);
+        if (n.archivada) continue;
+        if (!n.fecha) continue;
+        if (n.fecha < dateFromStr || n.fecha > dateToStr) continue;
+        all.push(n);
+      }
+    } catch (e) {
+      errors.push(m.slot + ': ' + e.message);
+      Logger.log('Turitop ' + m.slot + ' error: ' + e.message);
+    }
+  }
+  return { bookings: all, errors: errors };
+}
+
+// ══════════════════════════════════════════════════════
+// GAP DETECTOR en Apps Script
+// ══════════════════════════════════════════════════════
+
+function buildGapsFlat(dateFromStr, dateToStr) {
+  const generated = new Date().toISOString();
+
+  // 1) Calendarios (flat con emails/phones pre-extraídos)
+  const start = parseDate(addDaysStr(dateFromStr, -1));
+  const end   = parseDate(addDaysStr(dateToStr, 1));
+  end.setHours(23, 59, 59);
+  const flatEvents = buildFlatEvents(start, end);
+
+  // 2) Turitop live
+  const turitopResult = fetchAllTuritop(dateFromStr, dateToStr);
+  const turitopBookings = turitopResult.bookings;
+
+  // 3) Bookeo vía Gmail
+  const bookeoEmails = fetchBookeoEmails();
+  const bookeoInWindow = bookeoEmails.filter(b =>
+    b.flight_date && b.flight_date >= dateFromStr && b.flight_date <= dateToStr
+  );
+
+  // 4) Index de calendario
+  const calIndex = buildGapCalIndex(flatEvents);
+
+  // 5) Matching
+  const turUnmatched = [], bkUnmatched = [];
+  let turMatched = 0, bkMatched = 0;
+
+  for (const b of turitopBookings) {
+    if (matchTuritopAS(b, calIndex, 1)) turMatched++;
+    else turUnmatched.push(b);
+  }
+  for (const em of bookeoInWindow) {
+    if (matchBookeoAS(em, calIndex, 1)) bkMatched++;
+    else bkUnmatched.push(em);
+  }
+
+  // 6) Output unificado
+  const allUnmatched = [];
+  for (const b of turUnmatched) {
+    allUnmatched.push(Object.assign({}, b, { fuente: 'Turitop' }));
+  }
+  bkUnmatched.forEach((b, i) => {
+    allUnmatched.push({
+      reserva:  'BK-' + String(i + 1).padStart(3, '0'),
+      marca:    'BK',
+      fecha:    b.flight_date,
+      hora:     b.hour || '',
+      pax:      b.pax,
+      nombre:   b.name,
+      email:    '',
+      phone:    '',
+      producto: b.experience,
+      total:    b.price,
+      fuente:   'Bookeo',
+    });
+  });
+  allUnmatched.sort((a, b) =>
+    ((a.fecha || '') + (a.hora || '') + (a.nombre || '')).localeCompare(
+     (b.fecha || '') + (b.hora || '') + (b.nombre || ''))
+  );
+
+  return {
+    generated_at: generated,
+    window: dateFromStr + ' → ' + dateToStr,
+    slack_days: 1,
+    source: 'apps_script_live',
+    errors: turitopResult.errors,
+    fuentes: {
+      Turitop: { total: turitopBookings.length, matched: turMatched, sin_agendar: turUnmatched.length },
+      Bookeo:  { total: bookeoInWindow.length,  matched: bkMatched,  sin_agendar: bkUnmatched.length },
+    },
+    total_fuentes: turitopBookings.length + bookeoInWindow.length,
+    total_sin_agendar: allUnmatched.length,
+    bookings: allUnmatched,
+  };
+}
+
+function buildGapCalIndex(flatEvents) {
+  const idx = {};
+  for (const ev of flatEvents) {
+    const d = ev.date;
+    const txt = ((ev.summary || '') + ' ' + (ev.desc || '')).toLowerCase();
+    const emails = new Set((ev.emails || []).map(e => e.toLowerCase()));
+    const phones = new Set(ev.phones || []);
+    const toks = new Set(tokenize((ev.summary || '') + ' ' + (ev.desc || '').replace(/[^\w\s@]/g, ' ')));
+    const fullDigits = txt.replace(/\D/g, '');
+    if (!idx[d]) idx[d] = [];
+    idx[d].push({
+      sum: ev.summary,
+      cal: ev.calendar,
+      emails: emails, phones: phones, tokens: toks,
+      fullText: txt,
+      fullDigits: fullDigits,
+    });
+  }
+  return idx;
+}
+
+function eventsAround(calIndex, dateStr, slack) {
+  const out = [];
+  const d0 = parseDate(dateStr);
+  for (let delta = -slack; delta <= slack; delta++) {
+    const dd = fmt(addDays(d0, delta));
+    if (calIndex[dd]) out.push.apply(out, calIndex[dd]);
+  }
+  return out;
+}
+
+function last10AS(phone) {
+  const d = (phone || '').replace(/\D/g, '');
+  return d.length >= 10 ? d.slice(-10) : d;
+}
+
+function matchTuritopAS(b, calIndex, slack) {
+  const evs = eventsAround(calIndex, b.fecha || '', slack);
+  const em = (b.email || '').toLowerCase().trim();
+  const ph = last10AS(b.phone);
+  const nmToks = new Set(tokenize(b.nombre || ''));
+  const rid = (b.reserva || '').toLowerCase();
+  const ridDigits = rid.replace(/\D/g, '');
+  const ridShort = ridDigits.length >= 9 ? ridDigits.slice(0, 9) : ridDigits;
+
+  for (const ev of evs) {
+    if (rid && ev.fullText.indexOf(rid) !== -1) return { strategy: 'reserva_id', cal: ev.cal };
+    if (ridShort && ev.fullDigits.indexOf(ridShort) !== -1) return { strategy: 'reserva_id_digits', cal: ev.cal };
+    if (em && ev.emails.has(em)) return { strategy: 'email', cal: ev.cal };
+    if (ph && ev.phones.has(ph)) return { strategy: 'phone', cal: ev.cal };
+    if (nmToks.size) {
+      const overlap = [];
+      nmToks.forEach(t => { if (ev.tokens.has(t)) overlap.push(t); });
+      if (overlap.length >= 2) return { strategy: 'name2', cal: ev.cal };
+      const rare = overlap.filter(t => t.length >= 6);
+      if (rare.length) return { strategy: 'name1rare', cal: ev.cal };
+    }
+  }
+  return null;
+}
+
+function matchBookeoAS(emObj, calIndex, slack) {
+  const evs = eventsAround(calIndex, emObj.flight_date, slack);
+  const nmToks = new Set(tokenize((emObj.name || '').replace(/^reserva\s+abonada\s*-\s*/i, '')));
+  for (const ev of evs) {
+    if (nmToks.size) {
+      const overlap = [];
+      nmToks.forEach(t => { if (ev.tokens.has(t)) overlap.push(t); });
+      if (overlap.length >= 2) return { strategy: 'name2', cal: ev.cal };
+      const rare = overlap.filter(t => t.length >= 6);
+      if (rare.length) return { strategy: 'name1rare', cal: ev.cal };
+    }
+  }
+  return null;
+}
+
+function midDateStr(fromStr, toStr) {
+  const a = parseDate(fromStr).getTime();
+  const b = parseDate(toStr).getTime();
+  return fmt(new Date(Math.floor((a + b) / 2)));
+}
+function addDaysStr(dateStr, n) {
+  return fmt(addDays(parseDate(dateStr), n));
+}
+
+// ══════════════════════════════════════════════════════
+// Test helpers (correr desde editor script.google.com)
+// ══════════════════════════════════════════════════════
 function testBuild() {
   const data = buildDashboardData();
   Logger.log('Events: ' + data.events.length);

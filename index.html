@@ -616,18 +616,37 @@ async function refreshLive() {
   const btn = document.getElementById('btnRefresh');
   const original = btn.innerHTML;
   btn.disabled = true;
-  btn.innerHTML = '⟳ Cargando… ~15s';
+  btn.innerHTML = '⟳ Cargando… ~20-30s';
   btn.style.background = 'linear-gradient(135deg,#64748b,#475569)';
   try {
-    const res = await fetch(APPS_SCRIPT_URL + '?t=' + Date.now(), { cache: 'no-store' });
-    if (!res.ok) throw new Error('HTTP ' + res.status);
-    const data = await res.json();
-    if (data.error) throw new Error('Apps Script: ' + data.error);
+    // 1) Dashboard completo (calendarios + Gmail)
+    const dashRes = await fetch(APPS_SCRIPT_URL + '?t=' + Date.now(), { cache: 'no-store' });
+    if (!dashRes.ok) throw new Error('dashboard HTTP ' + dashRes.status);
+    const data = await dashRes.json();
+    if (data.error) throw new Error('Apps Script dashboard: ' + data.error);
     if (!data.events) throw new Error('Respuesta sin campo events');
+
+    // 2) Gaps frescos (Turitop + Bookeo live vs Calendar)
+    btn.innerHTML = '⟳ Bajando Turitop…';
+    try {
+      const todayStr = new Date().toISOString().slice(0, 10);
+      const endStr = new Date(Date.now() + 15 * 86400000).toISOString().slice(0, 10);
+      const gapsRes = await fetch(APPS_SCRIPT_URL + '?action=gaps_flat&from=' + todayStr + '&to=' + endStr + '&t=' + Date.now(), { cache: 'no-store' });
+      if (gapsRes.ok) {
+        const gaps = await gapsRes.json();
+        if (!gaps.error) {
+          data.gaps_live = gaps;  // adjunta al dashboard
+          console.log('[WE FLY] gaps live:', gaps.total_sin_agendar, 'sin agendar');
+          if (gaps.errors && gaps.errors.length) console.warn('[Turitop]', gaps.errors);
+        }
+      }
+    } catch (gapErr) { console.warn('[gaps_flat]', gapErr); }
+
     localStorage.setItem(LIVE_CACHE_KEY, JSON.stringify({ ts: Date.now(), data }));
-    btn.innerHTML = '✓ ' + data.events.length + ' eventos';
+    const gapCount = data.gaps_live ? data.gaps_live.total_sin_agendar : '?';
+    btn.innerHTML = '✓ ' + data.events.length + ' eventos · ' + gapCount + ' gaps';
     btn.style.background = 'linear-gradient(135deg,#22c55e,#16a34a)';
-    setTimeout(() => location.reload(), 600);
+    setTimeout(() => location.reload(), 800);
   } catch (e) {
     console.error(e);
     btn.innerHTML = '✗ ' + (e.message || 'error').slice(0, 40);
