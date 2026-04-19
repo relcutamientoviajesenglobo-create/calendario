@@ -1,3795 +1,504 @@
 {
-  "events": [
-    {
-      "calendar": "weflymx@gmail.com",
-      "id": "5rlksmjafo9hpapoc3bgsof4sd",
-      "title_raw": "✅ *2P Juan Carlos García",
-      "name": "Juan Carlos García",
-      "datetime": "2026-04-08T04:30",
-      "date": "2026-04-08",
-      "time": "04:30",
-      "status": "confirmado",
-      "pax": 2,
-      "weights": [
-        78,
-        60
-      ],
-      "total_weight": 138,
-      "service": "ALL INCLUSIVE + Transporte redondo + Desayuno La Cueva + Pirámides con guía certificado",
-      "includes": [
-        "Cueva",
-        "Desayuno",
-        "Pirámides",
-        "Transporte"
-      ],
-      "phone": "+54 91126902239",
-      "email": "danielaespitia255@hotmail.com",
-      "reserva": "1574604073806051",
-      "total": "",
-      "pickup": "Hotel Conde, Pescaditos Número 15, Colonia Centro, Centro, Cuauhtémoc, 06070 Ciudad de México, CDMX",
-      "staff": "Débora",
-      "html_link": "https://www.google.com/calendar/event?eid=NXJsa3NtamFmbzlocGFwb2MzYmdzb2Y0c2Qgd2VmbHlteEBt&ctz=America/Mexico_City",
-      "overweight": false,
-      "celebration": false
-    },
-    {
-      "calendar": "weflymx@gmail.com",
-      "id": "728uvgva2e9ck3ni8e4md58tkq",
-      "title_raw": "✅.*3P Patricia Villarreal NC",
-      "name": "Patricia Villarreal",
-      "datetime": "2026-04-08T04:30",
-      "date": "2026-04-08",
-      "time": "04:30",
-      "status": "confirmado",
-      "pax": 3,
-      "weights": [
-        77,
-        104,
-        72
-      ],
-      "total_weight": 253,
-      "service": "Vuelo Privado en Teotihuacán + Desayuno Cueva + Transporte privado",
-      "includes": [
-        "Cueva",
-        "Desayuno",
-        "Transporte"
-      ],
-      "phone": "+1 2108492842",
-      "email": "pata2196@yahoo.com",
-      "reserva": "1574603083827617",
-      "total": "16,692 MXN",
-      "pickup": "Gran Hotel Ciudad de México, 16 de Septiembre 82, Centro Histórico de la Cdad. de México, Centro, Cuauhtémoc, 06000 Ciudad de México, CDMX",
-      "staff": "Débora",
-      "html_link": "https://www.google.com/calendar/event?eid=NzI4dXZndmEyZTljazNuaThlNG1kNTh0a3Egd2VmbHlteEBt&ctz=America/Mexico_City",
-      "overweight": false,
-      "celebration": false
-    },
-    {
-      "calendar": "weflymx@gmail.com",
-      "id": "2ksffmdb2ig8q5qj2fdcbhb1p5",
-      "title_raw": "✅.*4P Ana Eisenhauer",
-      "name": "Ana Eisenhauer",
-      "datetime": "2026-04-08T06:00",
-      "date": "2026-04-08",
-      "time": "06:00",
-      "status": "confirmado",
-      "pax": 4,
-      "weights": [
-        77,
-        82,
-        75,
-        77
-      ],
-      "total_weight": 311,
-      "service": "Vuelo Compartido en Teotihuacán Promo Lunes a Viernes",
-      "includes": [],
-      "phone": "5554581734",
-      "email": "ana.eisenhauer@gmail.com",
-      "reserva": "1574603301860157",
-      "total": "",
-      "pickup": "",
-      "staff": "Débora",
-      "html_link": "https://www.google.com/calendar/event?eid=MmtzZmZtZGIyaWc4cTVxajJmZGNiaGIxcDUgd2VmbHlteEBt&ctz=America/Mexico_City",
-      "overweight": false,
-      "celebration": false
-    },
-    {
-      "calendar": "weflymx@gmail.com",
-      "id": "33k6224qjiaanbgs9mgtg9vm2e",
-      "title_raw": "✅.*3P Óscar Daniel Gerardo Moya",
-      "name": "Óscar Daniel Gerardo Moya",
-      "datetime": "2026-04-08T06:00",
-      "date": "2026-04-08",
-      "time": "06:00",
-      "status": "confirmado",
-      "pax": 3,
-      "weights": [
-        120,
-        75,
-        87,
-        25
-      ],
-      "total_weight": 307,
-      "service": "Vuelo Compartido + Desayuno en Cueva + Sesión de Fotos",
-      "includes": [
-        "Cueva",
-        "Desayuno"
-      ],
-      "phone": "5566778630",
-      "email": "dthmy23@gmail.com",
-      "reserva": "1574604016832937",
-      "total": "",
-      "pickup": "",
-      "staff": "Débora",
-      "html_link": "https://www.google.com/calendar/event?eid=MzNrNjIyNHFqaWFhbmJnczltZ3RnOXZtMmUgd2VmbHlteEBt&ctz=America/Mexico_City",
-      "overweight": false,
-      "celebration": false
-    },
-    {
-      "calendar": "weflymx@gmail.com",
-      "id": "0bec8knu0dnk1hecpb47q4hnlg",
-      "title_raw": ".*3P Rachel, Kelly, Leah Van Dissel",
-      "name": "Rachel, Kelly, Leah Van Dissel",
-      "datetime": "2026-04-09T04:30",
-      "date": "2026-04-09",
-      "time": "04:30",
-      "status": "confirmado",
-      "pax": 3,
-      "weights": [],
-      "total_weight": 0,
-      "service": "Vuelo Compartido + Transporte Grupal + Acceso a las pirámides de Teotihuacán + Buffet",
-      "includes": [
-        "Buffet",
-        "Pirámides",
-        "Transporte"
-      ],
-      "phone": "+1 2165135389",
-      "email": "rvandissel2@gmail.com",
-      "reserva": "1574603303146913",
-      "total": "",
-      "pickup": "",
-      "staff": "Débora",
-      "html_link": "https://www.google.com/calendar/event?eid=MGJlYzhrbnUwZG5rMWhlY3BiNDdxNGhubGcgd2VmbHlteEBt&ctz=America/Mexico_City",
-      "overweight": false,
-      "celebration": false
-    },
-    {
-      "calendar": "weflymx@gmail.com",
-      "id": "1sucvm9t2l4a6r7184qgsfm5i3",
-      "title_raw": ".*2P Jonathan David Cortés Triana NC",
-      "name": "Jonathan David Cortés Triana",
-      "datetime": "2026-04-09T04:30",
-      "date": "2026-04-09",
-      "time": "04:30",
-      "status": "confirmado",
-      "pax": 2,
-      "weights": [
-        76,
-        74
-      ],
-      "total_weight": 150,
-      "service": "Entrega de Anillo en Teotihuacan + Desayuno Cueva + Ramo de flores, chocolates + Banner + Transporte Privado + Sesión de fotos + Pirámides con guía",
-      "includes": [
-        "Banner",
-        "Cueva",
-        "Desayuno",
-        "Pirámides",
-        "Transporte"
-      ],
-      "phone": "+57 3002040501",
-      "email": "jonathancortes23@gmail.com",
-      "reserva": "1574603279999471",
-      "total": "",
-      "pickup": "Yácatas 356, Dep. 16, Narvarte Poniente, Benito Juárez, CDMX.",
-      "staff": "Débora",
-      "html_link": "https://www.google.com/calendar/event?eid=MXN1Y3ZtOXQybDRhNnI3MTg0cWdzZm01aTMgd2VmbHlteEBt&ctz=America/Mexico_City",
-      "overweight": false,
-      "celebration": false
-    },
-    {
-      "calendar": "weflymx@gmail.com",
-      "id": "69dep9rcg67ko2b3ur65hs0osf",
-      "title_raw": ".*1P Olga Vargas Pereira",
-      "name": "Olga Vargas Pereira",
-      "datetime": "2026-04-09T04:30",
-      "date": "2026-04-09",
-      "time": "04:30",
-      "status": "confirmado",
-      "pax": 1,
-      "weights": [
-        56
-      ],
-      "total_weight": 56,
-      "service": "ALL INCLUSIVE + Transporte redondo + Desayuno La Cueva + Pirámides con guía certificado",
-      "includes": [
-        "Cueva",
-        "Desayuno",
-        "Pirámides",
-        "Transporte"
-      ],
-      "phone": "+506 83092715",
-      "email": "olgavape04@gmail.com",
-      "reserva": "1574604073780832",
-      "total": "",
-      "pickup": "",
-      "staff": "Débora",
-      "html_link": "https://www.google.com/calendar/event?eid=NjlkZXA5cmNnNjdrbzJiM3VyNjVoczBvc2Ygd2VmbHlteEBt&ctz=America/Mexico_City",
-      "overweight": false,
-      "celebration": false
-    },
-    {
-      "calendar": "weflymx@gmail.com",
-      "id": "6cddhjjj7i0ah9le0cg7n9tvvc",
-      "title_raw": ".*2P Lisa Deady",
-      "name": "Lisa Deady",
-      "datetime": "2026-04-09T04:30",
-      "date": "2026-04-09",
-      "time": "04:30",
-      "status": "confirmado",
-      "pax": 2,
-      "weights": [
-        72,
-        94
-      ],
-      "total_weight": 166,
-      "service": "ALL INCLUSIVE + Transporte redondo + Desayuno La Cueva + Pirámides con guía certificado",
-      "includes": [
-        "Cueva",
-        "Desayuno",
-        "Pirámides",
-        "Transporte"
-      ],
-      "phone": "+353 863626650",
-      "email": "lisadeady@gmail.com",
-      "reserva": "1574603297089546",
-      "total": "",
-      "pickup": "",
-      "staff": "Débora",
-      "html_link": "https://www.google.com/calendar/event?eid=NmNkZGhqamo3aTBhaDlsZTBjZzduOXR2dmMgd2VmbHlteEBt&ctz=America/Mexico_City",
-      "overweight": false,
-      "celebration": false
-    },
-    {
-      "calendar": "weflymx@gmail.com",
-      "id": "6ib48atv1s03rds5gsulabp9kg",
-      "title_raw": ".🏨*6P Jose Miguel Varela Ramírez",
-      "name": "Jose Miguel Varela Ramírez",
-      "datetime": "2026-04-09T04:30",
-      "date": "2026-04-09",
-      "time": "04:30",
-      "status": "confirmado",
-      "pax": 6,
-      "weights": [
-        85,
-        140,
-        95,
-        68,
-        75,
-        120,
-        70
-      ],
-      "total_weight": 653,
-      "service": "ALL INCLUSIVE + Transporte redondo + Desayuno La Cueva + Pirámides con guía certificado",
-      "includes": [
-        "Cueva",
-        "Desayuno",
-        "Pirámides",
-        "Transporte"
-      ],
-      "phone": "",
-      "email": "miguelvarelafotografo@gmail.com",
-      "reserva": "1574603266321286",
-      "total": "",
-      "pickup": "Hotel Fontan Reforma",
-      "staff": "Débora",
-      "html_link": "https://www.google.com/calendar/event?eid=NmliNDhhdHYxczAzcmRzNWdzdWxhYnA5a2cgd2VmbHlteEBt&ctz=America/Mexico_City",
-      "overweight": true,
-      "celebration": false
-    },
-    {
-      "calendar": "weflymx@gmail.com",
-      "id": "6qet87kcktcon2hosj2okn85bg",
-      "title_raw": ".*2P Conor Flanagan",
-      "name": "Conor Flanagan",
-      "datetime": "2026-04-09T04:30",
-      "date": "2026-04-09",
-      "time": "04:30",
-      "status": "confirmado",
-      "pax": 2,
-      "weights": [
-        70,
-        70
-      ],
-      "total_weight": 140,
-      "service": "ALL INCLUSIVE + Transporte redondo + Desayuno La Cueva + Pirámides con guía certificado",
-      "includes": [
-        "Cueva",
-        "Desayuno",
-        "Pirámides",
-        "Transporte"
-      ],
-      "phone": "+353 857758629",
-      "email": "flanagan_conor@hotmail.com",
-      "reserva": "1574603297089546",
-      "total": "",
-      "pickup": "",
-      "staff": "Débora",
-      "html_link": "https://www.google.com/calendar/event?eid=NnFldDg3a2NrdGNvbjJob3NqMm9rbjg1Ymcgd2VmbHlteEBt&ctz=America/Mexico_City",
-      "overweight": false,
-      "celebration": false
-    },
-    {
-      "calendar": "weflymx@gmail.com",
-      "id": "7aa39ei8ql84der9n41u7arvsi",
-      "title_raw": ".*5P Jesus Eduardo Gonzalez Valencia",
-      "name": "Jesus Eduardo Gonzalez Valencia",
-      "datetime": "2026-04-09T04:30",
-      "date": "2026-04-09",
-      "time": "04:30",
-      "status": "confirmado",
-      "pax": 5,
-      "weights": [
-        88,
-        93,
-        49,
-        60,
-        28
-      ],
-      "total_weight": 318,
-      "service": "ALL INCLUSIVE + Transporte redondo + Desayuno La Cueva + Pirámides con guía certificado",
-      "includes": [
-        "Cueva",
-        "Desayuno",
-        "Pirámides",
-        "Transporte"
-      ],
-      "phone": "+1 7149557158",
-      "email": "lalogonzalez777@hotmail.com",
-      "reserva": "1574603302527258",
-      "total": "",
-      "pickup": "",
-      "staff": "Débora",
-      "html_link": "https://www.google.com/calendar/event?eid=N2FhMzllaThxbDg0ZGVyOW40MXU3YXJ2c2kgd2VmbHlteEBt&ctz=America/Mexico_City",
-      "overweight": false,
-      "celebration": false
-    },
-    {
-      "calendar": "weflymx@gmail.com",
-      "id": "1s199j6rndqp5g7bh3b5l9b3fs",
-      "title_raw": "❓.*4P Kristin Noonan",
-      "name": "Kristin Noonan",
-      "datetime": "2026-04-09T06:00",
-      "date": "2026-04-09",
-      "time": "06:00",
-      "status": "tentativo",
-      "pax": 4,
-      "weights": [
-        77,
-        94,
-        34,
-        20
-      ],
-      "total_weight": 225,
-      "service": "Vuelo Compartido en Teotihuacán Promo Lunes a Viernes + Sesión de fotos + Cueva + Pirámides con guía",
-      "includes": [
-        "Cueva",
-        "Pirámides"
-      ],
-      "phone": "+44 37994277",
-      "email": "kmnoonan12@gmail.com",
-      "reserva": "1574603317254998",
-      "total": "",
-      "pickup": "",
-      "staff": "Débora",
-      "html_link": "https://www.google.com/calendar/event?eid=MXMxOTlqNnJuZHFwNWc3YmgzYjVsOWIzZnMgd2VmbHlteEBt&ctz=America/Mexico_City",
-      "overweight": false,
-      "celebration": false
-    },
-    {
-      "calendar": "weflymx@gmail.com",
-      "id": "4uhn4gfi2h5nmscd5srqjmcagc",
-      "title_raw": "✅.*2P Nicola Smith",
-      "name": "Nicola Smith",
-      "datetime": "2026-04-09T06:00",
-      "date": "2026-04-09",
-      "time": "06:00",
-      "status": "confirmado",
-      "pax": 2,
-      "weights": [
-        80,
-        85
-      ],
-      "total_weight": 165,
-      "service": "Vuelo Compartido en Teotihuacán Promo Lunes a Viernes",
-      "includes": [],
-      "phone": "+44 7707797501",
-      "email": "smithygurll@live.co.uk",
-      "reserva": "1574604082183934",
-      "total": "",
-      "pickup": "",
-      "staff": "Débora",
-      "html_link": "https://www.google.com/calendar/event?eid=NHVobjRnZmkyaDVubXNjZDVzcnFqbWNhZ2Mgd2VmbHlteEBt&ctz=America/Mexico_City",
-      "overweight": false,
-      "celebration": false
-    },
-    {
-      "calendar": "weflymx@gmail.com",
-      "id": "61cbji8d195rg69fo53gi9t13j",
-      "title_raw": ".*2P Amy Guerrero",
-      "name": "Amy Guerrero",
-      "datetime": "2026-04-09T06:00",
-      "date": "2026-04-09",
-      "time": "06:00",
-      "status": "confirmado",
-      "pax": 2,
-      "weights": [
-        52,
-        95
-      ],
-      "total_weight": 147,
-      "service": "Vuelo Compartido en Teotihuacán Promo Lunes a Viernes",
-      "includes": [],
-      "phone": "+1 7175385703",
-      "email": "amykguerrero@gmail.com",
-      "reserva": "1574603313819232",
-      "total": "",
-      "pickup": "",
-      "staff": "Débora",
-      "html_link": "https://www.google.com/calendar/event?eid=NjFjYmppOGQxOTVyZzY5Zm81M2dpOXQxM2ogd2VmbHlteEBt&ctz=America/Mexico_City",
-      "overweight": false,
-      "celebration": false
-    },
-    {
-      "calendar": "weflymx@gmail.com",
-      "id": "652633i9okf6c2phekq821kc75",
-      "title_raw": ".*2P María Raquel Delgado Salas",
-      "name": "María Raquel Delgado Salas",
-      "datetime": "2026-04-09T06:00",
-      "date": "2026-04-09",
-      "time": "06:00",
-      "status": "confirmado",
-      "pax": 2,
-      "weights": [
-        62,
-        73
-      ],
-      "total_weight": 135,
-      "service": "Vuelo Compartido en Teotihuacán Promo Lunes a Viernes",
-      "includes": [],
-      "phone": "+506 87376199",
-      "email": "raqueldelsa17@gmail.com",
-      "reserva": "1574604086944195",
-      "total": "",
-      "pickup": "",
-      "staff": "Débora",
-      "html_link": "https://www.google.com/calendar/event?eid=NjUyNjMzaTlva2Y2YzJwaGVrcTgyMWtjNzUgd2VmbHlteEBt&ctz=America/Mexico_City",
-      "overweight": false,
-      "celebration": false
-    },
-    {
-      "calendar": "weflymx@gmail.com",
-      "id": "0qeiipg7af00rdg41o67s0k2i5",
-      "title_raw": "*2P Jose Sanchez",
-      "name": "Jose Sanchez",
-      "datetime": "2026-04-10T04:30",
-      "date": "2026-04-10",
-      "time": "04:30",
-      "status": "confirmado",
-      "pax": 2,
-      "weights": [
-        70,
-        79
-      ],
-      "total_weight": 149,
-      "service": "Vuelo Compartido + Transporte Grupal + Acceso a las pirámides de Teotihuacán + Buffet + VIDEO DRONE",
-      "includes": [
-        "Buffet",
-        "Drone",
-        "Pirámides",
-        "Transporte"
-      ],
-      "phone": "+1 3466969866",
-      "email": "z4zanchez@yahoo.com",
-      "reserva": "1574603253314000",
-      "total": "",
-      "pickup": "",
-      "staff": "Débora",
-      "html_link": "https://www.google.com/calendar/event?eid=MHFlaWlwZzdhZjAwcmRnNDFvNjdzMGsyaTUgd2VmbHlteEBt&ctz=America/Mexico_City",
-      "overweight": false,
-      "celebration": false
-    },
-    {
-      "calendar": "weflymx@gmail.com",
-      "id": "6skn38l17r1lvedc7grlunhq3e",
-      "title_raw": "*4P Gema Varela",
-      "name": "Gema Varela",
-      "datetime": "2026-04-10T04:30",
-      "date": "2026-04-10",
-      "time": "04:30",
-      "status": "confirmado",
-      "pax": 4,
-      "weights": [
-        81,
-        82,
-        68,
-        70
-      ],
-      "total_weight": 301,
-      "service": "ALL INCLUSIVE + Transporte redondo + Desayuno La Cueva + Pirámides con guía certificado",
-      "includes": [
-        "Cueva",
-        "Desayuno",
-        "Pirámides",
-        "Transporte"
-      ],
-      "phone": "+1 4148378657",
-      "email": "gemavarela121@gmail.com",
-      "reserva": "1574604069978704",
-      "total": "",
-      "pickup": "",
-      "staff": "Débora",
-      "html_link": "https://www.google.com/calendar/event?eid=NnNrbjM4bDE3cjFsdmVkYzdncmx1bmhxM2Ugd2VmbHlteEBt&ctz=America/Mexico_City",
-      "overweight": false,
-      "celebration": false
-    },
-    {
-      "calendar": "weflymx@gmail.com",
-      "id": "31618lnvui7j4hutofuoarrmuo",
-      "title_raw": "*2P Leana Gutierrez (TE)",
-      "name": "Leana Gutierrez",
-      "datetime": "2026-04-10T05:00",
-      "date": "2026-04-10",
-      "time": "05:00",
-      "status": "confirmado",
-      "pax": 2,
-      "weights": [
-        65,
-        59
-      ],
-      "total_weight": 124,
-      "service": "Vuelo Compartido + Transporte Express desde CDMX + Desayuno en cueva",
-      "includes": [
-        "Cueva",
-        "Desayuno",
-        "Transporte"
-      ],
-      "phone": "+1 (619) 710-7679",
-      "email": "ileanaggutierrez@gmail.com",
-      "reserva": "1574603231207890",
-      "total": "",
-      "pickup": "",
-      "staff": "Débora",
-      "html_link": "https://www.google.com/calendar/event?eid=MzE2MThsbnZ1aTdqNGh1dG9mdW9hcnJtdW8gd2VmbHlteEBt&ctz=America/Mexico_City",
-      "overweight": false,
-      "celebration": false
-    },
-    {
-      "calendar": "weflymx@gmail.com",
-      "id": "3ftjo57nh2ir3ojrave866dsge",
-      "title_raw": "*4P David Rojas NC",
-      "name": "David Rojas",
-      "datetime": "2026-04-10T06:00",
-      "date": "2026-04-10",
-      "time": "06:00",
-      "status": "confirmado",
-      "pax": 4,
-      "weights": [
-        88,
-        72,
-        45,
-        22
-      ],
-      "total_weight": 227,
-      "service": "Vuelo Privado en Teotihuacán",
-      "includes": [],
-      "phone": "+1 2036856260",
-      "email": "davidrflores71@gmail.com",
-      "reserva": "1574604014150954",
-      "total": "",
-      "pickup": "",
-      "staff": "Débora",
-      "html_link": "https://www.google.com/calendar/event?eid=M2Z0am81N25oMmlyM29qcmF2ZTg2NmRzZ2Ugd2VmbHlteEBt&ctz=America/Mexico_City",
-      "overweight": false,
-      "celebration": false
-    },
-    {
-      "calendar": "weflymx@gmail.com",
-      "id": "6d61fdi187i8v7g4vmapalerbd",
-      "title_raw": "*2P Alberto Rivera Cespedes",
-      "name": "Alberto Rivera Cespedes",
-      "datetime": "2026-04-10T06:00",
-      "date": "2026-04-10",
-      "time": "06:00",
-      "status": "confirmado",
-      "pax": 2,
-      "weights": [
-        72,
-        75
-      ],
-      "total_weight": 147,
-      "service": "Vuelo Compartido en Teotihuacán Promo Lunes a Viernes + Desayuno Cueva",
-      "includes": [
-        "Cueva",
-        "Desayuno"
-      ],
-      "phone": "+506 88615562",
-      "email": "aljorice06@gmail.com",
-      "reserva": "1574603203526263",
-      "total": "",
-      "pickup": "",
-      "staff": "Débora",
-      "html_link": "https://www.google.com/calendar/event?eid=NmQ2MWZkaTE4N2k4djdnNHZtYXBhbGVyYmQgd2VmbHlteEBt&ctz=America/Mexico_City",
-      "overweight": false,
-      "celebration": false
-    },
-    {
-      "calendar": "weflymx@gmail.com",
-      "id": "6k7e3lok701tggl0n80nubv589",
-      "title_raw": "2P Byron Solis",
-      "name": "Byron Solis",
-      "datetime": "2026-04-10T06:00",
-      "date": "2026-04-10",
-      "time": "06:00",
-      "status": "confirmado",
-      "pax": 2,
-      "weights": [
-        120,
-        80,
-        25
-      ],
-      "total_weight": 225,
-      "service": "Vuelo Compartido en Teotihuacán Promo Lunes a Viernes",
-      "includes": [],
-      "phone": "+506 60461441",
-      "email": "bsolisrodriguez1994@gmail.com",
-      "reserva": "1574604016762910",
-      "total": "",
-      "pickup": "",
-      "staff": "Débora",
-      "html_link": "https://www.google.com/calendar/event?eid=Nms3ZTNsb2s3MDF0Z2dsMG44MG51YnY1ODkgd2VmbHlteEBt&ctz=America/Mexico_City",
-      "overweight": false,
-      "celebration": false
-    },
-    {
-      "calendar": "weflymx@gmail.com",
-      "id": "1g0h88mn7n8qjj6ngmh0emlbg7",
-      "title_raw": "2P RICARDO MONTAÑO 📌mismo grupo",
-      "name": "RICARDO MONTAÑO",
-      "datetime": "2026-04-11T04:30",
-      "date": "2026-04-11",
-      "time": "04:30",
-      "status": "confirmado",
-      "pax": 2,
-      "weights": [
-        75,
-        69
-      ],
-      "total_weight": 144,
-      "service": "ALL INCLUSIVE + Transporte redondo + Desayuno La Cueva + Pirámides con guía certificado",
-      "includes": [
-        "Cueva",
-        "Desayuno",
-        "Pirámides",
-        "Transporte"
-      ],
-      "phone": "+57 3164040913",
-      "email": "ricardomontano1484@gmail.com",
-      "reserva": "1574604087752473",
-      "total": "",
-      "pickup": "",
-      "staff": "Débora",
-      "html_link": "https://www.google.com/calendar/event?eid=MWcwaDg4bW43bjhxamo2bmdtaDBlbWxiZzcgd2VmbHlteEBt&ctz=America/Mexico_City",
-      "overweight": false,
-      "celebration": false
-    },
-    {
-      "calendar": "weflymx@gmail.com",
-      "id": "373akjd7ooopqe6qneou95i8eu",
-      "title_raw": "*2P Santiago Lezama García",
-      "name": "Santiago Lezama García",
-      "datetime": "2026-04-11T04:30",
-      "date": "2026-04-11",
-      "time": "04:30",
-      "status": "confirmado",
-      "pax": 2,
-      "weights": [
-        86,
-        70
-      ],
-      "total_weight": 156,
-      "service": "Vuelo Compartido + Transporte Grupal + Acceso a las pirámides de Teotihuacán + Buffet + Banner",
-      "includes": [
-        "Banner",
-        "Buffet",
-        "Cueva",
-        "Pirámides",
-        "Transporte"
-      ],
-      "phone": "+52 5638215377",
-      "email": "santiagolezgar@gmail.com",
-      "reserva": "1574603261787494",
-      "total": "",
-      "pickup": "",
-      "staff": "Débora",
-      "html_link": "https://www.google.com/calendar/event?eid=MzczYWtqZDdvb29wcWU2cW5lb3U5NWk4ZXUgd2VmbHlteEBt&ctz=America/Mexico_City",
-      "overweight": false,
-      "celebration": true
-    },
-    {
-      "calendar": "weflymx@gmail.com",
-      "id": "4p5eobcn8tc83e2fal60adq4d1",
-      "title_raw": "*2P Juan Camilo Becerra 📌mismo grupo",
-      "name": "Juan Camilo Becerra",
-      "datetime": "2026-04-11T04:30",
-      "date": "2026-04-11",
-      "time": "04:30",
-      "status": "confirmado",
-      "pax": 2,
-      "weights": [
-        84,
-        48
-      ],
-      "total_weight": 132,
-      "service": "ALL INCLUSIVE + Transporte redondo + Desayuno La Cueva + Pirámides con guía certificado",
-      "includes": [
-        "Cueva",
-        "Desayuno",
-        "Pirámides",
-        "Transporte"
-      ],
-      "phone": "+57 3174319809",
-      "email": "becerralombana@gmail.com",
-      "reserva": "1574603277252559",
-      "total": "",
-      "pickup": "",
-      "staff": "Débora",
-      "html_link": "https://www.google.com/calendar/event?eid=NHA1ZW9iY244dGM4M2UyZmFsNjBhZHE0ZDEgd2VmbHlteEBt&ctz=America/Mexico_City",
-      "overweight": false,
-      "celebration": false
-    },
-    {
-      "calendar": "weflymx@gmail.com",
-      "id": "506nhnfc53lq7ji7u57jb3ldli",
-      "title_raw": "*2P Ivonne Castillo Lopez",
-      "name": "Ivonne Castillo Lopez",
-      "datetime": "2026-04-11T04:30",
-      "date": "2026-04-11",
-      "time": "04:30",
-      "status": "confirmado",
-      "pax": 2,
-      "weights": [
-        68,
-        101
-      ],
-      "total_weight": 169,
-      "service": "ALL INCLUSIVE + Transporte redondo + Desayuno La Cueva + Pirámides con guía certificado",
-      "includes": [
-        "Cueva",
-        "Desayuno",
-        "Pirámides",
-        "Transporte"
-      ],
-      "phone": "+52 6144278213",
-      "email": "ivoncastl@hotmail.com",
-      "reserva": "1574603263022597",
-      "total": "",
-      "pickup": "",
-      "staff": "Débora",
-      "html_link": "https://www.google.com/calendar/event?eid=NTA2bmhuZmM1M2xxN2ppN3U1N2piM2xkbGkgd2VmbHlteEBt&ctz=America/Mexico_City",
-      "overweight": false,
-      "celebration": false
-    },
-    {
-      "calendar": "weflymx@gmail.com",
-      "id": "5j4ml2tle4l2u4scp4m96e4gfh",
-      "title_raw": "MODIFICADO 2p Maria Claudia Lombana 📌mismo grupo",
-      "name": "Maria Claudia Lombana",
-      "datetime": "2026-04-11T04:30",
-      "date": "2026-04-11",
-      "time": "04:30",
-      "status": "modificado",
-      "pax": 2,
-      "weights": [
-        64,
-        73
-      ],
-      "total_weight": 137,
-      "service": "ALL INCLUSIVE + Transporte redondo + Desayuno La Cueva + Pirámides con guía certificado",
-      "includes": [
-        "Cueva",
-        "Desayuno",
-        "Pirámides",
-        "Transporte"
-      ],
-      "phone": "+57 3155772170",
-      "email": "mclombana@adl.co",
-      "reserva": "1574604083508410",
-      "total": "",
-      "pickup": "",
-      "staff": "Débora",
-      "html_link": "https://www.google.com/calendar/event?eid=NWo0bWwydGxlNGwydTRzY3A0bTk2ZTRnZmggd2VmbHlteEBt&ctz=America/Mexico_City",
-      "overweight": false,
-      "celebration": false
-    },
-    {
-      "calendar": "weflymx@gmail.com",
-      "id": "6bcqus0u80vn8imnk349g2h8lq",
-      "title_raw": "*2P María Valeria Azofeifa Torres",
-      "name": "María Valeria Azofeifa Torres",
-      "datetime": "2026-04-11T04:30",
-      "date": "2026-04-11",
-      "time": "04:30",
-      "status": "confirmado",
-      "pax": 2,
-      "weights": [
-        17
-      ],
-      "total_weight": 17,
-      "service": "Vuelo Compartido + Transporte Grupal + Acceso a las pirámides de Teotihuacán + Buffet",
-      "includes": [
-        "Buffet",
-        "Pirámides",
-        "Transporte"
-      ],
-      "phone": "+506 87083061",
-      "email": "valeazo26@gmail.com",
-      "reserva": "1574603254728994",
-      "total": "",
-      "pickup": "",
-      "staff": "Débora",
-      "html_link": "https://www.google.com/calendar/event?eid=NmJjcXVzMHU4MHZuOGltbmszNDlnMmg4bHEgd2VmbHlteEBt&ctz=America/Mexico_City",
-      "overweight": false,
-      "celebration": false
-    },
-    {
-      "calendar": "weflymx@gmail.com",
-      "id": "3frvfgm7lvklon2upgkn0tqdov",
-      "title_raw": "*2P Tonatiuh Vazquez Vilchis NC",
-      "name": "Tonatiuh Vazquez Vilchis",
-      "datetime": "2026-04-11T06:00",
-      "date": "2026-04-11",
-      "time": "06:00",
-      "status": "confirmado",
-      "pax": 2,
-      "weights": [
-        80,
-        70
-      ],
-      "total_weight": 150,
-      "service": "Vuelo Privado en Teotihuacán",
-      "includes": [],
-      "phone": "+52 2461112974",
-      "email": "tonashow4@hotmail.com",
-      "reserva": "1574603237891479",
-      "total": "",
-      "pickup": "",
-      "staff": "Débora",
-      "html_link": "https://www.google.com/calendar/event?eid=M2ZydmZnbTdsdmtsb24ydXBna24wdHFkb3Ygd2VmbHlteEBt&ctz=America/Mexico_City",
-      "overweight": false,
-      "celebration": false
-    },
-    {
-      "calendar": "weflymx@gmail.com",
-      "id": "4nvf4uoca021t8e5eb24fo192p",
-      "title_raw": "2P KATHERINE ZAHUNA RUIZ",
-      "name": "KATHERINE ZAHUNA RUIZ",
-      "datetime": "2026-04-12T06:00",
-      "date": "2026-04-12",
-      "time": "06:00",
-      "status": "confirmado",
-      "pax": 2,
-      "weights": [
-        69,
-        90
-      ],
-      "total_weight": 159,
-      "service": "Vuelo Compartido - Fin de semana",
-      "includes": [],
-      "phone": "5536707996",
-      "email": "kate.zaru08@gmail.com",
-      "reserva": "1574603238460896",
-      "total": "",
-      "pickup": "",
-      "staff": "Débora",
-      "html_link": "https://www.google.com/calendar/event?eid=NG52ZjR1b2NhMDIxdDhlNWViMjRmbzE5MnAgd2VmbHlteEBt&ctz=America/Mexico_City",
-      "overweight": false,
-      "celebration": false
-    },
-    {
-      "calendar": "weflymx@gmail.com",
-      "id": "2st8tn1sbud1uolo6qhjrl41ni",
-      "title_raw": "3P Esteban Montero Hernández",
-      "name": "Esteban Montero Hernández",
-      "datetime": "2026-04-13T04:30",
-      "date": "2026-04-13",
-      "time": "04:30",
-      "status": "confirmado",
-      "pax": 3,
-      "weights": [
-        85,
-        60,
-        33
-      ],
-      "total_weight": 178,
-      "service": "Vuelo Compartido + Transporte Grupal + Acceso a las pirámides de Teotihuacán + Buffet",
-      "includes": [
-        "Buffet",
-        "Pirámides",
-        "Transporte"
-      ],
-      "phone": "+506 8836 8100",
-      "email": "estemh@gmail.com",
-      "reserva": "1574603234607095",
-      "total": "",
-      "pickup": "",
-      "staff": "Débora",
-      "html_link": "https://www.google.com/calendar/event?eid=MnN0OHRuMXNidWQxdW9sbzZxaGpybDQxbmkgd2VmbHlteEBt&ctz=America/Mexico_City",
-      "overweight": false,
-      "celebration": false
-    },
-    {
-      "calendar": "weflymx@gmail.com",
-      "id": "54rkccvufjcg8r316741llrn52",
-      "title_raw": "2P Audrie Sham",
-      "name": "Audrie Sham",
-      "datetime": "2026-04-13T04:30",
-      "date": "2026-04-13",
-      "time": "04:30",
-      "status": "confirmado",
-      "pax": 2,
-      "weights": [
-        56,
-        102
-      ],
-      "total_weight": 158,
-      "service": "ALL INCLUSIVE + Transporte redondo + Desayuno La Cueva + Pirámides con guía certificado",
-      "includes": [
-        "Cueva",
-        "Desayuno",
-        "Pirámides",
-        "Transporte"
-      ],
-      "phone": "+1 4038882809",
-      "email": "audrie.sham@gmail.com",
-      "reserva": "1574604064805962",
-      "total": "",
-      "pickup": "",
-      "staff": "Débora",
-      "html_link": "https://www.google.com/calendar/event?eid=NTRya2NjdnVmamNnOHIzMTY3NDFsbHJuNTIgd2VmbHlteEBt&ctz=America/Mexico_City",
-      "overweight": false,
-      "celebration": false
-    },
-    {
-      "calendar": "weflymx@gmail.com",
-      "id": "7f1mifojhvpsc94iqih708a5b9",
-      "title_raw": "7P Viviana Romero Florez",
-      "name": "Viviana Romero Florez",
-      "datetime": "2026-04-13T04:30",
-      "date": "2026-04-13",
-      "time": "04:30",
-      "status": "confirmado",
-      "pax": 7,
-      "weights": [
-        70,
-        86,
-        61,
-        61,
-        79,
-        72,
-        70
-      ],
-      "total_weight": 499,
-      "service": "Vuelo Compartido + Transporte Grupal + Acceso a las pirámides de Teotihuacán + Buffet + Video drone",
-      "includes": [
-        "Buffet",
-        "Drone",
-        "Pirámides",
-        "Transporte"
-      ],
-      "phone": "+57 3143771511",
-      "email": "romervi@gmail.com",
-      "reserva": "1574603227506647",
-      "total": "",
-      "pickup": "",
-      "staff": "Débora",
-      "html_link": "https://www.google.com/calendar/event?eid=N2YxbWlmb2podnBzYzk0aXFpaDcwOGE1Yjkgd2VmbHlteEBt&ctz=America/Mexico_City",
-      "overweight": false,
-      "celebration": false
-    },
-    {
-      "calendar": "weflymx@gmail.com",
-      "id": "7mtfdt0dableugkt0kk5us18q2",
-      "title_raw": "3P Cesar Melchor Hernandez Escalante",
-      "name": "Cesar Melchor Hernandez Escalante",
-      "datetime": "2026-04-13T04:30",
-      "date": "2026-04-13",
-      "time": "04:30",
-      "status": "confirmado",
-      "pax": 3,
-      "weights": [
-        110,
-        90,
-        84,
-        15
-      ],
-      "total_weight": 299,
-      "service": "ALL INCLUSIVE + Transporte redondo + Desayuno La Cueva + Pirámides con guía certificado",
-      "includes": [
-        "Cueva",
-        "Desayuno",
-        "Pirámides",
-        "Transporte"
-      ],
-      "phone": "6644933757",
-      "email": "cesarher0698@gmail.com",
-      "reserva": "1574603301461555",
-      "total": "",
-      "pickup": "",
-      "staff": "Débora",
-      "html_link": "https://www.google.com/calendar/event?eid=N210ZmR0MGRhYmxldWdrdDBrazV1czE4cTIgd2VmbHlteEBt&ctz=America/Mexico_City",
-      "overweight": false,
-      "celebration": false
-    },
-    {
-      "calendar": "weflymx@gmail.com",
-      "id": "4e54b9253h5i9urekg5t4c509i",
-      "title_raw": "2P Faustine Adriansen",
-      "name": "Faustine Adriansen",
-      "datetime": "2026-04-13T06:00",
-      "date": "2026-04-13",
-      "time": "06:00",
-      "status": "confirmado",
-      "pax": 2,
-      "weights": [
-        55,
-        70
-      ],
-      "total_weight": 125,
-      "service": "Vuelo Compartido en Teotihuacán Promo Lunes a Viernes",
-      "includes": [],
-      "phone": "+33 783009747",
-      "email": "faustine.a@hotmail.com",
-      "reserva": "1574603065396875",
-      "total": "",
-      "pickup": "",
-      "staff": "Débora",
-      "html_link": "https://www.google.com/calendar/event?eid=NGU1NGI5MjUzaDVpOXVyZWtnNXQ0YzUwOWkgd2VmbHlteEBt&ctz=America/Mexico_City",
-      "overweight": false,
-      "celebration": false
-    },
-    {
-      "calendar": "weflymx@gmail.com",
-      "id": "0vorpbn8rh5u62u881ihs1eqdk",
-      "title_raw": "3P Emily Leon",
-      "name": "Emily Leon",
-      "datetime": "2026-04-14T04:30",
-      "date": "2026-04-14",
-      "time": "04:30",
-      "status": "confirmado",
-      "pax": 3,
-      "weights": [
-        73
-      ],
-      "total_weight": 73,
-      "service": "Vuelo Compartido + Transporte Grupal + Acceso a las pirámides de Teotihuacán + Buffet",
-      "includes": [
-        "Buffet",
-        "Pirámides",
-        "Transporte"
-      ],
-      "phone": "+1 8189137878",
-      "email": "emily.leon24@yahoo.com",
-      "reserva": "1574604032985086",
-      "total": "",
-      "pickup": "",
-      "staff": "Débora",
-      "html_link": "https://www.google.com/calendar/event?eid=MHZvcnBibjhyaDV1NjJ1ODgxaWhzMWVxZGsgd2VmbHlteEBt&ctz=America/Mexico_City",
-      "overweight": false,
-      "celebration": false
-    },
-    {
-      "calendar": "weflymx@gmail.com",
-      "id": "60a58vefcn02nqhucl1lplh6ld",
-      "title_raw": "2P Karla Yuviana Rivera Salas",
-      "name": "Karla Yuviana Rivera Salas",
-      "datetime": "2026-04-14T04:30",
-      "date": "2026-04-14",
-      "time": "04:30",
-      "status": "confirmado",
-      "pax": 2,
-      "weights": [
-        68,
-        80
-      ],
-      "total_weight": 148,
-      "service": "ALL INCLUSIVE + Transporte redondo + Desayuno La Cueva + Pirámides con guía certificado",
-      "includes": [
-        "Cueva",
-        "Desayuno",
-        "Pirámides",
-        "Transporte"
-      ],
-      "phone": "+52 6464000480",
-      "email": "karlayuviana.rivera@outlook.com",
-      "reserva": "1574603198046618",
-      "total": "7,000 MXN",
-      "pickup": "",
-      "staff": "Débora",
-      "html_link": "https://www.google.com/calendar/event?eid=NjBhNTh2ZWZjbjAybnFodWNsMWxwbGg2bGQgd2VmbHlteEBt&ctz=America/Mexico_City",
-      "overweight": false,
-      "celebration": false
-    },
-    {
-      "calendar": "weflymx@gmail.com",
-      "id": "2rn1k8kahu0f6ft3qoie3md4si",
-      "title_raw": "3P Antonio Bernal",
-      "name": "Antonio Bernal",
-      "datetime": "2026-04-14T06:00",
-      "date": "2026-04-14",
-      "time": "06:00",
-      "status": "confirmado",
-      "pax": 3,
-      "weights": [
-        90,
-        60,
-        65
-      ],
-      "total_weight": 215,
-      "service": "Vuelo Compartido en Teotihuacán Promo Lunes a Viernes + Desayuno Cueva",
-      "includes": [
-        "Cueva",
-        "Desayuno"
-      ],
-      "phone": "5517855455",
-      "email": "antonio.bernal77@gmail.com",
-      "reserva": "1574604035938213",
-      "total": "",
-      "pickup": "",
-      "staff": "Débora",
-      "html_link": "https://www.google.com/calendar/event?eid=MnJuMWs4a2FodTBmNmZ0M3FvaWUzbWQ0c2kgd2VmbHlteEBt&ctz=America/Mexico_City",
-      "overweight": false,
-      "celebration": false
-    },
-    {
-      "calendar": "weflymx@gmail.com",
-      "id": "5ht7eqsp94jcfjia00bom2617m",
-      "title_raw": "2p Dwight Van Thillo",
-      "name": "Dwight Van Thillo",
-      "datetime": "2026-04-14T06:00",
-      "date": "2026-04-14",
-      "time": "06:00",
-      "status": "confirmado",
-      "pax": 2,
-      "weights": [
-        65,
-        62
-      ],
-      "total_weight": 127,
-      "service": "Vuelo Compartido en Teotihuacán Promo Lunes a Viernes",
-      "includes": [],
-      "phone": "+32 472695490",
-      "email": "dwight.van.thillo@gmail.com",
-      "reserva": "1574512119475646",
-      "total": "",
-      "pickup": "",
-      "staff": "Débora",
-      "html_link": "https://www.google.com/calendar/event?eid=NWh0N2Vxc3A5NGpjZmppYTAwYm9tMjYxN20gd2VmbHlteEBt&ctz=America/Mexico_City",
-      "overweight": false,
-      "celebration": false
-    },
-    {
-      "calendar": "weflymx@gmail.com",
-      "id": "1cih553nllr2iogr97ekchs959",
-      "title_raw": "2P William Eustace",
-      "name": "William Eustace",
-      "datetime": "2026-04-15T04:30",
-      "date": "2026-04-15",
-      "time": "04:30",
-      "status": "confirmado",
-      "pax": 2,
-      "weights": [
-        85,
-        60
-      ],
-      "total_weight": 145,
-      "service": "ALL INCLUSIVE + Transporte redondo + Desayuno La Cueva + Pirámides con guía certificado",
-      "includes": [
-        "Cueva",
-        "Desayuno",
-        "Pirámides",
-        "Transporte"
-      ],
-      "phone": "+61 432362605",
-      "email": "william.p.eustace@outlook.com",
-      "reserva": "1574604077182039",
-      "total": "",
-      "pickup": "",
-      "staff": "Débora",
-      "html_link": "https://www.google.com/calendar/event?eid=MWNpaDU1M25sbHIyaW9ncjk3ZWtjaHM5NTkgd2VmbHlteEBt&ctz=America/Mexico_City",
-      "overweight": false,
-      "celebration": false
-    },
-    {
-      "calendar": "weflymx@gmail.com",
-      "id": "33ibussji7n2rg1iph002crols",
-      "title_raw": "2P Adam Noon",
-      "name": "Adam Noon",
-      "datetime": "2026-04-17T04:30",
-      "date": "2026-04-17",
-      "time": "04:30",
-      "status": "confirmado",
-      "pax": 2,
-      "weights": [
-        81,
-        54
-      ],
-      "total_weight": 135,
-      "service": "ALL INCLUSIVE + Transporte redondo + Desayuno La Cueva + Pirámides con guía certificado",
-      "includes": [
-        "Cueva",
-        "Desayuno",
-        "Pirámides",
-        "Transporte"
-      ],
-      "phone": "+1 3109625816",
-      "email": "adamtania418@hotmail.com",
-      "reserva": "1574603218673744",
-      "total": "",
-      "pickup": "",
-      "staff": "Débora",
-      "html_link": "https://www.google.com/calendar/event?eid=MzNpYnVzc2ppN24ycmcxaXBoMDAyY3JvbHMgd2VmbHlteEBt&ctz=America/Mexico_City",
-      "overweight": false,
-      "celebration": false
-    },
-    {
-      "calendar": "weflymx@gmail.com",
-      "id": "53ulta3pcukl7hnf55qsfgaqdv",
-      "title_raw": "1P Jessica Johnson",
-      "name": "Jessica Johnson",
-      "datetime": "2026-04-17T04:30",
-      "date": "2026-04-17",
-      "time": "04:30",
-      "status": "confirmado",
-      "pax": 1,
-      "weights": [
-        77
-      ],
-      "total_weight": 77,
-      "service": "ALL INCLUSIVE + Transporte redondo + Desayuno La Cueva + Pirámides con guía certificado",
-      "includes": [
-        "Cueva",
-        "Desayuno",
-        "Pirámides",
-        "Transporte"
-      ],
-      "phone": "+1 9168028371",
-      "email": "jj012197@gmail.com",
-      "reserva": "1574604085135147",
-      "total": "",
-      "pickup": "",
-      "staff": "Débora",
-      "html_link": "https://www.google.com/calendar/event?eid=NTN1bHRhM3BjdWtsN2huZjU1cXNmZ2FxZHYgd2VmbHlteEBt&ctz=America/Mexico_City",
-      "overweight": false,
-      "celebration": false
-    },
-    {
-      "calendar": "weflymx@gmail.com",
-      "id": "6tbbmsfao155hujpgifjd7me3i",
-      "title_raw": "1P Karina Garcia",
-      "name": "Karina Garcia",
-      "datetime": "2026-04-17T04:30",
-      "date": "2026-04-17",
-      "time": "04:30",
-      "status": "confirmado",
-      "pax": 1,
-      "weights": [
-        57
-      ],
-      "total_weight": 57,
-      "service": "ALL INCLUSIVE + Transporte redondo + Desayuno La Cueva + Pirámides con guía certificado",
-      "includes": [
-        "Cueva",
-        "Desayuno",
-        "Pirámides",
-        "Transporte"
-      ],
-      "phone": "+1 7135157115",
-      "email": "karinadaniella@yahoo.com",
-      "reserva": "1574604076208199",
-      "total": "",
-      "pickup": "",
-      "staff": "Débora",
-      "html_link": "https://www.google.com/calendar/event?eid=NnRiYm1zZmFvMTU1aHVqcGdpZmpkN21lM2kgd2VmbHlteEBt&ctz=America/Mexico_City",
-      "overweight": false,
-      "celebration": false
-    },
-    {
-      "calendar": "weflymx@gmail.com",
-      "id": "79aednqj98vf13jaqfu3dn0js7",
-      "title_raw": "8P Jordan Dykman",
-      "name": "Jordan Dykman",
-      "datetime": "2026-04-17T04:30",
-      "date": "2026-04-17",
-      "time": "04:30",
-      "status": "confirmado",
-      "pax": 8,
-      "weights": [
-        68,
-        77,
-        82,
-        64,
-        68,
-        62,
-        70,
-        77
-      ],
-      "total_weight": 568,
-      "service": "Vuelo Compartido + Transporte Grupal + Acceso a las pirámides de Teotihuacán + Desayuno Buffet",
-      "includes": [
-        "Buffet",
-        "Desayuno",
-        "Pirámides",
-        "Transporte"
-      ],
-      "phone": "+19738203330",
-      "email": "jndykman@gmail.com",
-      "reserva": "1574603014555187",
-      "total": "",
-      "pickup": "",
-      "staff": "Débora",
-      "html_link": "https://www.google.com/calendar/event?eid=NzlhZWRucWo5OHZmMTNqYXFmdTNkbjBqczcgd2VmbHlteEBt&ctz=America/Mexico_City",
-      "overweight": false,
-      "celebration": false
-    },
-    {
-      "calendar": "weflymx@gmail.com",
-      "id": "6hapcmgqrgmjfojuu8u8e4l17l",
-      "title_raw": "15P Hannah Kelly",
-      "name": "Hannah Kelly",
-      "datetime": "2026-04-17T06:00",
-      "date": "2026-04-17",
-      "time": "06:00",
-      "status": "confirmado",
-      "pax": 15,
-      "weights": [
-        64,
-        60,
-        60,
-        58,
-        85,
-        85,
-        85,
-        90,
-        72,
-        70,
-        66,
-        68,
-        85,
-        52,
-        65
-      ],
-      "total_weight": 1065,
-      "service": "Vuelo Compartido en Teotihuacán Promo Lunes a Viernes",
-      "includes": [],
-      "phone": "+353 870956671",
-      "email": "hannahkelly.kelly@gmail.com",
-      "reserva": "1574603291332594",
-      "total": "",
-      "pickup": "",
-      "staff": "Débora",
-      "html_link": "https://www.google.com/calendar/event?eid=NmhhcGNtZ3FyZ21qZm9qdXU4dThlNGwxN2wgd2VmbHlteEBt&ctz=America/Mexico_City",
-      "overweight": false,
-      "celebration": false
-    },
-    {
-      "calendar": "weflymx@gmail.com",
-      "id": "4luf3enj2cfomgn47ip9vjfm5a",
-      "title_raw": "MODIFICADO 2P Lizeth Rodriguez Montero",
-      "name": "Lizeth Rodriguez Montero",
-      "datetime": "2026-04-18T04:30",
-      "date": "2026-04-18",
-      "time": "04:30",
-      "status": "modificado",
-      "pax": 2,
-      "weights": [
-        70,
-        60
-      ],
-      "total_weight": 130,
-      "service": "ALL INCLUSIVE + Transporte redondo + Desayuno La Cueva + Pirámides con guía certificado",
-      "includes": [
-        "Cueva",
-        "Desayuno",
-        "Pirámides",
-        "Transporte"
-      ],
-      "phone": "5548326336",
-      "email": "lizethromo.243@gmail.com",
-      "reserva": "1574603317995866",
-      "total": "",
-      "pickup": "",
-      "staff": "Débora",
-      "html_link": "https://www.google.com/calendar/event?eid=NGx1ZjNlbmoyY2ZvbWduNDdpcDl2amZtNWEgd2VmbHlteEBt&ctz=America/Mexico_City",
-      "overweight": false,
-      "celebration": false
-    },
-    {
-      "calendar": "weflymx@gmail.com",
-      "id": "5s9u3r3ar9g0b3a9raq4jbaspk",
-      "title_raw": "3P Ramiro Iglesias Torres",
-      "name": "Ramiro Iglesias Torres",
-      "datetime": "2026-04-18T04:30",
-      "date": "2026-04-18",
-      "time": "04:30",
-      "status": "confirmado",
-      "pax": 3,
-      "weights": [
-        103,
-        68,
-        54
-      ],
-      "total_weight": 225,
-      "service": "ALL INCLUSIVE + Transporte redondo + Desayuno La Cueva + Pirámides con guía certificado + Video drone",
-      "includes": [
-        "Cueva",
-        "Desayuno",
-        "Drone",
-        "Pirámides",
-        "Transporte"
-      ],
-      "phone": "+17142482454",
-      "email": "iglesiasramiro@icloud.com",
-      "reserva": "1574604016525935",
-      "total": "",
-      "pickup": "",
-      "staff": "Débora",
-      "html_link": "https://www.google.com/calendar/event?eid=NXM5dTNyM2FyOWcwYjNhOXJhcTRqYmFzcGsgd2VmbHlteEBt&ctz=America/Mexico_City",
-      "overweight": false,
-      "celebration": false
-    },
-    {
-      "calendar": "weflymx@gmail.com",
-      "id": "70gh80e1teja7dk57f8os65fm1",
-      "title_raw": "2P Alannah Lavelle",
-      "name": "Alannah Lavelle",
-      "datetime": "2026-04-18T04:30",
-      "date": "2026-04-18",
-      "time": "04:30",
-      "status": "confirmado",
-      "pax": 2,
-      "weights": [
-        68,
-        80
-      ],
-      "total_weight": 148,
-      "service": "ALL INCLUSIVE + Transporte redondo + Desayuno La Cueva + Pirámides con guía certificado",
-      "includes": [
-        "Cueva",
-        "Desayuno",
-        "Pirámides",
-        "Transporte"
-      ],
-      "phone": "+353 874337524",
-      "email": "lavellal@tcd.ie",
-      "reserva": "1574603127567692",
-      "total": "",
-      "pickup": "",
-      "staff": "Débora",
-      "html_link": "https://www.google.com/calendar/event?eid=NzBnaDgwZTF0ZWphN2RrNTdmOG9zNjVmbTEgd2VmbHlteEBt&ctz=America/Mexico_City",
-      "overweight": false,
-      "celebration": false
-    },
-    {
-      "calendar": "weflymx@gmail.com",
-      "id": "0tjulstlm4jrlfib78o50oqnoi",
-      "title_raw": "3P Emily, Malia, Pipi Nelson",
-      "name": "Emily, Malia, Pipi Nelson",
-      "datetime": "2026-04-19T04:30",
-      "date": "2026-04-19",
-      "time": "04:30",
-      "status": "confirmado",
-      "pax": 3,
-      "weights": [
-        68
-      ],
-      "total_weight": 68,
-      "service": "Vuelo Compartido + Transporte Grupal + Acceso a las pirámides de Teotihuacán + Buffet",
-      "includes": [
-        "Buffet",
-        "Pirámides",
-        "Transporte"
-      ],
-      "phone": "+1 2188205625",
-      "email": "emilycnelson0@gmail.com",
-      "reserva": "1574604061006025",
-      "total": "",
-      "pickup": "",
-      "staff": "Débora",
-      "html_link": "https://www.google.com/calendar/event?eid=MHRqdWxzdGxtNGpybGZpYjc4bzUwb3Fub2kgd2VmbHlteEBt&ctz=America/Mexico_City",
-      "overweight": false,
-      "celebration": false
-    },
-    {
-      "calendar": "weflymx@gmail.com",
-      "id": "3rohu3433uqba0b58uukh8lekc",
-      "title_raw": "2P Juan Gabriel González Cisneros",
-      "name": "Juan Gabriel González Cisneros",
-      "datetime": "2026-04-19T06:00",
-      "date": "2026-04-19",
-      "time": "06:00",
-      "status": "confirmado",
-      "pax": 2,
-      "weights": [
-        82,
-        80
-      ],
-      "total_weight": 162,
-      "service": "Vuelo Compartido - Fin de semana",
-      "includes": [],
-      "phone": "",
-      "email": "juangabmbm@gmail.com",
-      "reserva": "1574604021069884",
-      "total": "",
-      "pickup": "",
-      "staff": "Débora",
-      "html_link": "https://www.google.com/calendar/event?eid=M3JvaHUzNDMzdXFiYTBiNTh1dWtoOGxla2Mgd2VmbHlteEBt&ctz=America/Mexico_City",
-      "overweight": false,
-      "celebration": false
-    },
-    {
-      "calendar": "weflymx@gmail.com",
-      "id": "5q3o79j7dvdgplfe91kbav3m0f",
-      "title_raw": "2P Julie Hendy",
-      "name": "Julie Hendy",
-      "datetime": "2026-04-19T06:00",
-      "date": "2026-04-19",
-      "time": "06:00",
-      "status": "confirmado",
-      "pax": 2,
-      "weights": [
-        61,
-        81
-      ],
-      "total_weight": 142,
-      "service": "Vuelo Compartido - Fin de semana",
-      "includes": [],
-      "phone": "+1 6198029183",
-      "email": "bowenandjulie@gmail.com",
-      "reserva": "1574604021069884",
-      "total": "",
-      "pickup": "",
-      "staff": "Débora",
-      "html_link": "https://www.google.com/calendar/event?eid=NXEzbzc5ajdkdmRncGxmZTkxa2JhdjNtMGYgd2VmbHlteEBt&ctz=America/Mexico_City",
-      "overweight": false,
-      "celebration": false
-    },
-    {
-      "calendar": "weflymx@gmail.com",
-      "id": "2hl73fkn8qqf3gebodv9ppvsvb",
-      "title_raw": "2P Cornelius Moller NC",
-      "name": "Cornelius Moller",
-      "datetime": "2026-04-20T04:30",
-      "date": "2026-04-20",
-      "time": "04:30",
-      "status": "confirmado",
-      "pax": 2,
-      "weights": [
-        84,
-        82
-      ],
-      "total_weight": 166,
-      "service": "Vuelo Privado en Teotihuacán + Transporte privado + Pirámides con guía",
-      "includes": [
-        "Pirámides",
-        "Transporte"
-      ],
-      "phone": "+61431739578",
-      "email": "corneliusmoller@gmail.com",
-      "reserva": "1574603283937254",
-      "total": "",
-      "pickup": "Pick up pendiente",
-      "staff": "Débora",
-      "html_link": "https://www.google.com/calendar/event?eid=MmhsNzNma244cXFmM2dlYm9kdjlwcHZzdmIgd2VmbHlteEBt&ctz=America/Mexico_City",
-      "overweight": false,
-      "celebration": false
-    },
-    {
-      "calendar": "weflymx@gmail.com",
-      "id": "501o4oeqedo6hcrq24k13ore41",
-      "title_raw": "2P Catalina Rengifo",
-      "name": "Catalina Rengifo",
-      "datetime": "2026-04-20T04:30",
-      "date": "2026-04-20",
-      "time": "04:30",
-      "status": "confirmado",
-      "pax": 2,
-      "weights": [
-        56,
-        59
-      ],
-      "total_weight": 115,
-      "service": "ALL INCLUSIVE + Transporte redondo + Desayuno La Cueva + Pirámides con guía certificado",
-      "includes": [
-        "Cueva",
-        "Desayuno",
-        "Pirámides",
-        "Transporte"
-      ],
-      "phone": "+57 3014493697",
-      "email": "catalina.rengifo16@gmail.com",
-      "reserva": "1574604073471229",
-      "total": "",
-      "pickup": "",
-      "staff": "Débora",
-      "html_link": "https://www.google.com/calendar/event?eid=NTAxbzRvZXFlZG82aGNycTI0azEzb3JlNDEgd2VmbHlteEBt&ctz=America/Mexico_City",
-      "overweight": false,
-      "celebration": false
-    },
-    {
-      "calendar": "weflymx@gmail.com",
-      "id": "4oe6k9te9gls1d5qbt32iog4eg",
-      "title_raw": "2P Nicole Caceres",
-      "name": "Nicole Caceres",
-      "datetime": "2026-04-20T06:00",
-      "date": "2026-04-20",
-      "time": "06:00",
-      "status": "confirmado",
-      "pax": 2,
-      "weights": [
-        79,
-        47
-      ],
-      "total_weight": 126,
-      "service": "Vuelo Compartido en Teotihuacán Promo Lunes a Viernes",
-      "includes": [],
-      "phone": "+1 3472568723",
-      "email": "nicolencaceres@gmail.com",
-      "reserva": "1574603225268102",
-      "total": "",
-      "pickup": "",
-      "staff": "Débora",
-      "html_link": "https://www.google.com/calendar/event?eid=NG9lNms5dGU5Z2xzMWQ1cWJ0MzJpb2c0ZWcgd2VmbHlteEBt&ctz=America/Mexico_City",
-      "overweight": false,
-      "celebration": false
-    },
-    {
-      "calendar": "weflymx@gmail.com",
-      "id": "6rp198ctp2cu1fls5hnm5uv6tf",
-      "title_raw": "2P Charlotte Joguet",
-      "name": "Charlotte Joguet",
-      "datetime": "2026-04-20T06:00",
-      "date": "2026-04-20",
-      "time": "06:00",
-      "status": "confirmado",
-      "pax": 2,
-      "weights": [
-        58,
-        54
-      ],
-      "total_weight": 112,
-      "service": "Vuelo Compartido en Teotihuacán Promo Lunes a Viernes",
-      "includes": [],
-      "phone": "+33 632418702",
-      "email": "acharlottejoguet@gmail.com",
-      "reserva": "1574604089118715",
-      "total": "",
-      "pickup": "",
-      "staff": "Débora",
-      "html_link": "https://www.google.com/calendar/event?eid=NnJwMTk4Y3RwMmN1MWZsczVobm01dXY2dGYgd2VmbHlteEBt&ctz=America/Mexico_City",
-      "overweight": false,
-      "celebration": false
-    },
-    {
-      "calendar": "weflymx@gmail.com",
-      "id": "25137cm3ptfo0buati2tbao77g",
-      "title_raw": "2P Daniela Rodriguez Bautista",
-      "name": "Daniela Rodriguez Bautista",
-      "datetime": "2026-04-22T06:00",
-      "date": "2026-04-22",
-      "time": "06:00",
-      "status": "confirmado",
-      "pax": 2,
-      "weights": [
-        61,
-        87
-      ],
-      "total_weight": 148,
-      "service": "Vuelo Compartido en Teotihuacán Promo Lunes a Viernes + Cueva",
-      "includes": [
-        "Cueva"
-      ],
-      "phone": "+57 3208173213",
-      "email": "danielarodriguezbau@gmail.com",
-      "reserva": "1574604023310034",
-      "total": "",
-      "pickup": "",
-      "staff": "Débora",
-      "html_link": "https://www.google.com/calendar/event?eid=MjUxMzdjbTNwdGZvMGJ1YXRpMnRiYW83N2cgd2VmbHlteEBt&ctz=America/Mexico_City",
-      "overweight": false,
-      "celebration": false
-    },
-    {
-      "calendar": "weflymx@gmail.com",
-      "id": "4dh1rkpnasl4lpm2ienddkt602",
-      "title_raw": "3P Carmen Sarahí Portela Silva",
-      "name": "Carmen Sarahí Portela Silva",
-      "datetime": "2026-04-23T04:30",
-      "date": "2026-04-23",
-      "time": "04:30",
-      "status": "confirmado",
-      "pax": 3,
-      "weights": [
-        90,
-        61,
-        65
-      ],
-      "total_weight": 216,
-      "service": "ALL INCLUSIVE + Transporte redondo + Desayuno La Cueva + Pirámides con guía certificado",
-      "includes": [
-        "Cueva",
-        "Desayuno",
-        "Pirámides",
-        "Transporte"
-      ],
-      "phone": "6121559744",
-      "email": "sportela86@gmail.com",
-      "reserva": "1574604046527170",
-      "total": "",
-      "pickup": "",
-      "staff": "Débora",
-      "html_link": "https://www.google.com/calendar/event?eid=NGRoMXJrcG5hc2w0bHBtMmllbmRka3Q2MDIgd2VmbHlteEBt&ctz=America/Mexico_City",
-      "overweight": false,
-      "celebration": false
-    },
-    {
-      "calendar": "weflymx@gmail.com",
-      "id": "2cofkknt3165av3mq20hqdv1bv",
-      "title_raw": "2P Ignacio Puyal Velo",
-      "name": "Ignacio Puyal Velo",
-      "datetime": "2026-04-23T06:00",
-      "date": "2026-04-23",
-      "time": "06:00",
-      "status": "confirmado",
-      "pax": 2,
-      "weights": [
-        75,
-        57
-      ],
-      "total_weight": 132,
-      "service": "Vuelo Privado en Teotihuacán",
-      "includes": [],
-      "phone": "+34 615656113",
-      "email": "ignaciopuyal@gmail.com",
-      "reserva": "1574604074780133",
-      "total": "",
-      "pickup": "",
-      "staff": "Débora",
-      "html_link": "https://www.google.com/calendar/event?eid=MmNvZmtrbnQzMTY1YXYzbXEyMGhxZHYxYnYgd2VmbHlteEBt&ctz=America/Mexico_City",
-      "overweight": false,
-      "celebration": false
-    }
-  ],
-  "bookeo_emails": [
-    {
-      "name": "Jessica Johnson",
-      "flight_date_raw": "viernes, 17 abril 2026",
-      "flight_date": "2026-04-17",
-      "hour": "4:30",
-      "experience": "ALL INCLUSIVE",
-      "pax": "1 adulto",
-      "price": "3640 MXN",
-      "received": "mar, 7 abr 2026, 11:58 p.m.",
-      "unread": true,
-      "source": "bookeo"
-    },
-    {
-      "name": "María Raquel Delgado Salas",
-      "flight_date_raw": "jueves, 9 abril 2026",
-      "flight_date": "2026-04-09",
-      "hour": "6:00",
-      "experience": "Vuelo Compartido Promo L-V",
-      "pax": "",
-      "price": "",
-      "received": "mar, 7 abr 2026, 8:14 p.m.",
-      "unread": true,
-      "source": "bookeo"
-    },
-    {
-      "name": "Olga Vargas Pereira",
-      "flight_date_raw": "jueves, 9 abril 2026",
-      "flight_date": "2026-04-09",
-      "hour": "4:30",
-      "experience": "ALL INCLUSIVE",
-      "pax": "1 adulto",
-      "price": "3640 MXN",
-      "received": "mar, 7 abr 2026, 4:44 p.m.",
-      "unread": false,
-      "source": "bookeo"
-    },
-    {
-      "name": "Karina Garcia",
-      "flight_date_raw": "viernes, 17 abril 2026",
-      "flight_date": "2026-04-17",
-      "hour": "4:30",
-      "experience": "ALL INCLUSIVE",
-      "pax": "1 adulto",
-      "price": "3640 MXN",
-      "received": "mar, 7 abr 2026, 4:17 p.m.",
-      "unread": false,
-      "source": "bookeo"
-    },
-    {
-      "name": "Ignacio Puyal Velo",
-      "flight_date_raw": "jueves, 23 abril 2026",
-      "flight_date": "2026-04-23",
-      "hour": "6:00",
-      "experience": "Vuelo Privado en Teotihuacán",
-      "pax": "2 adultos",
-      "price": "7800 MXN",
-      "received": "mar, 7 abr 2026, 1:39 p.m.",
-      "unread": false,
-      "source": "bookeo"
-    },
-    {
-      "name": "Alex Reavley",
-      "flight_date_raw": "jueves, 7 mayo 2026",
-      "flight_date": "2026-05-07",
-      "hour": "4:30",
-      "experience": "ALL INCLUSIVE",
-      "pax": "2 adultos",
-      "price": "7280 MXN",
-      "received": "mar, 7 abr 2026, 11:32 a.m.",
-      "unread": false,
-      "source": "bookeo"
-    },
-    {
-      "name": "Nicole Bansal",
-      "flight_date_raw": "martes, 5 mayo 2026",
-      "flight_date": "2026-05-05",
-      "hour": "4:30",
-      "experience": "",
-      "pax": "",
-      "price": "",
-      "received": "mar, 7 abr 2026, 10:14 a.m.",
-      "unread": false,
-      "source": "bookeo"
-    },
-    {
-      "name": "Catalina Rengifo",
-      "flight_date_raw": "lunes, 20 abril 2026",
-      "flight_date": "2026-04-20",
-      "hour": "4:30",
-      "experience": "ALL INCLUSIVE",
-      "pax": "2 adultos",
-      "price": "7280 MXN",
-      "received": "lun, 6 abr 2026, 11:12 p.m.",
-      "unread": false,
-      "source": "bookeo"
-    },
-    {
-      "name": "Fernando Nino",
-      "flight_date_raw": "domingo, 17 mayo 2026",
-      "flight_date": "2026-05-17",
-      "hour": "4:30",
-      "experience": "ALL INCLUSIVE",
-      "pax": "2 adultos",
-      "price": "",
-      "received": "lun, 6 abr 2026, 9:28 p.m.",
-      "unread": false,
-      "source": "bookeo"
-    },
-    {
-      "name": "William Eustace",
-      "flight_date_raw": "lunes, 15 junio 2026",
-      "flight_date": "2026-06-15",
-      "hour": "4:30",
-      "experience": "",
-      "pax": "2 adultos",
-      "price": "",
-      "received": "lun, 6 abr 2026, 9:07 p.m.",
-      "unread": false,
-      "source": "bookeo"
-    },
-    {
-      "name": "Audrie Sham",
-      "flight_date_raw": "lunes, 13 abril 2026",
-      "flight_date": "2026-04-13",
-      "hour": "",
-      "experience": "",
-      "pax": "2 adultos",
-      "price": "",
-      "received": "lun, 6 abr 2026, 2:17 p.m.",
-      "unread": false,
-      "source": "bookeo"
-    },
-    {
-      "name": "Brett Murray",
-      "flight_date_raw": "martes, 7 abril 2026",
-      "flight_date": "2026-04-07",
-      "hour": "",
-      "experience": "",
-      "pax": "",
-      "price": "",
-      "received": "lun, 6 abr 2026, 1:41 p.m.",
-      "unread": false,
-      "source": "bookeo"
-    },
-    {
-      "name": "Maximilian Spraul",
-      "flight_date_raw": "martes, 7 abril 2026",
-      "flight_date": "2026-04-07",
-      "hour": "",
-      "experience": "",
-      "pax": "",
-      "price": "",
-      "received": "lun, 6 abr 2026, 12:38 p.m.",
-      "unread": false,
-      "source": "bookeo"
-    },
-    {
-      "name": "Bianca Mendez",
-      "flight_date_raw": "martes, 7 abril 2026",
-      "flight_date": "2026-04-07",
-      "hour": "",
-      "experience": "",
-      "pax": "2 adultos",
-      "price": "",
-      "received": "lun, 6 abr 2026, 11:32 a.m.",
-      "unread": false,
-      "source": "bookeo"
-    },
-    {
-      "name": "Emily Malia Pipi Nelson Bertelsen Eitel",
-      "flight_date_raw": "domingo, 19 abril 2026",
-      "flight_date": "2026-04-19",
-      "hour": "",
-      "experience": "",
-      "pax": "",
-      "price": "",
-      "received": "lun, 6 abr 2026, 10:57 a.m.",
-      "unread": false,
-      "source": "bookeo"
-    },
-    {
-      "name": "Lana Quelle",
-      "flight_date_raw": "martes, 7 abril 2026",
-      "flight_date": "2026-04-07",
-      "hour": "",
-      "experience": "",
-      "pax": "",
-      "price": "",
-      "received": "lun, 6 abr 2026, 10:54 a.m.",
-      "unread": false,
-      "source": "bookeo"
-    },
-    {
-      "name": "Maurice Koster",
-      "flight_date_raw": "sábado, 2 mayo 2026",
-      "flight_date": "2026-05-02",
-      "hour": "4:30",
-      "experience": "ALL INCLUSIVE",
-      "pax": "2 adultos",
-      "price": "7280 MXN",
-      "received": "lun, 6 abr 2026, 8:55 a.m.",
-      "unread": false,
-      "source": "bookeo"
-    },
-    {
-      "name": "Gema Varela",
-      "flight_date_raw": "viernes, 10 abril 2026",
-      "flight_date": "2026-04-10",
-      "hour": "4:30",
-      "experience": "ALL INCLUSIVE",
-      "pax": "4 adultos",
-      "price": "14560 MXN",
-      "received": "lun, 6 abr 2026, 8:49 a.m.",
-      "unread": false,
-      "source": "bookeo"
-    },
-    {
-      "name": "Johannes Goerling",
-      "flight_date_raw": "martes, 7 abril 2026",
-      "flight_date": "2026-04-07",
-      "hour": "",
-      "experience": "",
-      "pax": "",
-      "price": "",
-      "received": "dom, 5 abr 2026, 7:17 p.m.",
-      "unread": false,
-      "source": "bookeo"
-    },
-    {
-      "name": "Carina Affinito",
-      "flight_date_raw": "sábado, 6 junio 2026",
-      "flight_date": "2026-06-06",
-      "hour": "",
-      "experience": "",
-      "pax": "2 adultos",
-      "price": "",
-      "received": "dom, 5 abr 2026, 3:49 p.m.",
-      "unread": false,
-      "source": "bookeo"
-    },
-    {
-      "name": "Dillon Rix",
-      "flight_date_raw": "martes, 7 abril 2026",
-      "flight_date": "2026-04-07",
-      "hour": "",
-      "experience": "",
-      "pax": "",
-      "price": "",
-      "received": "dom, 5 abr 2026, 2:59 p.m.",
-      "unread": false,
-      "source": "bookeo"
-    },
-    {
-      "name": "Kristine Stahl",
-      "flight_date_raw": "jueves, 21 mayo 2026",
-      "flight_date": "2026-05-21",
-      "hour": "",
-      "experience": "",
-      "pax": "",
-      "price": "",
-      "received": "dom, 5 abr 2026, 12:59 p.m.",
-      "unread": false,
-      "source": "bookeo"
-    },
-    {
-      "name": "Sarah Hemmer",
-      "flight_date_raw": "martes, 28 abril 2026",
-      "flight_date": "2026-04-28",
-      "hour": "",
-      "experience": "",
-      "pax": "",
-      "price": "",
-      "received": "sáb, 4 abr 2026, 6:34 p.m.",
-      "unread": false,
-      "source": "bookeo"
-    },
-    {
-      "name": "Carmen Sarahí Portela Silva",
-      "flight_date_raw": "jueves, 23 abril 2026",
-      "flight_date": "2026-04-23",
-      "hour": "4:30",
-      "experience": "ALL INCLUSIVE",
-      "pax": "3 adultos",
-      "price": "10920 MXN",
-      "received": "sáb, 4 abr 2026, 10:25 a.m.",
-      "unread": false,
-      "source": "bookeo"
-    },
-    {
-      "name": "Antonio Bernal",
-      "flight_date_raw": "martes, 14 abril 2026",
-      "flight_date": "2026-04-14",
-      "hour": "",
-      "experience": "",
-      "pax": "",
-      "price": "",
-      "received": "vie, 3 abr 2026, 2:47 p.m.",
-      "unread": false,
-      "source": "bookeo"
-    },
-    {
-      "name": "Naomie Guillaume",
-      "flight_date_raw": "sábado, 25 abril 2026",
-      "flight_date": "2026-04-25",
-      "hour": "",
-      "experience": "",
-      "pax": "1 adulto",
-      "price": "",
-      "received": "vie, 3 abr 2026, 2:03 p.m.",
-      "unread": false,
-      "source": "bookeo"
-    },
-    {
-      "name": "Ashley Diaz",
-      "flight_date_raw": "sábado, 25 abril 2026",
-      "flight_date": "2026-04-25",
-      "hour": "",
-      "experience": "",
-      "pax": "1 adulto",
-      "price": "",
-      "received": "vie, 3 abr 2026, 1:56 p.m.",
-      "unread": false,
-      "source": "bookeo"
-    },
-    {
-      "name": "Emily Leon",
-      "flight_date_raw": "martes, 14 abril 2026",
-      "flight_date": "2026-04-14",
-      "hour": "",
-      "experience": "",
-      "pax": "",
-      "price": "",
-      "received": "vie, 3 abr 2026, 1:23 p.m.",
-      "unread": false,
-      "source": "bookeo"
-    },
-    {
-      "name": "Umme Hossain",
-      "flight_date_raw": "sábado, 25 abril 2026",
-      "flight_date": "2026-04-25",
-      "hour": "",
-      "experience": "",
-      "pax": "2 adultos",
-      "price": "",
-      "received": "vie, 3 abr 2026, 12:53 p.m.",
-      "unread": false,
-      "source": "bookeo"
-    },
-    {
-      "name": "Luisa Fernanda Higuera Joseph",
-      "flight_date_raw": "sábado, 4 abril 2026",
-      "flight_date": "2026-04-04",
-      "hour": "6:00",
-      "experience": "Vuelo Compartido Fin de semana",
-      "pax": "4 adultos",
-      "price": "11440 MXN",
-      "received": "vie, 3 abr 2026, 10:48 a.m.",
-      "unread": false,
-      "source": "bookeo"
-    },
-    {
-      "name": "Deborah Hernandez",
-      "flight_date_raw": "domingo, 5 abril 2026",
-      "flight_date": "2026-04-05",
-      "hour": "6:00",
-      "experience": "Vuelo Compartido Fin de semana",
-      "pax": "1 adulto",
-      "price": "3068 MXN",
-      "received": "vie, 3 abr 2026, 10:44 a.m.",
-      "unread": false,
-      "source": "bookeo"
-    },
-    {
-      "name": "Scott Kirton",
-      "flight_date_raw": "lunes, 18 mayo 2026",
-      "flight_date": "2026-05-18",
-      "hour": "4:30",
-      "experience": "ALL INCLUSIVE",
-      "pax": "2 adultos",
-      "price": "7280 MXN",
-      "received": "vie, 3 abr 2026, 7:54 a.m.",
-      "unread": false,
-      "source": "bookeo"
-    },
-    {
-      "name": "Marina Juez Egea",
-      "flight_date_raw": "viernes, 29 mayo 2026",
-      "flight_date": "2026-05-29",
-      "hour": "",
-      "experience": "",
-      "pax": "2 adultos",
-      "price": "",
-      "received": "vie, 3 abr 2026, 3:07 a.m.",
-      "unread": false,
-      "source": "bookeo"
-    },
-    {
-      "name": "Roberto Carlos Diaz Sanchez",
-      "flight_date_raw": "lunes, 6 abril 2026",
-      "flight_date": "2026-04-06",
-      "hour": "",
-      "experience": "",
-      "pax": "4 adultos",
-      "price": "",
-      "received": "vie, 3 abr 2026, 12:41 a.m.",
-      "unread": false,
-      "source": "bookeo"
-    },
-    {
-      "name": "Alejandra Molano Jaramillo",
-      "flight_date_raw": "lunes, 6 abril 2026",
-      "flight_date": "2026-04-06",
-      "hour": "",
-      "experience": "",
-      "pax": "2 adultos",
-      "price": "",
-      "received": "jue, 2 abr 2026, 8:01 p.m.",
-      "unread": false,
-      "source": "bookeo"
-    },
-    {
-      "name": "Jhon Roldan",
-      "flight_date_raw": "viernes, 3 abril 2026",
-      "flight_date": "2026-04-03",
-      "hour": "",
-      "experience": "",
-      "pax": "",
-      "price": "",
-      "received": "jue, 2 abr 2026, 4:18 p.m.",
-      "unread": false,
-      "source": "bookeo"
-    },
-    {
-      "name": "Juan Gabriel González Cisneros",
-      "flight_date_raw": "domingo, 19 abril 2026",
-      "flight_date": "2026-04-19",
-      "hour": "",
-      "experience": "",
-      "pax": "2 adultos",
-      "price": "",
-      "received": "jue, 2 abr 2026, 1:00 p.m.",
-      "unread": false,
-      "source": "bookeo"
-    },
-    {
-      "name": "Julie Hendy",
-      "flight_date_raw": "domingo, 19 abril 2026",
-      "flight_date": "2026-04-19",
-      "hour": "",
-      "experience": "",
-      "pax": "2 adultos",
-      "price": "",
-      "received": "jue, 2 abr 2026, 12:42 p.m.",
-      "unread": false,
-      "source": "bookeo"
-    },
-    {
-      "name": "Daniela Rodriguez Bautista",
-      "flight_date_raw": "miércoles, 22 abril 2026",
-      "flight_date": "2026-04-22",
-      "hour": "",
-      "experience": "",
-      "pax": "",
-      "price": "",
-      "received": "jue, 2 abr 2026, 11:16 a.m.",
-      "unread": false,
-      "source": "bookeo"
-    },
-    {
-      "name": "Minerva Gisselle Gutiérrez Temosihui",
-      "flight_date_raw": "domingo, 5 abril 2026",
-      "flight_date": "2026-04-05",
-      "hour": "",
-      "experience": "",
-      "pax": "1 adulto",
-      "price": "",
-      "received": "mié, 1 abr 2026, 8:46 p.m.",
-      "unread": false,
-      "source": "bookeo"
-    },
-    {
-      "name": "Kevin Mathew",
-      "flight_date_raw": "viernes, 24 abril 2026",
-      "flight_date": "2026-04-24",
-      "hour": "",
-      "experience": "",
-      "pax": "",
-      "price": "",
-      "received": "mié, 1 abr 2026, 8:46 p.m.",
-      "unread": false,
-      "source": "bookeo"
-    }
-  ],
-  "viator_emails": [
-    {
-      "ref": "BR-1382301789",
-      "flight_date_raw": "Sat, Apr 11, 2026",
-      "flight_date": "2026-04-11",
-      "received": "mar, 7 abr 2026, 5:27 a.m.",
-      "status": "nueva",
-      "unread": false,
-      "source": "viator"
-    },
-    {
-      "ref": "BR-1382240783",
-      "flight_date_raw": "Tue, Apr 07, 2026",
-      "flight_date": "2026-04-07",
-      "received": "lun, 6 abr 2026, 11:48 p.m.",
-      "status": "nueva",
-      "unread": false,
-      "source": "viator"
-    },
-    {
-      "ref": "BR-1382240453",
-      "flight_date_raw": "Tue, Apr 07, 2026",
-      "flight_date": "2026-04-07",
-      "received": "lun, 6 abr 2026, 11:47 p.m.",
-      "status": "nueva",
-      "unread": false,
-      "source": "viator"
-    },
-    {
-      "ref": "BR-1382091439",
-      "flight_date_raw": "Tue, Apr 21, 2026",
-      "flight_date": "2026-04-21",
-      "received": "lun, 6 abr 2026, 3:08 p.m.",
-      "status": "nueva",
-      "unread": false,
-      "source": "viator"
-    },
-    {
-      "ref": "BR-1381561931",
-      "flight_date_raw": "Sat, Apr 11, 2026",
-      "flight_date": "2026-04-11",
-      "received": "dom, 5 abr 2026, 11:43 a.m.",
-      "status": "modificada",
-      "unread": false,
-      "source": "viator"
-    },
-    {
-      "ref": "BR-1353331877",
-      "flight_date_raw": "Wed, Apr 08, 2026",
-      "flight_date": "2026-04-08",
-      "received": "dom, 5 abr 2026, 9:09 a.m.",
-      "status": "modificada",
-      "unread": false,
-      "source": "viator"
-    },
-    {
-      "ref": "BR-1376014351",
-      "flight_date_raw": "Thu, Apr 23, 2026",
-      "flight_date": "2026-04-23",
-      "received": "dom, 29 mar 2026, 11:22 p.m.",
-      "status": "modificada",
-      "unread": false,
-      "source": "viator"
-    },
-    {
-      "ref": "BR-1381108497",
-      "flight_date_raw": "Sat, May 16, 2026",
-      "flight_date": "2026-05-16",
-      "received": "sáb, 4 abr 2026, 9:13 a.m.",
-      "status": "modificada",
-      "unread": false,
-      "source": "viator"
-    },
-    {
-      "ref": "BR-1378071733",
-      "flight_date_raw": "Sun, Mar 29, 2026",
-      "flight_date": "2026-03-29",
-      "received": "sáb, 28 mar 2026, 9:42 a.m.",
-      "status": "nueva",
-      "unread": false,
-      "source": "viator"
-    },
-    {
-      "ref": "BR-?",
-      "flight_date_raw": "Sat, May 16, 2026",
-      "flight_date": "2026-05-16",
-      "received": "sáb, 4 abr 2026, 9:23 a.m.",
-      "status": "cancelada",
-      "unread": false,
-      "source": "viator"
-    },
-    {
-      "ref": "BR-1376581459",
-      "flight_date_raw": "Mon, Apr 06, 2026",
-      "flight_date": "2026-04-06",
-      "received": "mar, 24 mar 2026, 11:14 a.m.",
-      "status": "nueva",
-      "unread": false,
-      "source": "viator"
-    },
-    {
-      "ref": "BR-1378145803",
-      "flight_date_raw": "Sun, Mar 29, 2026",
-      "flight_date": "2026-03-29",
-      "received": "sáb, 28 mar 2026, 12:35 p.m.",
-      "status": "nueva",
-      "unread": false,
-      "source": "viator"
-    },
-    {
-      "ref": "BR-1378312285",
-      "flight_date_raw": "Mon, Mar 30, 2026",
-      "flight_date": "2026-03-30",
-      "received": "sáb, 28 mar 2026, 8:19 p.m.",
-      "status": "nueva",
-      "unread": false,
-      "source": "viator"
-    },
-    {
-      "ref": "BR-1374641781",
-      "flight_date_raw": "Reservations,yo",
-      "flight_date": "",
-      "received": "jue, 26 mar 2026, 6:52 a.m.",
-      "status": "forwarded",
-      "unread": false,
-      "source": "viator"
-    },
-    {
-      "ref": "BR-1379561075",
-      "flight_date_raw": "Mon, May 04, 2026",
-      "flight_date": "2026-05-04",
-      "received": "mar, 31 mar 2026, 1:45 p.m.",
-      "status": "modificada",
-      "unread": false,
-      "source": "viator"
-    }
-  ],
-  "pending_bookeo": [
-    {
-      "name": "Jessica Johnson",
-      "flight_date_raw": "viernes, 17 abril 2026",
-      "flight_date": "2026-04-17",
-      "hour": "4:30",
-      "experience": "ALL INCLUSIVE",
-      "pax": "1 adulto",
-      "price": "3640 MXN",
-      "received": "mar, 7 abr 2026, 11:58 p.m.",
-      "unread": true,
-      "source": "bookeo",
-      "in_calendar": true,
-      "calendar_event_id": "53ulta3pcukl7hnf55qsfgaqdv",
-      "calendar_name": "Jessica Johnson"
-    },
-    {
-      "name": "María Raquel Delgado Salas",
-      "flight_date_raw": "jueves, 9 abril 2026",
-      "flight_date": "2026-04-09",
-      "hour": "6:00",
-      "experience": "Vuelo Compartido Promo L-V",
-      "pax": "",
-      "price": "",
-      "received": "mar, 7 abr 2026, 8:14 p.m.",
-      "unread": true,
-      "source": "bookeo",
-      "in_calendar": true,
-      "calendar_event_id": "652633i9okf6c2phekq821kc75",
-      "calendar_name": "María Raquel Delgado Salas"
-    },
-    {
-      "name": "Olga Vargas Pereira",
-      "flight_date_raw": "jueves, 9 abril 2026",
-      "flight_date": "2026-04-09",
-      "hour": "4:30",
-      "experience": "ALL INCLUSIVE",
-      "pax": "1 adulto",
-      "price": "3640 MXN",
-      "received": "mar, 7 abr 2026, 4:44 p.m.",
-      "unread": false,
-      "source": "bookeo",
-      "in_calendar": true,
-      "calendar_event_id": "69dep9rcg67ko2b3ur65hs0osf",
-      "calendar_name": "Olga Vargas Pereira"
-    },
-    {
-      "name": "Karina Garcia",
-      "flight_date_raw": "viernes, 17 abril 2026",
-      "flight_date": "2026-04-17",
-      "hour": "4:30",
-      "experience": "ALL INCLUSIVE",
-      "pax": "1 adulto",
-      "price": "3640 MXN",
-      "received": "mar, 7 abr 2026, 4:17 p.m.",
-      "unread": false,
-      "source": "bookeo",
-      "in_calendar": true,
-      "calendar_event_id": "6tbbmsfao155hujpgifjd7me3i",
-      "calendar_name": "Karina Garcia"
-    },
-    {
-      "name": "Ignacio Puyal Velo",
-      "flight_date_raw": "jueves, 23 abril 2026",
-      "flight_date": "2026-04-23",
-      "hour": "6:00",
-      "experience": "Vuelo Privado en Teotihuacán",
-      "pax": "2 adultos",
-      "price": "7800 MXN",
-      "received": "mar, 7 abr 2026, 1:39 p.m.",
-      "unread": false,
-      "source": "bookeo",
-      "in_calendar": true,
-      "calendar_event_id": "2cofkknt3165av3mq20hqdv1bv",
-      "calendar_name": "Ignacio Puyal Velo"
-    },
-    {
-      "name": "Alex Reavley",
-      "flight_date_raw": "jueves, 7 mayo 2026",
-      "flight_date": "2026-05-07",
-      "hour": "4:30",
-      "experience": "ALL INCLUSIVE",
-      "pax": "2 adultos",
-      "price": "7280 MXN",
-      "received": "mar, 7 abr 2026, 11:32 a.m.",
-      "unread": false,
-      "source": "bookeo",
-      "in_calendar": false,
-      "calendar_event_id": "",
-      "calendar_name": ""
-    },
-    {
-      "name": "Nicole Bansal",
-      "flight_date_raw": "martes, 5 mayo 2026",
-      "flight_date": "2026-05-05",
-      "hour": "4:30",
-      "experience": "",
-      "pax": "",
-      "price": "",
-      "received": "mar, 7 abr 2026, 10:14 a.m.",
-      "unread": false,
-      "source": "bookeo",
-      "in_calendar": false,
-      "calendar_event_id": "",
-      "calendar_name": ""
-    },
-    {
-      "name": "Catalina Rengifo",
-      "flight_date_raw": "lunes, 20 abril 2026",
-      "flight_date": "2026-04-20",
-      "hour": "4:30",
-      "experience": "ALL INCLUSIVE",
-      "pax": "2 adultos",
-      "price": "7280 MXN",
-      "received": "lun, 6 abr 2026, 11:12 p.m.",
-      "unread": false,
-      "source": "bookeo",
-      "in_calendar": true,
-      "calendar_event_id": "501o4oeqedo6hcrq24k13ore41",
-      "calendar_name": "Catalina Rengifo"
-    },
-    {
-      "name": "Fernando Nino",
-      "flight_date_raw": "domingo, 17 mayo 2026",
-      "flight_date": "2026-05-17",
-      "hour": "4:30",
-      "experience": "ALL INCLUSIVE",
-      "pax": "2 adultos",
-      "price": "",
-      "received": "lun, 6 abr 2026, 9:28 p.m.",
-      "unread": false,
-      "source": "bookeo",
-      "in_calendar": false,
-      "calendar_event_id": "",
-      "calendar_name": ""
-    },
-    {
-      "name": "William Eustace",
-      "flight_date_raw": "lunes, 15 junio 2026",
-      "flight_date": "2026-06-15",
-      "hour": "4:30",
-      "experience": "",
-      "pax": "2 adultos",
-      "price": "",
-      "received": "lun, 6 abr 2026, 9:07 p.m.",
-      "unread": false,
-      "source": "bookeo",
-      "in_calendar": false,
-      "calendar_event_id": "",
-      "calendar_name": ""
-    },
-    {
-      "name": "Audrie Sham",
-      "flight_date_raw": "lunes, 13 abril 2026",
-      "flight_date": "2026-04-13",
-      "hour": "",
-      "experience": "",
-      "pax": "2 adultos",
-      "price": "",
-      "received": "lun, 6 abr 2026, 2:17 p.m.",
-      "unread": false,
-      "source": "bookeo",
-      "in_calendar": true,
-      "calendar_event_id": "54rkccvufjcg8r316741llrn52",
-      "calendar_name": "Audrie Sham"
-    },
-    {
-      "name": "Brett Murray",
-      "flight_date_raw": "martes, 7 abril 2026",
-      "flight_date": "2026-04-07",
-      "hour": "",
-      "experience": "",
-      "pax": "",
-      "price": "",
-      "received": "lun, 6 abr 2026, 1:41 p.m.",
-      "unread": false,
-      "source": "bookeo",
-      "in_calendar": false,
-      "calendar_event_id": "",
-      "calendar_name": ""
-    },
-    {
-      "name": "Maximilian Spraul",
-      "flight_date_raw": "martes, 7 abril 2026",
-      "flight_date": "2026-04-07",
-      "hour": "",
-      "experience": "",
-      "pax": "",
-      "price": "",
-      "received": "lun, 6 abr 2026, 12:38 p.m.",
-      "unread": false,
-      "source": "bookeo",
-      "in_calendar": false,
-      "calendar_event_id": "",
-      "calendar_name": ""
-    },
-    {
-      "name": "Bianca Mendez",
-      "flight_date_raw": "martes, 7 abril 2026",
-      "flight_date": "2026-04-07",
-      "hour": "",
-      "experience": "",
-      "pax": "2 adultos",
-      "price": "",
-      "received": "lun, 6 abr 2026, 11:32 a.m.",
-      "unread": false,
-      "source": "bookeo",
-      "in_calendar": false,
-      "calendar_event_id": "",
-      "calendar_name": ""
-    },
-    {
-      "name": "Emily Malia Pipi Nelson Bertelsen Eitel",
-      "flight_date_raw": "domingo, 19 abril 2026",
-      "flight_date": "2026-04-19",
-      "hour": "",
-      "experience": "",
-      "pax": "",
-      "price": "",
-      "received": "lun, 6 abr 2026, 10:57 a.m.",
-      "unread": false,
-      "source": "bookeo",
-      "in_calendar": true,
-      "calendar_event_id": "0tjulstlm4jrlfib78o50oqnoi",
-      "calendar_name": "Emily, Malia, Pipi Nelson"
-    },
-    {
-      "name": "Lana Quelle",
-      "flight_date_raw": "martes, 7 abril 2026",
-      "flight_date": "2026-04-07",
-      "hour": "",
-      "experience": "",
-      "pax": "",
-      "price": "",
-      "received": "lun, 6 abr 2026, 10:54 a.m.",
-      "unread": false,
-      "source": "bookeo",
-      "in_calendar": false,
-      "calendar_event_id": "",
-      "calendar_name": ""
-    },
-    {
-      "name": "Maurice Koster",
-      "flight_date_raw": "sábado, 2 mayo 2026",
-      "flight_date": "2026-05-02",
-      "hour": "4:30",
-      "experience": "ALL INCLUSIVE",
-      "pax": "2 adultos",
-      "price": "7280 MXN",
-      "received": "lun, 6 abr 2026, 8:55 a.m.",
-      "unread": false,
-      "source": "bookeo",
-      "in_calendar": false,
-      "calendar_event_id": "",
-      "calendar_name": ""
-    },
-    {
-      "name": "Gema Varela",
-      "flight_date_raw": "viernes, 10 abril 2026",
-      "flight_date": "2026-04-10",
-      "hour": "4:30",
-      "experience": "ALL INCLUSIVE",
-      "pax": "4 adultos",
-      "price": "14560 MXN",
-      "received": "lun, 6 abr 2026, 8:49 a.m.",
-      "unread": false,
-      "source": "bookeo",
-      "in_calendar": true,
-      "calendar_event_id": "6skn38l17r1lvedc7grlunhq3e",
-      "calendar_name": "Gema Varela"
-    },
-    {
-      "name": "Johannes Goerling",
-      "flight_date_raw": "martes, 7 abril 2026",
-      "flight_date": "2026-04-07",
-      "hour": "",
-      "experience": "",
-      "pax": "",
-      "price": "",
-      "received": "dom, 5 abr 2026, 7:17 p.m.",
-      "unread": false,
-      "source": "bookeo",
-      "in_calendar": false,
-      "calendar_event_id": "",
-      "calendar_name": ""
-    },
-    {
-      "name": "Carina Affinito",
-      "flight_date_raw": "sábado, 6 junio 2026",
-      "flight_date": "2026-06-06",
-      "hour": "",
-      "experience": "",
-      "pax": "2 adultos",
-      "price": "",
-      "received": "dom, 5 abr 2026, 3:49 p.m.",
-      "unread": false,
-      "source": "bookeo",
-      "in_calendar": false,
-      "calendar_event_id": "",
-      "calendar_name": ""
-    },
-    {
-      "name": "Dillon Rix",
-      "flight_date_raw": "martes, 7 abril 2026",
-      "flight_date": "2026-04-07",
-      "hour": "",
-      "experience": "",
-      "pax": "",
-      "price": "",
-      "received": "dom, 5 abr 2026, 2:59 p.m.",
-      "unread": false,
-      "source": "bookeo",
-      "in_calendar": false,
-      "calendar_event_id": "",
-      "calendar_name": ""
-    },
-    {
-      "name": "Kristine Stahl",
-      "flight_date_raw": "jueves, 21 mayo 2026",
-      "flight_date": "2026-05-21",
-      "hour": "",
-      "experience": "",
-      "pax": "",
-      "price": "",
-      "received": "dom, 5 abr 2026, 12:59 p.m.",
-      "unread": false,
-      "source": "bookeo",
-      "in_calendar": false,
-      "calendar_event_id": "",
-      "calendar_name": ""
-    },
-    {
-      "name": "Sarah Hemmer",
-      "flight_date_raw": "martes, 28 abril 2026",
-      "flight_date": "2026-04-28",
-      "hour": "",
-      "experience": "",
-      "pax": "",
-      "price": "",
-      "received": "sáb, 4 abr 2026, 6:34 p.m.",
-      "unread": false,
-      "source": "bookeo",
-      "in_calendar": false,
-      "calendar_event_id": "",
-      "calendar_name": ""
-    },
-    {
-      "name": "Carmen Sarahí Portela Silva",
-      "flight_date_raw": "jueves, 23 abril 2026",
-      "flight_date": "2026-04-23",
-      "hour": "4:30",
-      "experience": "ALL INCLUSIVE",
-      "pax": "3 adultos",
-      "price": "10920 MXN",
-      "received": "sáb, 4 abr 2026, 10:25 a.m.",
-      "unread": false,
-      "source": "bookeo",
-      "in_calendar": true,
-      "calendar_event_id": "4dh1rkpnasl4lpm2ienddkt602",
-      "calendar_name": "Carmen Sarahí Portela Silva"
-    },
-    {
-      "name": "Antonio Bernal",
-      "flight_date_raw": "martes, 14 abril 2026",
-      "flight_date": "2026-04-14",
-      "hour": "",
-      "experience": "",
-      "pax": "",
-      "price": "",
-      "received": "vie, 3 abr 2026, 2:47 p.m.",
-      "unread": false,
-      "source": "bookeo",
-      "in_calendar": true,
-      "calendar_event_id": "2rn1k8kahu0f6ft3qoie3md4si",
-      "calendar_name": "Antonio Bernal"
-    },
-    {
-      "name": "Naomie Guillaume",
-      "flight_date_raw": "sábado, 25 abril 2026",
-      "flight_date": "2026-04-25",
-      "hour": "",
-      "experience": "",
-      "pax": "1 adulto",
-      "price": "",
-      "received": "vie, 3 abr 2026, 2:03 p.m.",
-      "unread": false,
-      "source": "bookeo",
-      "in_calendar": false,
-      "calendar_event_id": "",
-      "calendar_name": ""
-    },
-    {
-      "name": "Ashley Diaz",
-      "flight_date_raw": "sábado, 25 abril 2026",
-      "flight_date": "2026-04-25",
-      "hour": "",
-      "experience": "",
-      "pax": "1 adulto",
-      "price": "",
-      "received": "vie, 3 abr 2026, 1:56 p.m.",
-      "unread": false,
-      "source": "bookeo",
-      "in_calendar": false,
-      "calendar_event_id": "",
-      "calendar_name": ""
-    },
-    {
-      "name": "Emily Leon",
-      "flight_date_raw": "martes, 14 abril 2026",
-      "flight_date": "2026-04-14",
-      "hour": "",
-      "experience": "",
-      "pax": "",
-      "price": "",
-      "received": "vie, 3 abr 2026, 1:23 p.m.",
-      "unread": false,
-      "source": "bookeo",
-      "in_calendar": true,
-      "calendar_event_id": "0vorpbn8rh5u62u881ihs1eqdk",
-      "calendar_name": "Emily Leon"
-    },
-    {
-      "name": "Umme Hossain",
-      "flight_date_raw": "sábado, 25 abril 2026",
-      "flight_date": "2026-04-25",
-      "hour": "",
-      "experience": "",
-      "pax": "2 adultos",
-      "price": "",
-      "received": "vie, 3 abr 2026, 12:53 p.m.",
-      "unread": false,
-      "source": "bookeo",
-      "in_calendar": false,
-      "calendar_event_id": "",
-      "calendar_name": ""
-    },
-    {
-      "name": "Luisa Fernanda Higuera Joseph",
-      "flight_date_raw": "sábado, 4 abril 2026",
-      "flight_date": "2026-04-04",
-      "hour": "6:00",
-      "experience": "Vuelo Compartido Fin de semana",
-      "pax": "4 adultos",
-      "price": "11440 MXN",
-      "received": "vie, 3 abr 2026, 10:48 a.m.",
-      "unread": false,
-      "source": "bookeo",
-      "in_calendar": false,
-      "calendar_event_id": "",
-      "calendar_name": ""
-    },
-    {
-      "name": "Deborah Hernandez",
-      "flight_date_raw": "domingo, 5 abril 2026",
-      "flight_date": "2026-04-05",
-      "hour": "6:00",
-      "experience": "Vuelo Compartido Fin de semana",
-      "pax": "1 adulto",
-      "price": "3068 MXN",
-      "received": "vie, 3 abr 2026, 10:44 a.m.",
-      "unread": false,
-      "source": "bookeo",
-      "in_calendar": false,
-      "calendar_event_id": "",
-      "calendar_name": ""
-    },
-    {
-      "name": "Scott Kirton",
-      "flight_date_raw": "lunes, 18 mayo 2026",
-      "flight_date": "2026-05-18",
-      "hour": "4:30",
-      "experience": "ALL INCLUSIVE",
-      "pax": "2 adultos",
-      "price": "7280 MXN",
-      "received": "vie, 3 abr 2026, 7:54 a.m.",
-      "unread": false,
-      "source": "bookeo",
-      "in_calendar": false,
-      "calendar_event_id": "",
-      "calendar_name": ""
-    },
-    {
-      "name": "Marina Juez Egea",
-      "flight_date_raw": "viernes, 29 mayo 2026",
-      "flight_date": "2026-05-29",
-      "hour": "",
-      "experience": "",
-      "pax": "2 adultos",
-      "price": "",
-      "received": "vie, 3 abr 2026, 3:07 a.m.",
-      "unread": false,
-      "source": "bookeo",
-      "in_calendar": false,
-      "calendar_event_id": "",
-      "calendar_name": ""
-    },
-    {
-      "name": "Roberto Carlos Diaz Sanchez",
-      "flight_date_raw": "lunes, 6 abril 2026",
-      "flight_date": "2026-04-06",
-      "hour": "",
-      "experience": "",
-      "pax": "4 adultos",
-      "price": "",
-      "received": "vie, 3 abr 2026, 12:41 a.m.",
-      "unread": false,
-      "source": "bookeo",
-      "in_calendar": false,
-      "calendar_event_id": "",
-      "calendar_name": ""
-    },
-    {
-      "name": "Alejandra Molano Jaramillo",
-      "flight_date_raw": "lunes, 6 abril 2026",
-      "flight_date": "2026-04-06",
-      "hour": "",
-      "experience": "",
-      "pax": "2 adultos",
-      "price": "",
-      "received": "jue, 2 abr 2026, 8:01 p.m.",
-      "unread": false,
-      "source": "bookeo",
-      "in_calendar": false,
-      "calendar_event_id": "",
-      "calendar_name": ""
-    },
-    {
-      "name": "Jhon Roldan",
-      "flight_date_raw": "viernes, 3 abril 2026",
-      "flight_date": "2026-04-03",
-      "hour": "",
-      "experience": "",
-      "pax": "",
-      "price": "",
-      "received": "jue, 2 abr 2026, 4:18 p.m.",
-      "unread": false,
-      "source": "bookeo",
-      "in_calendar": false,
-      "calendar_event_id": "",
-      "calendar_name": ""
-    },
-    {
-      "name": "Juan Gabriel González Cisneros",
-      "flight_date_raw": "domingo, 19 abril 2026",
-      "flight_date": "2026-04-19",
-      "hour": "",
-      "experience": "",
-      "pax": "2 adultos",
-      "price": "",
-      "received": "jue, 2 abr 2026, 1:00 p.m.",
-      "unread": false,
-      "source": "bookeo",
-      "in_calendar": true,
-      "calendar_event_id": "3rohu3433uqba0b58uukh8lekc",
-      "calendar_name": "Juan Gabriel González Cisneros"
-    },
-    {
-      "name": "Julie Hendy",
-      "flight_date_raw": "domingo, 19 abril 2026",
-      "flight_date": "2026-04-19",
-      "hour": "",
-      "experience": "",
-      "pax": "2 adultos",
-      "price": "",
-      "received": "jue, 2 abr 2026, 12:42 p.m.",
-      "unread": false,
-      "source": "bookeo",
-      "in_calendar": true,
-      "calendar_event_id": "5q3o79j7dvdgplfe91kbav3m0f",
-      "calendar_name": "Julie Hendy"
-    },
-    {
-      "name": "Daniela Rodriguez Bautista",
-      "flight_date_raw": "miércoles, 22 abril 2026",
-      "flight_date": "2026-04-22",
-      "hour": "",
-      "experience": "",
-      "pax": "",
-      "price": "",
-      "received": "jue, 2 abr 2026, 11:16 a.m.",
-      "unread": false,
-      "source": "bookeo",
-      "in_calendar": true,
-      "calendar_event_id": "25137cm3ptfo0buati2tbao77g",
-      "calendar_name": "Daniela Rodriguez Bautista"
-    },
-    {
-      "name": "Minerva Gisselle Gutiérrez Temosihui",
-      "flight_date_raw": "domingo, 5 abril 2026",
-      "flight_date": "2026-04-05",
-      "hour": "",
-      "experience": "",
-      "pax": "1 adulto",
-      "price": "",
-      "received": "mié, 1 abr 2026, 8:46 p.m.",
-      "unread": false,
-      "source": "bookeo",
-      "in_calendar": false,
-      "calendar_event_id": "",
-      "calendar_name": ""
-    },
-    {
-      "name": "Kevin Mathew",
-      "flight_date_raw": "viernes, 24 abril 2026",
-      "flight_date": "2026-04-24",
-      "hour": "",
-      "experience": "",
-      "pax": "",
-      "price": "",
-      "received": "mié, 1 abr 2026, 8:46 p.m.",
-      "unread": false,
-      "source": "bookeo",
-      "in_calendar": false,
-      "calendar_event_id": "",
-      "calendar_name": ""
-    }
-  ],
-  "pending_viator": [
-    {
-      "ref": "BR-1382301789",
-      "flight_date_raw": "Sat, Apr 11, 2026",
-      "flight_date": "2026-04-11",
-      "received": "mar, 7 abr 2026, 5:27 a.m.",
-      "status": "nueva",
-      "unread": false,
-      "source": "viator",
-      "in_calendar": false,
-      "calendar_event_id": "",
-      "calendar_name": ""
-    },
-    {
-      "ref": "BR-1382240783",
-      "flight_date_raw": "Tue, Apr 07, 2026",
-      "flight_date": "2026-04-07",
-      "received": "lun, 6 abr 2026, 11:48 p.m.",
-      "status": "nueva",
-      "unread": false,
-      "source": "viator",
-      "in_calendar": false,
-      "calendar_event_id": "",
-      "calendar_name": ""
-    },
-    {
-      "ref": "BR-1382240453",
-      "flight_date_raw": "Tue, Apr 07, 2026",
-      "flight_date": "2026-04-07",
-      "received": "lun, 6 abr 2026, 11:47 p.m.",
-      "status": "nueva",
-      "unread": false,
-      "source": "viator",
-      "in_calendar": false,
-      "calendar_event_id": "",
-      "calendar_name": ""
-    },
-    {
-      "ref": "BR-1382091439",
-      "flight_date_raw": "Tue, Apr 21, 2026",
-      "flight_date": "2026-04-21",
-      "received": "lun, 6 abr 2026, 3:08 p.m.",
-      "status": "nueva",
-      "unread": false,
-      "source": "viator",
-      "in_calendar": false,
-      "calendar_event_id": "",
-      "calendar_name": ""
-    },
-    {
-      "ref": "BR-1381561931",
-      "flight_date_raw": "Sat, Apr 11, 2026",
-      "flight_date": "2026-04-11",
-      "received": "dom, 5 abr 2026, 11:43 a.m.",
-      "status": "modificada",
-      "unread": false,
-      "source": "viator",
-      "in_calendar": false,
-      "calendar_event_id": "",
-      "calendar_name": ""
-    },
-    {
-      "ref": "BR-1353331877",
-      "flight_date_raw": "Wed, Apr 08, 2026",
-      "flight_date": "2026-04-08",
-      "received": "dom, 5 abr 2026, 9:09 a.m.",
-      "status": "modificada",
-      "unread": false,
-      "source": "viator",
-      "in_calendar": false,
-      "calendar_event_id": "",
-      "calendar_name": ""
-    },
-    {
-      "ref": "BR-1376014351",
-      "flight_date_raw": "Thu, Apr 23, 2026",
-      "flight_date": "2026-04-23",
-      "received": "dom, 29 mar 2026, 11:22 p.m.",
-      "status": "modificada",
-      "unread": false,
-      "source": "viator",
-      "in_calendar": false,
-      "calendar_event_id": "",
-      "calendar_name": ""
-    },
-    {
-      "ref": "BR-1381108497",
-      "flight_date_raw": "Sat, May 16, 2026",
-      "flight_date": "2026-05-16",
-      "received": "sáb, 4 abr 2026, 9:13 a.m.",
-      "status": "modificada",
-      "unread": false,
-      "source": "viator",
-      "in_calendar": false,
-      "calendar_event_id": "",
-      "calendar_name": ""
-    },
-    {
-      "ref": "BR-1378071733",
-      "flight_date_raw": "Sun, Mar 29, 2026",
-      "flight_date": "2026-03-29",
-      "received": "sáb, 28 mar 2026, 9:42 a.m.",
-      "status": "nueva",
-      "unread": false,
-      "source": "viator",
-      "in_calendar": false,
-      "calendar_event_id": "",
-      "calendar_name": ""
-    },
-    {
-      "ref": "BR-?",
-      "flight_date_raw": "Sat, May 16, 2026",
-      "flight_date": "2026-05-16",
-      "received": "sáb, 4 abr 2026, 9:23 a.m.",
-      "status": "cancelada",
-      "unread": false,
-      "source": "viator",
-      "in_calendar": false,
-      "calendar_event_id": "",
-      "calendar_name": ""
-    },
-    {
-      "ref": "BR-1376581459",
-      "flight_date_raw": "Mon, Apr 06, 2026",
-      "flight_date": "2026-04-06",
-      "received": "mar, 24 mar 2026, 11:14 a.m.",
-      "status": "nueva",
-      "unread": false,
-      "source": "viator",
-      "in_calendar": false,
-      "calendar_event_id": "",
-      "calendar_name": ""
-    },
-    {
-      "ref": "BR-1378145803",
-      "flight_date_raw": "Sun, Mar 29, 2026",
-      "flight_date": "2026-03-29",
-      "received": "sáb, 28 mar 2026, 12:35 p.m.",
-      "status": "nueva",
-      "unread": false,
-      "source": "viator",
-      "in_calendar": false,
-      "calendar_event_id": "",
-      "calendar_name": ""
-    },
-    {
-      "ref": "BR-1378312285",
-      "flight_date_raw": "Mon, Mar 30, 2026",
-      "flight_date": "2026-03-30",
-      "received": "sáb, 28 mar 2026, 8:19 p.m.",
-      "status": "nueva",
-      "unread": false,
-      "source": "viator",
-      "in_calendar": false,
-      "calendar_event_id": "",
-      "calendar_name": ""
-    },
-    {
-      "ref": "BR-1374641781",
-      "flight_date_raw": "Reservations,yo",
-      "flight_date": "",
-      "received": "jue, 26 mar 2026, 6:52 a.m.",
-      "status": "forwarded",
-      "unread": false,
-      "source": "viator",
-      "in_calendar": false,
-      "calendar_event_id": "",
-      "calendar_name": ""
-    },
-    {
-      "ref": "BR-1379561075",
-      "flight_date_raw": "Mon, May 04, 2026",
-      "flight_date": "2026-05-04",
-      "received": "mar, 31 mar 2026, 1:45 p.m.",
-      "status": "modificada",
-      "unread": false,
-      "source": "viator",
-      "in_calendar": false,
-      "calendar_event_id": "",
-      "calendar_name": ""
-    }
-  ],
-  "stats": {
-    "total_events": 57,
-    "total_pax": 160,
-    "by_calendar": {
-      "VIATOR / TRIP ADVISOR": 154,
-      "WE FLY - BOOKEO": 208,
-      "VGMX": 369
-    },
-    "by_status": {
-      "confirmado": 54,
-      "tentativo": 1,
-      "modificado": 2
-    },
-    "by_date": {
-      "2026-01-02": {
-        "events": 20,
-        "pax": 48
-      },
-      "2026-01-03": {
-        "events": 16,
-        "pax": 49
-      },
-      "2026-01-04": {
-        "events": 13,
-        "pax": 36
-      },
-      "2026-01-05": {
-        "events": 13,
-        "pax": 36
-      },
-      "2026-01-06": {
-        "events": 5,
-        "pax": 16
-      },
-      "2026-01-07": {
-        "events": 6,
-        "pax": 13
-      },
-      "2026-01-08": {
-        "events": 3,
-        "pax": 6
-      },
-      "2026-01-09": {
-        "events": 4,
-        "pax": 12
-      },
-      "2026-01-10": {
-        "events": 7,
-        "pax": 18
-      },
-      "2026-01-11": {
-        "events": 10,
-        "pax": 25
-      },
-      "2026-01-12": {
-        "events": 8,
-        "pax": 22
-      },
-      "2026-01-13": {
-        "events": 8,
-        "pax": 17
-      },
-      "2026-01-14": {
-        "events": 4,
-        "pax": 10
-      },
-      "2026-01-15": {
-        "events": 8,
-        "pax": 24
-      },
-      "2026-01-16": {
-        "events": 11,
-        "pax": 30
-      },
-      "2026-01-17": {
-        "events": 10,
-        "pax": 21
-      },
-      "2026-01-18": {
-        "events": 9,
-        "pax": 25
-      },
-      "2026-01-19": {
-        "events": 15,
-        "pax": 39
-      },
-      "2026-01-20": {
-        "events": 5,
-        "pax": 11
-      },
-      "2026-01-21": {
-        "events": 3,
-        "pax": 6
-      },
-      "2026-01-22": {
-        "events": 5,
-        "pax": 14
-      },
-      "2026-01-23": {
-        "events": 5,
-        "pax": 16
-      },
-      "2026-01-24": {
-        "events": 11,
-        "pax": 32
-      },
-      "2026-01-25": {
-        "events": 12,
-        "pax": 23
-      },
-      "2026-01-26": {
-        "events": 5,
-        "pax": 11
-      },
-      "2026-01-27": {
-        "events": 2,
-        "pax": 6
-      },
-      "2026-01-28": {
-        "events": 8,
-        "pax": 29
-      },
-      "2026-01-29": {
-        "events": 3,
-        "pax": 7
-      },
-      "2026-01-30": {
-        "events": 6,
-        "pax": 13
-      },
-      "2026-01-31": {
-        "events": 3,
-        "pax": 9
-      },
-      "2026-02-01": {
-        "events": 4,
-        "pax": 9
-      },
-      "2026-02-02": {
-        "events": 9,
-        "pax": 17
-      },
-      "2026-02-03": {
-        "events": 7,
-        "pax": 20
-      },
-      "2026-02-04": {
-        "events": 9,
-        "pax": 21
-      },
-      "2026-02-05": {
-        "events": 3,
-        "pax": 8
-      },
-      "2026-02-06": {
-        "events": 5,
-        "pax": 12
-      },
-      "2026-02-07": {
-        "events": 9,
-        "pax": 24
-      },
-      "2026-02-08": {
-        "events": 6,
-        "pax": 11
-      },
-      "2026-02-09": {
-        "events": 14,
-        "pax": 29
-      },
-      "2026-02-10": {
-        "events": 4,
-        "pax": 14
-      },
-      "2026-02-11": {
-        "events": 1,
-        "pax": 2
-      },
-      "2026-02-12": {
-        "events": 10,
-        "pax": 22
-      },
-      "2026-02-13": {
-        "events": 7,
-        "pax": 22
-      },
-      "2026-02-14": {
-        "events": 14,
-        "pax": 36
-      },
-      "2026-02-15": {
-        "events": 11,
-        "pax": 23
-      },
-      "2026-02-16": {
-        "events": 7,
-        "pax": 22
-      },
-      "2026-02-17": {
-        "events": 10,
-        "pax": 30
-      },
-      "2026-02-18": {
-        "events": 12,
-        "pax": 30
-      },
-      "2026-02-19": {
-        "events": 9,
-        "pax": 24
-      },
-      "2026-02-20": {
-        "events": 6,
-        "pax": 16
-      },
-      "2026-02-21": {
-        "events": 4,
-        "pax": 9
-      },
-      "2026-02-22": {
-        "events": 8,
-        "pax": 23
-      },
-      "2026-02-23": {
-        "events": 9,
-        "pax": 23
-      },
-      "2026-02-24": {
-        "events": 7,
-        "pax": 16
-      },
-      "2026-02-25": {
-        "events": 3,
-        "pax": 10
-      },
-      "2026-02-26": {
-        "events": 6,
-        "pax": 16
-      },
-      "2026-02-27": {
-        "events": 12,
-        "pax": 33
-      },
-      "2026-02-28": {
-        "events": 6,
-        "pax": 11
-      },
-      "2026-03-01": {
-        "events": 9,
-        "pax": 23
-      },
-      "2026-03-02": {
-        "events": 6,
-        "pax": 14
-      },
-      "2026-03-03": {
-        "events": 3,
-        "pax": 6
-      },
-      "2026-03-04": {
-        "events": 2,
-        "pax": 4
-      },
-      "2026-03-05": {
-        "events": 1,
-        "pax": 7
-      },
-      "2026-03-06": {
-        "events": 5,
-        "pax": 10
-      },
-      "2026-03-07": {
-        "events": 7,
-        "pax": 20
-      },
-      "2026-03-08": {
-        "events": 9,
-        "pax": 19
-      },
-      "2026-03-09": {
-        "events": 8,
-        "pax": 21
-      },
-      "2026-03-10": {
-        "events": 8,
-        "pax": 14
-      },
-      "2026-03-11": {
-        "events": 3,
-        "pax": 8
-      },
-      "2026-03-12": {
-        "events": 1,
-        "pax": 2
-      },
-      "2026-03-13": {
-        "events": 10,
-        "pax": 26
-      },
-      "2026-03-14": {
-        "events": 8,
-        "pax": 23
-      },
-      "2026-03-15": {
-        "events": 7,
-        "pax": 16
-      },
-      "2026-03-16": {
-        "events": 11,
-        "pax": 21
-      },
-      "2026-03-17": {
-        "events": 6,
-        "pax": 10
-      },
-      "2026-03-18": {
-        "events": 4,
-        "pax": 8
-      },
-      "2026-03-19": {
-        "events": 6,
-        "pax": 15
-      },
-      "2026-03-20": {
-        "events": 8,
-        "pax": 20
-      },
-      "2026-03-21": {
-        "events": 6,
-        "pax": 14
-      },
-      "2026-03-22": {
-        "events": 12,
-        "pax": 32
-      },
-      "2026-03-23": {
-        "events": 10,
-        "pax": 25
-      },
-      "2026-03-24": {
-        "events": 4,
-        "pax": 10
-      },
-      "2026-03-25": {
-        "events": 4,
-        "pax": 8
-      },
-      "2026-03-26": {
-        "events": 2,
-        "pax": 4
-      },
-      "2026-03-27": {
-        "events": 3,
-        "pax": 8
-      },
-      "2026-03-28": {
-        "events": 7,
-        "pax": 20
-      },
-      "2026-03-29": {
-        "events": 6,
-        "pax": 22
-      },
-      "2026-03-30": {
-        "events": 10,
-        "pax": 34
-      },
-      "2026-03-31": {
-        "events": 2,
-        "pax": 9
-      },
-      "2026-04-01": {
-        "events": 5,
-        "pax": 14
-      },
-      "2026-04-02": {
-        "events": 15,
-        "pax": 43
-      },
-      "2026-04-03": {
-        "events": 9,
-        "pax": 29
-      },
-      "2026-04-04": {
-        "events": 8,
-        "pax": 19
-      },
-      "2026-04-05": {
-        "events": 9,
-        "pax": 27
-      },
-      "2026-04-06": {
-        "events": 8,
-        "pax": 33
-      },
-      "2026-04-07": {
-        "events": 3,
-        "pax": 5
-      },
-      "2026-04-08": {
-        "events": 4,
-        "pax": 8
-      },
-      "2026-04-10": {
-        "events": 4,
-        "pax": 12
-      },
-      "2026-04-17": {
-        "events": 4,
-        "pax": 11
-      },
-      "2026-04-23": {
-        "events": 3,
-        "pax": 9
-      },
-      "2026-04-09": {
-        "events": 4,
-        "pax": 8
-      },
-      "2026-04-11": {
-        "events": 1,
-        "pax": 2
-      },
-      "2026-04-12": {
-        "events": 1,
-        "pax": 3
-      },
-      "2026-04-14": {
-        "events": 1,
-        "pax": 2
-      },
-      "2026-04-16": {
-        "events": 1,
-        "pax": 5
-      },
-      "2026-04-18": {
-        "events": 2,
-        "pax": 4
-      },
-      "2026-04-19": {
-        "events": 2,
-        "pax": 4
-      },
-      "2026-04-20": {
-        "events": 1,
-        "pax": 2
-      },
-      "2026-04-24": {
-        "events": 2,
-        "pax": 4
+  "generated_at": "2026-04-18 10:04",
+  "total_events": 96,
+  "by_date": {
+    "2026-04-17": [
+      {
+        "summary": "DISPONIBILIDAD",
+        "time": "",
+        "calendar": "PRIMARY"
+      },
+      {
+        "summary": "✅*2P Jana Riter",
+        "time": "",
+        "calendar": "VGMX"
+      },
+      {
+        "summary": "✅.*/15P Hannah Kelly",
+        "time": "",
+        "calendar": "PRIMARY"
+      },
+      {
+        "summary": "✅.*/2P George Bailey MAGO",
+        "time": "",
+        "calendar": "VGMX"
+      },
+      {
+        "summary": "✅.*/2P Rosa Cavalier NC",
+        "time": "",
+        "calendar": "VGMX"
+      },
+      {
+        "summary": "✅.*/3P Lucia Zina Smith",
+        "time": "",
+        "calendar": "VGMX"
+      },
+      {
+        "summary": "✅.*/3p Brenda Castillo",
+        "time": "",
+        "calendar": "GAT"
+      },
+      {
+        "summary": "✅.*/4P Rebecca Wingate NC",
+        "time": "",
+        "calendar": "BOOKEO"
+      },
+      {
+        "summary": "✅.*2P LUIS ALBERTO FAQUETTI MADEIRA",
+        "time": "",
+        "calendar": "PRIMARY"
+      },
+      {
+        "summary": "✅.*2p Luis Fernando Rivera",
+        "time": "",
+        "calendar": "GAT"
+      },
+      {
+        "summary": "✅.*MODIFICADO 2P Nicole Caceres",
+        "time": "",
+        "calendar": "PRIMARY"
+      },
+      {
+        "summary": "✅📝*1P Enrique Llacer Luque",
+        "time": "",
+        "calendar": "PRIMARY"
+      },
+      {
+        "summary": "✅📝🏨.*/2P Vincent Yu (TG)",
+        "time": "",
+        "calendar": "VGMX"
+      },
+      {
+        "summary": "📝✅*2P Janina Braunschweig",
+        "time": "",
+        "calendar": "PRIMARY"
+      },
+      {
+        "summary": "📝✅*2P Sofia Barea Cejas",
+        "time": "",
+        "calendar": "PRIMARY"
+      },
+      {
+        "summary": "📝✅.*/1P Jessica Johnson",
+        "time": "",
+        "calendar": "PRIMARY"
+      },
+      {
+        "summary": "📝✅.*/1P Karina Garcia",
+        "time": "",
+        "calendar": "PRIMARY"
+      },
+      {
+        "summary": "📝✅.*/2P Adam Noon",
+        "time": "",
+        "calendar": "PRIMARY"
+      },
+      {
+        "summary": "📝✅.*/2P Andrew Burns (TG)",
+        "time": "",
+        "calendar": "VGMX"
+      },
+      {
+        "summary": "📝✅.*/3P Claudia Evelyn Massarelli",
+        "time": "",
+        "calendar": "PRIMARY"
+      },
+      {
+        "summary": "📝✅.*/8P Jordan Dykman",
+        "time": "",
+        "calendar": "PRIMARY"
+      },
+      {
+        "summary": "📝✅.*2P Anggello Valdez Sosa",
+        "time": "",
+        "calendar": "PRIMARY"
+      },
+      {
+        "summary": "📝✅.*3P Araceli Lazcon",
+        "time": "",
+        "calendar": "PRIMARY"
+      },
+      {
+        "summary": "📝✅.*4P Juan Bautista Silva Garzón",
+        "time": "",
+        "calendar": "PRIMARY"
       }
-    },
-    "date_min": "2026-01-02",
-    "date_max": "2026-04-24",
-    "pending_bookeo_count": 15,
-    "pending_bookeo_unread": 2,
-    "pending_viator_count": 5,
-    "bookeo_emails_total": 49,
-    "viator_emails_total": 19,
-    "overweight_count": 1,
-    "celebration_count": 38,
-    "weight_limit_kg": 900,
-    "pending_viator_unread": 0,
-    "window_start": "2026-04-08",
-    "window_end": "2026-04-23",
-    "window_events": 57,
-    "source_of_truth": "weflymx@gmail.com",
-    "pending_bookeo_matched": 15,
-    "pending_bookeo_missing": 0,
-    "pending_viator_matched": 0,
-    "pending_viator_missing": 5
-  },
-  "totals_by_day": {
-    "2026-04-08": {
-      "events": 4,
-      "pax": 12
-    },
-    "2026-04-09": {
-      "events": 11,
-      "pax": 31
-    },
-    "2026-04-10": {
-      "events": 6,
-      "pax": 16
-    },
-    "2026-04-11": {
-      "events": 7,
-      "pax": 14
-    },
-    "2026-04-12": {
-      "events": 1,
-      "pax": 2
-    },
-    "2026-04-13": {
-      "events": 5,
-      "pax": 17
-    },
-    "2026-04-14": {
-      "events": 4,
-      "pax": 10
-    },
-    "2026-04-15": {
-      "events": 1,
-      "pax": 2
-    },
-    "2026-04-17": {
-      "events": 5,
-      "pax": 27
-    },
-    "2026-04-18": {
-      "events": 3,
-      "pax": 7
-    },
-    "2026-04-19": {
-      "events": 3,
-      "pax": 7
-    },
-    "2026-04-20": {
-      "events": 4,
-      "pax": 8
-    },
-    "2026-04-22": {
-      "events": 1,
-      "pax": 2
-    },
-    "2026-04-23": {
-      "events": 2,
-      "pax": 5
-    }
-  },
-  "generated_at": "2026-04-08T17:28:47",
-  "missing_bookeo": [],
-  "missing_viator": [
-    {
-      "ref": "BR-1382301789",
-      "flight_date_raw": "Sat, Apr 11, 2026",
-      "flight_date": "2026-04-11",
-      "received": "mar, 7 abr 2026, 5:27 a.m.",
-      "status": "nueva",
-      "unread": false,
-      "source": "viator",
-      "in_calendar": false,
-      "calendar_event_id": "",
-      "calendar_name": ""
-    },
-    {
-      "ref": "BR-1382091439",
-      "flight_date_raw": "Tue, Apr 21, 2026",
-      "flight_date": "2026-04-21",
-      "received": "lun, 6 abr 2026, 3:08 p.m.",
-      "status": "nueva",
-      "unread": false,
-      "source": "viator",
-      "in_calendar": false,
-      "calendar_event_id": "",
-      "calendar_name": ""
-    },
-    {
-      "ref": "BR-1381561931",
-      "flight_date_raw": "Sat, Apr 11, 2026",
-      "flight_date": "2026-04-11",
-      "received": "dom, 5 abr 2026, 11:43 a.m.",
-      "status": "modificada",
-      "unread": false,
-      "source": "viator",
-      "in_calendar": false,
-      "calendar_event_id": "",
-      "calendar_name": ""
-    },
-    {
-      "ref": "BR-1353331877",
-      "flight_date_raw": "Wed, Apr 08, 2026",
-      "flight_date": "2026-04-08",
-      "received": "dom, 5 abr 2026, 9:09 a.m.",
-      "status": "modificada",
-      "unread": false,
-      "source": "viator",
-      "in_calendar": false,
-      "calendar_event_id": "",
-      "calendar_name": ""
-    },
-    {
-      "ref": "BR-1376014351",
-      "flight_date_raw": "Thu, Apr 23, 2026",
-      "flight_date": "2026-04-23",
-      "received": "dom, 29 mar 2026, 11:22 p.m.",
-      "status": "modificada",
-      "unread": false,
-      "source": "viator",
-      "in_calendar": false,
-      "calendar_event_id": "",
-      "calendar_name": ""
-    }
-  ]
+    ],
+    "2026-04-18": [
+      {
+        "summary": "DISPONIBILIDAD",
+        "time": "",
+        "calendar": "PRIMARY"
+      },
+      {
+        "summary": "✅*2P Daniel Hernández Vazquez",
+        "time": "",
+        "calendar": "PRIMARY"
+      },
+      {
+        "summary": "✅*2P Evan Bernard (TP express)",
+        "time": "",
+        "calendar": "VGMX"
+      },
+      {
+        "summary": "✅*2P Jeannie Estevez",
+        "time": "",
+        "calendar": "VGMX"
+      },
+      {
+        "summary": "✅.*1P Marielle Hernández Stefanni",
+        "time": "",
+        "calendar": "PRIMARY"
+      },
+      {
+        "summary": "✅.*2P Catherine Campbell",
+        "time": "",
+        "calendar": "VGMX"
+      },
+      {
+        "summary": "✅.*2P Israel Morales (VP+TP) NC",
+        "time": "",
+        "calendar": "VGMX"
+      },
+      {
+        "summary": "✅.*2px Alejandro Karam Chemonte",
+        "time": "",
+        "calendar": "GAT"
+      },
+      {
+        "summary": "✅.*3P Byran Laurel Camargo",
+        "time": "",
+        "calendar": "VGMX"
+      },
+      {
+        "summary": "📝✅*1P Nancy Mirely Bello Rodriguez",
+        "time": "",
+        "calendar": "PRIMARY"
+      },
+      {
+        "summary": "📝✅*1P Roberto Berumen",
+        "time": "",
+        "calendar": "PRIMARY"
+      },
+      {
+        "summary": "📝✅*1P Rosy Lizette Farelas Montaño",
+        "time": "",
+        "calendar": "PRIMARY"
+      },
+      {
+        "summary": "📝✅.*1P Siro Garcia",
+        "time": "",
+        "calendar": "PRIMARY"
+      },
+      {
+        "summary": "📝✅.*2P Alannah Lavelle",
+        "time": "",
+        "calendar": "PRIMARY"
+      },
+      {
+        "summary": "📝✅.*2P ESTEPHANIA DE LOS SANTOS",
+        "time": "",
+        "calendar": "PRIMARY"
+      },
+      {
+        "summary": "📝✅.*2P William Markiewicz",
+        "time": "",
+        "calendar": "PRIMARY"
+      },
+      {
+        "summary": "📝✅.*3P Ramiro Iglesias Torres",
+        "time": "",
+        "calendar": "PRIMARY"
+      },
+      {
+        "summary": "📝✅.*4P Kristin Maton NC",
+        "time": "",
+        "calendar": "PRIMARY"
+      },
+      {
+        "summary": "📝✅.🏨*2P Eduardo Rodriguez (TG)",
+        "time": "",
+        "calendar": "VGMX"
+      },
+      {
+        "summary": "📝✅.🏨*2P Jorge Lenin Cordero Hernández",
+        "time": "",
+        "calendar": "PRIMARY"
+      }
+    ],
+    "2026-04-19": [
+      {
+        "summary": ".*3P José Manuel López Chan",
+        "time": "",
+        "calendar": "PRIMARY"
+      },
+      {
+        "summary": "DISPONIBILIDAD",
+        "time": "",
+        "calendar": "PRIMARY"
+      },
+      {
+        "summary": "✅.*1P Rashad Brown",
+        "time": "",
+        "calendar": "PRIMARY"
+      },
+      {
+        "summary": "✅.*2P Caroline Debague (TG)",
+        "time": "",
+        "calendar": "VGMX"
+      },
+      {
+        "summary": "✅.*2P Christian Martin Villegas Tinajero",
+        "time": "",
+        "calendar": "PRIMARY"
+      },
+      {
+        "summary": "✅.*2P Juan Gabriel González Cisneros",
+        "time": "",
+        "calendar": "PRIMARY"
+      },
+      {
+        "summary": "✅.*2P Julie Hendy",
+        "time": "",
+        "calendar": "PRIMARY"
+      },
+      {
+        "summary": "✅.*2P Spencer Smith",
+        "time": "",
+        "calendar": "VGMX"
+      },
+      {
+        "summary": "✅.*3P Emily, Malia, Pipi Nelson",
+        "time": "",
+        "calendar": "PRIMARY"
+      }
+    ],
+    "2026-04-20": [
+      {
+        "summary": "*2P Adam Dong",
+        "time": "",
+        "calendar": "PRIMARY"
+      },
+      {
+        "summary": "*2P Carlos Moreno (TG)",
+        "time": "",
+        "calendar": "VGMX"
+      },
+      {
+        "summary": "*2P Catalina Rengifo",
+        "time": "",
+        "calendar": "PRIMARY"
+      },
+      {
+        "summary": "*2P Charlotte Joguet",
+        "time": "",
+        "calendar": "PRIMARY"
+      },
+      {
+        "summary": "*2P Cornelius Moller NC",
+        "time": "",
+        "calendar": "PRIMARY"
+      },
+      {
+        "summary": "*2P Joao Francisco Espinoza Sanchez",
+        "time": "",
+        "calendar": "PRIMARY"
+      },
+      {
+        "summary": "*2P Laura Enedina Radilla Leyva",
+        "time": "",
+        "calendar": "PRIMARY"
+      },
+      {
+        "summary": "*3P Wendy Buendia",
+        "time": "",
+        "calendar": "PRIMARY"
+      },
+      {
+        "summary": "*4P Carolina Malagon (Transp Grupal)",
+        "time": "",
+        "calendar": "PRIMARY"
+      },
+      {
+        "summary": "*6p Vivian Roses",
+        "time": "",
+        "calendar": "GAT"
+      },
+      {
+        "summary": "DISPONIBILIDAD",
+        "time": "",
+        "calendar": "PRIMARY"
+      }
+    ],
+    "2026-04-21": [
+      {
+        "summary": "1P Jonathan Williams (TG)",
+        "time": "",
+        "calendar": "VGMX"
+      },
+      {
+        "summary": "2P Xiaotong Zhao",
+        "time": "",
+        "calendar": "VIATOR"
+      }
+    ],
+    "2026-04-22": [
+      {
+        "summary": "2P Daniela Rodriguez Bautista",
+        "time": "",
+        "calendar": "PRIMARY"
+      },
+      {
+        "summary": "2P Edward Lin",
+        "time": "",
+        "calendar": "VIATOR"
+      },
+      {
+        "summary": "2P Oliver Price",
+        "time": "",
+        "calendar": "PRIMARY"
+      }
+    ],
+    "2026-04-23": [
+      {
+        "summary": "*1P Lisa Tough",
+        "time": "",
+        "calendar": "VIATOR"
+      },
+      {
+        "summary": "*2P Brian Carroll (TG)",
+        "time": "",
+        "calendar": "VGMX"
+      },
+      {
+        "summary": "*2P Ignacio Puyal Velo NC",
+        "time": "",
+        "calendar": "PRIMARY"
+      },
+      {
+        "summary": "*2P Isabella Alejandra Flores Zurita",
+        "time": "",
+        "calendar": "PRIMARY"
+      },
+      {
+        "summary": "*2P Natalia Niño",
+        "time": "",
+        "calendar": "PRIMARY"
+      },
+      {
+        "summary": "*2P Natsuko Osafune",
+        "time": "",
+        "calendar": "VGMX"
+      },
+      {
+        "summary": "*3P APULEYO RUIZ ORTEGA",
+        "time": "",
+        "calendar": "BOOKEO"
+      },
+      {
+        "summary": "*3P Carmen Sarahí Portela Silva",
+        "time": "",
+        "calendar": "PRIMARY"
+      },
+      {
+        "summary": "*4P SHARYN ANDREA FONSECA GUALTERO",
+        "time": "",
+        "calendar": "BOOKEO"
+      },
+      {
+        "summary": "*MODIFICADO 6P Julienne Blevins",
+        "time": "",
+        "calendar": "VIATOR"
+      },
+      {
+        "summary": "DISPONIBILIDAD",
+        "time": "",
+        "calendar": "PRIMARY"
+      }
+    ],
+    "2026-04-24": [
+      {
+        "summary": "*1P Ashton Bacon",
+        "time": "",
+        "calendar": "VIATOR"
+      },
+      {
+        "summary": "*2P Floriane Zinde (TG)",
+        "time": "",
+        "calendar": "VGMX"
+      },
+      {
+        "summary": "*2P Joanna Lee Hurtado Bedolla (TG)",
+        "time": "",
+        "calendar": "VGMX"
+      },
+      {
+        "summary": "*2P Melayna Limardo NC ",
+        "time": "",
+        "calendar": "VGMX"
+      },
+      {
+        "summary": "*2P William Britz (TG)",
+        "time": "",
+        "calendar": "VGMX"
+      },
+      {
+        "summary": "*2P Ximena Castiblanco",
+        "time": "",
+        "calendar": "VGMX"
+      },
+      {
+        "summary": "*3P Ana Santos",
+        "time": "",
+        "calendar": "PRIMARY"
+      },
+      {
+        "summary": "*6P Kevin Mathew",
+        "time": "",
+        "calendar": "PRIMARY"
+      },
+      {
+        "summary": "DISPONIBILIDAD",
+        "time": "",
+        "calendar": "PRIMARY"
+      }
+    ],
+    "2026-04-25": [
+      {
+        "summary": "*2P Umme Hossain",
+        "time": "",
+        "calendar": "PRIMARY"
+      },
+      {
+        "summary": "*4p Mariela Esqueda Ibarra",
+        "time": "",
+        "calendar": "PRIMARY"
+      },
+      {
+        "summary": "1P Ashley Diaz (📌vienen juntas)",
+        "time": "",
+        "calendar": "PRIMARY"
+      },
+      {
+        "summary": "1P Naomie Guillaume (📌vienen juntas)",
+        "time": "",
+        "calendar": "PRIMARY"
+      },
+      {
+        "summary": "2P William Burr NC ",
+        "time": "",
+        "calendar": "PRIMARY"
+      },
+      {
+        "summary": "DISPONIBILIDAD",
+        "time": "",
+        "calendar": "PRIMARY"
+      },
+      {
+        "summary": "MODIFICADO 2P Lizeth Rodriguez Montero",
+        "time": "",
+        "calendar": "PRIMARY"
+      }
+    ]
+  }
 }

@@ -1,29 +1,32 @@
 #!/bin/bash
-# WE FLY Dashboard — Push a GitHub
+# WE FLY Dashboard — Push a GitHub (modo normal, sin force-reinit)
+# El GitHub Action se encarga del refresh automático cada 2h.
+# Este script solo para cambios manuales (editar index.html, etc.)
+set -e
+
 DIR="$HOME/Documents/Claude/Projects/CALENDARIO WE FLY"
 KEY="$DIR/_sistema/deploy/wefly_deploy_key"
 
-chmod 600 "$KEY"
-export GIT_SSH_COMMAND="ssh -i '${KEY}' -o StrictHostKeyChecking=no"
+if [ -f "$KEY" ]; then
+  chmod 600 "$KEY"
+  export GIT_SSH_COMMAND="ssh -i '${KEY}' -o StrictHostKeyChecking=no"
+fi
 
 cd "$DIR"
 
-# Limpiar git anterior si existe
-rm -rf .git
+# Add todos los cambios que no estén en .gitignore
+git add -A
 
-# Init fresco
-git init
-git branch -m main
-git config user.email "weflymx@gmail.com"
-git config user.name "WE FLY"
-git remote add origin git@github.com:relcutamientoviajesenglobo-create/calendario.git
+# Commit solo si hay cambios
+if git diff --cached --quiet; then
+  echo "⚠️  Sin cambios para commitear."
+  exit 0
+fi
 
-# Add solo los 3 archivos del dashboard
-git add index.html wefly-data.json reservas_sin_agendar.json
-git commit -m "Dashboard WE FLY — gap detector $(date '+%Y-%m-%d %H:%M')"
+git commit -m "Manual: $(date '+%Y-%m-%d %H:%M')"
 
-# Push
-git push -u origin main --force 2>&1
+# Push normal (NO --force). Mantiene historia.
+git push origin main
 
 echo ""
-echo "✅ Push completado"
+echo "✅ Push completado — Render redesplegará automáticamente."

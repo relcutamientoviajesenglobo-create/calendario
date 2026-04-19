@@ -1,0 +1,104 @@
+name: Update WE FLY gaps
+
+on:
+  schedule:
+    - cron: '0 */2 * * *'        # cada 2 horas UTC
+  workflow_dispatch: {}          # botón "Run workflow" manual
+  push:
+    branches: [main]
+    paths:
+      - '_sistema/**'
+      - '.github/workflows/update-gaps.yml'
+
+concurrency:
+  group: update-gaps
+  cancel-in-progress: false
+
+jobs:
+  refresh:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 1
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Recreate _sistema/.env from secrets
+        run: |
+          mkdir -p _sistema
+          cat > _sistema/.env <<'EOF'
+          TURITOP_M1_SHORT_ID=${{ secrets.TURITOP_M1_SHORT_ID }}
+          TURITOP_M1_SECRET_KEY=${{ secrets.TURITOP_M1_SECRET_KEY }}
+          TURITOP_M1_LABEL=Globos Aerostáticos Teotihuacán
+          TURITOP_M2_SHORT_ID=${{ secrets.TURITOP_M2_SHORT_ID }}
+          TURITOP_M2_SECRET_KEY=${{ secrets.TURITOP_M2_SECRET_KEY }}
+          TURITOP_M2_LABEL=Vuelos en Globo MX
+          APPS_SCRIPT_URL=${{ secrets.APPS_SCRIPT_URL }}
+          EOF
+
+      - name: Refresh Turitop bookings
+        id: turitop
+        continue-on-error: true   # Turitop valida IP; si bloquea, seguimos con data previa
+        run: |
+          cd _sistema
+          python3 wefly_turitop_client.py
+          # Normalize filename for gap_detector
+          if [ -f turitop_bookings.json ]; then
+            cp turitop_bookings.json gap-detector/turitop_all.json
+            echo "turitop_refreshed=true" >> $GITHUB_OUTPUT
+          fi
+
+      - name: Build calendar_events.json (via Apps Script)
+        run: |
+          cd _sistema/gap-detector
+          python3 build_calendar_events.py
+
+      - name: Run gap detector
+        run: |
+          cd _sistema/gap-detector
+          python3 gap_detector.py
+
+      - name: Check what changed
+        id: changes
+        run: |
+          git add -A
+          if git diff --cached --quiet; then
+            echo "changed=false" >> $GITHUB_OUTPUT
+            echo "Sin cambios detectados."
+          else
+            echo "changed=true" >> $GITHUB_OUTPUT
+            echo "Archivos modificados:"
+            git diff --cached --name-only
+          fi
+
+      - name: Commit & push
+        if: steps.changes.outputs.changed == 'true'
+        run: |
+          git config user.name  "wefly-bot"
+          git config user.email "wefly-bot@users.noreply.github.com"
+          git commit -m "auto: refresh gaps $(date -u +%Y-%m-%dT%H:%MZ)"
+          git push
+
+      - name: Summary
+        if: always()
+        run: |
+          echo "### Gap detector run $(date -u +%Y-%m-%dT%H:%MZ)" >> $GITHUB_STEP_SUMMARY
+          if [ -f reservas_sin_agendar.json ]; then
+            python3 - <<'PY' >> $GITHUB_STEP_SUMMARY
+          import json
+          d = json.load(open('reservas_sin_agendar.json'))
+          print(f"**Ventana:** {d.get('window','?')}")
+          print(f"**Total sin agendar:** {d.get('total_sin_agendar',0)} de {d.get('total_fuentes',0)} bookings")
+          f = d.get('fuentes', {})
+          for src, s in f.items():
+              print(f"- {src}: {s.get('matched',0)}/{s.get('total',0)} matched, {s.get('sin_agendar',0)} sin agendar")
+          PY
+          fi

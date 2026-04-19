@@ -1,4 +1,23 @@
+# SSH deploy key
 _sistema/deploy/wefly_deploy_key
+
+# Credenciales locales
 _sistema/.env
+.env
+
+# Sistema
 .DS_Store
 _sistema/.DS_Store
+**/.DS_Store
+
+# Backups y temporales
+*.bak
+*.tmp
+*.swp
+
+# Documentos de debug con credenciales sensibles
+PROMPT-GAP-DETECTOR-DEBUG.md
+
+# Caches Python
+__pycache__/
+*.pyc

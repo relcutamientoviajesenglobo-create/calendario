@@ -9,18 +9,21 @@ description: Detector diario de reservas Turitop que AÚN NO están en Google Ca
 
 ## Credenciales (.env)
 
-`/sessions/zealous-upbeat-ramanujan/mnt/CALENDARIO WE FLY/.env`:
+`_sistema/.env` (nunca commitear):
 ```
-TURITOP_M1_SHORT_ID=G465
-TURITOP_M1_SECRET_KEY=b67MC9U2k1GaBe8Rl2fuloUx1250MGPo
+TURITOP_M1_SHORT_ID=<short_id_marca_1>
+TURITOP_M1_SECRET_KEY=<secret_key_marca_1>
 TURITOP_M1_LABEL=Globos Aerostáticos Teotihuacán
 
-TURITOP_M2_SHORT_ID=V212
-TURITOP_M2_SECRET_KEY=iVvdGOT5AhG83UHaZY3gWNhNfIrmUu6h
+TURITOP_M2_SHORT_ID=<short_id_marca_2>
+TURITOP_M2_SECRET_KEY=<secret_key_marca_2>
 TURITOP_M2_LABEL=Vuelos en Globo MX
 ```
 
-Ambas validadas en prod el 2026-04-08.
+Los valores reales están en `_sistema/.env` local (gitignored) y en
+GitHub Secrets (`TURITOP_M1_SHORT_ID`, `TURITOP_M1_SECRET_KEY`,
+`TURITOP_M2_SHORT_ID`, `TURITOP_M2_SECRET_KEY`) que alimentan el workflow
+de GitHub Actions.
 
 ## Reglas operativas Turitop API
 

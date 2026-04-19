@@ -24,8 +24,20 @@ const CALENDARS = [
 const TZ = 'America/Mexico_City';
 
 // ── Entry point (Web App GET) ─────────────────────────
+// Rutas:
+//   (default)                  → dashboard completo (events + emails + stats)
+//   ?action=events_flat        → formato para gap_detector.py (array plano)
+//   &from=YYYY-MM-DD&to=...    → ventana custom (default: hoy-7d .. hoy+30d)
 function doGet(e) {
   try {
+    const action = (e && e.parameter && e.parameter.action) || '';
+    if (action === 'events_flat') {
+      const from = (e.parameter.from) ? parseDate(e.parameter.from) : addDays(new Date(), -7);
+      const to   = (e.parameter.to)   ? parseDate(e.parameter.to)   : addDays(new Date(), 30);
+      const flat = buildFlatEvents(from, to);
+      return ContentService.createTextOutput(JSON.stringify(flat))
+        .setMimeType(ContentService.MimeType.JSON);
+    }
     const data = buildDashboardData();
     return ContentService.createTextOutput(JSON.stringify(data))
       .setMimeType(ContentService.MimeType.JSON);
@@ -35,6 +47,77 @@ function doGet(e) {
       stack: err.stack
     })).setMimeType(ContentService.MimeType.JSON);
   }
+}
+
+// Devuelve eventos en el formato que consume gap_detector.py:
+// [{ date, summary, desc, calendar, emails, phones }]
+// - calendar: nombre canónico (PRIMARY, GAT, VGMX, BOOKEO, VIATOR, GAMX_MONSE, RECEPCION, BOKUN, SOLO_BOKUN)
+// - emails/phones: PRE-EXTRAÍDOS del desc completo (anti-truncate)
+function buildFlatEvents(start, end) {
+  const CANONICAL = {
+    'Primary': 'PRIMARY',
+    'VGMX': 'VGMX',
+    'GAT': 'GAT',
+    'WE FLY - BOOKEO': 'BOOKEO',
+    'VIATOR / TRIP ADVISOR': 'VIATOR',
+    'GAMX-MONSE': 'GAMX_MONSE',
+    'RECEPCION WE FLY': 'RECEPCION',
+    'BOKUN': 'BOKUN',
+    'SOLO Bokun': 'SOLO_BOKUN',
+  };
+  const EMAIL_RE = /[a-zA-Z0-9._%+\-]+@[a-zA-Z0-9.\-]+\.[a-zA-Z]{2,}/g;
+  const PHONE_RE = /[\d][\d\s().+\-]{7,}\d/g;
+  const last10 = s => {
+    const d = (s || '').replace(/\D/g, '');
+    return d.length >= 10 ? d.slice(-10) : d;
+  };
+  const out = [];
+  for (const cal of CALENDARS) {
+    try {
+      const c = CalendarApp.getCalendarById(cal.id);
+      if (!c) continue;
+      const evts = c.getEvents(start, end);
+      for (const ev of evts) {
+        const title = ev.getTitle() || '';
+        // Skip DISPONIBILIDAD / DISPONIBLE y all-day slots genéricos
+        if (/^\s*(disponibilidad|disponible)\s*$/i.test(title)) continue;
+        const descRaw = ev.getDescription() || '';
+        const desc = descRaw.replace(/<[^>]*>/g, ' ').replace(/\s+/g, ' ').trim();
+        const startT = ev.getStartTime();
+        const dateStr = Utilities.formatDate(startT, TZ, 'yyyy-MM-dd');
+        const text = (title + ' ' + desc);
+        const emails = Array.from(new Set((text.toLowerCase().match(EMAIL_RE) || [])));
+        const phonesSet = {};
+        const phoneMatches = text.match(PHONE_RE) || [];
+        for (const p of phoneMatches) {
+          const k = last10(p);
+          if (k) phonesSet[k] = true;
+        }
+        out.push({
+          date: dateStr,
+          summary: title,
+          desc: desc,  // SIN truncar
+          calendar: CANONICAL[cal.name] || cal.name.toUpperCase().replace(/\s+/g, '_').replace(/\//g, '_'),
+          emails: emails,
+          phones: Object.keys(phonesSet),
+        });
+      }
+    } catch(e) {
+      Logger.log('Calendar error ' + cal.name + ': ' + e.message);
+    }
+  }
+  out.sort((a, b) => a.date.localeCompare(b.date));
+  return out;
+}
+
+function parseDate(s) {
+  // "YYYY-MM-DD" → Date local
+  const m = (s || '').match(/^(\d{4})-(\d{2})-(\d{2})$/);
+  if (!m) return new Date();
+  return new Date(parseInt(m[1]), parseInt(m[2]) - 1, parseInt(m[3]));
+}
+function addDays(d, n) {
+  return new Date(d.getTime() + n * 24 * 60 * 60 * 1000);
 }
 
 // ── Orchestrator ──────────────────────────────────────
