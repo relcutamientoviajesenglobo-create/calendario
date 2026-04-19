@@ -588,75 +588,99 @@ function turitopSetup() {
   Logger.log('✅ Turitop credentials guardadas en Script Properties');
 }
 
+// Shape correcta validada contra wefly_turitop_client.py (que SÍ funciona en prod)
 function turitopAuth(shortId, secretKey) {
   const res = UrlFetchApp.fetch(TURITOP_BASE + '/authorization/grant', {
     method: 'post',
     contentType: 'application/json',
-    payload: JSON.stringify({
-      grant_type: 'client_credentials',
-      short_id: shortId,
-      secret_key: secretKey,
-    }),
+    payload: JSON.stringify({ short_id: shortId, secret_key: secretKey }),
     muteHttpExceptions: true,
   });
   const code = res.getResponseCode();
   const body = res.getContentText();
   if (code !== 200) throw new Error('Turitop auth ' + shortId + ' HTTP ' + code + ': ' + body.slice(0, 200));
-  return JSON.parse(body).access_token;
+  const parsed = JSON.parse(body);
+  // Turitop devuelve access_token dentro de `data`
+  const token = (parsed.data && parsed.data.access_token) || parsed.access_token;
+  if (!token) throw new Error('Turitop auth ' + shortId + ': respuesta sin access_token: ' + body.slice(0, 200));
+  return token;
 }
 
-function turitopGetBookings(accessToken, dateFrom, dateTo) {
+function turitopGetBookings(accessToken, dateFromStr, dateToStr) {
+  // Turitop requiere UNIX timestamps (UTC seconds).
+  function dateToUnix(dStr) {
+    return Math.floor(parseDate(dStr).getTime() / 1000);
+  }
   const all = [];
-  function fetchChunk(from, to) {
+  const seen = {};
+  function fetchChunk(fromStr, toStr) {
     const res = UrlFetchApp.fetch(TURITOP_BASE + '/booking/getbookings', {
       method: 'post',
       contentType: 'application/json',
       payload: JSON.stringify({
         access_token: accessToken,
-        bookings_date_from: from,
-        bookings_date_to: to,
-        limit: 500,
+        data: {
+          filter: {
+            bookings_date_from: dateToUnix(fromStr),
+            bookings_date_to:   dateToUnix(toStr),
+            show_deleted: 0,
+          }
+        }
       }),
       muteHttpExceptions: true,
     });
     const code = res.getResponseCode();
     const body = res.getContentText();
-    if (code !== 200) throw new Error('Turitop bookings HTTP ' + code + ' [' + from + '..' + to + ']: ' + body.slice(0, 200));
-    const data = JSON.parse(body);
-    const bookings = data.bookings || data.results || (Array.isArray(data) ? data : []);
+    if (code !== 200) throw new Error('Turitop bookings HTTP ' + code + ' [' + fromStr + '..' + toStr + ']: ' + body.slice(0, 300));
+    const parsed = JSON.parse(body);
+    const bookings = (parsed.data && parsed.data.bookings) || parsed.bookings || [];
     if (bookings.length >= 100) {
-      const mid = midDateStr(from, to);
-      if (mid === from || mid === to) {
-        all.push.apply(all, bookings);
+      const mid = midDateStr(fromStr, toStr);
+      if (mid === fromStr || mid === toStr) {
+        // No se puede dividir más
+        for (const b of bookings) {
+          const sid = b.short_id;
+          if (sid && !seen[sid]) { seen[sid] = 1; all.push(b); }
+        }
       } else {
-        fetchChunk(from, mid);
-        fetchChunk(addDaysStr(mid, 1), to);
+        fetchChunk(fromStr, mid);
+        fetchChunk(addDaysStr(mid, 1), toStr);
       }
     } else {
-      all.push.apply(all, bookings);
+      for (const b of bookings) {
+        const sid = b.short_id;
+        if (sid && !seen[sid]) { seen[sid] = 1; all.push(b); }
+      }
     }
   }
-  fetchChunk(dateFrom, dateTo);
+  fetchChunk(dateFromStr, dateToStr);
   return all;
 }
 
 function normalizeTuritopBooking(b, marca) {
-  const fecha = b.date_event_iso8601 || b.date_event || b.fecha_evento || b.event_date || '';
-  const hora  = b.time_event || b.time_start || b.hora_evento || '';
-  const pax   = (b.participants_adult || 0) + (b.participants_child || 0) + (b.participants_infant || 0)
-                 || b.participants || b.pax || 0;
+  // Shape real Turitop (del Python normalize):
+  //   short_id, product_name, date_event_iso8601 ("2026-04-08T06:00:00-0600"),
+  //   client_data: {name, email, phone, ...},
+  //   ticket_type_count: [{name, count}, ...]  → pax = sum counts,
+  //   archived (boolean).
+  const cd = b.client_data || {};
+  const tc = b.ticket_type_count || [];
+  let pax = 0;
+  for (const t of tc) pax += parseInt(t.count || 0) || 0;
+  if (pax === 0) pax = b.pax || 0;
+  const dateEvent = b.date_event_iso8601 || '';
   return {
-    reserva:  b.booking_code || b.code || b.reserva || '',
+    reserva:  b.short_id || '',
     marca:    marca,
-    fecha:    (fecha || '').slice(0, 10),
-    hora:     hora,
-    pax:      Number(pax) || 0,
-    nombre:   (b.client_name || b.name || '').toLowerCase(),
-    email:    (b.client_email || b.email || '').toLowerCase(),
-    phone:    b.client_phone || b.phone || '',
-    producto: b.product_name || b.product || '',
-    total:    b.total || b.amount || '',
-    archivada: !!b.archivada || !!b.archived,
+    fecha:    dateEvent.slice(0, 10),
+    hora:     dateEvent.length >= 16 ? dateEvent.slice(11, 16) : '',
+    pax:      pax,
+    nombre:   (cd.name || '').toLowerCase(),
+    email:    (cd.email || '').toLowerCase(),
+    phone:    cd.phone || '',
+    producto: b.product_name || '',
+    total:    b.total_price || '',
+    archivada: !!b.archived,
   };
 }
 
