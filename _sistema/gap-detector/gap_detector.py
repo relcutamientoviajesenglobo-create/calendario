@@ -221,29 +221,59 @@ def preflight_checks(cal_events: list[dict], bookings_window_from: str, bookings
         fatal.append("calendar_events.json está vacío")
         return fatal
 
-    # 1) Ventana temporal: el JSON debe cubrir [bookings_from .. bookings_to]
-    # Tolerancia de 2 días en los bordes: es normal que no haya evento los últimos
-    # días de una ventana si el calendario no llega tan lejos aún.
-    TOLERANCE = 2
-    cal_min = min((e.get("date","") for e in cal_events), default="")
-    cal_max = max((e.get("date","") for e in cal_events), default="")
+    # 1) Ventana temporal: el generador debe haber pedido una ventana que cubra
+    #    la ventana de bookings. Preferimos leer la ventana SOLICITADA desde el
+    #    sidecar metadata (evita falsos positivos si no hay eventos en los días
+    #    finales/iniciales). Fallback a inferir desde eventos si no hay metadata.
+    meta_path = HERE / "calendar_events.meta.json"
+    requested_from = None
+    requested_to = None
+    if meta_path.exists():
+        try:
+            meta = json.loads(meta_path.read_text())
+            requested_from = meta.get("requested_from")
+            requested_to = meta.get("requested_to")
+        except Exception:
+            pass
+
     try:
         b_from = datetime.strptime(bookings_window_from, "%Y-%m-%d").date()
         b_to   = datetime.strptime(bookings_window_to,   "%Y-%m-%d").date()
-        c_min  = datetime.strptime(cal_min, "%Y-%m-%d").date() if cal_min else None
-        c_max  = datetime.strptime(cal_max, "%Y-%m-%d").date() if cal_max else None
-        if c_min is None or (c_min - b_from).days > TOLERANCE:
-            fatal.append(
-                f"calendar_events.json NO cubre el inicio de la ventana de bookings: "
-                f"cal_min={cal_min}, bookings_from={bookings_window_from}. "
-                f"Regenera con ventana ≥ [{bookings_window_from}, {bookings_window_to}]"
-            )
-        if c_max is None or (b_to - c_max).days > TOLERANCE:
-            fatal.append(
-                f"calendar_events.json NO cubre el fin de la ventana de bookings: "
-                f"cal_max={cal_max}, bookings_to={bookings_window_to} (gap > {TOLERANCE}d). "
-                f"Regenera con ventana ≥ [{bookings_window_from}, {bookings_window_to}]"
-            )
+
+        if requested_from and requested_to:
+            # Modo confianza: el generador nos dice qué ventana pidió al Apps Script.
+            rf = datetime.strptime(requested_from, "%Y-%m-%d").date()
+            rt = datetime.strptime(requested_to,   "%Y-%m-%d").date()
+            if rf > b_from:
+                fatal.append(
+                    f"calendar_events.json fue generado con ventana [{requested_from}..{requested_to}] "
+                    f"que NO cubre bookings_from={bookings_window_from}. "
+                    f"Regenera: python3 build_calendar_events.py --from {bookings_window_from} --to {bookings_window_to}"
+                )
+            if rt < b_to:
+                fatal.append(
+                    f"calendar_events.json fue generado con ventana [{requested_from}..{requested_to}] "
+                    f"que NO cubre bookings_to={bookings_window_to}. "
+                    f"Regenera: python3 build_calendar_events.py --from {bookings_window_from} --to {bookings_window_to}"
+                )
+        else:
+            # Fallback: inferir desde fechas de eventos (con tolerancia).
+            TOLERANCE = 2
+            cal_min = min((e.get("date","") for e in cal_events), default="")
+            cal_max = max((e.get("date","") for e in cal_events), default="")
+            c_min  = datetime.strptime(cal_min, "%Y-%m-%d").date() if cal_min else None
+            c_max  = datetime.strptime(cal_max, "%Y-%m-%d").date() if cal_max else None
+            if c_min is None or (c_min - b_from).days > TOLERANCE:
+                fatal.append(
+                    f"calendar_events.json NO cubre inicio: cal_min={cal_min}, bookings_from={bookings_window_from}. "
+                    f"Regenera con ventana ≥ [{bookings_window_from}, {bookings_window_to}]"
+                )
+            if c_max is None or (b_to - c_max).days > TOLERANCE:
+                fatal.append(
+                    f"calendar_events.json NO cubre fin: cal_max={cal_max}, bookings_to={bookings_window_to}. "
+                    f"Regenera con ventana ≥ [{bookings_window_from}, {bookings_window_to}]"
+                )
+            warnings.append("calendar_events.meta.json ausente — usando inferencia por fechas de eventos (menos confiable)")
     except Exception as e:
         warnings.append(f"No pude validar ventana temporal: {e}")
 
@@ -336,10 +366,39 @@ def main():
 
     cal_index = build_cal_index(cal_events_win)
 
-    # Load Turitop
+    # Load Turitop — tolera dos formatos:
+    #   A) wrapper {generated_at, bookings:[...]} con items {fecha_evento, cliente:{...}}
+    #   B) array plano [{fecha, nombre, email, phone, ...}]
     turitop_path = HERE / "turitop_all.json"
-    turitop = json.loads(turitop_path.read_text()) if turitop_path.exists() else []
-    turitop = [b for b in turitop if d_from <= b.get("fecha", "") <= d_to]
+    turitop_raw = json.loads(turitop_path.read_text()) if turitop_path.exists() else []
+    if isinstance(turitop_raw, dict) and "bookings" in turitop_raw:
+        turitop_items = turitop_raw["bookings"]
+    elif isinstance(turitop_raw, list):
+        turitop_items = turitop_raw
+    else:
+        turitop_items = []
+    # Normalizar a formato plano
+    turitop = []
+    for b in turitop_items:
+        if not isinstance(b, dict):
+            continue
+        if b.get("archivada"):
+            continue
+        cliente = b.get("cliente", {}) if isinstance(b.get("cliente"), dict) else {}
+        flat = {
+            "reserva":  b.get("reserva") or b.get("short_id") or "",
+            "marca":    b.get("marca_slot") or b.get("marca") or "",
+            "fecha":    b.get("fecha") or b.get("fecha_evento") or "",
+            "hora":     b.get("hora") or b.get("hora_evento") or "",
+            "pax":      b.get("pax") or 0,
+            "nombre":   b.get("nombre") or cliente.get("nombre") or "",
+            "email":    b.get("email") or cliente.get("email") or "",
+            "phone":    b.get("phone") or cliente.get("phone") or "",
+            "producto": b.get("producto") or "",
+            "total":    b.get("total") or "",
+        }
+        if d_from <= flat["fecha"] <= d_to:
+            turitop.append(flat)
     print(f"Turitop bookings en ventana [{d_from} → {d_to}]: {len(turitop)}")
 
     # Load Bookeo

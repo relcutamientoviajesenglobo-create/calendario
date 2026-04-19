@@ -102,6 +102,20 @@ def main():
     cals = Counter(e.get("calendar", "?") for e in data)
     out_path = HERE / "calendar_events.json"
     out_path.write_text(json.dumps(data, ensure_ascii=False, indent=2))
+
+    # Sidecar metadata: la ventana solicitada al generador.
+    # Se usa por gap_detector.py para evitar falsos positivos del pre-check
+    # cuando el calendario tiene huecos al inicio/fin de la ventana.
+    meta_path = HERE / "calendar_events.meta.json"
+    meta = {
+        "requested_from": d_from,
+        "requested_to":   d_to,
+        "generated_at":   datetime.now().isoformat(),
+        "events_count":   len(data),
+        "calendars_present": sorted(cals.keys()),
+    }
+    meta_path.write_text(json.dumps(meta, ensure_ascii=False, indent=2))
+
     print(f"\n✅ {out_path.name}: {len(data)} eventos escritos")
     print(f"   Ventana: {d_from} → {d_to}")
     print("   Por calendario:")

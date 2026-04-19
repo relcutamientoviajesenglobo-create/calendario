@@ -1,0 +1,15 @@
+{
+  "requested_from": "2026-04-01",
+  "requested_to": "2026-06-30",
+  "generated_at": "2026-04-19T10:20:39.255177",
+  "events_count": 457,
+  "calendars_present": [
+    "BOKUN",
+    "BOOKEO",
+    "GAMX_MONSE",
+    "GAT",
+    "PRIMARY",
+    "VGMX",
+    "VIATOR"
+  ]
+}
