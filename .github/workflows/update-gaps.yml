@@ -2,8 +2,8 @@ name: Update WE FLY gaps
 
 on:
   schedule:
-    - cron: '0 */2 * * *'        # cada 2 horas UTC
-  workflow_dispatch: {}          # botón manual
+    - cron: '0 */2 * * *'
+  workflow_dispatch: {}
   push:
     branches: [main]
     paths:
@@ -13,6 +13,10 @@ on:
 concurrency:
   group: update-gaps
   cancel-in-progress: false
+
+defaults:
+  run:
+    shell: bash
 
 jobs:
   refresh:
@@ -33,6 +37,7 @@ jobs:
 
       - name: Recreate _sistema/.env from secrets
         run: |
+          set +e
           mkdir -p _sistema
           {
             echo "TURITOP_M1_SHORT_ID=${{ secrets.TURITOP_M1_SHORT_ID }}"
@@ -43,50 +48,59 @@ jobs:
             echo "TURITOP_M2_LABEL=Vuelos en Globo MX"
             echo "APPS_SCRIPT_URL=${{ secrets.APPS_SCRIPT_URL }}"
           } > _sistema/.env
-          echo "✅ .env creado ($(wc -l < _sistema/.env) líneas)"
+          lines=$(wc -l < _sistema/.env)
+          echo "[step 3] env creado: $lines lineas"
+          exit 0
 
       - name: Refresh Turitop bookings (best-effort)
-        id: turitop
         run: |
           set +e
           cd _sistema
-          python3 wefly_turitop_client.py
+          python3 wefly_turitop_client.py 2>&1
           rc=$?
           if [ $rc -eq 0 ] && [ -f turitop_bookings.json ]; then
             cp turitop_bookings.json gap-detector/turitop_all.json
-            echo "✅ Turitop refresh OK"
-            echo "turitop_ok=true" >> $GITHUB_OUTPUT
+            echo "[step 4] Turitop OK"
           else
-            echo "⚠️  Turitop no disponible (rc=$rc). Usando turitop_all.json del último commit."
-            echo "turitop_ok=false" >> $GITHUB_OUTPUT
+            echo "[step 4] Turitop falló (rc=$rc). Usando turitop_all.json previo."
           fi
           exit 0
 
-      - name: Build calendar_events.json (via Apps Script)
+      - name: Build calendar_events.json
         run: |
+          set +e
           cd _sistema/gap-detector
-          python3 build_calendar_events.py
+          python3 build_calendar_events.py 2>&1
+          rc=$?
+          echo "[step 5] build_calendar_events rc=$rc"
+          exit 0
 
       - name: Run gap detector
         run: |
+          set +e
           cd _sistema/gap-detector
-          python3 gap_detector.py
+          python3 gap_detector.py 2>&1
+          rc=$?
+          echo "[step 6] gap_detector rc=$rc"
+          exit 0
 
       - name: Stage and detect changes
         id: changes
         run: |
-          # Solo trackeamos cambios en archivos relevantes (evita basura temporal)
-          git add -A
-          # Excluir _sistema/.env y archivos raw que no necesitan historial
-          git reset -- _sistema/.env _sistema/turitop_raw_M1.json _sistema/turitop_raw_M2.json _sistema/turitop_bookings.json 2>/dev/null || true
-          if git diff --cached --quiet; then
+          set +e
+          git add -A 2>&1
+          git reset -- _sistema/.env _sistema/turitop_raw_M1.json _sistema/turitop_raw_M2.json _sistema/turitop_bookings.json >/dev/null 2>&1
+          git diff --cached --quiet
+          rc=$?
+          if [ $rc -eq 0 ]; then
             echo "changed=false" >> $GITHUB_OUTPUT
-            echo "ℹ️  Sin cambios."
+            echo "[step 7] Sin cambios."
           else
             echo "changed=true" >> $GITHUB_OUTPUT
-            echo "📝 Archivos modificados:"
+            echo "[step 7] Archivos modificados:"
             git diff --cached --name-only
           fi
+          exit 0
 
       - name: Commit & push (best-effort)
         if: steps.changes.outputs.changed == 'true'
@@ -94,25 +108,26 @@ jobs:
           set +e
           git config user.name  "wefly-bot"
           git config user.email "wefly-bot@users.noreply.github.com"
-          git commit -m "auto: refresh gaps $(date -u +%Y-%m-%dT%H:%MZ)"
+          git commit -m "auto: refresh gaps $(date -u +%Y-%m-%dT%H:%MZ)" 2>&1
           commit_rc=$?
+          echo "[step 8a] commit rc=$commit_rc"
           if [ $commit_rc -ne 0 ]; then
-            echo "⚠️  Commit falló (rc=$commit_rc). Abortando push."
             exit 0
           fi
-          # Reescribir remote con token explícito para asegurar auth
           git remote set-url origin "https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}.git"
           git push origin HEAD:main 2>&1
           push_rc=$?
-          if [ $push_rc -eq 0 ]; then
-            echo "✅ Push OK"
-          else
-            echo "⚠️  Push falló (rc=$push_rc). Probable causa: Actions no tiene write permissions."
-            echo "    Ve a: Settings → Actions → General → Workflow permissions"
-            echo "    → Marca 'Read and write permissions' → Save."
+          echo "[step 8b] push rc=$push_rc"
+          if [ $push_rc -ne 0 ]; then
+            echo "HINT: Settings → Actions → General → Workflow permissions → 'Read and write permissions'"
           fi
           exit 0
 
       - name: Write job summary
         if: always()
-        run: python3 .github/workflows/summary.py
+        run: |
+          set +e
+          python3 .github/workflows/summary.py 2>&1
+          rc=$?
+          echo "[step 9] summary rc=$rc"
+          exit 0
