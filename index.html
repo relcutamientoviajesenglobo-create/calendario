@@ -464,6 +464,80 @@
   </button>
 </header>
 
+<!-- ── Modal de carga "Recargar en vivo" ─────────────────── -->
+<div id="refreshModal" style="display:none; position:fixed; inset:0; z-index:9999; background:rgba(8,12,24,.82); backdrop-filter:blur(8px); -webkit-backdrop-filter:blur(8px); align-items:center; justify-content:center; animation:rmFadeIn .2s ease-out;">
+  <div style="background:linear-gradient(160deg, #141b2e 0%, #0f1624 100%); border:1px solid rgba(255,255,255,.08); border-radius:20px; padding:36px 40px; max-width:460px; width:92%; box-shadow:0 30px 80px rgba(0,0,0,.6), 0 0 0 1px rgba(34,197,94,.1); text-align:center; color:#e5e7eb; font-family:'Inter','Google Sans',system-ui,sans-serif;">
+    <!-- Spinner -->
+    <div style="margin:0 auto 20px; width:72px; height:72px; position:relative;">
+      <svg viewBox="0 0 72 72" style="animation:rmSpin 1.1s linear infinite; filter:drop-shadow(0 0 12px rgba(34,197,94,.4));">
+        <circle cx="36" cy="36" r="30" fill="none" stroke="rgba(34,197,94,.15)" stroke-width="5"/>
+        <circle cx="36" cy="36" r="30" fill="none" stroke="url(#rmGrad)" stroke-width="5" stroke-linecap="round" stroke-dasharray="60 130" />
+        <defs>
+          <linearGradient id="rmGrad" x1="0" y1="0" x2="1" y2="1">
+            <stop offset="0%" stop-color="#22c55e"/>
+            <stop offset="100%" stop-color="#10b981"/>
+          </linearGradient>
+        </defs>
+      </svg>
+      <div id="rmTimer" style="position:absolute; inset:0; display:flex; align-items:center; justify-content:center; font-weight:700; color:#22c55e; font-size:18px; font-variant-numeric:tabular-nums;">0s</div>
+    </div>
+
+    <!-- Título -->
+    <h3 id="rmTitle" style="font-size:18px; font-weight:700; margin:0 0 6px; color:#f8fafc; letter-spacing:-.01em;">Actualizando en vivo</h3>
+    <div id="rmSub" style="font-size:13px; color:#94a3b8; margin-bottom:22px;">Consultando Google Calendar + Gmail + Turitop</div>
+
+    <!-- Steps -->
+    <div id="rmSteps" style="display:flex; flex-direction:column; gap:9px; text-align:left;">
+      <div class="rm-step" data-step="cals">
+        <span class="rm-dot"></span>
+        <span class="rm-label">9 calendarios de Google</span>
+        <span class="rm-hint">—</span>
+      </div>
+      <div class="rm-step" data-step="gmail">
+        <span class="rm-dot"></span>
+        <span class="rm-label">Gmail Bookeo + Viator</span>
+        <span class="rm-hint">—</span>
+      </div>
+      <div class="rm-step" data-step="turitop">
+        <span class="rm-dot"></span>
+        <span class="rm-label">Turitop M1 + M2</span>
+        <span class="rm-hint">—</span>
+      </div>
+      <div class="rm-step" data-step="render">
+        <span class="rm-dot"></span>
+        <span class="rm-label">Armando dashboard</span>
+        <span class="rm-hint">—</span>
+      </div>
+    </div>
+
+    <div id="rmError" style="display:none; margin-top:18px; padding:11px 14px; background:rgba(239,68,68,.1); border:1px solid rgba(239,68,68,.3); border-radius:10px; color:#fca5a5; font-size:12px; text-align:left; line-height:1.5;"></div>
+
+    <div style="margin-top:22px; font-size:11px; color:#64748b; line-height:1.5;">
+      Primera carga tarda ~15-30s · Cache local 5 min
+    </div>
+  </div>
+</div>
+
+<style>
+@keyframes rmSpin { to { transform: rotate(360deg); } }
+@keyframes rmFadeIn { from { opacity: 0; } to { opacity: 1; } }
+@keyframes rmPulse { 0%, 100% { opacity: 1; } 50% { opacity: .4; } }
+.rm-step { display:grid; grid-template-columns:22px 1fr auto; align-items:center; gap:10px; padding:10px 12px; background:rgba(255,255,255,.03); border:1px solid rgba(255,255,255,.05); border-radius:10px; transition:all .3s ease; }
+.rm-step .rm-dot { width:10px; height:10px; border-radius:50%; background:#334155; border:2px solid #475569; transition:all .3s; }
+.rm-step .rm-label { font-size:13px; color:#cbd5e1; font-weight:500; }
+.rm-step .rm-hint { font-size:11px; color:#64748b; font-variant-numeric:tabular-nums; }
+.rm-step.active { background:rgba(34,197,94,.08); border-color:rgba(34,197,94,.25); }
+.rm-step.active .rm-dot { background:#22c55e; border-color:#22c55e; animation:rmPulse 1.2s ease-in-out infinite; box-shadow:0 0 10px rgba(34,197,94,.5); }
+.rm-step.active .rm-label { color:#f0fdf4; }
+.rm-step.done { background:rgba(34,197,94,.05); border-color:rgba(34,197,94,.15); }
+.rm-step.done .rm-dot { background:#16a34a; border-color:#16a34a; box-shadow:0 0 0 2px rgba(34,197,94,.15); }
+.rm-step.done .rm-dot::after { content:'✓'; position:relative; top:-6px; left:1px; font-size:11px; color:white; font-weight:900; }
+.rm-step.done .rm-hint { color:#22c55e; font-weight:600; }
+.rm-step.error { background:rgba(239,68,68,.08); border-color:rgba(239,68,68,.25); }
+.rm-step.error .rm-dot { background:#ef4444; border-color:#ef4444; }
+.rm-step.error .rm-hint { color:#fca5a5; font-weight:600; }
+</style>
+
 <section class="stats" id="stats"></section>
 
 <div class="filters">
@@ -612,22 +686,80 @@ function loadData(embedded) {
   return embedded;
 }
 
+// ── Helpers del modal de recarga ──
+function rmShow() {
+  const modal = document.getElementById('refreshModal');
+  modal.style.display = 'flex';
+  document.body.style.overflow = 'hidden';
+  // Reset steps
+  modal.querySelectorAll('.rm-step').forEach(s => {
+    s.classList.remove('active','done','error');
+    s.querySelector('.rm-hint').textContent = '—';
+  });
+  document.getElementById('rmError').style.display = 'none';
+  document.getElementById('rmTitle').textContent = 'Actualizando en vivo';
+  document.getElementById('rmSub').textContent = 'Consultando Google Calendar + Gmail + Turitop';
+  // Timer
+  const tEl = document.getElementById('rmTimer');
+  const t0 = Date.now();
+  tEl.textContent = '0s';
+  window._rmTimerInt = setInterval(() => {
+    tEl.textContent = Math.floor((Date.now() - t0) / 1000) + 's';
+  }, 250);
+}
+function rmStep(key, state, hint) {
+  const el = document.querySelector('#refreshModal .rm-step[data-step="' + key + '"]');
+  if (!el) return;
+  el.classList.remove('active','done','error');
+  if (state) el.classList.add(state);
+  if (hint !== undefined) el.querySelector('.rm-hint').textContent = hint;
+}
+function rmHide(closeAfter) {
+  clearInterval(window._rmTimerInt);
+  if (closeAfter) {
+    setTimeout(() => {
+      document.getElementById('refreshModal').style.display = 'none';
+      document.body.style.overflow = '';
+    }, closeAfter);
+  } else {
+    document.getElementById('refreshModal').style.display = 'none';
+    document.body.style.overflow = '';
+  }
+}
+function rmError(msg) {
+  const box = document.getElementById('rmError');
+  box.textContent = msg;
+  box.style.display = 'block';
+  document.getElementById('rmTitle').textContent = 'Error';
+  document.getElementById('rmSub').textContent = 'Mostrando la última data disponible';
+}
+
 async function refreshLive() {
   const btn = document.getElementById('btnRefresh');
-  const original = btn.innerHTML;
+  const originalBtn = btn.innerHTML;
   btn.disabled = true;
-  btn.innerHTML = '⟳ Cargando… ~20-30s';
+  btn.innerHTML = '⟳ Cargando…';
   btn.style.background = 'linear-gradient(135deg,#64748b,#475569)';
-  try {
-    // 1) Dashboard completo (calendarios + Gmail)
-    const dashRes = await fetch(APPS_SCRIPT_URL + '?t=' + Date.now(), { cache: 'no-store' });
-    if (!dashRes.ok) throw new Error('dashboard HTTP ' + dashRes.status);
-    const data = await dashRes.json();
-    if (data.error) throw new Error('Apps Script dashboard: ' + data.error);
-    if (!data.events) throw new Error('Respuesta sin campo events');
+  rmShow();
 
-    // 2) Gaps frescos (Turitop + Bookeo live vs Calendar)
-    btn.innerHTML = '⟳ Bajando Turitop…';
+  try {
+    // 1) Dashboard (calendarios + Gmail)
+    rmStep('cals', 'active', '...');
+    rmStep('gmail', 'active', '...');
+    const dashRes = await fetch(APPS_SCRIPT_URL + '?t=' + Date.now(), { cache: 'no-store' });
+    if (!dashRes.ok) throw new Error('Dashboard HTTP ' + dashRes.status);
+    const data = await dashRes.json();
+    if (data.error) throw new Error('Apps Script: ' + data.error);
+    if (!data.events) throw new Error('Respuesta sin eventos');
+
+    const calsCount = data.events.length;
+    const bookeoCount = (data.bookeo_emails || []).length;
+    const viatorCount = (data.viator_emails || []).length;
+    rmStep('cals', 'done', calsCount + ' eventos');
+    rmStep('gmail', 'done', bookeoCount + ' Bookeo · ' + viatorCount + ' Viator');
+
+    // 2) Turitop + gaps
+    rmStep('turitop', 'active', 'bajando...');
     try {
       const todayStr = new Date().toISOString().slice(0, 10);
       const endStr = new Date(Date.now() + 15 * 86400000).toISOString().slice(0, 10);
@@ -635,24 +767,56 @@ async function refreshLive() {
       if (gapsRes.ok) {
         const gaps = await gapsRes.json();
         if (!gaps.error) {
-          data.gaps_live = gaps;  // adjunta al dashboard
-          console.log('[WE FLY] gaps live:', gaps.total_sin_agendar, 'sin agendar');
-          if (gaps.errors && gaps.errors.length) console.warn('[Turitop]', gaps.errors);
+          data.gaps_live = gaps;
+          const tur = gaps.fuentes && gaps.fuentes.Turitop;
+          if (gaps.errors && gaps.errors.length) {
+            rmStep('turitop', 'error', 'IP bloqueada');
+            console.warn('[Turitop]', gaps.errors);
+          } else if (tur) {
+            rmStep('turitop', 'done', tur.total + ' bookings');
+          } else {
+            rmStep('turitop', 'done', 'OK');
+          }
+        } else {
+          rmStep('turitop', 'error', 'error');
         }
+      } else {
+        rmStep('turitop', 'error', 'HTTP ' + gapsRes.status);
       }
-    } catch (gapErr) { console.warn('[gaps_flat]', gapErr); }
+    } catch (gapErr) {
+      console.warn('[gaps_flat]', gapErr);
+      rmStep('turitop', 'error', 'sin conexión');
+    }
 
+    // 3) Render
+    rmStep('render', 'active', 'recargando...');
     localStorage.setItem(LIVE_CACHE_KEY, JSON.stringify({ ts: Date.now(), data }));
     const gapCount = data.gaps_live ? data.gaps_live.total_sin_agendar : '?';
-    btn.innerHTML = '✓ ' + data.events.length + ' eventos · ' + gapCount + ' gaps';
+    rmStep('render', 'done', 'listo');
+    document.getElementById('rmTitle').textContent = '✓ Actualizado';
+    document.getElementById('rmSub').textContent = calsCount + ' eventos · ' + gapCount + ' gaps detectados';
+
+    btn.innerHTML = '✓ ' + calsCount + ' eventos · ' + gapCount + ' gaps';
     btn.style.background = 'linear-gradient(135deg,#22c55e,#16a34a)';
-    setTimeout(() => location.reload(), 800);
+
+    clearInterval(window._rmTimerInt);
+    setTimeout(() => location.reload(), 900);
   } catch (e) {
     console.error(e);
-    btn.innerHTML = '✗ ' + (e.message || 'error').slice(0, 40);
+    document.querySelectorAll('#refreshModal .rm-step.active').forEach(el => {
+      el.classList.remove('active');
+      el.classList.add('error');
+    });
+    rmError(e.message || 'Error desconocido');
+    btn.innerHTML = '✗ Error';
     btn.style.background = 'linear-gradient(135deg,#ef4444,#dc2626)';
-    alert('No pude cargar live:\n' + e.message + '\n\nMostrando data del último deploy.');
-    setTimeout(() => { btn.disabled = false; btn.innerHTML = original; btn.style.background = 'linear-gradient(135deg,#22c55e,#16a34a)'; }, 3500);
+    clearInterval(window._rmTimerInt);
+    setTimeout(() => {
+      rmHide();
+      btn.disabled = false;
+      btn.innerHTML = originalBtn;
+      btn.style.background = 'linear-gradient(135deg,#22c55e,#16a34a)';
+    }, 4000);
   }
 }
 
