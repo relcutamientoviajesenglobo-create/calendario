@@ -205,11 +205,14 @@ function parseCalendarEvent(ev, calName) {
   else if (title.includes('❌')) status = 'cancelado';
 
   let pax = 0;
-  const paxM = title.match(/\*(\d+)P\b/i);
+  // Tolera ambos formatos del calendario:
+  //   con asterisco:    "✅.*2P Juan", "*6p Vivian Roses"
+  //   sin asterisco:    "2P Regina Cruz", "3P Jose Refugio Barajas"
+  const paxM = title.match(/\b\*?(\d+)p\b/i);
   if (paxM) pax = parseInt(paxM[1]);
 
   // Name: everything after the pax marker
-  let name = title.replace(/^[^\w]*/, '').replace(/\*\d+P\s*/i, '').trim();
+  let name = title.replace(/^[^\w]*/, '').replace(/\*?\d+P\s*/i, '').trim();
   // Remove leading emoji/status chars
   name = name.replace(/^[✅⚡🔄✏❌🟡🔵⭐️\s*]+/, '').trim();
   if (!name) name = title;
