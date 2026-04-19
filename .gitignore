@@ -21,3 +21,7 @@ PROMPT-GAP-DETECTOR-DEBUG.md
 # Caches Python
 __pycache__/
 *.pyc
+
+# Turitop raw dumps (PII completa de TODOS los bookings — nunca a git)
+_sistema/turitop_raw_*.json
+_sistema/turitop_bookings.json
