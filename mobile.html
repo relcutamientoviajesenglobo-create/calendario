@@ -613,6 +613,113 @@
     box-shadow: 0 4px 12px rgba(37,211,102,.35);
   }
   .critical-card .cc-btn-wa .cc-btn-ico { font-size: 17px; }
+  /* ── Modal "Agendar" bottom sheet ──────────── */
+  .agendar-overlay {
+    position: fixed; inset: 0; z-index: 9999;
+    background: rgba(0,0,0,.65);
+    backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px);
+    display: flex; align-items: flex-end; justify-content: center;
+    animation: agOverlayIn .2s ease-out;
+  }
+  @keyframes agOverlayIn { from { opacity: 0; } to { opacity: 1; } }
+  .agendar-sheet {
+    background: linear-gradient(180deg, #fffef9 0%, #fff8ea 100%);
+    color: #1f1203;
+    width: 100%; max-width: 520px;
+    max-height: 92vh;
+    border-radius: 22px 22px 0 0;
+    padding: 10px 18px calc(18px + var(--safe-bot));
+    box-shadow: 0 -20px 60px rgba(245,158,11,.25), 0 -2px 0 rgba(245,158,11,.4);
+    overflow-y: auto; -webkit-overflow-scrolling: touch;
+    animation: agSheetUp .28s cubic-bezier(.2,.9,.3,1.1);
+  }
+  @keyframes agSheetUp { from { transform: translateY(100%); } to { transform: translateY(0); } }
+  .agendar-grab {
+    width: 42px; height: 5px; background: rgba(0,0,0,.15); border-radius: 3px;
+    margin: 4px auto 14px;
+  }
+  .agendar-head {
+    display: flex; align-items: center; justify-content: space-between; margin-bottom: 16px;
+  }
+  .agendar-head h3 { margin: 0; font-size: 18px; font-weight: 800; color: #111; letter-spacing: -.01em; }
+  .agendar-close {
+    background: #1f1203; color: #fffbf2; border: 0;
+    width: 32px; height: 32px; border-radius: 50%;
+    font-size: 15px; cursor: pointer; font-weight: 700;
+  }
+  .agendar-field { margin-bottom: 12px; }
+  .agendar-field label {
+    display: block; font-size: 10px; font-weight: 800; letter-spacing: 1px;
+    text-transform: uppercase; color: #78716c; margin-bottom: 5px;
+  }
+  .agendar-box {
+    background: white; border: 1.5px solid rgba(245,158,11,.3);
+    border-radius: 12px; padding: 12px 14px;
+    font-size: 14px; font-weight: 500; color: #111;
+    word-break: break-word;
+  }
+  .agendar-box.mono {
+    font-family: 'JetBrains Mono', 'SF Mono', monospace;
+    font-size: 13px; letter-spacing: .3px;
+  }
+  .agendar-box.pre {
+    font-family: 'JetBrains Mono', 'SF Mono', monospace;
+    font-size: 12px; line-height: 1.6;
+    white-space: pre-wrap; word-wrap: break-word;
+    max-height: 200px; overflow-y: auto;
+    margin: 0;
+  }
+  .agendar-quick {
+    background: rgba(251,191,36,.2); color: #78350f;
+    padding: 9px 13px; border-radius: 10px;
+    font-size: 12px; margin-bottom: 14px;
+    border-left: 3px solid #f59e0b;
+  }
+  .agendar-quick b { color: #111; font-weight: 800; }
+  .agendar-actions {
+    display: flex; flex-direction: column; gap: 8px; margin-bottom: 14px;
+  }
+  .ag-btn {
+    display: flex; align-items: center; gap: 12px;
+    padding: 13px 15px; border: 0; border-radius: 14px; cursor: pointer;
+    text-align: left; text-decoration: none; font-family: inherit;
+    transition: all .15s;
+  }
+  .ag-btn:active { transform: scale(.98); }
+  .ag-btn.copied { background: linear-gradient(135deg, #22c55e, #16a34a) !important; color: white !important; }
+  .ag-ico { font-size: 22px; flex-shrink: 0; }
+  .ag-btn span:last-child { display: flex; flex-direction: column; flex: 1; min-width: 0; }
+  .ag-btn b { font-size: 14px; font-weight: 800; }
+  .ag-btn small { font-size: 11px; opacity: .8; margin-top: 1px; }
+  .ag-btn-gcal {
+    background: linear-gradient(135deg, #4285f4 0%, #1a73e8 100%);
+    color: white;
+    box-shadow: 0 6px 18px rgba(66,133,244,.35);
+  }
+  .ag-btn-copy {
+    background: linear-gradient(135deg, #16a34a 0%, #15803d 100%);
+    color: white;
+  }
+  .ag-btn-title, .ag-btn-desc {
+    background: #f5f5f4; color: #44403c;
+  }
+  .ag-btn-title b, .ag-btn-desc b { font-weight: 700; }
+  .agendar-tip {
+    background: rgba(0,0,0,.04); padding: 11px 14px; border-radius: 10px;
+    font-size: 12px; line-height: 1.5; color: #44403c;
+  }
+  .agendar-tip b { color: #111; font-weight: 700; }
+
+  .critical-card .cc-btn-agendar {
+    grid-column: 1 / -1;
+    background: linear-gradient(135deg, #4285f4 0%, #1a73e8 100%);
+    color: white; border: 0; cursor: pointer; font-family: inherit;
+    box-shadow: 0 4px 14px rgba(66,133,244,.4);
+    padding: 14px 12px;
+    font-size: 14px; font-weight: 800; letter-spacing: .3px;
+  }
+  .critical-card .cc-btn-agendar .cc-btn-ico { font-size: 19px; }
+
   .critical-card .cc-btn-add {
     grid-column: 1 / -1;
     background: linear-gradient(135deg, #1f1203 0%, #44403c 100%);
@@ -879,7 +986,7 @@
 // Configuración y estado
 // ════════════════════════════════════════════
 const APPS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbzGeb9S02AN1ICALrBlMbHwAJHSHQmYarBu4AVvleWMsT7jZWJmcpqs8MebqOxFzoF5cw/exec';
-const WRITE_TOKEN = '__PENDIENTE__';   // ← correr writeTokenSetup() en Apps Script y pegar aquí
+// Nota: doPost write-API desactivado. Agendamos manualmente via Google Calendar URL template.
 const CACHE_KEY = 'wefly_mobile_v1';
 const CACHE_TTL_MS = 5 * 60 * 1000;
 
@@ -1218,60 +1325,146 @@ window.selectDay = function(d) {
   renderAgenda();
 };
 
-// 🤖 Agendar booking al calendario vía Apps Script doPost
-window.agendarBooking = async function(g) {
-  if (typeof g === 'string') { try { g = JSON.parse(g); } catch(_) { toast('Error leyendo booking', 'err'); return; } }
-  if (WRITE_TOKEN === '__PENDIENTE__') {
-    alert('WRITE_TOKEN no configurado.\n\n1) Apps Script → correr writeTokenSetup()\n2) Copiar token de los logs\n3) Pegar en mobile.html');
-    return;
-  }
-
+// 🤖 Armar título + descripción formateados para Google Calendar
+window.buildAgendarPayload = function(g) {
+  const rawName = (g.nombre || 'Sin nombre').trim().replace(/\s+/g, ' ');
+  const nameNice = rawName.replace(/\b([\wáéíóúñ])([\wáéíóúñ]*)/gi, (m, f, r) => f.toUpperCase() + r.toLowerCase());
+  const paxNum = parseInt(g.pax) || 1;
   const calName = g.marca === 'M1' ? 'GAT' : g.marca === 'M2' ? 'VGMX' : 'BOOKEO';
-  const confirmMsg = [
-    '¿Agendar en calendario ' + calName + '?',
-    '',
-    '👤 ' + (g.nombre || 'sin nombre'),
-    '📅 ' + g.fecha + ' · ' + (g.hora || '--:--'),
-    '👥 ' + (g.pax || 0) + ' pax',
-    '📋 ' + (g.reserva || 'sin reserva'),
-    '',
-    'Se marcará con 🤖 para saber que lo agendó el sistema.',
-  ].join('\n');
+  const title = '🤖 *' + paxNum + 'P ' + nameNice;
+  const descLines = [
+    '📝 No.Reserva: ' + (g.reserva || '-'),
+    '👤 Nombre: ' + nameNice,
+    '📅 Fecha de Vuelo: ' + (g.fecha || '') + (g.hora ? ' ' + g.hora : ''),
+    '✈️ Tipo de Servicio: ' + (g.producto || '-'),
+    '👥 Participantes: ' + paxNum + ' pax',
+  ];
+  if (g.email) descLines.push('📧 Email: ' + g.email);
+  if (g.phone) descLines.push('📱 Tel: ' + g.phone);
+  if (g.total) descLines.push('💰 Total: ' + g.total);
+  descLines.push('');
+  descLines.push('🤖 Agendado manualmente desde WE FLY Gap Detector');
+  descLines.push('🏷️ Fuente: ' + (g.fuente || calName));
+  descLines.push('📌 Calendario destino sugerido: ' + calName);
+  return {
+    title,
+    description: descLines.join('\n'),
+    calName,
+    startDate: g.fecha,
+    startTime: g.hora || '06:00',
+  };
+};
 
-  if (!confirm(confirmMsg)) return;
+// Construye URL para abrir Google Calendar con evento pre-llenado
+window.buildGCalLink = function(p) {
+  // Start / end en formato YYYYMMDDTHHMMSS (local time, sin TZ → GCal usa la TZ del usuario)
+  const [yr, mo, d] = (p.startDate || '').split('-');
+  const [hh, mm] = (p.startTime || '06:00').split(':');
+  if (!yr || !mo || !d) return null;
+  const pad = n => String(n).padStart(2, '0');
+  const startStr = yr + pad(mo) + pad(d) + 'T' + pad(hh) + pad(mm) + '00';
+  // Duración default 3h
+  const startMs = new Date(+yr, +mo - 1, +d, +hh, +mm).getTime();
+  const endDate = new Date(startMs + 3 * 3600 * 1000);
+  const endStr = endDate.getFullYear() + pad(endDate.getMonth()+1) + pad(endDate.getDate()) + 'T' + pad(endDate.getHours()) + pad(endDate.getMinutes()) + '00';
+  const params = new URLSearchParams({
+    action: 'TEMPLATE',
+    text: p.title,
+    dates: startStr + '/' + endStr,
+    details: p.description,
+    location: 'Teotihuacán, México',
+  });
+  return 'https://calendar.google.com/calendar/render?' + params.toString();
+};
 
-  // Find button & update UI
-  const btn = event?.target?.closest('.cc-btn-add');
-  if (btn) { btn.disabled = true; btn.innerHTML = '<span class="cc-btn-ico">⟳</span> Agendando…'; }
+// 🤖 Modal con texto pre-formateado + copiar + abrir en Google Calendar
+window.showAgendarModal = function(g) {
+  if (typeof g === 'string') { try { g = JSON.parse(g); } catch(_) { return; } }
+  const p = buildAgendarPayload(g);
+  const gcalUrl = buildGCalLink(p);
 
+  const modal = document.createElement('div');
+  modal.className = 'agendar-overlay';
+  modal.innerHTML = `
+    <div class="agendar-sheet" onclick="event.stopPropagation()">
+      <div class="agendar-grab"></div>
+      <div class="agendar-head">
+        <h3>🤖 Agendar en ${esc(p.calName)}</h3>
+        <button class="agendar-close" onclick="this.closest('.agendar-overlay').remove()">✕</button>
+      </div>
+
+      <div class="agendar-field">
+        <label>TÍTULO DEL EVENTO</label>
+        <div class="agendar-box" id="agTitle">${esc(p.title)}</div>
+      </div>
+
+      <div class="agendar-field">
+        <label>FECHA · HORA · DURACIÓN</label>
+        <div class="agendar-box mono">${esc(p.startDate)} · ${esc(p.startTime)} · 3h</div>
+      </div>
+
+      <div class="agendar-field">
+        <label>DESCRIPCIÓN</label>
+        <pre class="agendar-box pre" id="agDesc">${esc(p.description)}</pre>
+      </div>
+
+      <div class="agendar-quick">
+        💡 Calendario destino sugerido: <b>${esc(p.calName)}</b>
+      </div>
+
+      <div class="agendar-actions">
+        ${gcalUrl ? `
+          <a class="ag-btn ag-btn-gcal" href="${esc(gcalUrl)}" target="_blank" rel="noopener">
+            <span class="ag-ico">📅</span>
+            <span>
+              <b>Abrir Google Calendar</b>
+              <small>Pre-llenado · solo clic Guardar</small>
+            </span>
+          </a>
+        ` : ''}
+        <button class="ag-btn ag-btn-copy" onclick="copyAgendarFull(this, ${esc(JSON.stringify(p)).replace(/"/g,'&quot;')})">
+          <span class="ag-ico">📋</span>
+          <span>
+            <b>Copiar título + descripción</b>
+            <small>Pegar manual si prefieres</small>
+          </span>
+        </button>
+        <button class="ag-btn ag-btn-title" onclick="copyText(this, ${esc(JSON.stringify(p.title))})">
+          <span class="ag-ico">📝</span>
+          <span><b>Copiar solo título</b></span>
+        </button>
+        <button class="ag-btn ag-btn-desc" onclick="copyText(this, ${esc(JSON.stringify(p.description))})">
+          <span class="ag-ico">📄</span>
+          <span><b>Copiar solo descripción</b></span>
+        </button>
+      </div>
+
+      <div class="agendar-tip">
+        <b>💡 Flujo recomendado:</b> clic "Abrir Google Calendar" → Google abre evento pre-llenado → cambia calendar a <b>${esc(p.calName)}</b> si hace falta → clic Guardar. Listo en 5 segundos.
+      </div>
+    </div>
+  `;
+  modal.addEventListener('click', e => { if (e.target === modal) modal.remove(); });
+  document.body.appendChild(modal);
+};
+
+// Helper copy-to-clipboard con feedback en el botón
+window.copyText = async function(btn, text) {
   try {
-    const res = await fetch(APPS_SCRIPT_URL, {
-      method: 'POST',
-      body: JSON.stringify({ token: WRITE_TOKEN, action: 'create_event', booking: g }),
-      redirect: 'follow',
-    });
-    const data = await res.json();
-    if (data.ok) {
-      if (btn) {
-        btn.classList.add('done');
-        btn.innerHTML = '<span class="cc-btn-ico">✓</span> Agendado en ' + (data.calendar_name || calName);
-      }
-      toast('✅ Creado: ' + data.title, 'ok');
-      // Refresh en background
-      setTimeout(async () => {
-        await fetchLive(false);
-        renderAll();
-      }, 2000);
-    } else {
-      if (btn) { btn.disabled = false; btn.innerHTML = '<span class="cc-btn-ico">🤖</span> Agendar al Calendario'; }
-      toast('❌ ' + (data.error || 'error'), 'err');
-      console.error('agendarBooking failed:', data);
-    }
+    await navigator.clipboard.writeText(text);
+    const orig = btn.innerHTML;
+    btn.classList.add('copied');
+    btn.innerHTML = '<span class="ag-ico">✓</span> <span><b>¡Copiado!</b></span>';
+    setTimeout(() => { btn.classList.remove('copied'); btn.innerHTML = orig; }, 1800);
   } catch (e) {
-    if (btn) { btn.disabled = false; btn.innerHTML = '<span class="cc-btn-ico">🤖</span> Agendar al Calendario'; }
-    toast('❌ ' + e.message, 'err');
-    console.error(e);
+    alert('No pude copiar. Selecciona el texto manualmente.\n\n' + text);
   }
+};
+
+window.copyAgendarFull = function(btn, p) {
+  if (typeof p === 'string') { try { p = JSON.parse(p); } catch(_) { return; } }
+  const full = p.title + '\n\n' + p.description;
+  copyText(btn, full);
 };
 
 function renderDateJumper(evs, gapsList, todayStr) {
@@ -1498,7 +1691,7 @@ function renderCriticalCard(g) {
       ` : ''}
 
       <div class="cc-actions">
-        <button class="cc-btn cc-btn-add" onclick='agendarBooking(${esc(JSON.stringify(g))})'>
+        <button class="cc-btn cc-btn-agendar" onclick='showAgendarModal(${esc(JSON.stringify(g))})'>
           <span class="cc-btn-ico">🤖</span>
           Agendar al Calendario
         </button>

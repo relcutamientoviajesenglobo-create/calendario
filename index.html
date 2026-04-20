@@ -521,6 +521,8 @@
 <style>
 @keyframes rmSpin { to { transform: rotate(360deg); } }
 @keyframes rmFadeIn { from { opacity: 0; } to { opacity: 1; } }
+@keyframes dskOverlayIn { from { opacity: 0; } to { opacity: 1; } }
+@keyframes dskSheetIn { from { opacity: 0; transform: scale(.94) translateY(10px); } to { opacity: 1; transform: scale(1) translateY(0); } }
 @keyframes pulseRing {
   0%, 100% { box-shadow: 0 0 0 0 rgba(255,255,255,.4) inset, 0 0 0 0 rgba(255,255,255,.5); }
   50% { box-shadow: 0 0 0 2px rgba(255,255,255,.3) inset, 0 0 20px 4px rgba(255,200,100,.4); }
@@ -573,6 +575,16 @@
   </div>
   <div style="font-size:13px; font-weight:600; opacity:.85; margin-left:auto;">Ver agenda completa →</div>
 </button>
+
+<!-- 🚨 Panel de gaps críticos de mañana (carga JSON al boot) -->
+<section id="criticalGapsPanel" style="display:none; margin:18px 24px 0; padding:0; border-radius:20px; background:#fffbf2; border:2px solid #f59e0b; box-shadow:0 12px 40px rgba(245,158,11,.25); overflow:hidden;">
+  <div style="background:linear-gradient(135deg,#fbbf24,#f59e0b); padding:14px 22px; display:flex; align-items:center; gap:12px; color:#1f1203;">
+    <span style="font-size:22px;">⚠️</span>
+    <span style="font-size:14px; font-weight:900; letter-spacing:1.8px; text-transform:uppercase;">Reservas de mañana · Sin agendar</span>
+    <span id="criticalGapsCount" style="margin-left:auto; background:rgba(0,0,0,.28); color:white; padding:4px 14px; border-radius:100px; font-size:15px; font-weight:900;">0</span>
+  </div>
+  <div id="criticalGapsList" style="padding:14px 22px 22px; display:grid; grid-template-columns:repeat(auto-fill,minmax(360px,1fr)); gap:12px;"></div>
+</section>
 
 <section class="stats" id="stats"></section>
 
@@ -914,6 +926,183 @@ $('#gen').textContent = DATA.generated_at.replace('T',' ');
     gapsBox.style.animation = '';
   }
 })();
+
+// 🚨 Panel de gaps de mañana (desktop)
+(async function loadCriticalGaps() {
+  try {
+    const res = await fetch('./reservas_sin_agendar.json?t=' + Date.now(), { cache: 'no-store' });
+    if (!res.ok) return;
+    const data = await res.json();
+    const today = localDateStr(new Date());
+    const tmrw  = localDateStr(new Date(Date.now() + 86400000));
+    const criticalGaps = (data.bookings || []).filter(g => g.fecha === tmrw);
+    if (!criticalGaps.length) return;
+    const panel = document.getElementById('criticalGapsPanel');
+    const list = document.getElementById('criticalGapsList');
+    const count = document.getElementById('criticalGapsCount');
+    panel.style.display = 'block';
+    count.textContent = criticalGaps.length;
+    list.innerHTML = criticalGaps.map(renderDesktopGapCard).join('');
+  } catch (e) { console.warn('[critical gaps]', e); }
+})();
+
+function renderDesktopGapCard(g) {
+  const src = (g.fuente || '').toLowerCase();
+  const srcColor = src === 'turitop' ? '#6d28d9' : '#92400e';
+  const srcBg = src === 'turitop' ? '#ede9fe' : '#fef3c7';
+  const gJson = esc(JSON.stringify(g));
+  return `
+    <div style="background:white; border-radius:14px; padding:14px 16px; border-left:4px solid #dc2626; box-shadow:0 4px 12px rgba(0,0,0,.06);">
+      <div style="display:flex; align-items:center; gap:8px; margin-bottom:8px;">
+        <span style="background:#dc2626; color:white; padding:3px 10px; border-radius:100px; font-size:10px; font-weight:900; letter-spacing:1px;">AGENDAR AHORA</span>
+        <span style="background:${srcBg}; color:${srcColor}; padding:3px 9px; border-radius:6px; font-size:10px; font-weight:800;">${esc(g.fuente || 'SRC')}</span>
+      </div>
+      <div style="font-size:17px; font-weight:800; color:#111; line-height:1.2; margin-bottom:3px;">${esc(g.nombre || 'Sin nombre')}</div>
+      <div style="font-size:11px; color:#78716c; font-family:'Google Sans Mono',monospace; margin-bottom:10px;">📋 ${esc(g.reserva || '?')}${g.marca ? ' · ' + esc(g.marca) : ''}</div>
+      <div style="display:grid; grid-template-columns:1fr 1fr 1fr; gap:6px; margin-bottom:10px;">
+        <div style="background:#1f1203; color:#fffbf2; border-radius:8px; padding:8px 4px; text-align:center;">
+          <div style="font-size:12px; font-weight:800;">${esc(g.fecha || '—')}</div>
+          <div style="font-size:8px; opacity:.7; text-transform:uppercase; letter-spacing:1px;">Fecha</div>
+        </div>
+        <div style="background:#1f1203; color:#fffbf2; border-radius:8px; padding:8px 4px; text-align:center;">
+          <div style="font-size:12px; font-weight:800;">${esc(g.hora || '—')}</div>
+          <div style="font-size:8px; opacity:.7; text-transform:uppercase; letter-spacing:1px;">Hora</div>
+        </div>
+        <div style="background:#1f1203; color:#fffbf2; border-radius:8px; padding:8px 4px; text-align:center;">
+          <div style="font-size:12px; font-weight:800;">${esc(g.pax || 0)}</div>
+          <div style="font-size:8px; opacity:.7; text-transform:uppercase; letter-spacing:1px;">Pax</div>
+        </div>
+      </div>
+      ${g.producto ? `<div style="font-size:12px; color:#57534e; background:rgba(251,191,36,.15); padding:7px 10px; border-radius:8px; border-left:3px solid #f59e0b; margin-bottom:10px; line-height:1.4;">${esc(g.producto)}</div>` : ''}
+      <button onclick='showAgendarModal(${gJson})' style="width:100%; padding:11px; background:linear-gradient(135deg,#4285f4,#1a73e8); color:white; border:0; border-radius:10px; font-weight:800; font-size:13px; cursor:pointer; box-shadow:0 4px 12px rgba(66,133,244,.3); letter-spacing:.3px; display:flex; align-items:center; justify-content:center; gap:8px;">
+        <span style="font-size:16px;">🤖</span> Agendar al Calendario
+      </button>
+    </div>
+  `;
+}
+
+// 🤖 Modal + Google Calendar link (compartido con mobile.html pero definido local para desktop)
+window.buildAgendarPayload = function(g) {
+  const rawName = (g.nombre || 'Sin nombre').trim().replace(/\s+/g, ' ');
+  const nameNice = rawName.replace(/\b([\wáéíóúñ])([\wáéíóúñ]*)/gi, (m, f, r) => f.toUpperCase() + r.toLowerCase());
+  const paxNum = parseInt(g.pax) || 1;
+  const calName = g.marca === 'M1' ? 'GAT' : g.marca === 'M2' ? 'VGMX' : 'BOOKEO';
+  const title = '🤖 *' + paxNum + 'P ' + nameNice;
+  const descLines = [
+    '📝 No.Reserva: ' + (g.reserva || '-'),
+    '👤 Nombre: ' + nameNice,
+    '📅 Fecha de Vuelo: ' + (g.fecha || '') + (g.hora ? ' ' + g.hora : ''),
+    '✈️ Tipo de Servicio: ' + (g.producto || '-'),
+    '👥 Participantes: ' + paxNum + ' pax',
+  ];
+  if (g.email) descLines.push('📧 Email: ' + g.email);
+  if (g.phone) descLines.push('📱 Tel: ' + g.phone);
+  if (g.total) descLines.push('💰 Total: ' + g.total);
+  descLines.push('');
+  descLines.push('🤖 Agendado manualmente desde WE FLY Gap Detector');
+  descLines.push('🏷️ Fuente: ' + (g.fuente || calName));
+  descLines.push('📌 Calendario destino sugerido: ' + calName);
+  return { title, description: descLines.join('\n'), calName, startDate: g.fecha, startTime: g.hora || '06:00' };
+};
+
+window.buildGCalLink = function(p) {
+  const [yr, mo, d] = (p.startDate || '').split('-');
+  const [hh, mm] = (p.startTime || '06:00').split(':');
+  if (!yr || !mo || !d) return null;
+  const pad = n => String(n).padStart(2, '0');
+  const startStr = yr + pad(mo) + pad(d) + 'T' + pad(hh) + pad(mm) + '00';
+  const startMs = new Date(+yr, +mo - 1, +d, +hh, +mm).getTime();
+  const endDate = new Date(startMs + 3 * 3600 * 1000);
+  const endStr = endDate.getFullYear() + pad(endDate.getMonth()+1) + pad(endDate.getDate()) + 'T' + pad(endDate.getHours()) + pad(endDate.getMinutes()) + '00';
+  const params = new URLSearchParams({
+    action: 'TEMPLATE', text: p.title, dates: startStr + '/' + endStr,
+    details: p.description, location: 'Teotihuacán, México',
+  });
+  return 'https://calendar.google.com/calendar/render?' + params.toString();
+};
+
+window.showAgendarModal = function(g) {
+  if (typeof g === 'string') { try { g = JSON.parse(g); } catch(_) { return; } }
+  const p = buildAgendarPayload(g);
+  const gcalUrl = buildGCalLink(p);
+  // Escape for safe attribute embedding
+  const pAttr = esc(JSON.stringify(p));
+
+  const overlay = document.createElement('div');
+  overlay.style.cssText = 'position:fixed; inset:0; z-index:9999; background:rgba(0,0,0,.65); backdrop-filter:blur(8px); -webkit-backdrop-filter:blur(8px); display:flex; align-items:center; justify-content:center; padding:20px; animation:dskOverlayIn .2s ease-out;';
+  overlay.onclick = e => { if (e.target === overlay) overlay.remove(); };
+  overlay.innerHTML = `
+    <div style="background:linear-gradient(180deg,#fffef9 0%,#fff8ea 100%); color:#1f1203; width:100%; max-width:620px; max-height:90vh; border-radius:22px; padding:28px 30px; box-shadow:0 30px 80px rgba(0,0,0,.5), 0 0 0 2px rgba(245,158,11,.4); overflow-y:auto; animation:dskSheetIn .3s cubic-bezier(.2,.9,.3,1.1);" onclick="event.stopPropagation()">
+      <div style="display:flex; align-items:center; justify-content:space-between; margin-bottom:20px;">
+        <h3 style="margin:0; font-size:20px; font-weight:800; color:#111; letter-spacing:-.02em;">🤖 Agendar en ${esc(p.calName)}</h3>
+        <button onclick="this.closest('div[style*=inset]').remove()" style="background:#1f1203; color:#fffbf2; border:0; width:36px; height:36px; border-radius:50%; font-size:16px; cursor:pointer; font-weight:700;">✕</button>
+      </div>
+
+      <div style="margin-bottom:14px;">
+        <label style="display:block; font-size:10px; font-weight:800; letter-spacing:1px; text-transform:uppercase; color:#78716c; margin-bottom:6px;">Título del evento</label>
+        <div style="background:white; border:1.5px solid rgba(245,158,11,.3); border-radius:12px; padding:13px 15px; font-size:15px; font-weight:600; color:#111; word-break:break-word;">${esc(p.title)}</div>
+      </div>
+
+      <div style="margin-bottom:14px;">
+        <label style="display:block; font-size:10px; font-weight:800; letter-spacing:1px; text-transform:uppercase; color:#78716c; margin-bottom:6px;">Fecha · Hora · Duración</label>
+        <div style="background:white; border:1.5px solid rgba(245,158,11,.3); border-radius:12px; padding:12px 15px; font-family:'Google Sans Mono',monospace; font-size:13px; color:#111; letter-spacing:.3px;">${esc(p.startDate)} · ${esc(p.startTime)} · 3h</div>
+      </div>
+
+      <div style="margin-bottom:16px;">
+        <label style="display:block; font-size:10px; font-weight:800; letter-spacing:1px; text-transform:uppercase; color:#78716c; margin-bottom:6px;">Descripción</label>
+        <pre style="background:white; border:1.5px solid rgba(245,158,11,.3); border-radius:12px; padding:12px 15px; font-family:'Google Sans Mono',monospace; font-size:12px; line-height:1.6; white-space:pre-wrap; word-wrap:break-word; color:#111; max-height:240px; overflow-y:auto; margin:0;">${esc(p.description)}</pre>
+      </div>
+
+      <div style="background:rgba(251,191,36,.2); color:#78350f; padding:10px 14px; border-radius:10px; font-size:13px; margin-bottom:16px; border-left:3px solid #f59e0b;">
+        💡 Calendario destino sugerido: <b style="color:#111;">${esc(p.calName)}</b>
+      </div>
+
+      <div style="display:grid; grid-template-columns:1fr 1fr; gap:9px; margin-bottom:14px;">
+        ${gcalUrl ? `
+          <a href="${esc(gcalUrl)}" target="_blank" rel="noopener" style="grid-column:1/-1; padding:14px 16px; border-radius:14px; text-decoration:none; background:linear-gradient(135deg,#4285f4 0%,#1a73e8 100%); color:white; display:flex; align-items:center; gap:14px; box-shadow:0 6px 18px rgba(66,133,244,.35); font-family:inherit;">
+            <span style="font-size:24px;">📅</span>
+            <span><b style="font-size:15px; display:block;">Abrir en Google Calendar</b><small style="font-size:11px; opacity:.9;">Evento pre-llenado · solo clic "Guardar"</small></span>
+          </a>
+        ` : ''}
+        <button onclick="copyAgendarFull(this, ${pAttr})" style="padding:13px 14px; border-radius:12px; border:0; cursor:pointer; background:linear-gradient(135deg,#16a34a,#15803d); color:white; font-family:inherit; display:flex; align-items:center; gap:10px;">
+          <span style="font-size:20px;">📋</span>
+          <span style="text-align:left;"><b style="font-size:13px; display:block;">Copiar todo</b><small style="font-size:11px; opacity:.85;">título + descripción</small></span>
+        </button>
+        <button onclick="copyText(this, ${esc(JSON.stringify(p.title))})" style="padding:13px 14px; border-radius:12px; border:0; cursor:pointer; background:#f5f5f4; color:#44403c; font-family:inherit; display:flex; align-items:center; gap:10px;">
+          <span style="font-size:20px;">📝</span>
+          <span style="text-align:left;"><b style="font-size:13px; display:block;">Copiar título</b><small style="font-size:11px; opacity:.7;">solo el título</small></span>
+        </button>
+      </div>
+      <button onclick="copyText(this, ${esc(JSON.stringify(p.description))})" style="width:100%; padding:12px 14px; border-radius:12px; border:0; cursor:pointer; background:#f5f5f4; color:#44403c; font-family:inherit; display:flex; align-items:center; gap:10px; margin-bottom:14px;">
+        <span style="font-size:20px;">📄</span>
+        <span style="text-align:left;"><b style="font-size:13px; display:block;">Copiar descripción</b><small style="font-size:11px; opacity:.7;">solo el bloque descripción</small></span>
+      </button>
+
+      <div style="background:rgba(0,0,0,.04); padding:12px 15px; border-radius:10px; font-size:13px; line-height:1.5; color:#44403c;">
+        <b style="color:#111;">💡 Flujo en 5 segundos:</b> clic <b>"Abrir Google Calendar"</b> → Google abre evento pre-llenado → cambia calendar a <b>${esc(p.calName)}</b> si hace falta → clic <b>Guardar</b>. Listo.
+      </div>
+    </div>
+  `;
+  document.body.appendChild(overlay);
+};
+
+window.copyText = async function(btn, text) {
+  try {
+    await navigator.clipboard.writeText(text);
+    const orig = btn.innerHTML;
+    btn.style.background = 'linear-gradient(135deg,#22c55e,#16a34a)';
+    btn.style.color = 'white';
+    btn.innerHTML = '<span style="font-size:20px;">✓</span><span style="text-align:left;"><b style="font-size:13px; display:block;">¡Copiado!</b></span>';
+    setTimeout(() => { btn.style.background = ''; btn.style.color = ''; btn.innerHTML = orig; }, 1800);
+  } catch (e) {
+    alert('No pude copiar. Selecciona manualmente:\n\n' + text);
+  }
+};
+window.copyAgendarFull = function(btn, p) {
+  if (typeof p === 'string') { try { p = JSON.parse(p); } catch(_) { return; } }
+  const full = p.title + '\n\n' + p.description;
+  copyText(btn, full);
+};
 
 window.jumpToTomorrow = function() {
   // Activa tab Calendario
