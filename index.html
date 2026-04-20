@@ -986,7 +986,7 @@ window.buildAgendarPayload = function(g) {
   const rawName = (g.nombre || 'Sin nombre').trim().replace(/\s+/g, ' ');
   const nameNice = rawName.replace(/\b([\wáéíóúñ])([\wáéíóúñ]*)/gi, (m, f, r) => f.toUpperCase() + r.toLowerCase());
   const paxNum = parseInt(g.pax) || 1;
-  const calName = g.marca === 'M1' ? 'GAT' : g.marca === 'M2' ? 'VGMX' : 'BOOKEO';
+  const calName = 'We fly';  // Todos los eventos van al calendar principal (weflymx@gmail.com)
   const title = '🤖 *' + paxNum + 'P ' + nameNice;
   const descLines = [
     '📝 No.Reserva: ' + (g.reserva || '-'),
@@ -1017,6 +1017,7 @@ window.buildGCalLink = function(p) {
   const params = new URLSearchParams({
     action: 'TEMPLATE', text: p.title, dates: startStr + '/' + endStr,
     details: p.description, location: 'Teotihuacán, México',
+    src: 'weflymx@gmail.com',  // pre-selecciona calendario We fly
   });
   return 'https://calendar.google.com/calendar/render?' + params.toString();
 };
