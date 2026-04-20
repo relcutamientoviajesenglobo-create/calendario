@@ -1070,12 +1070,16 @@ async function fetchLive(useCache = true) {
   if (useCache) {
     try {
       const cached = JSON.parse(localStorage.getItem(CACHE_KEY) || 'null');
-      if (cached && cached.ts && (Date.now() - cached.ts) < CACHE_TTL_MS) {
+      // Cache válida: <5 min Y tiene data.events (no corrupta)
+      if (cached && cached.ts && (Date.now() - cached.ts) < CACHE_TTL_MS
+          && cached.data && Array.isArray(cached.data.events)) {
         DATA = cached.data;
         GAPS = cached.gaps;
         return true;
       }
-    } catch (_) {}
+      // Cache inválida/corrupta → borrarla
+      if (cached) localStorage.removeItem(CACHE_KEY);
+    } catch (_) { localStorage.removeItem(CACHE_KEY); }
   }
 
   const btn = $('#btnRefresh');
@@ -1947,24 +1951,49 @@ $('#q').addEventListener('input', runSearch);
 // ════════════════════════════════════════════
 // Boot
 // ════════════════════════════════════════════
+function showBootError(msg) {
+  // Error state claro cuando falla todo — no dejar al usuario con "Cargando…" eterno
+  $('#gen-sub').innerHTML = '<span style="color:#fca5a5;">⚠️ ' + esc(msg) + '</span>';
+  const main = document.querySelector('main');
+  if (main && !document.getElementById('boot-error-box')) {
+    const box = document.createElement('div');
+    box.id = 'boot-error-box';
+    box.style.cssText = 'margin:14px 12px; padding:18px 20px; background:rgba(239,68,68,.12); border:1px solid rgba(239,68,68,.4); border-radius:16px; color:#fecaca;';
+    box.innerHTML = `
+      <div style="font-size:14px; font-weight:700; margin-bottom:6px;">⚠️ No pude cargar los datos</div>
+      <div style="font-size:12px; opacity:.85; margin-bottom:12px;">${esc(msg)}</div>
+      <button onclick="location.reload()" style="width:100%; padding:12px; background:#22c55e; color:white; border:0; border-radius:10px; font-weight:700; font-size:13px; cursor:pointer;">↻ Reintentar</button>
+      <button onclick="localStorage.clear(); location.reload()" style="width:100%; margin-top:8px; padding:10px; background:transparent; color:#fca5a5; border:1px solid rgba(239,68,68,.4); border-radius:10px; font-weight:600; font-size:12px; cursor:pointer;">🗑️ Limpiar cache y reintentar</button>
+    `;
+    main.prepend(box);
+  }
+}
+
 (async () => {
-  // Try cache first for instant load
-  const cachedOk = await fetchLive(true);
-  if (cachedOk && DATA) {
-    renderAll();
-    // If cache was used, also refresh in background
-    const cached = JSON.parse(localStorage.getItem(CACHE_KEY) || 'null');
-    if (cached && (Date.now() - cached.ts) > 60000) {
-      // Silent background refresh if > 1 min old
-      setTimeout(async () => {
-        await fetchLive(false);
+  try {
+    // Try cache first for instant load
+    const cachedOk = await fetchLive(true);
+    if (cachedOk && DATA && DATA.events) {
+      renderAll();
+      // If cache was used, also refresh in background
+      const cached = JSON.parse(localStorage.getItem(CACHE_KEY) || 'null');
+      if (cached && (Date.now() - cached.ts) > 60000) {
+        setTimeout(async () => {
+          await fetchLive(false);
+          if (DATA && DATA.events) renderAll();
+        }, 500);
+      }
+    } else {
+      const ok = await fetchLive(false);
+      if (ok && DATA && DATA.events) {
         renderAll();
-      }, 500);
+      } else {
+        showBootError('Apps Script no respondió o la respuesta no tiene eventos. Jala tu celular hacia abajo para reintentar o pulsa "Limpiar cache y reintentar".');
+      }
     }
-  } else {
-    const ok = await fetchLive(false);
-    if (ok) renderAll();
-    else toast('No pude cargar. Revisa conexión.', 'err');
+  } catch (e) {
+    console.error('[boot]', e);
+    showBootError(e.message || 'error desconocido');
   }
 })();
 </script>

@@ -5,14 +5,16 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>WE FLY · Logística</title>
 <script>
-// Auto-redirect a mobile.html en pantallas chicas.
-// Override con ?desktop=1 si el usuario quiere ver desktop en celular.
+// Auto-redirect a mobile.html en pantallas chicas. ?desktop=1 override.
 (function() {
   try {
     var isMobile = window.innerWidth <= 768 || /Android|iPhone|iPad|iPod|Mobile/i.test(navigator.userAgent);
     var wantsDesktop = /[?&]desktop=1/.test(location.search);
     if (isMobile && !wantsDesktop) {
-      location.replace('/mobile.html' + location.search + location.hash);
+      // Cache-buster para forzar fresh mobile.html en iOS Safari
+      var sep = location.search ? '&' : '?';
+      var bust = 'v=' + Date.now();
+      location.replace('/mobile.html' + (location.search || '') + sep + bust + location.hash);
     }
   } catch (e) { /* noop */ }
 })();
