@@ -2,6 +2,9 @@
 <html lang="es">
 <head>
 <meta charset="utf-8">
+<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+<meta http-equiv="Pragma" content="no-cache">
+<meta http-equiv="Expires" content="0">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>WE FLY · Logística</title>
 <script>
@@ -866,7 +869,7 @@ async function refreshLive() {
     rmStep('gmail', 'active', '...');
     const dashRes = await fetch(APPS_SCRIPT_URL + '?t=' + Date.now(), {
       cache: 'no-store',
-      signal: AbortSignal.timeout(90000),
+      signal: (typeof AbortSignal !== 'undefined' && AbortSignal.timeout) ? AbortSignal.timeout(90000) : undefined,
     });
     if (!dashRes.ok) throw new Error('Dashboard HTTP ' + dashRes.status);
     const data = await dashRes.json();
@@ -886,7 +889,7 @@ async function refreshLive() {
       const endStr = localDateStr(new Date(Date.now() + 15 * 86400000));
       const gapsRes = await fetch(APPS_SCRIPT_URL + '?action=gaps_flat&from=' + todayStr + '&to=' + endStr + '&t=' + Date.now(), {
         cache: 'no-store',
-        signal: AbortSignal.timeout(30000),  // 30s — Turitop IP-blocked falla en ~3s, si tarda más hay problema
+        signal: (typeof AbortSignal !== 'undefined' && AbortSignal.timeout) ? AbortSignal.timeout(30000) : undefined,
       });
       if (gapsRes.ok) {
         const gaps = await gapsRes.json();
