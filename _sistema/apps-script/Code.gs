@@ -1044,3 +1044,34 @@ function testBuild() {
   Logger.log('Pending Viator not in cal: ' + data.missing_viator.length);
   Logger.log(JSON.stringify(data).length + ' bytes');
 }
+
+function testTuritop() {
+  const today = fmt(new Date());
+  const end   = fmt(addDays(new Date(), 15));
+  const r = fetchAllTuritop(today, end);
+  Logger.log('Turitop ' + today + '..' + end + ': ' + r.bookings.length + ' bookings');
+  if (r.errors.length) Logger.log('Errores: ' + r.errors.join(' | '));
+  if (r.bookings[0]) Logger.log('Primero: ' + JSON.stringify(r.bookings[0]));
+}
+
+function testGaps() {
+  const today = fmt(new Date());
+  const end   = fmt(addDays(new Date(), 15));
+  const g = buildGapsFlat(today, end);
+  Logger.log('Gaps: ' + g.total_sin_agendar + '/' + g.total_fuentes);
+  Logger.log(JSON.stringify(g.fuentes));
+  if (g.errors && g.errors.length) Logger.log('Errors: ' + g.errors.join(' | '));
+}
+
+function testCreateEventReal() {
+  // ⚠️ CREA UN EVENTO REAL en calendar GAT con fecha lejana (2026-12-31)
+  // Usar solo para verificar que el write API funciona.
+  // Después borrar manualmente el evento del calendar.
+  const r = createEventFromBooking({
+    reserva: 'TEST-SYSTEM', marca: 'M1', fecha: '2026-12-31', hora: '06:00', pax: 1,
+    nombre: 'prueba sistema no borrar', email: 'test@wefly.mx', phone: '+525512345678',
+    producto: 'TEST Vuelo', total: '1', fuente: 'Test',
+  }, false);
+  Logger.log(JSON.stringify(r, null, 2));
+  return r;
+}
