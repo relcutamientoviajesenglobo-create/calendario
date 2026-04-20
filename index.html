@@ -521,6 +521,10 @@
 <style>
 @keyframes rmSpin { to { transform: rotate(360deg); } }
 @keyframes rmFadeIn { from { opacity: 0; } to { opacity: 1; } }
+@keyframes pulseRing {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(255,255,255,.4) inset, 0 0 0 0 rgba(255,255,255,.5); }
+  50% { box-shadow: 0 0 0 2px rgba(255,255,255,.3) inset, 0 0 20px 4px rgba(255,200,100,.4); }
+}
 @keyframes rmPulse { 0%, 100% { opacity: 1; } 50% { opacity: .4; } }
 .rm-step { display:grid; grid-template-columns:22px 1fr auto; align-items:center; gap:10px; padding:10px 12px; background:rgba(255,255,255,.03); border:1px solid rgba(255,255,255,.05); border-radius:10px; transition:all .3s ease; }
 .rm-step .rm-dot { width:10px; height:10px; border-radius:50%; background:#334155; border:2px solid #475569; transition:all .3s; }
@@ -537,6 +541,38 @@
 .rm-step.error .rm-dot { background:#ef4444; border-color:#ef4444; }
 .rm-step.error .rm-hint { color:#fca5a5; font-weight:600; }
 </style>
+
+<!-- 🌅 HERO MAÑANA — propósito principal -->
+<button id="heroTomorrow" onclick="jumpToTomorrow()" style="
+  width: calc(100% - 48px); margin: 18px 24px 0; padding: 22px 28px;
+  display: flex; align-items: center; gap: 28px; flex-wrap: wrap;
+  background: linear-gradient(135deg, #f59e0b 0%, #ea580c 50%, #dc2626 100%);
+  border: 0; border-radius: 20px; cursor: pointer; text-align: left;
+  color: white; font-family: inherit; position: relative; overflow: hidden;
+  box-shadow: 0 14px 40px rgba(245,158,11,.3), 0 2px 8px rgba(0,0,0,.2);
+  transition: transform .15s, box-shadow .15s;
+" onmouseenter="this.style.transform='translateY(-2px)'" onmouseleave="this.style.transform='translateY(0)'">
+  <div style="display:flex; align-items:center; gap:12px; min-width:180px;">
+    <span style="font-size:40px;">🌅</span>
+    <div>
+      <div style="font-size:12px; font-weight:800; letter-spacing:3px; text-transform:uppercase; opacity:.95;">MAÑANA</div>
+      <div id="heroDate" style="font-size:22px; font-weight:700; letter-spacing:-.01em; margin-top:2px;">—</div>
+    </div>
+  </div>
+  <div style="display:flex; gap:28px; align-items:center; flex:1; min-width:0;">
+    <div><div id="heroPax" style="font-size:44px; font-weight:900; line-height:1; letter-spacing:-1.5px; font-variant-numeric:tabular-nums;">—</div>
+      <div style="font-size:11px; font-weight:700; letter-spacing:1.3px; text-transform:uppercase; opacity:.85; margin-top:5px;">pasajeros</div></div>
+    <div style="width:1px; height:48px; background:rgba(255,255,255,.3);"></div>
+    <div><div id="heroVuelos" style="font-size:44px; font-weight:900; line-height:1; letter-spacing:-1.5px; font-variant-numeric:tabular-nums;">—</div>
+      <div style="font-size:11px; font-weight:700; letter-spacing:1.3px; text-transform:uppercase; opacity:.85; margin-top:5px;">vuelos</div></div>
+    <div style="width:1px; height:48px; background:rgba(255,255,255,.3);"></div>
+    <div id="heroGapsBox" style="padding:10px 18px; background:rgba(0,0,0,.22); border-radius:14px;">
+      <div id="heroGaps" style="font-size:44px; font-weight:900; line-height:1; letter-spacing:-1.5px; font-variant-numeric:tabular-nums;">—</div>
+      <div style="font-size:11px; font-weight:700; letter-spacing:1.3px; text-transform:uppercase; opacity:.9; margin-top:5px;">sin agendar</div>
+    </div>
+  </div>
+  <div style="font-size:13px; font-weight:600; opacity:.85; margin-left:auto;">Ver agenda completa →</div>
+</button>
 
 <section class="stats" id="stats"></section>
 
@@ -761,8 +797,8 @@ async function refreshLive() {
     // 2) Turitop + gaps
     rmStep('turitop', 'active', 'bajando...');
     try {
-      const todayStr = new Date().toISOString().slice(0, 10);
-      const endStr = new Date(Date.now() + 15 * 86400000).toISOString().slice(0, 10);
+      const todayStr = localDateStr(new Date());
+      const endStr = localDateStr(new Date(Date.now() + 15 * 86400000));
       const gapsRes = await fetch(APPS_SCRIPT_URL + '?action=gaps_flat&from=' + todayStr + '&to=' + endStr + '&t=' + Date.now(), { cache: 'no-store' });
       if (gapsRes.ok) {
         const gaps = await gapsRes.json();
@@ -824,8 +860,87 @@ let DATA = loadData({"events": [{"calendar": "VIATOR / TRIP ADVISOR", "id": "264
 const $ = s => document.querySelector(s);
 const $$ = s => document.querySelectorAll(s);
 const esc = s => (s||'').toString().replace(/[<>&"]/g,c=>({'<':'&lt;','>':'&gt;','&':'&amp;','"':'&quot;'}[c]));
+// ⚠️ Usar LOCAL date (no UTC) — toISOString() rompe en TZ negativas al anochecer
+const localDateStr = d => {
+  const x = new Date(d);
+  return x.getFullYear() + '-' + String(x.getMonth()+1).padStart(2,'0') + '-' + String(x.getDate()).padStart(2,'0');
+};
 
 $('#gen').textContent = DATA.generated_at.replace('T',' ');
+
+// ═════ HERO MAÑANA ═════
+(function renderHeroTomorrow() {
+  const todayStr  = localDateStr(new Date());
+  const tmrwDate  = new Date(Date.now() + 86400000);
+  const tmrwStr   = localDateStr(tmrwDate);
+  const dayName   = ['domingo','lunes','martes','miércoles','jueves','viernes','sábado'][tmrwDate.getDay()];
+  const monthName = ['ene','feb','mar','abr','may','jun','jul','ago','sep','oct','nov','dic'][tmrwDate.getMonth()];
+  const labelLong = dayName.charAt(0).toUpperCase() + dayName.slice(1) + ' ' + tmrwDate.getDate() + ' ' + monthName;
+
+  const tmrwEvs = (DATA.events || []).filter(e => {
+    const d = e.date || (e.datetime || '').slice(0,10);
+    if (d !== tmrwStr) return false;
+    const t = (e.title_raw || e.name || '').toLowerCase();
+    return !/^\s*(disponibilidad|disponible)/.test(t);
+  });
+  const pax = tmrwEvs.reduce((a,e) => a + (parseInt(e.pax) || 0), 0);
+
+  // Gaps: usar pending_bookeo/viator + reservas_sin_agendar si está disponible
+  let gaps = 0;
+  const missing = [
+    ...((DATA.missing_bookeo || []).filter(x => x.flight_date === tmrwStr)),
+    ...((DATA.missing_viator || []).filter(x => x.flight_date === tmrwStr)),
+  ];
+  gaps = missing.length;
+
+  document.getElementById('heroDate').textContent = labelLong;
+  document.getElementById('heroPax').textContent = pax;
+  document.getElementById('heroVuelos').textContent = tmrwEvs.length;
+  document.getElementById('heroGaps').textContent = gaps;
+
+  const hero = document.getElementById('heroTomorrow');
+  const gapsBox = document.getElementById('heroGapsBox');
+  if (gaps > 0) {
+    // Rojo alerta
+    hero.style.background = 'linear-gradient(135deg, #f59e0b 0%, #ea580c 50%, #dc2626 100%)';
+    hero.style.boxShadow = '0 14px 40px rgba(220,38,38,.4), 0 2px 8px rgba(0,0,0,.2)';
+    gapsBox.style.background = 'rgba(0,0,0,.3)';
+    gapsBox.style.animation = 'pulseRing 1.8s ease-in-out infinite';
+  } else {
+    // Verde OK
+    hero.style.background = 'linear-gradient(135deg, #16a34a 0%, #059669 100%)';
+    hero.style.boxShadow = '0 14px 40px rgba(34,197,94,.3), 0 2px 8px rgba(0,0,0,.2)';
+    gapsBox.style.background = 'rgba(0,0,0,.22)';
+    gapsBox.style.animation = '';
+  }
+})();
+
+window.jumpToTomorrow = function() {
+  // Activa tab Calendario
+  const calTab = document.querySelector('.tab[data-view="calendar"]');
+  if (calTab) calTab.click();
+  // Scroll al día de mañana después de un micro-delay para que el render termine
+  setTimeout(() => {
+    const tmrw = new Date(Date.now() + 86400000);
+    const id = 'd-' + localDateStr(tmrw);
+    const cell = document.getElementById(id);
+    if (cell) {
+      cell.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      cell.style.outline = '3px solid #f59e0b';
+      cell.style.outlineOffset = '4px';
+      setTimeout(() => { cell.style.outline = ''; cell.style.outlineOffset = ''; }, 2500);
+    } else {
+      // Fallback: tab Tabla con filtro fecha
+      const tblTab = document.querySelector('.tab[data-view="table"]');
+      if (tblTab) tblTab.click();
+      const fdate1 = document.getElementById('fdate1');
+      const fdate2 = document.getElementById('fdate2');
+      const tmrwStr = localDateStr(tmrw);
+      if (fdate1) { fdate1.value = tmrwStr; fdate1.dispatchEvent(new Event('input')); }
+      if (fdate2) { fdate2.value = tmrwStr; fdate2.dispatchEvent(new Event('input')); }
+    }
+  }, 150);
+};
 
 // ── Init filter dropdowns ─────────────────
 const fcal=$('#fcal'), fstatus=$('#fstatus');
@@ -970,7 +1085,7 @@ function gcalUrl(e){
 function renderPending(){
   const evs = filtered();
   // Upcoming calendar list: dates >= today, sorted asc
-  const today = new Date().toISOString().slice(0,10);
+  const today = localDateStr(new Date());
   const upcoming = evs.filter(e=>e.date>=today).sort((a,b)=>a.date.localeCompare(b.date) || (a.time||'').localeCompare(b.time||''));
   const paxSum = upcoming.reduce((a,e)=>a+(e.pax||0),0);
   $('#cal-n').textContent = paxSum.toLocaleString();
@@ -1068,7 +1183,7 @@ function renderCal(){
   });
   const first = new Date(curY,curM,1), startDow = first.getDay();
   const daysInM = new Date(curY,curM+1,0).getDate();
-  const today = new Date().toISOString().slice(0,10);
+  const today = localDateStr(new Date());
   for(let i=0;i<startDow;i++){const el=document.createElement('div'); el.className='day empty'; grid.appendChild(el)}
   const evs = filtered();
   // Find max pax for scaling
@@ -1117,7 +1232,7 @@ $('#modal').addEventListener('click',e=>{if(e.target.id==='modal')closeModal()})
 (function renderTotals(){
   const td = DATA.totals_by_day || {};
   const dates = Object.keys(td).sort();
-  const today = new Date().toISOString().slice(0,10);
+  const today = localDateStr(new Date());
   const future = dates.filter(d=>d>=today).slice(0,20);
   const tbl = $('#totals-table');
   if(!tbl) return;
@@ -1155,7 +1270,7 @@ $('#modal').addEventListener('click',e=>{if(e.target.id==='modal')closeModal()})
 (function renderAlerts(){
   const list = $('#alerts-list');
   if(!list) return;
-  const today = new Date().toISOString().slice(0,10);
+  const today = localDateStr(new Date());
   const items = [];
 
   // Sobrepeso
@@ -1183,7 +1298,7 @@ $('#modal').addEventListener('click',e=>{if(e.target.id==='modal')closeModal()})
 
   // Celebraciones próximas (15 días)
   const limit = new Date(); limit.setDate(limit.getDate()+15);
-  const limitStr = limit.toISOString().slice(0,10);
+  const limitStr = localDateStr(limit);
   DATA.events.filter(e=>e.celebration && e.date>=today && e.date<=limitStr)
     .sort((a,b)=>a.date.localeCompare(b.date))
     .slice(0,10)
@@ -1200,7 +1315,7 @@ $('#modal').addEventListener('click',e=>{if(e.target.id==='modal')closeModal()})
 
 // ── Ruta del día · PDF (abre ventana imprimible) ─────────────────
 function printRoute(){
-  const today = new Date().toISOString().slice(0,10);
+  const today = localDateStr(new Date());
   const evs = DATA.events
     .filter(e=>e.date===today)
     .sort((a,b)=>(a.time||'').localeCompare(b.time||''));
@@ -1265,7 +1380,7 @@ function exportCSV(){
   const blob = new Blob([lines.join('\n')],{type:'text/csv;charset=utf-8'});
   const a = document.createElement('a');
   a.href = URL.createObjectURL(blob);
-  a.download = `wefly-logistica-${new Date().toISOString().slice(0,10)}.csv`;
+  a.download = `wefly-logistica-${localDateStr(new Date())}.csv`;
   a.click();
 }
 function clearFilters(){

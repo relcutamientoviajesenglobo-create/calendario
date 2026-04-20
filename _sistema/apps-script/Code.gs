@@ -889,8 +889,152 @@ function addDaysStr(dateStr, n) {
 }
 
 // ══════════════════════════════════════════════════════
+// WRITE API — Crear eventos desde el dashboard (🤖 bot)
+// ══════════════════════════════════════════════════════
+
+function doPost(e) {
+  try {
+    if (!e || !e.postData || !e.postData.contents) {
+      return jsonOut({ ok: false, error: 'no_body' });
+    }
+    const body = JSON.parse(e.postData.contents);
+
+    // Auth
+    const token = PropertiesService.getScriptProperties().getProperty('WRITE_TOKEN');
+    if (!token) return jsonOut({ ok: false, error: 'write_token_not_configured' });
+    if (body.token !== token) return jsonOut({ ok: false, error: 'unauthorized' });
+
+    if (body.action === 'create_event') {
+      return jsonOut(createEventFromBooking(body.booking, body.dry_run === true));
+    }
+    if (body.action === 'ping') {
+      return jsonOut({ ok: true, pong: true, now: new Date().toISOString() });
+    }
+    return jsonOut({ ok: false, error: 'unknown_action', action: body.action });
+  } catch (err) {
+    return jsonOut({ ok: false, error: err.message, stack: err.stack });
+  }
+}
+
+function writeTokenSetup() {
+  // Correr UNA VEZ desde el editor. Genera WRITE_TOKEN random y lo guarda.
+  // El token aparece en los logs — cópialo a mobile.html.
+  const tok = Utilities.getUuid().replace(/-/g, '') + Utilities.getUuid().replace(/-/g, '');
+  PropertiesService.getScriptProperties().setProperty('WRITE_TOKEN', tok);
+  Logger.log('✅ WRITE_TOKEN generado. COPIA ESTO a mobile.html:');
+  Logger.log(tok);
+  return tok;
+}
+
+function writeTokenGet() {
+  // Devuelve el token actual (útil si se te olvida).
+  const t = PropertiesService.getScriptProperties().getProperty('WRITE_TOKEN');
+  Logger.log('Current WRITE_TOKEN: ' + (t || '(no configurado — correr writeTokenSetup)'));
+  return t;
+}
+
+function createEventFromBooking(b, dryRun) {
+  if (!b) return { ok: false, error: 'no_booking' };
+
+  // Map marca → calendar
+  const calMap = {
+    M1: '04vo1ceehopp13f3jo75609ccc@group.calendar.google.com',  // GAT
+    M2: 'qub2vdgep4n6m3mi8fbskd4v6o@group.calendar.google.com',   // VGMX
+    BK: 'b620fb021e2fbdb9f2febaafdecf61f27344c173e993ef103da65d31d512bcd9@group.calendar.google.com',  // BOOKEO
+  };
+  const marca = (b.marca || '').toUpperCase();
+  const calId = calMap[marca] || calMap.BK;
+  const cal = CalendarApp.getCalendarById(calId);
+  if (!cal) return { ok: false, error: 'calendar_not_found', marca: marca, calId: calId };
+
+  // Parse date + time
+  const dateM = (b.fecha || '').match(/^(\d{4})-(\d{2})-(\d{2})$/);
+  if (!dateM) return { ok: false, error: 'invalid_date', fecha: b.fecha };
+  const timeStr = (b.hora || '06:00').toString();
+  const timeM = timeStr.match(/^(\d{1,2}):(\d{2})/);
+  const hh = timeM ? Math.min(23, Math.max(0, parseInt(timeM[1]))) : 6;
+  const mm = timeM ? Math.min(59, Math.max(0, parseInt(timeM[2]))) : 0;
+  const start = new Date(parseInt(dateM[1]), parseInt(dateM[2]) - 1, parseInt(dateM[3]), hh, mm);
+  const end = new Date(start.getTime() + 3 * 60 * 60 * 1000);  // 3h default
+
+  // Capitalize nombre
+  const rawName = (b.nombre || 'Sin nombre').trim().replace(/\s+/g, ' ');
+  const nameNice = rawName.replace(/\b(\p{L})(\p{L}*)/gu, (m, f, r) => f.toUpperCase() + r.toLowerCase());
+
+  // Pax
+  const paxNum = parseInt(b.pax) || 1;
+
+  // Title — 🤖 marca que fue agendado por el sistema
+  const title = '🤖 *' + paxNum + 'P ' + nameNice;
+
+  // Description en formato consistente con el resto de eventos
+  const lines = [];
+  lines.push('Fecha de compra: (reserva previa del sistema)');
+  lines.push('No.Reserva: ' + (b.reserva || ''));
+  lines.push('Nombre: ' + nameNice);
+  lines.push('Fecha de Vuelo: ' + (b.fecha || '') + (b.hora ? ' ' + b.hora : ''));
+  lines.push('Tipo de Servicio: ' + (b.producto || ''));
+  lines.push('Participantes: ' + paxNum + ' pax');
+  if (b.email) lines.push('Email: ' + b.email);
+  if (b.phone) lines.push('Tel: ' + b.phone);
+  if (b.total)  lines.push('Total: ' + b.total);
+  lines.push('');
+  lines.push('🤖 Agendado por WE FLY Gap Detector');
+  lines.push('Fuente: ' + (b.fuente || marca));
+  lines.push('Generado: ' + new Date().toISOString());
+
+  if (dryRun) {
+    return {
+      ok: true,
+      dry_run: true,
+      would_create: {
+        calendar: calId,
+        calendar_name: cal.getName(),
+        title: title,
+        start: start.toISOString(),
+        end: end.toISOString(),
+        description: lines.join('\n'),
+      },
+    };
+  }
+
+  const ev = cal.createEvent(title, start, end, {
+    description: lines.join('\n'),
+  });
+
+  return {
+    ok: true,
+    event_id: ev.getId(),
+    calendar: calId,
+    calendar_name: cal.getName(),
+    title: title,
+    start: start.toISOString(),
+    end: end.toISOString(),
+  };
+}
+
+// ══════════════════════════════════════════════════════
 // Test helpers (correr desde editor script.google.com)
 // ══════════════════════════════════════════════════════
+function testCreateEventDryRun() {
+  // Prueba sin crear realmente el evento
+  const result = createEventFromBooking({
+    reserva: 'TEST-260419-1',
+    marca: 'M1',
+    fecha: '2026-04-25',
+    hora: '06:00',
+    pax: 2,
+    nombre: 'juan perez test',
+    email: 'test@example.com',
+    phone: '+525512345678',
+    producto: 'Vuelo Tradicional en Teotihuacán',
+    total: '5000',
+    fuente: 'Turitop',
+  }, true);
+  Logger.log(JSON.stringify(result, null, 2));
+  return result;
+}
+
 function testBuild() {
   const data = buildDashboardData();
   Logger.log('Events: ' + data.events.length);
