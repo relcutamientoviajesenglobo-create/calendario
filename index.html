@@ -520,6 +520,60 @@
 
 <style>
 @keyframes rmSpin { to { transform: rotate(360deg); } }
+
+/* ── Animaciones llamativas del botón 'Recargar en vivo' (CTA principal) ── */
+@keyframes rfGlowPulse {
+  0%, 100% {
+    box-shadow: 0 4px 14px rgba(34,197,94,.35), 0 0 0 0 rgba(34,197,94,.55);
+  }
+  50% {
+    box-shadow: 0 6px 22px rgba(34,197,94,.6), 0 0 0 12px rgba(34,197,94,0);
+  }
+}
+@keyframes rfShineSweep {
+  0%   { transform: translateX(-160%) skewX(-20deg); }
+  60%  { transform: translateX(260%)  skewX(-20deg); }
+  100% { transform: translateX(260%)  skewX(-20deg); }
+}
+@keyframes rfIconSpin {
+  0%, 80% { transform: rotate(0deg); }
+  100%    { transform: rotate(360deg); }
+}
+@keyframes rfNudge {
+  0%, 90%, 100% { transform: scale(1); }
+  93%  { transform: scale(1.04) rotate(-1deg); }
+  96%  { transform: scale(1.04) rotate( 1deg); }
+}
+
+#btnRefresh {
+  position: relative;
+  overflow: hidden;
+  animation: rfGlowPulse 2.4s ease-in-out infinite, rfNudge 5.5s ease-in-out infinite;
+}
+#btnRefresh::before {
+  content: '';
+  position: absolute;
+  top: 0; bottom: 0; left: 0; width: 50%;
+  background: linear-gradient(90deg, transparent 0%, rgba(255,255,255,.55) 50%, transparent 100%);
+  pointer-events: none;
+  animation: rfShineSweep 3.2s ease-in-out infinite;
+}
+#btnRefresh > * { position: relative; z-index: 1; }
+/* Pausa todas las animaciones cuando el botón está cargando */
+#btnRefresh:disabled,
+#btnRefresh.loading {
+  animation: none;
+}
+#btnRefresh:disabled::before,
+#btnRefresh.loading::before {
+  animation: none;
+  opacity: 0;
+}
+#btnRefresh:hover {
+  animation: rfGlowPulse 1.6s ease-in-out infinite;  /* acelera al hover */
+  transform: translateY(-1px);
+  transition: transform .15s;
+}
 @keyframes rmFadeIn { from { opacity: 0; } to { opacity: 1; } }
 @keyframes dskOverlayIn { from { opacity: 0; } to { opacity: 1; } }
 @keyframes dskSheetIn { from { opacity: 0; transform: scale(.94) translateY(10px); } to { opacity: 1; transform: scale(1) translateY(0); } }
