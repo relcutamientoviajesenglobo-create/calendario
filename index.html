@@ -568,9 +568,9 @@
     <div><div id="heroVuelos" style="font-size:44px; font-weight:900; line-height:1; letter-spacing:-1.5px; font-variant-numeric:tabular-nums;">—</div>
       <div style="font-size:11px; font-weight:700; letter-spacing:1.3px; text-transform:uppercase; opacity:.85; margin-top:5px;">vuelos</div></div>
     <div style="width:1px; height:48px; background:rgba(255,255,255,.3);"></div>
-    <div id="heroGapsBox" style="padding:10px 18px; background:rgba(0,0,0,.22); border-radius:14px;">
+    <div id="heroGapsBox" onclick="event.stopPropagation(); openGapsList()" style="padding:10px 18px; background:rgba(0,0,0,.22); border-radius:14px; cursor:pointer; transition:all .15s;" onmouseenter="this.style.background='rgba(0,0,0,.35)'; this.style.transform='scale(1.04)'" onmouseleave="this.style.background='rgba(0,0,0,.22)'; this.style.transform='scale(1)'" title="Click para ver lista de sin agendar">
       <div id="heroGaps" style="font-size:44px; font-weight:900; line-height:1; letter-spacing:-1.5px; font-variant-numeric:tabular-nums;">—</div>
-      <div style="font-size:11px; font-weight:700; letter-spacing:1.3px; text-transform:uppercase; opacity:.9; margin-top:5px;">sin agendar</div>
+      <div style="font-size:11px; font-weight:700; letter-spacing:1.3px; text-transform:uppercase; opacity:.9; margin-top:5px;">sin agendar ▸</div>
     </div>
   </div>
   <div style="font-size:13px; font-weight:600; opacity:.85; margin-left:auto;">Ver agenda completa →</div>
@@ -927,7 +927,9 @@ $('#gen').textContent = DATA.generated_at.replace('T',' ');
   }
 })();
 
-// 🚨 Panel de gaps de mañana (desktop)
+// 🚨 Gaps desktop: storage global + panel mañana + modal lista completa
+window._allGaps = [];
+
 (async function loadCriticalGaps() {
   try {
     const res = await fetch('./reservas_sin_agendar.json?t=' + Date.now(), { cache: 'no-store' });
@@ -935,22 +937,104 @@ $('#gen').textContent = DATA.generated_at.replace('T',' ');
     const data = await res.json();
     const today = localDateStr(new Date());
     const tmrw  = localDateStr(new Date(Date.now() + 86400000));
-    const criticalGaps = (data.bookings || []).filter(g => g.fecha === tmrw);
-    if (!criticalGaps.length) return;
-    const panel = document.getElementById('criticalGapsPanel');
-    const list = document.getElementById('criticalGapsList');
-    const count = document.getElementById('criticalGapsCount');
-    panel.style.display = 'block';
-    count.textContent = criticalGaps.length;
-    list.innerHTML = criticalGaps.map(renderDesktopGapCard).join('');
+    // Guardar TODOS los gaps no-pasados globalmente
+    window._allGaps = (data.bookings || []).filter(g => !g.fecha || g.fecha >= today);
+    // Panel de MAÑANA: solo gaps con fecha === tmrw
+    const criticalGaps = window._allGaps.filter(g => g.fecha === tmrw);
+    if (criticalGaps.length) {
+      const panel = document.getElementById('criticalGapsPanel');
+      const list = document.getElementById('criticalGapsList');
+      const count = document.getElementById('criticalGapsCount');
+      panel.style.display = 'block';
+      count.textContent = criticalGaps.length;
+      list.innerHTML = criticalGaps.map(renderDesktopGapCard).join('');
+    }
+    // Actualizar contador del hero (puede ser mayor si hay futuros > mañana)
+    const hg = document.getElementById('heroGaps');
+    if (hg) hg.textContent = criticalGaps.length;
   } catch (e) { console.warn('[critical gaps]', e); }
 })();
+
+// Busca un gap en _allGaps por su reserva — evita embeber JSON en atributos HTML
+window.findGapByReserva = function(reserva) {
+  return (window._allGaps || []).find(g => g.reserva === reserva);
+};
+
+window.openGapsList = function() {
+  const gaps = window._allGaps || [];
+  const today = localDateStr(new Date());
+  const tmrw  = localDateStr(new Date(Date.now() + 86400000));
+
+  if (!gaps.length) {
+    alert('🎉 No hay reservas sin agendar.');
+    return;
+  }
+
+  const tmrwGaps = gaps.filter(g => g.fecha === tmrw);
+  const todayGaps = gaps.filter(g => g.fecha === today);
+  const futureGaps = gaps.filter(g => g.fecha > tmrw);
+
+  const renderRow = (g) => {
+    const dayLabel = g.fecha === today ? '🔴 HOY' : g.fecha === tmrw ? '🟡 MAÑANA' : '🗓️ ' + esc(g.fecha);
+    return `
+      <div style="background:white; border-radius:12px; padding:14px 16px; margin-bottom:8px; border-left:4px solid ${g.fecha === tmrw ? '#dc2626' : g.fecha === today ? '#dc2626' : '#f59e0b'}; display:flex; align-items:center; gap:14px; flex-wrap:wrap;">
+        <div style="flex:1; min-width:260px;">
+          <div style="display:flex; align-items:center; gap:8px; margin-bottom:4px;">
+            <span style="background:${g.fecha === tmrw || g.fecha === today ? '#dc2626' : '#f59e0b'}; color:white; padding:2px 8px; border-radius:100px; font-size:10px; font-weight:800;">${dayLabel}</span>
+            <span style="background:#f5f5f4; color:#44403c; padding:2px 8px; border-radius:5px; font-size:10px; font-weight:700;">${esc(g.fuente || 'SRC')}</span>
+            <span style="background:#f5f5f4; color:#44403c; padding:2px 8px; border-radius:5px; font-size:10px; font-weight:700;">${esc(g.hora || '--:--')}</span>
+            <span style="background:#22c55e; color:white; padding:2px 8px; border-radius:5px; font-size:10px; font-weight:800;">${esc(g.pax || 0)} pax</span>
+          </div>
+          <div style="font-size:16px; font-weight:800; color:#111; line-height:1.2;">${esc(g.nombre || 'Sin nombre')}</div>
+          <div style="font-size:11px; color:#78716c; font-family:'Google Sans Mono',monospace; margin-top:2px;">📋 ${esc(g.reserva || '?')}</div>
+          ${g.producto ? `<div style="font-size:12px; color:#57534e; margin-top:6px; line-height:1.4;">${esc(g.producto).slice(0, 100)}</div>` : ''}
+        </div>
+        <button data-reserva="${esc(g.reserva)}" onclick="openGapFromReserva(this.dataset.reserva)" style="padding:10px 16px; background:linear-gradient(135deg,#4285f4,#1a73e8); color:white; border:0; border-radius:10px; font-weight:700; font-size:12px; cursor:pointer; display:flex; align-items:center; gap:6px; white-space:nowrap;">
+          <span style="font-size:15px;">🤖</span> Ver + Agendar
+        </button>
+      </div>
+    `;
+  };
+
+  const section = (label, list, color) => !list.length ? '' : `
+    <div style="margin-bottom:18px;">
+      <div style="font-size:11px; font-weight:800; text-transform:uppercase; letter-spacing:1.5px; color:${color}; margin-bottom:8px;">${label} · ${list.length}</div>
+      ${list.map(renderRow).join('')}
+    </div>
+  `;
+
+  const overlay = document.createElement('div');
+  overlay.style.cssText = 'position:fixed; inset:0; z-index:9998; background:rgba(0,0,0,.65); backdrop-filter:blur(8px); -webkit-backdrop-filter:blur(8px); display:flex; align-items:center; justify-content:center; padding:20px; animation:dskOverlayIn .2s ease-out;';
+  overlay.onclick = e => { if (e.target === overlay) overlay.remove(); };
+  overlay.innerHTML = `
+    <div style="background:linear-gradient(180deg,#fffef9 0%,#fff8ea 100%); color:#1f1203; width:100%; max-width:720px; max-height:88vh; border-radius:22px; padding:24px 26px; box-shadow:0 30px 80px rgba(0,0,0,.5), 0 0 0 2px rgba(245,158,11,.4); overflow-y:auto; animation:dskSheetIn .3s cubic-bezier(.2,.9,.3,1.1);" onclick="event.stopPropagation()">
+      <div style="display:flex; align-items:center; justify-content:space-between; margin-bottom:20px;">
+        <h3 style="margin:0; font-size:22px; font-weight:900; color:#111; letter-spacing:-.02em;">⚠️ Sin Agendar · ${gaps.length}</h3>
+        <button onclick="this.closest('div[style*=inset]').remove()" style="background:#1f1203; color:#fffbf2; border:0; width:36px; height:36px; border-radius:50%; font-size:16px; cursor:pointer; font-weight:700;">✕</button>
+      </div>
+      ${section('🟡 Mañana', tmrwGaps, '#dc2626')}
+      ${section('🔴 Hoy', todayGaps, '#dc2626')}
+      ${section('📆 Próximos días', futureGaps, '#f59e0b')}
+    </div>
+  `;
+  document.body.appendChild(overlay);
+};
+
+// Click del botón "Ver + Agendar" en la lista → busca gap por reserva y abre modal detalle
+window.openGapFromReserva = function(reserva) {
+  const g = findGapByReserva(reserva);
+  if (!g) { alert('No encontré la reserva ' + reserva); return; }
+  // Cierra la lista primero
+  const listModal = document.querySelector('div[style*="z-index:9998"]');
+  if (listModal) listModal.remove();
+  // Abre modal detalle
+  showAgendarModal(g);
+};
 
 function renderDesktopGapCard(g) {
   const src = (g.fuente || '').toLowerCase();
   const srcColor = src === 'turitop' ? '#6d28d9' : '#92400e';
   const srcBg = src === 'turitop' ? '#ede9fe' : '#fef3c7';
-  const gJson = esc(JSON.stringify(g));
   return `
     <div style="background:white; border-radius:14px; padding:14px 16px; border-left:4px solid #dc2626; box-shadow:0 4px 12px rgba(0,0,0,.06);">
       <div style="display:flex; align-items:center; gap:8px; margin-bottom:8px;">
@@ -974,7 +1058,7 @@ function renderDesktopGapCard(g) {
         </div>
       </div>
       ${g.producto ? `<div style="font-size:12px; color:#57534e; background:rgba(251,191,36,.15); padding:7px 10px; border-radius:8px; border-left:3px solid #f59e0b; margin-bottom:10px; line-height:1.4;">${esc(g.producto)}</div>` : ''}
-      <button onclick='showAgendarModal(${gJson})' style="width:100%; padding:11px; background:linear-gradient(135deg,#4285f4,#1a73e8); color:white; border:0; border-radius:10px; font-weight:800; font-size:13px; cursor:pointer; box-shadow:0 4px 12px rgba(66,133,244,.3); letter-spacing:.3px; display:flex; align-items:center; justify-content:center; gap:8px;">
+      <button data-reserva="${esc(g.reserva)}" onclick="openGapFromReserva(this.dataset.reserva)" style="width:100%; padding:11px; background:linear-gradient(135deg,#4285f4,#1a73e8); color:white; border:0; border-radius:10px; font-weight:800; font-size:13px; cursor:pointer; box-shadow:0 4px 12px rgba(66,133,244,.3); letter-spacing:.3px; display:flex; align-items:center; justify-content:center; gap:8px;">
         <span style="font-size:16px;">🤖</span> Agendar al Calendario
       </button>
     </div>
@@ -1119,16 +1203,10 @@ window.jumpToTomorrow = function() {
       cell.style.outline = '3px solid #f59e0b';
       cell.style.outlineOffset = '4px';
       setTimeout(() => { cell.style.outline = ''; cell.style.outlineOffset = ''; }, 2500);
-    } else {
-      // Fallback: tab Tabla con filtro fecha
-      const tblTab = document.querySelector('.tab[data-view="table"]');
-      if (tblTab) tblTab.click();
-      const fdate1 = document.getElementById('fdate1');
-      const fdate2 = document.getElementById('fdate2');
-      const tmrwStr = localDateStr(tmrw);
-      if (fdate1) { fdate1.value = tmrwStr; fdate1.dispatchEvent(new Event('input')); }
-      if (fdate2) { fdate2.value = tmrwStr; fdate2.dispatchEvent(new Event('input')); }
     }
+    // NO aplicar filtros de fecha como fallback — eso ocultaba los 90+ vuelos del panel
+    // "En Calendario". Si no hay celda de mañana en el calendario, el usuario queda
+    // en el tab Calendario donde puede navegar manualmente sin filtros forzados.
   }, 150);
 };
 

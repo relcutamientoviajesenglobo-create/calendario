@@ -869,9 +869,9 @@
           <div class="hero-sub">vuelos</div>
         </div>
         <div class="hero-sep"></div>
-        <div class="hero-block hero-gaps" id="hero-gaps-wrap">
+        <div class="hero-block hero-gaps" id="hero-gaps-wrap" onclick="event.stopPropagation(); openGapsList()" style="cursor:pointer; padding:6px 10px; border-radius:10px; transition:background .15s;">
           <div class="hero-n" id="hero-gaps">—</div>
-          <div class="hero-sub">sin agendar</div>
+          <div class="hero-sub">sin agendar ▸</div>
         </div>
       </div>
       <div class="hero-hint">Toca para ver agenda de mañana</div>
@@ -1332,6 +1332,75 @@ window.selectDay = function(d) {
   renderAgenda();
 };
 
+// 🚨 Storage global de gaps + lookup helpers
+window._allGaps = [];
+window.findGapByReserva = function(reserva) {
+  return (window._allGaps || []).find(g => g.reserva === reserva);
+};
+window.openGapFromReserva = function(reserva) {
+  const g = findGapByReserva(reserva);
+  if (!g) { toast('No encontré la reserva ' + reserva, 'err'); return; }
+  const listModal = document.querySelector('.gaps-list-overlay');
+  if (listModal) listModal.remove();
+  showAgendarModal(g);
+};
+
+window.openGapsList = function() {
+  const gaps = window._allGaps || [];
+  if (!gaps.length) { toast('🎉 No hay reservas sin agendar', 'ok'); return; }
+  const t = today();
+  const tmrw = tomorrow();
+  const tmrwGaps = gaps.filter(g => g.fecha === tmrw);
+  const todayGaps = gaps.filter(g => g.fecha === t);
+  const futureGaps = gaps.filter(g => g.fecha > tmrw);
+
+  const renderRow = (g) => {
+    const when = g.fecha === t ? '🔴 HOY' : g.fecha === tmrw ? '🟡 MAÑANA' : '🗓️ ' + fmtDayLabel(g.fecha);
+    const urgent = g.fecha === t || g.fecha === tmrw;
+    return `
+      <div style="background:white; border-radius:12px; padding:12px 14px; margin-bottom:8px; border-left:4px solid ${urgent ? '#dc2626' : '#f59e0b'};">
+        <div style="display:flex; gap:6px; margin-bottom:6px; flex-wrap:wrap;">
+          <span style="background:${urgent ? '#dc2626' : '#f59e0b'}; color:white; padding:2px 8px; border-radius:100px; font-size:10px; font-weight:800;">${when}</span>
+          <span style="background:#f5f5f4; color:#44403c; padding:2px 8px; border-radius:5px; font-size:10px; font-weight:700;">${esc(g.fuente || 'SRC')}</span>
+          <span style="background:#f5f5f4; color:#44403c; padding:2px 8px; border-radius:5px; font-size:10px; font-weight:700;">${esc(g.hora || '--:--')}</span>
+          <span style="background:#22c55e; color:white; padding:2px 8px; border-radius:5px; font-size:10px; font-weight:800;">${esc(g.pax || 0)} pax</span>
+        </div>
+        <div style="font-size:15px; font-weight:800; color:#111; line-height:1.2;">${esc(g.nombre || 'Sin nombre')}</div>
+        <div style="font-size:11px; color:#78716c; font-family:'JetBrains Mono',monospace; margin-top:2px;">📋 ${esc(g.reserva || '?')}</div>
+        ${g.producto ? `<div style="font-size:12px; color:#57534e; margin-top:6px; line-height:1.4;">${esc((g.producto || '').slice(0, 90))}</div>` : ''}
+        <button data-reserva="${esc(g.reserva || '')}" onclick="openGapFromReserva(this.dataset.reserva)" style="margin-top:10px; width:100%; padding:11px; background:linear-gradient(135deg,#4285f4,#1a73e8); color:white; border:0; border-radius:10px; font-weight:800; font-size:13px; cursor:pointer; display:flex; align-items:center; justify-content:center; gap:6px;">
+          <span style="font-size:15px;">🤖</span> Ver + Agendar
+        </button>
+      </div>
+    `;
+  };
+
+  const section = (label, list, color) => !list.length ? '' : `
+    <div style="margin-bottom:14px;">
+      <div style="font-size:10px; font-weight:800; text-transform:uppercase; letter-spacing:1.5px; color:${color}; margin-bottom:6px;">${label} · ${list.length}</div>
+      ${list.map(renderRow).join('')}
+    </div>
+  `;
+
+  const overlay = document.createElement('div');
+  overlay.className = 'gaps-list-overlay';
+  overlay.style.cssText = 'position:fixed; inset:0; z-index:9998; background:rgba(0,0,0,.7); backdrop-filter:blur(8px); display:flex; align-items:flex-end; justify-content:center; animation:agOverlayIn .2s ease-out;';
+  overlay.onclick = e => { if (e.target === overlay) overlay.remove(); };
+  overlay.innerHTML = `
+    <div style="background:linear-gradient(180deg,#fffef9 0%,#fff8ea 100%); color:#1f1203; width:100%; max-width:520px; max-height:88vh; border-radius:22px 22px 0 0; padding:10px 18px calc(18px + var(--safe-bot)); overflow-y:auto; box-shadow:0 -20px 60px rgba(245,158,11,.25); animation:agSheetUp .28s cubic-bezier(.2,.9,.3,1.1);" onclick="event.stopPropagation()">
+      <div style="width:42px; height:5px; background:rgba(0,0,0,.15); border-radius:3px; margin:4px auto 14px;"></div>
+      <div style="display:flex; align-items:center; justify-content:space-between; margin-bottom:14px;">
+        <h3 style="margin:0; font-size:18px; font-weight:900; color:#111;">⚠️ Sin Agendar · ${gaps.length}</h3>
+        <button onclick="this.closest('.gaps-list-overlay').remove()" style="background:#1f1203; color:#fffbf2; border:0; width:32px; height:32px; border-radius:50%; font-size:15px; cursor:pointer; font-weight:700;">✕</button>
+      </div>
+      ${section('🟡 Mañana', tmrwGaps, '#dc2626')}
+      ${section('🔴 Hoy', todayGaps, '#dc2626')}
+      ${section('📆 Próximos días', futureGaps, '#f59e0b')}
+    </div>
+  `;
+  document.body.appendChild(overlay);
+};
+
 // 🤖 Armar título + descripción formateados para Google Calendar
 window.buildAgendarPayload = function(g) {
   const rawName = (g.nombre || 'Sin nombre').trim().replace(/\s+/g, ' ');
@@ -1699,7 +1768,7 @@ function renderCriticalCard(g) {
       ` : ''}
 
       <div class="cc-actions">
-        <button class="cc-btn cc-btn-agendar" onclick='showAgendarModal(${esc(JSON.stringify(g))})'>
+        <button class="cc-btn cc-btn-agendar" data-reserva="${esc(g.reserva || '')}" onclick="openGapFromReserva(this.dataset.reserva)">
           <span class="cc-btn-ico">🤖</span>
           Agendar al Calendario
         </button>
