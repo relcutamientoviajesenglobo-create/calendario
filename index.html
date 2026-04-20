@@ -1190,24 +1190,26 @@ window.copyAgendarFull = function(btn, p) {
 };
 
 window.jumpToTomorrow = function() {
-  // Activa tab Calendario
-  const calTab = document.querySelector('.tab[data-view="calendar"]');
-  if (calTab) calTab.click();
-  // Scroll al día de mañana después de un micro-delay para que el render termine
-  setTimeout(() => {
-    const tmrw = new Date(Date.now() + 86400000);
-    const id = 'd-' + localDateStr(tmrw);
-    const cell = document.getElementById(id);
-    if (cell) {
-      cell.scrollIntoView({ behavior: 'smooth', block: 'center' });
-      cell.style.outline = '3px solid #f59e0b';
-      cell.style.outlineOffset = '4px';
-      setTimeout(() => { cell.style.outline = ''; cell.style.outlineOffset = ''; }, 2500);
+  const tmrw = new Date(Date.now() + 86400000);
+  const tmrwStr = localDateStr(tmrw);
+  // Abrir modal directo con los vuelos de mañana (sin DISPONIBILIDAD)
+  const evs = (DATA.events || []).filter(e => {
+    if (e.date !== tmrwStr) return false;
+    const t = (e.title_raw || e.name || '').toLowerCase();
+    return !/^\s*(disponibilidad|disponible)/.test(t);
+  }).sort((a, b) => (a.time || '').localeCompare(b.time || ''));
+
+  if (evs.length) {
+    openDay(tmrwStr, evs);
+  } else {
+    // Sin vuelos: activar tab Calendario (navegable) y posicionarse al mes correcto
+    if (typeof curM !== 'undefined') {
+      curY = tmrw.getFullYear();
+      curM = tmrw.getMonth();
     }
-    // NO aplicar filtros de fecha como fallback — eso ocultaba los 90+ vuelos del panel
-    // "En Calendario". Si no hay celda de mañana en el calendario, el usuario queda
-    // en el tab Calendario donde puede navegar manualmente sin filtros forzados.
-  }, 150);
+    const calTab = document.querySelector('.tab[data-view="calendar"]');
+    if (calTab) calTab.click();
+  }
 };
 
 // ── Init filter dropdowns ─────────────────
