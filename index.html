@@ -860,13 +860,14 @@ async function refreshLive() {
   rmShow();
 
   try {
-    // 1) Dashboard (calendarios + Gmail) — timeout 60s (Apps Script puede tardar ~40s)
+    // 1) Dashboard (calendarios + Gmail) — timeout 90s. Apps Script con 9 cals + 2 Gmail searches
+    // puede llegar a 40-60s en cold start. 90s da margen sin colgar infinito.
     rmStep('cals', 'active', '...');
     rmStep('gmail', 'active', '...');
-    const ctrlDash = new AbortController();
-    const timerDash = setTimeout(() => ctrlDash.abort(), 60000);
-    const dashRes = await fetch(APPS_SCRIPT_URL + '?t=' + Date.now(), { cache: 'no-store', signal: ctrlDash.signal });
-    clearTimeout(timerDash);
+    const dashRes = await fetch(APPS_SCRIPT_URL + '?t=' + Date.now(), {
+      cache: 'no-store',
+      signal: AbortSignal.timeout(90000),
+    });
     if (!dashRes.ok) throw new Error('Dashboard HTTP ' + dashRes.status);
     const data = await dashRes.json();
     if (data.error) throw new Error('Apps Script: ' + data.error);
@@ -883,10 +884,10 @@ async function refreshLive() {
     try {
       const todayStr = localDateStr(new Date());
       const endStr = localDateStr(new Date(Date.now() + 15 * 86400000));
-      const ctrlGaps = new AbortController();
-      const timerGaps = setTimeout(() => ctrlGaps.abort(), 15000);
-      const gapsRes = await fetch(APPS_SCRIPT_URL + '?action=gaps_flat&from=' + todayStr + '&to=' + endStr + '&t=' + Date.now(), { cache: 'no-store', signal: ctrlGaps.signal });
-      clearTimeout(timerGaps);
+      const gapsRes = await fetch(APPS_SCRIPT_URL + '?action=gaps_flat&from=' + todayStr + '&to=' + endStr + '&t=' + Date.now(), {
+        cache: 'no-store',
+        signal: AbortSignal.timeout(30000),  // 30s — Turitop IP-blocked falla en ~3s, si tarda más hay problema
+      });
       if (gapsRes.ok) {
         const gaps = await gapsRes.json();
         if (!gaps.error) {
@@ -930,8 +931,8 @@ async function refreshLive() {
       el.classList.remove('active');
       el.classList.add('error');
     });
-    const friendly = e.name === 'AbortError'
-      ? 'Apps Script tardó más de 60s (muy raro, Google tuvo algún hiccup). Reintenta.'
+    const friendly = (e.name === 'TimeoutError' || e.name === 'AbortError')
+      ? 'Apps Script tardó más de 90s. Reintenta — suele pasar 1 de cada 10 veces por cold start de Google.'
       : (e.message || 'Error desconocido');
     rmError(friendly);
     btn.innerHTML = '✗ Error';
