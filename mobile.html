@@ -1234,6 +1234,8 @@ function renderPending() {
   // 🚫 OCULTAR GAPS PASADOS — solo operativos (hoy en adelante)
   const allGaps = (GAPS && GAPS.bookings) || [];
   const gapsList = allGaps.filter(g => !g.fecha || g.fecha >= t);
+  // Sincronizar para que openGapsList y openGapFromReserva encuentren las reservas
+  window._allGaps = gapsList;
 
   // Stats
   $('#stat-gaps').textContent = gapsList.length;
