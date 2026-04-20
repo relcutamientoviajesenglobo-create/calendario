@@ -858,10 +858,13 @@ async function refreshLive() {
   rmShow();
 
   try {
-    // 1) Dashboard (calendarios + Gmail)
+    // 1) Dashboard (calendarios + Gmail) — timeout 15s
     rmStep('cals', 'active', '...');
     rmStep('gmail', 'active', '...');
-    const dashRes = await fetch(APPS_SCRIPT_URL + '?t=' + Date.now(), { cache: 'no-store' });
+    const ctrlDash = new AbortController();
+    const timerDash = setTimeout(() => ctrlDash.abort(), 15000);
+    const dashRes = await fetch(APPS_SCRIPT_URL + '?t=' + Date.now(), { cache: 'no-store', signal: ctrlDash.signal });
+    clearTimeout(timerDash);
     if (!dashRes.ok) throw new Error('Dashboard HTTP ' + dashRes.status);
     const data = await dashRes.json();
     if (data.error) throw new Error('Apps Script: ' + data.error);
@@ -873,12 +876,15 @@ async function refreshLive() {
     rmStep('cals', 'done', calsCount + ' eventos');
     rmStep('gmail', 'done', bookeoCount + ' Bookeo · ' + viatorCount + ' Viator');
 
-    // 2) Turitop + gaps
-    rmStep('turitop', 'active', 'bajando...');
+    // 2) Turitop + gaps — timeout 15s (si Turitop IP-bloqueado, corta rápido)
+    rmStep('turitop', 'active', 'bajando… máx 15s');
     try {
       const todayStr = localDateStr(new Date());
       const endStr = localDateStr(new Date(Date.now() + 15 * 86400000));
-      const gapsRes = await fetch(APPS_SCRIPT_URL + '?action=gaps_flat&from=' + todayStr + '&to=' + endStr + '&t=' + Date.now(), { cache: 'no-store' });
+      const ctrlGaps = new AbortController();
+      const timerGaps = setTimeout(() => ctrlGaps.abort(), 15000);
+      const gapsRes = await fetch(APPS_SCRIPT_URL + '?action=gaps_flat&from=' + todayStr + '&to=' + endStr + '&t=' + Date.now(), { cache: 'no-store', signal: ctrlGaps.signal });
+      clearTimeout(timerGaps);
       if (gapsRes.ok) {
         const gaps = await gapsRes.json();
         if (!gaps.error) {
@@ -900,7 +906,7 @@ async function refreshLive() {
       }
     } catch (gapErr) {
       console.warn('[gaps_flat]', gapErr);
-      rmStep('turitop', 'error', 'sin conexión');
+      rmStep('turitop', 'error', gapErr.name === 'AbortError' ? 'timeout 15s' : 'sin conexión');
     }
 
     // 3) Render

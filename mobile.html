@@ -1084,9 +1084,9 @@ async function fetchLive(useCache = true) {
   loaderStep('cals', 'active', '...');
 
   try {
-    // 1) Dashboard (eventos + Gmail) — timeout 30s
+    // 1) Dashboard (eventos + Gmail) — timeout 15s
     const ctrlDash = new AbortController();
-    const timerDash = setTimeout(() => ctrlDash.abort(), 30000);
+    const timerDash = setTimeout(() => ctrlDash.abort(), 15000);
     const dashRes = await fetch(APPS_SCRIPT_URL + '?t=' + Date.now(), { cache: 'no-store', signal: ctrlDash.signal });
     clearTimeout(timerDash);
     if (!dashRes.ok) throw new Error('HTTP ' + dashRes.status);
@@ -1130,16 +1130,16 @@ async function fetchLive(useCache = true) {
     } catch (e) { console.warn('[static gaps]', e); }
     loaderStep('gaps', 'done', staticCount + ' del repo');
 
-    // 3) Gaps live desde Apps Script — con timeout de 25s
-    //    (Turitop está IP-blocked y hace que Apps Script espere hasta ~60s)
-    setLoaderLabel('Verificando Turitop live (timeout 25s)…');
+    // 3) Gaps live desde Apps Script — con timeout de 15s
+    //    (Turitop está IP-blocked y hace que Apps Script espere bastante)
+    setLoaderLabel('Verificando Turitop live (timeout 15s)…');
     loaderStep('live', 'active', 'bajando…');
     let liveBlocked = false;
     try {
       const todayStr = today();
       const endStr = fmtDate(new Date(Date.now() + 60 * 86400000));
       const ctrl = new AbortController();
-      const timer = setTimeout(() => ctrl.abort(), 25000);
+      const timer = setTimeout(() => ctrl.abort(), 15000);
       const gapsRes = await fetch(APPS_SCRIPT_URL + '?action=gaps_flat&from=' + todayStr + '&to=' + endStr + '&t=' + Date.now(), { cache: 'no-store', signal: ctrl.signal });
       clearTimeout(timer);
       if (gapsRes.ok) {
@@ -1174,7 +1174,7 @@ async function fetchLive(useCache = true) {
       }
     } catch (e) {
       console.warn('[live gaps]', e);
-      loaderStep('live', 'error', e.name === 'AbortError' ? 'timeout 25s' : 'sin conexión');
+      loaderStep('live', 'error', e.name === 'AbortError' ? 'timeout 15s' : 'sin conexión');
     }
 
     // 4) Render
