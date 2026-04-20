@@ -929,13 +929,49 @@ async function refreshLive() {
     clearInterval(window._rmTimerInt);
     setTimeout(() => location.reload(), 900);
   } catch (e) {
-    console.error(e);
+    console.error('[refreshLive fail]', e);
+    // 🚨 FALLBACK: si Apps Script falla, cargar static JSONs del repo (actualizados cada 2h por cron)
     document.querySelectorAll('#refreshModal .rm-step.active').forEach(el => {
       el.classList.remove('active');
       el.classList.add('error');
     });
+    rmStep('render', 'active', 'cargando cache…');
+    try {
+      const [calRes, gapsRes] = await Promise.all([
+        fetch('./_sistema/gap-detector/calendar_events.json?t=' + Date.now(), { cache: 'no-store' }),
+        fetch('./reservas_sin_agendar.json?t=' + Date.now(), { cache: 'no-store' }),
+      ]);
+      if (!calRes.ok) throw new Error('cache cal HTTP ' + calRes.status);
+      const flatEvents = await calRes.json();
+      const gapsStat = gapsRes.ok ? await gapsRes.json() : null;
+      const fallbackData = {
+        events: flatEvents.map(transformFlatEvent),
+        bookeo_emails: [], viator_emails: [],
+        pending_bookeo: [], pending_viator: [],
+        missing_bookeo: [], missing_viator: [],
+        stats: { by_calendar: {}, by_status: {}, by_date: {}, date_min: '', date_max: '',
+                 pending_bookeo_count: 0, pending_bookeo_unread: 0, pending_bookeo_missing: 0,
+                 pending_viator_count: 0, pending_viator_missing: 0,
+                 total_events: flatEvents.length, total_pax: 0, weight_limit_kg: 95,
+                 bookeo_emails_total: 0, viator_emails_total: 0 },
+        totals_by_day: {},
+        generated_at: new Date().toISOString(),
+        gaps_live: gapsStat, _fallback: true,
+      };
+      localStorage.setItem(LIVE_CACHE_KEY, JSON.stringify({ ts: Date.now(), data: fallbackData }));
+      rmStep('render', 'done', 'modo cache');
+      document.getElementById('rmTitle').textContent = '📦 Modo cache';
+      document.getElementById('rmSub').textContent = flatEvents.length + ' eventos del repo · reload';
+      btn.innerHTML = '✓ cache';
+      btn.style.background = 'linear-gradient(135deg,#f59e0b,#ea580c)';
+      clearInterval(window._rmTimerInt);
+      setTimeout(() => location.reload(), 1200);
+      return;
+    } catch (fbErr) {
+      console.error('[fallback fail]', fbErr);
+    }
     const friendly = (e.name === 'TimeoutError' || e.name === 'AbortError')
-      ? 'Apps Script tardó más de 90s. Reintenta — suele pasar 1 de cada 10 veces por cold start de Google.'
+      ? 'Apps Script tardó más de 90s Y el cache también falló. Reintenta.'
       : (e.message || 'Error desconocido');
     rmError(friendly);
     btn.innerHTML = '✗ Error';
@@ -960,7 +996,45 @@ const localDateStr = d => {
   return x.getFullYear() + '-' + String(x.getMonth()+1).padStart(2,'0') + '-' + String(x.getDate()).padStart(2,'0');
 };
 
+// Transforma evento flat (del calendar_events.json del gap-detector) al formato dashboard
+function transformFlatEvent(ev) {
+  const title = ev.summary || '';
+  const desc = ev.desc || '';
+  let pax = 0;
+  const paxM = title.match(/\b\*?(\d+)p\b/i);
+  if (paxM) pax = parseInt(paxM[1]);
+  let name = title.replace(/\*?\d+P\s*/i, '').replace(/^[^\w]*/, '').replace(/^[✅⚡🔄✏❌🟡🔵⭐️\s*]+/, '').trim() || title;
+  let status = 'tentativo';
+  if (title.includes('✅')) status = 'confirmado';
+  else if (title.includes('🔄') || title.includes('✏')) status = 'modificado';
+  else if (title.includes('❌')) status = 'cancelado';
+  const timeM = desc.match(/(\d{1,2}:\d{2})/);
+  const time = timeM ? timeM[1] : '';
+  return {
+    calendar: ev.calendar || '',
+    id: (ev.calendar || '') + '_' + (ev.date || '') + '_' + title.slice(0, 20),
+    title_raw: title, name, status, pax,
+    date: ev.date || '', time,
+    datetime: (ev.date || '') + 'T' + time,
+    email: (ev.emails || [])[0] || '',
+    phone: (ev.phones || [])[0] || '',
+    reserva: '', pickup: '', staff: '', service: '', total: '',
+    weights: [], total_weight: 0, includes: [],
+    html_link: '', overweight: false, celebration: false,
+  };
+}
+
 $('#gen').textContent = DATA.generated_at.replace('T',' ');
+
+// 📦 Banner modo cache (solo aparece si fallback activo)
+if (DATA && DATA._fallback) {
+  const bannerFb = document.createElement('div');
+  bannerFb.id = 'fallback-banner';
+  bannerFb.style.cssText = 'margin:12px 24px 0; padding:12px 18px; background:rgba(245,158,11,.12); border:1px solid rgba(245,158,11,.45); border-radius:12px; color:#fcd34d; font-size:13px; text-align:center; line-height:1.5;';
+  bannerFb.innerHTML = '📦 <b>Modo cache</b> · Apps Script no respondió · datos de hasta 2h atrás · <a href="javascript:refreshLive()" style="color:#fde68a; text-decoration:underline; font-weight:700;">reintentar en vivo</a>';
+  const header = document.querySelector('header');
+  if (header && header.nextSibling) header.parentNode.insertBefore(bannerFb, header.nextSibling);
+}
 
 // ═════ HERO MAÑANA ═════
 (function renderHeroTomorrow() {
