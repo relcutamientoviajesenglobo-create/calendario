@@ -1088,9 +1088,9 @@ async function fetchLive(useCache = true) {
   loaderStep('cals', 'active', '...');
 
   try {
-    // 1) Dashboard (eventos + Gmail) — timeout 15s
+    // 1) Dashboard (eventos + Gmail) — timeout 30s (cold start Apps Script)
     const ctrlDash = new AbortController();
-    const timerDash = setTimeout(() => ctrlDash.abort(), 15000);
+    const timerDash = setTimeout(() => ctrlDash.abort(), 30000);
     const dashRes = await fetch(APPS_SCRIPT_URL + '?t=' + Date.now(), { cache: 'no-store', signal: ctrlDash.signal });
     clearTimeout(timerDash);
     if (!dashRes.ok) throw new Error('HTTP ' + dashRes.status);

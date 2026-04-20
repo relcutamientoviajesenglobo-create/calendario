@@ -860,11 +860,11 @@ async function refreshLive() {
   rmShow();
 
   try {
-    // 1) Dashboard (calendarios + Gmail) — timeout 15s
+    // 1) Dashboard (calendarios + Gmail) — timeout 30s (cold start Apps Script)
     rmStep('cals', 'active', '...');
     rmStep('gmail', 'active', '...');
     const ctrlDash = new AbortController();
-    const timerDash = setTimeout(() => ctrlDash.abort(), 15000);
+    const timerDash = setTimeout(() => ctrlDash.abort(), 30000);
     const dashRes = await fetch(APPS_SCRIPT_URL + '?t=' + Date.now(), { cache: 'no-store', signal: ctrlDash.signal });
     clearTimeout(timerDash);
     if (!dashRes.ok) throw new Error('Dashboard HTTP ' + dashRes.status);
@@ -930,7 +930,10 @@ async function refreshLive() {
       el.classList.remove('active');
       el.classList.add('error');
     });
-    rmError(e.message || 'Error desconocido');
+    const friendly = e.name === 'AbortError'
+      ? 'Apps Script tardó más de 30s (suele pasar en cold start). Vuelve a intentar en 10s.'
+      : (e.message || 'Error desconocido');
+    rmError(friendly);
     btn.innerHTML = '✗ Error';
     btn.style.background = 'linear-gradient(135deg,#ef4444,#dc2626)';
     clearInterval(window._rmTimerInt);
