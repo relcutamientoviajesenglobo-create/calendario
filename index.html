@@ -516,9 +516,9 @@
         <span class="rm-label">Gmail Bookeo + Viator</span>
         <span class="rm-hint">—</span>
       </div>
-      <div class="rm-step" data-step="turitop">
+      <div class="rm-step" data-step="gaps">
         <span class="rm-dot"></span>
-        <span class="rm-label">Turitop M1 + M2</span>
+        <span class="rm-label">Reservas sin agendar</span>
         <span class="rm-hint">—</span>
       </div>
       <div class="rm-step" data-step="render">
@@ -885,37 +885,22 @@ async function refreshLive() {
     rmStep('cals', 'done', calsCount + ' eventos');
     rmStep('gmail', 'done', bookeoCount + ' Bookeo · ' + viatorCount + ' Viator');
 
-    // 2) Turitop + gaps — timeout 15s (si Turitop IP-bloqueado, corta rápido)
-    rmStep('turitop', 'active', 'bajando… máx 15s');
+    // 2) Gaps desde el JSON estático del repo (actualizado cada 2h por GitHub Action).
+    //    Ya NO invocamos gaps_flat live porque Turitop API tiene IP whitelist
+    //    pendiente de resolver. La data de Bookeo viene del endpoint default (paso 1).
+    rmStep('gaps', 'active', '...');
     try {
-      const todayStr = localDateStr(new Date());
-      const endStr = localDateStr(new Date(Date.now() + 15 * 86400000));
-      const gapsRes = await fetch(APPS_SCRIPT_URL + '?action=gaps_flat&from=' + todayStr + '&to=' + endStr + '&t=' + Date.now(), {
-        cache: 'no-store',
-        signal: (typeof AbortSignal !== 'undefined' && AbortSignal.timeout) ? AbortSignal.timeout(30000) : undefined,
-      });
+      const gapsRes = await fetch('./reservas_sin_agendar.json?t=' + Date.now(), { cache: 'no-store' });
       if (gapsRes.ok) {
         const gaps = await gapsRes.json();
-        if (!gaps.error) {
-          data.gaps_live = gaps;
-          const tur = gaps.fuentes && gaps.fuentes.Turitop;
-          if (gaps.errors && gaps.errors.length) {
-            rmStep('turitop', 'error', 'IP bloqueada');
-            console.warn('[Turitop]', gaps.errors);
-          } else if (tur) {
-            rmStep('turitop', 'done', tur.total + ' bookings');
-          } else {
-            rmStep('turitop', 'done', 'OK');
-          }
-        } else {
-          rmStep('turitop', 'error', 'error');
-        }
+        data.gaps_live = gaps;
+        rmStep('gaps', 'done', (gaps.total_sin_agendar || 0) + ' sin agendar');
       } else {
-        rmStep('turitop', 'error', 'HTTP ' + gapsRes.status);
+        rmStep('gaps', 'error', 'HTTP ' + gapsRes.status);
       }
     } catch (gapErr) {
-      console.warn('[gaps_flat]', gapErr);
-      rmStep('turitop', 'error', gapErr.name === 'AbortError' ? 'timeout 15s' : 'sin conexión');
+      console.warn('[gaps static]', gapErr);
+      rmStep('gaps', 'error', 'sin conexión');
     }
 
     // 3) Render — sin cache local (plan pagado, siempre live)

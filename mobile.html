@@ -966,11 +966,6 @@
         <span class="ldr-lbl">Reservas sin agendar</span>
         <span class="ldr-hint">—</span>
       </div>
-      <div class="ldr-step" data-step="live">
-        <span class="ldr-dot"></span>
-        <span class="ldr-lbl">Turitop + Bookeo live</span>
-        <span class="ldr-hint">—</span>
-      </div>
       <div class="ldr-step" data-step="render">
         <span class="ldr-dot"></span>
         <span class="ldr-lbl">Armando dashboard</span>
@@ -1156,51 +1151,9 @@ async function fetchLive(useCache = true) {
     } catch (e) { console.warn('[static gaps]', e); }
     loaderStep('gaps', 'done', staticCount + ' del repo');
 
-    // 3) Gaps live desde Apps Script — timeout 30s
-    setLoaderLabel('Verificando Turitop live (máx 30s)…');
-    loaderStep('live', 'active', 'bajando…');
-    let liveBlocked = false;
-    try {
-      const todayStr = today();
-      const endStr = fmtDate(new Date(Date.now() + 60 * 86400000));
-      const gapsRes = await fetch(APPS_SCRIPT_URL + '?action=gaps_flat&from=' + todayStr + '&to=' + endStr + '&t=' + Date.now(), {
-        cache: 'no-store',
-        signal: (typeof AbortSignal !== 'undefined' && AbortSignal.timeout) ? AbortSignal.timeout(30000) : undefined,
-      });
-      if (gapsRes.ok) {
-        const g = await gapsRes.json();
-        if (!g.error && g.bookings) {
-          let added = 0;
-          for (const b of g.bookings) {
-            const k = (b.reserva || '').toLowerCase();
-            if (k && !seenReservas[k]) {
-              seenReservas[k] = true;
-              mergedBookings.push(b);
-              added++;
-            }
-          }
-          if (!GAPS) GAPS = g;
-          else {
-            GAPS.bookings = mergedBookings;
-            GAPS.total_sin_agendar = mergedBookings.length;
-            GAPS.live_errors = g.errors;
-          }
-          if (g.errors && g.errors.length && g.errors.some(e => /ip|mismatch|401|403/i.test(e))) {
-            loaderStep('live', 'error', 'Turitop IP block');
-            liveBlocked = true;
-          } else {
-            loaderStep('live', 'done', added > 0 ? '+' + added + ' nuevos' : 'sin cambios');
-          }
-        } else {
-          loaderStep('live', 'error', 'sin respuesta');
-        }
-      } else {
-        loaderStep('live', 'error', 'HTTP ' + gapsRes.status);
-      }
-    } catch (e) {
-      console.warn('[live gaps]', e);
-      loaderStep('live', 'error', (e.name === 'TimeoutError' || e.name === 'AbortError') ? 'timeout 30s' : 'sin conexión');
-    }
+    // 3) Turitop live DESACTIVADO — API con IP whitelist pendiente de resolver.
+    //    La data de gaps viene del JSON estático del repo (paso 2) que GitHub Action
+    //    actualiza cada 2h usando extracción directa de correos Bookeo.
 
     // 4) Render
     setLoaderLabel('Armando dashboard…');
