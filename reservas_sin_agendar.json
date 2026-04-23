@@ -1,9 +1,11 @@
 {
-  "generated_at": "2026-04-23 12:15",
-  "window": "2026-04-22 → 2026-04-30",
+  "generated_at": "2026-04-23 16:39",
+  "window": "2026-04-22 → 2026-05-08",
   "slack_days": 1,
   "calendars_in_source": [
+    "BOKUN",
     "BOOKEO",
+    "GAMX_MONSE",
     "GAT",
     "PRIMARY",
     "VGMX",
@@ -11,17 +13,17 @@
   ],
   "fuentes": {
     "Turitop": {
-      "total": 10,
-      "matched": 10,
-      "sin_agendar": 0,
+      "total": 16,
+      "matched": 15,
+      "sin_agendar": 1,
       "match_by_strategy": {
-        "email": 1,
-        "reserva_id": 8,
-        "name1rare": 1
+        "email": 2,
+        "reserva_id": 11,
+        "name1rare": 2
       },
       "match_by_calendar": {
-        "VGMX": 9,
-        "GAT": 1
+        "VGMX": 13,
+        "GAT": 2
       }
     },
     "Bookeo": {
@@ -32,7 +34,21 @@
       "match_by_calendar": {}
     }
   },
-  "total_fuentes": 10,
-  "total_sin_agendar": 0,
-  "bookings": []
+  "total_fuentes": 16,
+  "total_sin_agendar": 1,
+  "bookings": [
+    {
+      "reserva": "G465-260327-1",
+      "marca": "M1",
+      "fecha": "2026-05-08",
+      "hora": "06:00",
+      "pax": 2,
+      "nombre": "Mauricio Jaschkowitz",
+      "email": "morisj23m@gmail.com",
+      "phone": "+50255789306",
+      "producto": "Vuelo Compartido Promo",
+      "total": "4179.00",
+      "fuente": "Turitop"
+    }
+  ]
 }

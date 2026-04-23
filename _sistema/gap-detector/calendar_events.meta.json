@@ -1,8 +1,8 @@
 {
-  "requested_from": "2026-04-01",
-  "requested_to": "2026-06-30",
-  "generated_at": "2026-04-19T10:20:39.255177",
-  "events_count": 457,
+  "requested_from": "2026-04-22",
+  "requested_to": "2026-05-08",
+  "generated_at": "2026-04-23T16:39:05.530676",
+  "events_count": 113,
   "calendars_present": [
     "BOKUN",
     "BOOKEO",
