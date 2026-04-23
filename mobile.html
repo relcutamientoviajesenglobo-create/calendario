@@ -1101,20 +1101,8 @@ function hideLoader() {
 // Fetch live data
 // ════════════════════════════════════════════
 async function fetchLive(useCache = true) {
-  if (useCache) {
-    try {
-      const cached = JSON.parse(localStorage.getItem(CACHE_KEY) || 'null');
-      // Cache válida: <5 min Y tiene data.events (no corrupta)
-      if (cached && cached.ts && (Date.now() - cached.ts) < CACHE_TTL_MS
-          && cached.data && Array.isArray(cached.data.events)) {
-        DATA = cached.data;
-        GAPS = cached.gaps;
-        return true;
-      }
-      // Cache inválida/corrupta → borrarla
-      if (cached) localStorage.removeItem(CACHE_KEY);
-    } catch (_) { localStorage.removeItem(CACHE_KEY); }
-  }
+  // Sin cache local — plan pagado Render, siempre live
+  useCache = false;
 
   const btn = $('#btnRefresh');
   btn.classList.add('loading');
@@ -1217,7 +1205,6 @@ async function fetchLive(useCache = true) {
     // 4) Render
     setLoaderLabel('Armando dashboard…');
     loaderStep('render', 'active', '...');
-    localStorage.setItem(CACHE_KEY, JSON.stringify({ ts: Date.now(), data: DATA, gaps: GAPS }));
     loaderStep('render', 'done', 'listo');
     $('#loader-title').textContent = '✓ Actualizado';
     setLoaderLabel(mergedBookings.length + ' sin agendar · ' + evCount + ' eventos');
@@ -1227,54 +1214,17 @@ async function fetchLive(useCache = true) {
     return true;
   } catch (e) {
     console.error('[Apps Script fail]', e);
-    // 🚨 FALLBACK: si Apps Script falla/timeout, cargar data estática del repo
-    //   (actualizada cada 2h por GitHub Action)
-    setLoaderLabel('Apps Script no respondió · cargando cache del repo…');
-    loaderStep('cals', 'active', 'fallback...');
-    try {
-      const [calRes, gapsStatRes] = await Promise.all([
-        fetch('./_sistema/gap-detector/calendar_events.json?t=' + Date.now(), { cache: 'no-store' }),
-        fetch('./reservas_sin_agendar.json?t=' + Date.now(), { cache: 'no-store' }),
-      ]);
-      if (!calRes.ok) throw new Error('fallback cal HTTP ' + calRes.status);
-      const flatEvents = await calRes.json();
-      const gapsStat = gapsStatRes.ok ? await gapsStatRes.json() : null;
-
-      // Transformar flat events (del gap detector) → formato dashboard
-      DATA = {
-        events: flatEvents.map(transformFlatEvent),
-        bookeo_emails: [], viator_emails: [],
-        pending_bookeo: [], pending_viator: [],
-        missing_bookeo: [], missing_viator: [],
-        stats: { by_calendar: {}, by_status: {}, by_date: {} },
-        totals_by_day: {},
-        generated_at: new Date().toISOString(),
-        _fallback: true,
-      };
-      GAPS = gapsStat;
-      loaderStep('cals', 'done', flatEvents.length + ' eventos (cache 2h)');
-      loaderStep('gmail', 'error', 'no disponible');
-      loaderStep('live', 'error', 'no disponible');
-      loaderStep('render', 'done', 'cache');
-      $('#loader-title').textContent = '⚠️ Modo cache';
-      setLoaderLabel('Datos del último cron (cada 2h). Gmail y Turitop live no disponibles.');
-      localStorage.setItem(CACHE_KEY, JSON.stringify({ ts: Date.now(), data: DATA, gaps: GAPS }));
-      await new Promise(r => setTimeout(r, 1200));
-      return true;
-    } catch (fbErr) {
-      console.error('[fallback fail]', fbErr);
-      const activeStep = document.querySelector('#loader .ldr-step.active');
-      if (activeStep) {
-        activeStep.classList.remove('active');
-        activeStep.classList.add('error');
-        activeStep.querySelector('.ldr-hint').textContent = 'falló';
-      }
-      $('#loader-title').textContent = 'Error';
-      setLoaderLabel('Apps Script Y cache fallaron: ' + (e.message || 'sin conexión'));
-      toast('Sin datos: ' + (e.message || 'sin conexión'), 'err');
-      await new Promise(r => setTimeout(r, 1500));
-      return false;
+    const activeStep = document.querySelector('#loader .ldr-step.active');
+    if (activeStep) {
+      activeStep.classList.remove('active');
+      activeStep.classList.add('error');
+      activeStep.querySelector('.ldr-hint').textContent = 'falló';
     }
+    $('#loader-title').textContent = 'Error';
+    setLoaderLabel(e.message || 'sin conexión');
+    toast('Error: ' + (e.message || 'sin conexión'), 'err');
+    await new Promise(r => setTimeout(r, 1500));
+    return false;
   } finally {
     btn.classList.remove('loading');
     hideLoader();
@@ -1287,23 +1237,9 @@ async function fetchLive(useCache = true) {
 function renderAll() {
   if (!DATA) return;
 
-  // Banner modo cache (Apps Script falló, datos del último cron)
-  let fbBanner = document.getElementById('fallback-banner');
-  if (DATA._fallback) {
-    if (!fbBanner) {
-      fbBanner = document.createElement('div');
-      fbBanner.id = 'fallback-banner';
-      fbBanner.style.cssText = 'margin:12px; padding:11px 14px; background:rgba(245,158,11,.15); border:1px solid rgba(245,158,11,.4); border-radius:12px; color:#fcd34d; font-size:12px; line-height:1.45; text-align:center;';
-      fbBanner.innerHTML = '📦 <b>Modo cache</b> · Apps Script no respondió · datos de hasta 2h atrás · <a href="javascript:location.reload()" style="color:#fde68a; text-decoration:underline; font-weight:700;">reintentar en vivo</a>';
-      document.querySelector('main').prepend(fbBanner);
-    }
-  } else if (fbBanner) {
-    fbBanner.remove();
-  }
-
   // Header
   const gen = DATA.generated_at ? new Date(DATA.generated_at) : new Date();
-  $('#gen-sub').textContent = (DATA._fallback ? '📦 Cache · ' : 'Actualizado ') + gen.toLocaleTimeString('es-MX', { hour: '2-digit', minute: '2-digit' });
+  $('#gen-sub').textContent = 'Actualizado ' + gen.toLocaleTimeString('es-MX', { hour: '2-digit', minute: '2-digit' });
 
   renderPending();
   renderAgenda();
