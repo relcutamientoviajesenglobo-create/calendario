@@ -1,11 +1,9 @@
 {
-  "generated_at": "2026-04-19 10:21",
-  "window": "2026-04-01 → 2026-06-30",
+  "generated_at": "2026-04-23 12:15",
+  "window": "2026-04-22 → 2026-04-30",
   "slack_days": 1,
   "calendars_in_source": [
-    "BOKUN",
     "BOOKEO",
-    "GAMX_MONSE",
     "GAT",
     "PRIMARY",
     "VGMX",
@@ -13,93 +11,28 @@
   ],
   "fuentes": {
     "Turitop": {
-      "total": 80,
-      "matched": 76,
-      "sin_agendar": 4,
+      "total": 10,
+      "matched": 10,
+      "sin_agendar": 0,
       "match_by_strategy": {
-        "reserva_id": 48,
-        "reserva_id_digits": 11,
-        "name1rare": 12,
-        "name2": 1,
-        "email": 4
+        "email": 1,
+        "reserva_id": 8,
+        "name1rare": 1
       },
       "match_by_calendar": {
-        "VGMX": 53,
-        "GAT": 13,
-        "PRIMARY": 9,
-        "BOOKEO": 1
+        "VGMX": 9,
+        "GAT": 1
       }
     },
     "Bookeo": {
-      "total": 68,
-      "matched": 68,
+      "total": 0,
+      "matched": 0,
       "sin_agendar": 0,
-      "match_by_strategy": {
-        "email": 56,
-        "name1rare": 11,
-        "phone": 1
-      },
-      "match_by_calendar": {
-        "PRIMARY": 54,
-        "BOOKEO": 10,
-        "VGMX": 4
-      }
+      "match_by_strategy": {},
+      "match_by_calendar": {}
     }
   },
-  "total_fuentes": 148,
-  "total_sin_agendar": 4,
-  "bookings": [
-    {
-      "reserva": "G465-260326-3",
-      "marca": "M1",
-      "fecha": "2026-04-03",
-      "hora": "05:00",
-      "pax": 2,
-      "nombre": "Velma Valdez",
-      "email": "velmorales@yahoo.com",
-      "phone": "+529566841395",
-      "producto": "Transporte Redondo CDMX + Vuelo en Globo + Desayuno en Cueva + Visita a la Zona Arqueológica",
-      "total": "6510.00",
-      "fuente": "Turitop"
-    },
-    {
-      "reserva": "G465-260410-1",
-      "marca": "M1",
-      "fecha": "2026-04-11",
-      "hora": "07:30",
-      "pax": 1,
-      "nombre": "Lei Ding",
-      "email": "lei.ding@yahoo.com",
-      "phone": "+18596199425",
-      "producto": "Transporte Redondo CDMX + Vuelo en Globo + Desayuno en Cueva + Visita a la Zona Arqueológica",
-      "total": "3100.00",
-      "fuente": "Turitop"
-    },
-    {
-      "reserva": "V212-260418-2",
-      "marca": "M2",
-      "fecha": "2026-05-04",
-      "hora": "05:00",
-      "pax": 1,
-      "nombre": "Dorian Zhang",
-      "email": "zhangzhixiang.dorian@gmail.com",
-      "phone": "+15102299526",
-      "producto": "TODO INCLUIDO Teotihuacán",
-      "total": "3465.00",
-      "fuente": "Turitop"
-    },
-    {
-      "reserva": "G465-260413-1",
-      "marca": "M1",
-      "fecha": "2026-05-13",
-      "hora": "06:00",
-      "pax": 2,
-      "nombre": "Tomas Pinzon",
-      "email": "pinzontomas@gmail.com",
-      "phone": "+573143651801",
-      "producto": "Vuelo Tradicional en Teotihuacán",
-      "total": "4410.00",
-      "fuente": "Turitop"
-    }
-  ]
+  "total_fuentes": 10,
+  "total_sin_agendar": 0,
+  "bookings": []
 }
