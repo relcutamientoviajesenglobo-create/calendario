@@ -1,6 +1,6 @@
 {
-  "generated_at": "2026-04-23 22:42",
-  "window": "2026-04-22 → 2026-05-08",
+  "generated_at": "2026-04-24 02:31",
+  "window": "2026-04-23 → 2026-05-09",
   "slack_days": 1,
   "calendars_in_source": [
     "BOKUN",
@@ -13,17 +13,17 @@
   ],
   "fuentes": {
     "Turitop": {
-      "total": 16,
-      "matched": 15,
-      "sin_agendar": 1,
+      "total": 18,
+      "matched": 16,
+      "sin_agendar": 2,
       "match_by_strategy": {
         "email": 2,
-        "reserva_id": 11,
+        "reserva_id": 12,
         "name1rare": 2
       },
       "match_by_calendar": {
         "VGMX": 13,
-        "GAT": 2
+        "GAT": 3
       }
     },
     "Bookeo": {
@@ -34,20 +34,33 @@
       "match_by_calendar": {}
     }
   },
-  "total_fuentes": 16,
-  "total_sin_agendar": 1,
+  "total_fuentes": 18,
+  "total_sin_agendar": 2,
   "bookings": [
     {
-      "reserva": "G465-260327-1",
-      "marca": "M1",
-      "fecha": "2026-05-08",
-      "hora": "06:00",
+      "reserva": "V212-260414-1",
+      "marca": "M2",
+      "fecha": "2026-05-09",
+      "hora": "05:00",
       "pax": 2,
-      "nombre": "Mauricio Jaschkowitz",
-      "email": "morisj23m@gmail.com",
-      "phone": "+50255789306",
-      "producto": "Vuelo Compartido Promo",
-      "total": "4179.00",
+      "nombre": "Marjan Goossens",
+      "email": "goossensmarjan@gmail.com",
+      "phone": "+32498337247",
+      "producto": "Transporte Redondo desde CDMX + Vuelo Compartido + Desayuno en Cueva + Acceso a las Pirámides",
+      "total": "6510.00",
+      "fuente": "Turitop"
+    },
+    {
+      "reserva": "V212-260206-1",
+      "marca": "M2",
+      "fecha": "2026-05-09",
+      "hora": "05:00",
+      "pax": 14,
+      "nombre": "Paulina Garcia Owens",
+      "email": "paugo97@gmail.com",
+      "phone": "+525510527821",
+      "producto": "Vuelo en Teotihuacán + Transporte Express",
+      "total": "19583.20",
       "fuente": "Turitop"
     }
   ]
