@@ -1,6 +1,6 @@
 {
-  "generated_at": "2026-04-27 22:50",
-  "window": "2026-04-26 → 2026-05-12",
+  "generated_at": "2026-04-28 02:45",
+  "window": "2026-04-27 → 2026-05-13",
   "slack_days": 1,
   "calendars_in_source": [
     "BOKUN",
@@ -14,15 +14,15 @@
   "fuentes": {
     "Turitop": {
       "total": 12,
-      "matched": 12,
-      "sin_agendar": 0,
+      "matched": 11,
+      "sin_agendar": 1,
       "match_by_strategy": {
-        "reserva_id": 9,
+        "reserva_id": 8,
         "name1rare": 2,
         "email": 1
       },
       "match_by_calendar": {
-        "VGMX": 8,
+        "VGMX": 7,
         "GAT": 3,
         "PRIMARY": 1
       }
@@ -36,6 +36,20 @@
     }
   },
   "total_fuentes": 12,
-  "total_sin_agendar": 0,
-  "bookings": []
+  "total_sin_agendar": 1,
+  "bookings": [
+    {
+      "reserva": "G465-260413-1",
+      "marca": "M1",
+      "fecha": "2026-05-13",
+      "hora": "06:00",
+      "pax": 2,
+      "nombre": "Tomas Pinzon",
+      "email": "pinzontomas@gmail.com",
+      "phone": "+573143651801",
+      "producto": "Vuelo Tradicional en Teotihuacán",
+      "total": "4410.00",
+      "fuente": "Turitop"
+    }
+  ]
 }
