@@ -1,10 +1,9 @@
 {
-  "requested_from": "2026-04-27",
-  "requested_to": "2026-05-13",
-  "generated_at": "2026-04-28T22:55:53.553670",
-  "events_count": 117,
+  "requested_from": "2026-04-28",
+  "requested_to": "2026-05-14",
+  "generated_at": "2026-04-29T02:45:13.723732",
+  "events_count": 106,
   "calendars_present": [
-    "BOKUN",
     "BOOKEO",
     "GAMX_MONSE",
     "GAT",
