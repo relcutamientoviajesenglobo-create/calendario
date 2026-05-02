@@ -984,6 +984,10 @@
 // Configuración y estado
 // ════════════════════════════════════════════
 const APPS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbwCF-ZImgnsAwVV2a_CF4VG_UFUoFlAvyUY0dc8ALOiB_sWELnfQhXtqDSYgl8F53QKeA/exec';
+// Email reader bridge (cuenta vuelosenglobomx@gmail.com — donde llegan
+// los correos de no-reply@turitop.com). Web App ANYONE_ANONYMOUS, se
+// llama directo desde el browser para evitar OAuth en el script main.
+const TURITOP_EMAIL_READER_URL = 'https://script.google.com/macros/s/AKfycbzApxUAjLhQvyQykWgH7BK4FRXTHOGBPbZGSRTtL2ZbLaVUXkWv0jalrd3Xs-xm82QgBQ/exec';
 // Nota: doPost write-API desactivado. Agendamos manualmente via Google Calendar URL template.
 const CACHE_KEY = 'wefly_mobile_v1';
 const CACHE_TTL_MS = 5 * 60 * 1000;
@@ -1149,11 +1153,114 @@ async function fetchLive(useCache = true) {
         }
       }
     } catch (e) { console.warn('[static gaps]', e); }
-    loaderStep('gaps', 'done', staticCount + ' del repo');
+
+    // 2b) Email reader bridge (vuelosenglobomx@gmail.com inbox). Lee correos
+    //     no-reply@turitop.com directo y los mergea como gaps si no están
+    //     ya en calendario ni en gaps existentes.
+    let emailGapsCount = 0;
+    try {
+      const emRes = await fetch(TURITOP_EMAIL_READER_URL + '?action=turitop_emails&t=' + Date.now(), {
+        cache: 'no-store',
+        signal: (typeof AbortSignal !== 'undefined' && AbortSignal.timeout) ? AbortSignal.timeout(60000) : undefined,
+      });
+      if (emRes.ok) {
+        const emData = await emRes.json();
+        const emails = emData.emails || [];
+
+        // Index calendario
+        const calIdx = (DATA.events || []).map(ev => {
+          const txt = ((ev.summary || '') + ' ' + (ev.description || '')).toLowerCase();
+          return {
+            date: (ev.date || ev.start || '').slice(0, 10),
+            txt: txt,
+            digits: txt.replace(/\D/g, ''),
+          };
+        });
+        const last10 = p => { const d = (p || '').replace(/\D/g, ''); return d.length >= 10 ? d.slice(-10) : d; };
+        const isMatched = (e) => {
+          const rid = (e.reserva || '').toLowerCase();
+          const ridDigits = rid.replace(/\D/g, '');
+          const ridShort = ridDigits.length >= 9 ? ridDigits.slice(0, 9) : ridDigits;
+          const em = (e.email || '').toLowerCase();
+          const ph10 = last10(e.phone);
+          if (!e.fecha) return false;
+          for (const c of calIdx) {
+            if (!c.date) continue;
+            const dDelta = Math.abs(new Date(c.date) - new Date(e.fecha)) / 86400000;
+            if (dDelta > 1.5) continue;
+            if (rid && c.txt.indexOf(rid) !== -1) return true;
+            if (ridShort && c.digits.indexOf(ridShort) !== -1) return true;
+            if (em && c.txt.indexOf(em) !== -1) return true;
+            if (ph10 && c.digits.indexOf(ph10) !== -1) return true;
+          }
+          return false;
+        };
+
+        const today = new Date(); today.setHours(0,0,0,0);
+        const winFrom = new Date(today.getTime() - 1*86400000);
+        const winTo   = new Date(today.getTime() + 15*86400000);
+        const inWindow = emails.filter(e => {
+          if (!e.fecha) return false;
+          const d = new Date(e.fecha);
+          return d >= winFrom && d <= winTo;
+        });
+
+        for (const e of inWindow) {
+          const k = (e.reserva || '').toLowerCase();
+          if (k && seenReservas[k]) continue;
+          if (isMatched(e)) continue;
+          seenReservas[k] = true;
+          mergedBookings.push({
+            reserva: e.reserva,
+            marca:   e.marca,
+            fecha:   e.fecha,
+            hora:    e.hora,
+            pax:     e.pax,
+            nombre:  (e.nombre || '').toLowerCase(),
+            email:   e.email,
+            phone:   e.phone,
+            producto: e.producto,
+            total:   e.total,
+            estado:  e.estado,
+            pesos:   e.pesos,
+            fuente:  'Turitop-Email',
+          });
+          emailGapsCount++;
+        }
+
+        if (GAPS) {
+          mergedBookings.sort((a, b) =>
+            ((a.fecha || '') + (a.hora || '') + (a.nombre || '')).localeCompare(
+             (b.fecha || '') + (b.hora || '') + (b.nombre || ''))
+          );
+          GAPS.bookings = mergedBookings;
+          GAPS.total_sin_agendar = mergedBookings.length;
+          GAPS.fuentes = GAPS.fuentes || {};
+          GAPS.fuentes['Turitop-Email'] = {
+            total: emails.length,
+            en_ventana: inWindow.length,
+            sin_agendar: emailGapsCount,
+          };
+        } else {
+          // No había static, creamos GAPS solo con email reader
+          GAPS = {
+            generated_at: new Date().toISOString(),
+            source: 'email_reader_only',
+            bookings: mergedBookings,
+            total_sin_agendar: mergedBookings.length,
+            fuentes: { 'Turitop-Email': { total: emails.length, en_ventana: inWindow.length, sin_agendar: emailGapsCount } },
+          };
+        }
+        console.log('[email-reader] ' + emails.length + ' emails / ' + inWindow.length + ' en ventana / +' + emailGapsCount + ' gaps nuevos');
+      }
+    } catch (emErr) {
+      console.warn('[email-reader]', emErr);
+    }
+    loaderStep('gaps', 'done', staticCount + ' del repo · +' + emailGapsCount + ' email');
 
     // 3) Turitop live DESACTIVADO — API con IP whitelist pendiente de resolver.
-    //    La data de gaps viene del JSON estático del repo (paso 2) que GitHub Action
-    //    actualiza cada 2h usando extracción directa de correos Bookeo.
+    //    La data de gaps viene del JSON estático del repo (paso 2) + email reader (paso 2b)
+    //    que GitHub Action y Apps Script segundo respectivamente actualizan en vivo.
 
     // 4) Render
     setLoaderLabel('Armando dashboard…');

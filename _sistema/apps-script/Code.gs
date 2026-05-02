@@ -23,6 +23,12 @@ const CALENDARS = [
 
 const TZ = 'America/Mexico_City';
 
+// ── Email Reader bridge (Apps Script bajo vuelosenglobomx@gmail.com) ──
+// Lee correos Turitop de esa cuenta porque es donde llegan los emails de
+// no-reply@turitop.com (no a weflymx). Permite gap detection sin depender
+// del IP whitelist de la API Turitop (que en Render falla por IP variable).
+const TURITOP_EMAIL_READER_URL = 'https://script.google.com/macros/s/AKfycbzApxUAjLhQvyQykWgH7BK4FRXTHOGBPbZGSRTtL2ZbLaVUXkWv0jalrd3Xs-xm82QgBQ/exec';
+
 // ── Entry point (Web App GET) ─────────────────────────
 // Rutas:
 //   (default)                  → dashboard completo (events + emails + stats)
@@ -767,7 +773,7 @@ function buildGapsFlat(dateFromStr, dateToStr) {
   end.setHours(23, 59, 59);
   const flatEvents = buildFlatEvents(start, end);
 
-  // 2) Turitop live
+  // 2) Turitop live (API). Los emails se mergean en el frontend.
   const turitopResult = fetchAllTuritop(dateFromStr, dateToStr);
   const turitopBookings = turitopResult.bookings;
 
