@@ -28,3 +28,4 @@ _sistema/turitop_bookings.json
 
 # Preview dev server config (local only)
 .claude/
+_sistema/gap-detector/_tmp_*.json
