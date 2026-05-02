@@ -1,6 +1,6 @@
 {
-  "generated_at": "2026-05-02 14:44",
-  "window": "2026-05-01 → 2026-05-17",
+  "generated_at": "2026-05-02 09:34",
+  "window": "2026-05-01 → 2026-06-01",
   "slack_days": 1,
   "calendars_in_source": [
     "BOOKEO",
@@ -12,17 +12,18 @@
   ],
   "fuentes": {
     "Turitop": {
-      "total": 9,
-      "matched": 9,
-      "sin_agendar": 0,
+      "total": 30,
+      "matched": 28,
+      "sin_agendar": 2,
       "match_by_strategy": {
+        "reserva_id": 19,
+        "reserva_id_digits": 5,
         "name1rare": 2,
-        "reserva_id": 6,
-        "email": 1
+        "email": 2
       },
       "match_by_calendar": {
-        "GAT": 3,
-        "VGMX": 5,
+        "VGMX": 15,
+        "GAT": 12,
         "PRIMARY": 1
       }
     },
@@ -34,7 +35,34 @@
       "match_by_calendar": {}
     }
   },
-  "total_fuentes": 9,
-  "total_sin_agendar": 0,
-  "bookings": []
+  "total_fuentes": 30,
+  "total_sin_agendar": 2,
+  "bookings": [
+    {
+      "reserva": "V212-260501-2",
+      "marca": "M2",
+      "fecha": "2026-05-02",
+      "hora": "06:00",
+      "pax": 2,
+      "nombre": "francesco carrasso",
+      "email": "carrassof@gmail.com",
+      "phone": "+31638372901",
+      "producto": "Vuelo en Teotihuacán - Tradicional",
+      "total": "4179.00",
+      "fuente": "Turitop"
+    },
+    {
+      "reserva": "V212-260502-1",
+      "marca": "M2",
+      "fecha": "2026-05-03",
+      "hora": "06:00",
+      "pax": 2,
+      "nombre": "VALERIA LAREDO",
+      "email": "valerialaral@hotmail.com",
+      "phone": "8441042629",
+      "producto": "Vuelo en Teotihuacán - Tradicional",
+      "total": "4179.00",
+      "fuente": "Turitop"
+    }
+  ]
 }

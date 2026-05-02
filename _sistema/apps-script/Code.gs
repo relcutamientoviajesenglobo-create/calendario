@@ -49,6 +49,36 @@ function doGet(e) {
       const to   = (e.parameter.to)   ? e.parameter.to   : fmt(addDays(new Date(), 30));
       return jsonOut(fetchAllTuritop(from, to));
     }
+    if (action === 'debug_gmail') {
+      // Diagnóstico: lista subjects raw + busca Francesco específicamente
+      const out = { bookeo: [], viator: [], francesco: [], errors: [] };
+      try {
+        const bk = GmailApp.search('(from:bookeo OR subject:bookeo) newer_than:30d', 0, 50);
+        out.bookeo_threads = bk.length;
+        for (const t of bk) for (const m of t.getMessages()) out.bookeo.push({
+          subject: m.getSubject(), from: m.getFrom(),
+          date: m.getDate().toISOString(),
+          snippet: (m.getPlainBody() || '').slice(0, 250).replace(/\s+/g, ' '),
+        });
+      } catch (e) { out.errors.push('bookeo: ' + e.message); }
+      try {
+        const vt = GmailApp.search('(from:viator OR subject:viator) newer_than:30d', 0, 50);
+        out.viator_threads = vt.length;
+        for (const t of vt) for (const m of t.getMessages()) out.viator.push({
+          subject: m.getSubject(), from: m.getFrom(),
+          date: m.getDate().toISOString(),
+        });
+      } catch (e) { out.errors.push('viator: ' + e.message); }
+      try {
+        const fr = GmailApp.search('Francesco Carrasso newer_than:60d', 0, 20);
+        for (const t of fr) for (const m of t.getMessages()) out.francesco.push({
+          subject: m.getSubject(), from: m.getFrom(),
+          date: m.getDate().toISOString(),
+          snippet: (m.getPlainBody() || '').slice(0, 400).replace(/\s+/g, ' '),
+        });
+      } catch (e) { out.errors.push('francesco: ' + e.message); }
+      return jsonOut(out);
+    }
     const data = buildDashboardData();
     return jsonOut(data);
   } catch(err) {
