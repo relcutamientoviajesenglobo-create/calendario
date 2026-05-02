@@ -1756,9 +1756,30 @@ function clearFilters(){
   $('#q').value=''; fcal.value=''; fstatus.value=''; $('#fdate1').value=''; $('#fdate2').value='';
   renderTable(); renderCal(); renderPending();
 }
-['q','fcal','fstatus','fdate1','fdate2'].forEach(id=>{
-  $('#'+id).addEventListener('input',()=>{renderTable(); renderCal(); renderPending()});
-});
+// Re-render en cualquier cambio del filtro. Escuchamos `input` Y `change`
+// porque <input type="date"> NO dispara `input` cuando el usuario elige una
+// fecha desde el calendario nativo en Safari / Edge / móvil — solo dispara
+// `change`. Sin esto el filtro de fechas parece "roto" (acepta el valor pero
+// no actualiza nada). Los selects también prefieren `change`. Disparamos
+// ambos y dedupeamos con un microtask flag para no re-renderizar dos veces
+// en el mismo tick cuando ambos eventos llegan (caso típico en text inputs).
+(function wireFilters(){
+  let pending = false;
+  function rerender(){
+    if (pending) return;
+    pending = true;
+    queueMicrotask(()=>{
+      pending = false;
+      renderTable(); renderCal(); renderPending();
+    });
+  }
+  ['q','fcal','fstatus','fdate1','fdate2'].forEach(id=>{
+    const el = $('#'+id);
+    if (!el) return;
+    el.addEventListener('input',  rerender);
+    el.addEventListener('change', rerender);
+  });
+})();
 
 // Initial render
 renderTable(); renderPending();
