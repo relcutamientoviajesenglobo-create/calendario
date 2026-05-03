@@ -373,7 +373,7 @@
   },
   {
     "date": "2026-05-04",
-    "summary": "*/2P Andrew Goddard",
+    "summary": "✅ */2P Andrew Goddard",
     "desc": "Fecha de compra: lunes 30 marzo No.Reserva: 1574603293858666 Nombre: Andrew Goddard Fecha de Vuelo: lunes, 4 mayo 2026 Tipo de Servicio: Vuelo Compartido en Teotihuacán Promo Lunes a Viernes Motivo de Vuelo: Nombre y peso de los pax: Adulto 1: Jessica Loveless 74 kg Adulto 2: Andrew Goddard 84 kg Tel: +44 7769343249 Correo: andrewgoddard@live.co.uk Vuelo: 1,990 MXN x2 Precio total con comisión: 4,139.20 MXN Importe abonado: 4,139.20 MXN Importe debido: 0 MXN Notas Adicionales: Staff: Débora 🧚🏻‍♀️",
     "calendar": "PRIMARY",
     "emails": [
@@ -502,6 +502,19 @@
   },
   {
     "date": "2026-05-04",
+    "summary": "✅ 🏨 *4P Walter Tlatenchi 3er PU 4:20 Ford",
+    "desc": "Número de reserva: 1574605019550901 Fecha de vuelo: lunes, 4 mayo 2026 Nombre: Walter Tlatenchi Tel: +1 5626567249 Email: walter.tlatenchi@gmail.com Idioma: inglés Vuelo: compartido Pax: 4 Pesos: Adulto 1: Walter Tlatenchi Peso en kilogramos o Libras: 95 kg Adulto 2: Zenan Sun Peso en kilogramos o Libras: 86 kg Adulto 3: Yi-Lin Tsai Peso en kilogramos o Libras: 86 kg Adulto 4: Yucai Weng Peso en kilogramos o Libras: 72.5 kg Pickup: 📍Hotel Le Meridien, Av. P.º de la Reforma 69, Tabacalera, Cuauhtémoc, 06030 Ciudad de México, CDMX Desayuno: Cueva Guía: Si Extras: Drone Motivo del vuelo: Precio total: 16,640 MXN Importe abonado: 16,640 MXN Importe debido: 0 Marca: We Fly Asesor: Debora 🧚🏻‍♀️ Notas operativas:",
+    "calendar": "BOOKEO",
+    "emails": [
+      "walter.tlatenchi@gmail.com"
+    ],
+    "phones": [
+      "5019550901",
+      "5626567249"
+    ]
+  },
+  {
+    "date": "2026-05-04",
     "summary": "✅ 🏨 *2P Italo Surio 1er PU 4:00 Ford",
     "desc": "Número de reserva: 1574605016328533 Fecha de vuelo: lunes, 4 mayo 2026 Nombre: Italo Surio Tel: +50370029422 Email: aliciarp050595@gmail.com Idioma: español Vuelo: compartido Pax: 2 Pesos: Adulto 1: Italo Surio Peso en kilogramos o Libras: 79 kilogramos Adulto 2: Alicia Rodriguez Peso en kilogramos o Libras: 80 kilogramos Pickup: 📍Av. Insurgentes Sur 116, Roma Nte., Cuauhtémoc, 06700 Ciudad de México, CDMX Desayuno: Cueva Guía: Si Extras: no Motivo del vuelo: Precio total: 7,280 MXN Importe abonado: 7,280 MXN Importe debido: 0 Marca: We Fly Asesor: Debora 🧚🏻‍♀️ Notas operativas:",
     "calendar": "BOOKEO",
@@ -511,19 +524,6 @@
     "phones": [
       "5016328533",
       "0370029422"
-    ]
-  },
-  {
-    "date": "2026-05-04",
-    "summary": "🏨 *4P Walter Tlatenchi 3er PU 4:20 Ford",
-    "desc": "Número de reserva: 1574605019550901 Fecha de vuelo: lunes, 4 mayo 2026 Nombre: Walter Tlatenchi Tel: +1 5626567249 Email: walter.tlatenchi@gmail.com Idioma: inglés Vuelo: compartido Pax: 4 Pesos: Adulto 1: Walter Tlatenchi Peso en kilogramos o Libras: 95 kg Adulto 2: Zenan Sun Peso en kilogramos o Libras: 86 kg Adulto 3: Yi-Lin Tsai Peso en kilogramos o Libras: 86 kg Adulto 4: Yucai Weng Peso en kilogramos o Libras: 72.5 kg Pickup: 📍Hotel Le Meridien, Av. P.º de la Reforma 69, Tabacalera, Cuauhtémoc, 06030 Ciudad de México, CDMX Desayuno: Cueva Guía: Si Extras: Drone Motivo del vuelo: Precio total: 16,640 MXN Importe abonado: 16,640 MXN Importe debido: 0 Marca: We Fly Asesor: Debora 🧚🏻‍♀️ Notas operativas:",
-    "calendar": "BOOKEO",
-    "emails": [
-      "walter.tlatenchi@gmail.com"
-    ],
-    "phones": [
-      "5019550901",
-      "5626567249"
     ]
   },
   {
