@@ -1,6 +1,6 @@
 {
-  "generated_at": "2026-05-02 22:39",
-  "window": "2026-05-01 → 2026-05-17",
+  "generated_at": "2026-05-03 02:45",
+  "window": "2026-05-02 → 2026-05-18",
   "slack_days": 1,
   "calendars_in_source": [
     "BOOKEO",
@@ -12,19 +12,19 @@
   ],
   "fuentes": {
     "Turitop": {
-      "total": 25,
-      "matched": 23,
-      "sin_agendar": 2,
+      "total": 22,
+      "matched": 21,
+      "sin_agendar": 1,
       "match_by_strategy": {
+        "name1rare": 3,
         "reserva_id": 14,
-        "reserva_id_digits": 5,
-        "name1rare": 2,
+        "reserva_id_digits": 2,
         "email": 2
       },
       "match_by_calendar": {
-        "VGMX": 12,
-        "GAT": 10,
-        "PRIMARY": 1
+        "VGMX": 10,
+        "PRIMARY": 2,
+        "GAT": 9
       }
     },
     "Bookeo": {
@@ -35,8 +35,8 @@
       "match_by_calendar": {}
     }
   },
-  "total_fuentes": 25,
-  "total_sin_agendar": 2,
+  "total_fuentes": 22,
+  "total_sin_agendar": 1,
   "bookings": [
     {
       "reserva": "V212-260501-2",
@@ -49,19 +49,6 @@
       "phone": "+31638372901",
       "producto": "Vuelo en Teotihuacán - Tradicional",
       "total": "4179.00",
-      "fuente": "Turitop"
-    },
-    {
-      "reserva": "V212-260428-1",
-      "marca": "M2",
-      "fecha": "2026-05-17",
-      "hora": "06:00",
-      "pax": 2,
-      "nombre": "Enrique Raul Delgado Escalante",
-      "email": "rdelgadowm11@hotmail.com",
-      "phone": "+525530553919",
-      "producto": "Vuelo en Globo Tradicional en Teotihuacán",
-      "total": "4200.00",
       "fuente": "Turitop"
     }
   ]
