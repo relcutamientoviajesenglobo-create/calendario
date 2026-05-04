@@ -380,7 +380,20 @@
   },
   {
     "date": "2026-05-05",
-    "summary": "2P Dan Radocay NC",
+    "summary": "2P Diego Martinez Calderon",
+    "desc": "Fecha de vuelo: martes, 5 mayo 2026 Número de reserva: 1574605045492567 Nombre: Diego Martinez Tel: +51 991265172 Email: dmartinezcalderon18@gmail.com Idioma: Español Vuelo: Compartido Pax: 2 Pesos: Diego Martinez Calderon 105 kg, Andrea Alvarez Vera 43 kg Pickup: 📍Zamora 71, Colonia Condesa, Cuauhtémoc, 06140 Ciudad de México, CDMX Desayuno: Cueva Guía: Sí Extras: Motivo del vuelo: Precio total: 7,280 MXN Importe abonado: 7,280 MXN Importe pendiente: 450 MXN Marca: We Fly Asesor: Debora 🧚🏻‍♀️ Notas operativas: Peso extra 10 kg",
+    "calendar": "PRIMARY",
+    "emails": [
+      "dmartinezcalderon18@gmail.com"
+    ],
+    "phones": [
+      "1991265172",
+      "5045492567"
+    ]
+  },
+  {
+    "date": "2026-05-05",
+    "summary": ".*2P Dan Radocay NC",
     "desc": "Fecha: martes, 5 mayo 2026 Número de reserva: 1574604181196925 Nombre: Dan Radocay Tel: +1 4126670572 Email: wmrickjames@gmail.com Idioma: inglés Vuelo: Privado Pax: 2 Pesos: 127 y 68 kg Pickup: 📍Zamora 75, Colonia Condesa, Cuauhtémoc, 06140 Ciudad de México, CDMX Desayuno: Cueva Guía: no Extras: Transporte privado + Banner de Anniversario + Flores y chocolates (NO incluye pirámides) Motivo del vuelo: Aniversario Precio total: 12,064 MXN Importe abonado: 12,064 MXN Importe pendiente: 1,440 MXN Marca: We Fly Asesor: Debora 🧚🏻‍♀️ Notas operativas: Peso extra 32 kg",
     "calendar": "PRIMARY",
     "emails": [
@@ -393,7 +406,7 @@
   },
   {
     "date": "2026-05-05",
-    "summary": "2P Nadia Motora",
+    "summary": ".*2P Nadia Motora",
     "desc": "Fecha: martes, 5 mayo 2026 Número de reserva: 1574604275868624 Nombre: Nadia Motora Tel: +40778712644 Email: nadia_motora@yahoo.com Idioma: INGLÉS Vuelo: Compartido Pax: 2 Pesos: 64 y 77 kg Pickup: Desayuno: Buffet Guía: no Extras: no Motivo del vuelo: Precio total: 6,219.20 MXN Importe abonado: 6,219.20 MXN Importe pendiente: 0 Marca: We Fly Asesor: Debora 🧚🏻‍♀️ Notas operativas:",
     "calendar": "PRIMARY",
     "emails": [
@@ -406,8 +419,8 @@
   },
   {
     "date": "2026-05-05",
-    "summary": "6P Nicole Bansal",
-    "desc": "Fecha de compra: martes 7 abril No.Reserva: 1574604075084304 Nombre: Nicole Bansal Fecha de Vuelo: martes, 5 mayo 2026 Tipo de Servicio: Vuelo Compartido + Transporte Grupal + Acceso a las pirámides de Teotihuacán + Desayuno Cueva Motivo de Vuelo: Nombre y peso de los pax: Nicole Bansal -155lb Seo Yun Bang -155lb Todd Petrie -145lb Sydney Harmon -145lb Georgine Botha- 145lb Josué Perez-Campos -160lb Tel: +1(732)-439-9255 Correo: bansal.nicole@gmail.com Vuelo: 2,990 MXN x6 Cueva: 450 MXN x6 Precio total con comisión: 21,465.60 MXN Importe abonado: 21,465.60 MXN Importe debido: 0 MXN Notas Adicionales: Staff: Débora 🧚🏻‍♀️",
+    "summary": ".*6P Nicole Bansal",
+    "desc": "Fecha de compra: martes 7 abril No.Reserva: 1574604075084304 Nombre: Nicole Bansal Fecha de Vuelo: martes, 5 mayo 2026 Tipo de Servicio: Vuelo Compartido + Transporte Grupal + Acceso a las pirámides de Teotihuacán + Desayuno Cueva Motivo de Vuelo: Nombre y peso de los pax: Nicole Bansal -70 kg Seo Yun Bang -70 kg Todd Petrie -65 kg Sydney Harmon -65 kg Georgine Botha- 65 kg Josué Perez-Campos -72 kg Tel: +1(732)-439-9255 Correo: bansal.nicole@gmail.com Vuelo: 2,990 MXN x6 Cueva: 450 MXN x6 Precio total con comisión: 21,465.60 MXN Importe abonado: 21,465.60 MXN Importe debido: 0 MXN Notas Adicionales: Staff: Débora 🧚🏻‍♀️",
     "calendar": "PRIMARY",
     "emails": [
       "bansal.nicole@gmail.com"
@@ -415,6 +428,16 @@
     "phones": [
       "4075084304",
       "7324399255"
+    ]
+  },
+  {
+    "date": "2026-05-05",
+    "summary": "✅.*6p Jaime González",
+    "desc": "============ RESERVA WE FLY ============ Nombre: Jaime González Número de reserva: Tel: +525532330616 Email: Idioma: español Vuelo: vuelo promo compartido Pax: 6 Pax Pesos: Jaime González 93 kg Francisca Medina 58 kg Camila 40 kg Emma 40 kg Brisa 40 kg Emilio barrios 28 kg Pickup: no Desayuno: no Guía: no Extras: no Motivo del vuelo: experiencia Precio total: $ 11940MXN Importe abonado: $2500MXN Saldo pendiente: $ 9440 MXN Marca: GAT Asesor: THONY Notas operativas:NO",
+    "calendar": "GAT",
+    "emails": [],
+    "phones": [
+      "5532330616"
     ]
   },
   {
@@ -800,6 +823,32 @@
   },
   {
     "date": "2026-05-11",
+    "summary": "4P Esteban Mata Soto",
+    "desc": "Fecha de vuelo: lunes, 11 mayo 2026 Número de reserva: 1574605042531576 Nombre: Esteban Mata Soto Tel: +50687274911 Email: estebanmtst@gmail.com Idioma: español Vuelo: Compartido Pax: 4 Pesos: Esteban Mata Soto 74 kg, Milena Orozco Esquivel 68 kg, Jose Esteban Mata Orozco 57 kg, Karina Mata Orozco 63 kg Pickup: 📍Av Chapultepec 213, Juárez, Cuauhtémoc, 06600 Ciudad de México, CDMX Desayuno: Cueva Guía: Sí Extras: Sesión fotografica (2,000 MXN) Motivo del vuelo: Precio total: 16,640 MXN Importe abonado: 16,640 MXN Importe pendiente: 0 Marca: We Fly Asesor: Debora 🧚🏻‍♀️ Notas operativas:",
+    "calendar": "PRIMARY",
+    "emails": [
+      "estebanmtst@gmail.com"
+    ],
+    "phones": [
+      "5042531576",
+      "0687274911"
+    ]
+  },
+  {
+    "date": "2026-05-11",
+    "summary": "2P Roberto Carlos Diaz Sanchez",
+    "desc": "Fecha de vuelo: lunes, 11 mayo 2026 Número de reserva: 1574605031070107 Nombre: Roberto Carlos Diaz Sanchez Tel: 8781097283 Email: robertocdiazsanchez@gmail.com Idioma: español Vuelo: Compartido Pax: 2 Pesos: Roberto Carlos Diaz Sanchez 65 kg, Andrea Jimenez Castro 52 kg Pickup: 📍ULIV Cibeles. Sinaloa 43, Roma Norte, Cuauhtémoc, 06700. Desayuno: Cueva Guía: Sí Extras: Motivo del vuelo: Precio total: 7,280 MXN Importe abonado: 7,280 MXN Importe pendiente: 0 Marca: We Fly Asesor: Debora 🧚🏻‍♀️ Notas operativas:",
+    "calendar": "PRIMARY",
+    "emails": [
+      "robertocdiazsanchez@gmail.com"
+    ],
+    "phones": [
+      "5031070107",
+      "8781097283"
+    ]
+  },
+  {
+    "date": "2026-05-11",
     "summary": "2P Gabriel Homero Barros Vieira",
     "desc": "Fecha: lunes, 11 mayo 2026 Número de reserva:1574604264975741 Nombre: Gabriel Homero Barros Vieira Tel: +5537998137328 Email: ghomerob@gmail.com Idioma: español Vuelo: Compartido Pax: 2 Pesos: Gabriel Homero Barros Vieira 87 kg / Marla Ariana Silva 73 kg Pick Up: Desayuno: Cueva Guía: Sí Extras: no Motivo del vuelo: Precio total: 7,280 MXN Importe abonado: 7,280 MXN Importe pendiente: 0 Marca: We Fly Asesor: Debora 🧚🏻‍♀️ Notas operativas:",
     "calendar": "PRIMARY",
@@ -940,6 +989,19 @@
   },
   {
     "date": "2026-05-14",
+    "summary": "2P Weimin Hung",
+    "desc": "Fecha de vuelo: jueves, 14 mayo 2026 Número de reserva: 1574605031980526 Nombre: Weimin Hung Tel: +1 9153150804 Email: hameboy41@gmail.com Idioma: INGLÉS Vuelo: Compartido Pax: 2 Pesos: Yazmin Veloz 56 kg, Weimin Hung 65 kg Pickup: Desayuno: Cueva Guía: Sí Extras: Motivo del vuelo: Precio total: 7,280 MXN Importe abonado: 7,280 MXN Importe pendiente: 0 Marca: We Fly Asesor: Debora 🧚🏻‍♀️ Notas operativas:",
+    "calendar": "PRIMARY",
+    "emails": [
+      "hameboy41@gmail.com"
+    ],
+    "phones": [
+      "5031980526",
+      "9153150804"
+    ]
+  },
+  {
+    "date": "2026-05-14",
     "summary": "2P Eabha Ducey",
     "desc": "Fecha de compra: sábado 7 marzo No.Reserva: 1574603072849294 Nombre: Eabha Ducey Fecha de Vuelo: jueves, 14 mayo 2026 Tipo de Servicio: Vuelo Compartido en Teotihuacán Promo Lunes a Viernes + Transporte privado Motivo de Vuelo: Nombre y peso de los pax: Adulto 1: Eabha Ducey 71 kg Adulto 2: Tommy Ducey 81 kg Tel: +353 8610612 Whatsapp: +353 83 825 6334 Correo: eabha.geraghty90@gmail.com Vuelo: 1,990 MXN x2 Transporte Privado: 2,300 MXN Notas Adicionales: 📍pick up pendiente Staff: Débora 🧚🏻‍♀️",
     "calendar": "PRIMARY",
@@ -1030,13 +1092,13 @@
   {
     "date": "2026-05-15",
     "summary": "3p Anastasiia Chovpin",
-    "desc": "Número de reserva: 1574605023222588 Fecha de vuelo: viernes, 15 mayo 2026 Nombre: Anastasiia Chovpin Tel: 988559455 Email: anastasiiachovpin@gmail.com Idioma: español Vuelo: compartido Pax: 3 Pesos: Adulto 1: Anastasiia Chovpin Peso en kilogramos o Libras: 62kg Adulto 2: Hanna Samaan Peso en kilogramos o Libras: 75kg Adulto 3: Ivan Samaan Peso en kilogramos o Libras: 30kg Pickup: 📍Hotel Exe Suites San Marino Calle Río Tiber 107, 06500 Ciudad de México, Distrito Federal Desayuno: cueva Guía: sí Extras: no Motivo del vuelo: Precio total: 10,920 MXN Importe abonado: 10,920 MXN Importe debido: 0 Marca: We Fly Asesor: Debora 🧚🏻‍♀️ Notas operativas:",
+    "desc": "Número de reserva: 1574605023222588 Fecha de vuelo: viernes, 15 mayo 2026 Nombre: Anastasiia Chovpin Tel: +51 988559455 Email: anastasiiachovpin@gmail.com Idioma: español Vuelo: compartido Pax: 3 Pesos: Adulto 1: Anastasiia Chovpin Peso en kilogramos o Libras: 62kg Adulto 2: Hanna Samaan Peso en kilogramos o Libras: 75kg Adulto 3: Ivan Samaan Peso en kilogramos o Libras: 30kg Pickup: 📍Hotel Exe Suites San Marino Calle Río Tiber 107, 06500 Ciudad de México, Distrito Federal Desayuno: cueva Guía: sí Extras: no Motivo del vuelo: Precio total: 10,920 MXN Importe abonado: 10,920 MXN Importe debido: 0 Marca: We Fly Asesor: Debora 🧚🏻‍♀️ Notas operativas:",
     "calendar": "BOOKEO",
     "emails": [
       "anastasiiachovpin@gmail.com"
     ],
     "phones": [
-      "988559455",
+      "1988559455",
       "5023222588"
     ]
   },
@@ -1056,7 +1118,7 @@
   {
     "date": "2026-05-16",
     "summary": "3P Socorro Santiago (TG)",
-    "desc": "RESERVA VGMX Fecha: sábado 16 mayo, 2026 Nombre: Socorro Santiago Tel: +55(85)999581623 Email: ssantiagobpr@gmail.com Idioma: español Vuelo: compartido Pax: 3 Pesos: 85, 110 y 110 Pickup: si Desayuno: buffet Guía: NO Extras: NO Motivo del vuelo: Precio total: $ 9,328.80 Importe abonado: $ 9,328.80 SALDO $1,350 por peso extra Brand: VGMX Asesor: Olimpia 🧜🏻‍♀️ Notas operativas:",
+    "desc": "RESERVA VGMX Fecha: sábado 16 mayo, 2026 Nombre: Socorro Santiago Tel: +55(85)999581623 Email: ssantiagobpr@gmail.com Idioma: español Vuelo: compartido Pax: 3 Pesos: 85, 110 y 110 Pickup: Rio Rhin 59, Cuahtémoc, 06500 Desayuno: buffet Guía: NO Extras: NO Motivo del vuelo: Precio total: $ 9,328.80 Importe abonado: $ 9,328.80 SALDO $1,350 por peso extra Brand: VGMX Asesor: Olimpia 🧜🏻‍♀️ Notas operativas:",
     "calendar": "VGMX",
     "emails": [
       "ssantiagobpr@gmail.com"
@@ -1074,6 +1136,28 @@
     "phones": [
       "1390065945",
       "9734322294"
+    ]
+  },
+  {
+    "date": "2026-05-16",
+    "summary": "1P Morgan Wahlstrom",
+    "desc": "Número de reserva: BR-1392853441 Fecha de vuelo: Sat, May 16, 2026 Nombre: Morgan Wahlstrom Tel: US+1 (760) 716-4495 Email: N/A Idioma: Inglés Vuelo: Compartido Pax: 1 Pesos: 81.6 kg Pickup: 📍Marriott Reforma Hotel, Paseo De La Reforma 276 Col Juarez, Mexico City 06600 Mexico. Desayuno: Cueva Guía: Sí Extras: Motivo del vuelo: Precio total: MXN 3,267.60 Importe abonado: MXN 3,267.60 Importe pendiente: 0 Marca: We Fly Asesor: Debora 🧚🏻‍♀️ Notas operativas:",
+    "calendar": "VIATOR",
+    "emails": [],
+    "phones": [
+      "1392853441",
+      "7607164495"
+    ]
+  },
+  {
+    "date": "2026-05-16",
+    "summary": "1P Nicholas Mossuto",
+    "desc": "Número de reserva: BR-1392867115 Fecha de vuelo: Sat, May 16, 2026 Nombre: Nicholas Mossuto Tel: US+1 (858) 877-0963 Email: N/A Idioma: Inglés Vuelo: Compartido Pax: 1 Pesos: 94.3 kg Pickup: Desayuno: Cueva Guía: Sí Extras: Motivo del vuelo: Precio total: MXN 3,267.60 Importe abonado: MXN 3,267.60 Importe pendiente: 0 Marca: We Fly Asesor: Debora 🧚🏻‍♀️ Notas operativas:",
+    "calendar": "VIATOR",
+    "emails": [],
+    "phones": [
+      "1392867115",
+      "8588770963"
     ]
   },
   {
@@ -1100,6 +1184,19 @@
     "phones": [
       "2122604281",
       "5530553919"
+    ]
+  },
+  {
+    "date": "2026-05-18",
+    "summary": "2P Victor Vega",
+    "desc": "Fecha de vuelo: lunes, 18 mayo 2026 Número de reserva: 1574605046405249 Nombre: Victor Vega Tel: +16095030662 Email: vlv1182@yahoo.com Idioma: ingles Vuelo: Compartido Pax: 2 Pesos: Victor Vega 94 kg, Dalilah Vega 65 kg Pickup: 📍Parque España 21, Roma Nte., Cuauhtémoc, 06700 Ciudad de México, CDMX, Mexico Desayuno: Cueva Guía: Sí Extras: Motivo del vuelo: Precio total: 7,280 MXN Importe abonado: 7,280 MXN Importe pendiente: 0 Marca: We Fly Asesor: Debora 🧚🏻‍♀️ Notas operativas:",
+    "calendar": "PRIMARY",
+    "emails": [
+      "vlv1182@yahoo.com"
+    ],
+    "phones": [
+      "5046405249",
+      "6095030662"
     ]
   },
   {
