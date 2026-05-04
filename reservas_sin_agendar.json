@@ -1,10 +1,9 @@
 {
-  "generated_at": "2026-05-03 22:39",
-  "window": "2026-05-02 → 2026-05-18",
+  "generated_at": "2026-05-04 02:43",
+  "window": "2026-05-03 → 2026-05-19",
   "slack_days": 1,
   "calendars_in_source": [
     "BOOKEO",
-    "GAMX_MONSE",
     "GAT",
     "PRIMARY",
     "VGMX",
@@ -12,19 +11,19 @@
   ],
   "fuentes": {
     "Turitop": {
-      "total": 22,
-      "matched": 21,
-      "sin_agendar": 1,
+      "total": 17,
+      "matched": 17,
+      "sin_agendar": 0,
       "match_by_strategy": {
-        "name1rare": 3,
-        "reserva_id": 14,
+        "reserva_id": 12,
         "reserva_id_digits": 2,
-        "email": 2
+        "email": 2,
+        "name1rare": 1
       },
       "match_by_calendar": {
-        "VGMX": 10,
-        "PRIMARY": 2,
-        "GAT": 9
+        "VGMX": 7,
+        "GAT": 9,
+        "PRIMARY": 1
       }
     },
     "Bookeo": {
@@ -35,21 +34,7 @@
       "match_by_calendar": {}
     }
   },
-  "total_fuentes": 22,
-  "total_sin_agendar": 1,
-  "bookings": [
-    {
-      "reserva": "V212-260501-2",
-      "marca": "M2",
-      "fecha": "2026-05-02",
-      "hora": "06:00",
-      "pax": 2,
-      "nombre": "francesco carrasso",
-      "email": "carrassof@gmail.com",
-      "phone": "+31638372901",
-      "producto": "Vuelo en Teotihuacán - Tradicional",
-      "total": "4179.00",
-      "fuente": "Turitop"
-    }
-  ]
+  "total_fuentes": 17,
+  "total_sin_agendar": 0,
+  "bookings": []
 }
