@@ -328,7 +328,7 @@
   },
   {
     "date": "2026-05-06",
-    "summary": "*4P David Andrew Finch",
+    "summary": ".*4P David Andrew Finch",
     "desc": "Fecha de vuelo: miércoles, 6 mayo 2026 Número de reserva: 1574604306576651 Nombre: David Andrew Finch Tel: +44 7828980517 Email: droid_no1@hotmail.com Idioma: inglés Vuelo: Compartido Pax: 4 Pesos: David Andrew Finch 87 kg, Ana Cristina Villarreal Armendaiz 68 kg, Rachel Finch 65 kg, Lucia Ross 65 kg Pickup: 📍Zamora 75, Colonia Condesa, Cuauhtémoc, 06140 Ciudad de México, CDMX Desayuno: Cueva Guía: Sí Extras: No Motivo del vuelo: Precio total: 14,560 MXN Importe abonado: 14,560 MXN Importe pendiente: 0 Marca: We Fly Asesor: Debora 🧚🏻‍♀️ Notas operativas:",
     "calendar": "PRIMARY",
     "emails": [
@@ -341,7 +341,20 @@
   },
   {
     "date": "2026-05-06",
-    "summary": "*2P Jordan Kierstead (TG)",
+    "summary": ".*1P Eloise Rotherham (TG)",
+    "desc": "RESERVA VGMX No reserva: bookeo 1576604257506550 Fecha: miércoles 6 mayo, 2026 Nombre: Eloise Rotherham ✉ eloiserotherham@hotmail.co.uk ☎ +147515118525 Idioma: español Vuelo: compartido Pax: 1 Adulto 1: 80KG Pickup: Av. Amatlan 123, Hipódromo Condesa, Cuauhtémoc, 06170 Desayuno: NO Guía: NO Extras: NO Motivo del vuelo: experiencia Precio total: $ 2,919.60 Importe abonado: $ 2,069.60 SALDO $ 850 Brand: VGMX Vendedor: Olimpia 🧜🏻‍♀️ Notas operativas: NO QUIERE DESAYUNO POR SER VEGANA",
+    "calendar": "VGMX",
+    "emails": [
+      "eloiserotherham@hotmail.co.uk"
+    ],
+    "phones": [
+      "4257506550",
+      "7515118525"
+    ]
+  },
+  {
+    "date": "2026-05-06",
+    "summary": ".*2P Jordan Kierstead (TG)",
     "desc": "fecha de reserva 15/04/26 No. Reserva: bookeo 1576604152746077 IDIOMA INGLES Titular: Jordan Kierstead Fecha del evento: miércoles 6 mayo, 2026 Tipo de Servicio: vuelo COMPARTIDO + transporte grupal +pirámides + Desayuno BUFFET Pick up: Av. Insurgentes Sur 206-4, Roma Nte, Cuauhtémoc, 06700 Adicionales: Motivo de Vuelo: experiencia No de pax: Adulto 1: Jordan Kierstead 165 lbs Adulto 2: Alana Derksen 140 lbs ✉ Sicksteadglass@gmail.com Teléfono: +1 (403) 669-0062 Adultos 2 x 2,990 (5,980) Subtotal 5,980 Reserva en Línea 149.5 Total 6,129.5 Anticipo 3,139.50 SALDO 2,990 NOTA ADICIONAL: STAFF: Olimpia 🧜🏻‍♀️",
     "calendar": "VGMX",
     "emails": [
@@ -354,20 +367,7 @@
   },
   {
     "date": "2026-05-06",
-    "summary": "*1P Eloise Rotherham (TG)",
-    "desc": "RESERVA VGMX No reserva: bookeo 1576604257506550 Fecha: miércoles 6 mayo, 2026 Nombre: Eloise Rotherham ✉ eloiserotherham@hotmail.co.uk ☎ +147515118525 Idioma: español Vuelo: compartido Pax: 1 Adulto 1: 80KG Pickup: Av. Amatlan 123, Hipódromo Condesa, Cuauhtémoc, 06170 Desayuno: NO Guía: NO Extras: NO Motivo del vuelo: experiencia Precio total: $ 2,919.60 Importe abonado: $ 2,069.60 SALDO $ 850 Brand: VGMX Vendedor: Olimpia 🧜🏻‍♀️ Notas operativas: NO INCLUYE DESAYUNO POR SER VEGANA",
-    "calendar": "VGMX",
-    "emails": [
-      "eloiserotherham@hotmail.co.uk"
-    ],
-    "phones": [
-      "4257506550",
-      "7515118525"
-    ]
-  },
-  {
-    "date": "2026-05-06",
-    "summary": "*2p René Linares",
+    "summary": "✅*2p René Linares",
     "desc": "Nombre: René Linares Fecha de reservación: 21 abril Fecha de Vuelo: 6 de mayo No.reserva: G465-260421-1 Tipo de Vuelo: vuelo promo Motivo de Vuelo: experiencia No. Pasajero: 2 Peso en Kgs:80 Y 70 KG Tel: +16724723265 Correo: rene.linares@gmail.com Total: $4179 Anticipo: PAGADO Restante:PAGADO THONY 🐶",
     "calendar": "GAT",
     "emails": [
@@ -380,7 +380,7 @@
   },
   {
     "date": "2026-05-06",
-    "summary": "*2P Ujjwal Gupta",
+    "summary": "✅*2P Ujjwal Gupta",
     "desc": "Fecha: Wed, May 06, 2026 Número de reserva: BR-1389980113 Nombre: Ujjwal Gupta Tel: CA+1 6473250647 Email: N/A Idioma: Inglés Vuelo: Compartido Pax: 2 Pesos: Ujjwal Gupta: 91.0 kgs, Wenchi Wu: 75.0 kgs Pickup: 📍Block Suites, Avenida Chapultepec, Roma Norte, Mexico City, CDMX, Mexico Desayuno: Cueva Guía: Sí Extras: Motivo del vuelo: Precio total: MXN 6,535.20 Importe abonado: MXN 6,535.20 Importe pendiente: 0 Marca: We Fly Asesor: Debora 🧚🏻‍♀️ Notas operativas:",
     "calendar": "VIATOR",
     "emails": [],
@@ -391,7 +391,7 @@
   },
   {
     "date": "2026-05-06",
-    "summary": "*5P Angelica Davila",
+    "summary": "✅*5P Angelica Davila",
     "desc": "Fecha de compra: viernes 10 abril No.Reserva: BR-1383338383 Nombre: Angelica Davila Fecha de Vuelo: Wed, May 06, 2026 Tipo de Servicio: No transportation and no breakfast 05:30 Motivo de Vuelo: Nombre y peso de los pax: no lo puso Tel: US+1 (914) 572-9305 Correo: N/A Tarifa neta: MXN 10,114.00 Notas Adicionales: Staff: Débora 🧚🏻‍♀️",
     "calendar": "VIATOR",
     "emails": [],
@@ -492,8 +492,8 @@
   },
   {
     "date": "2026-05-07",
-    "summary": "2P BRAYAN YAHIR MATA SANCHEZ",
-    "desc": "Número de reserva: 1574604308608362 Fecha de vuelo: jueves, 7 mayo 2026 Nombre: Brayan Yahir Mata Sanchez Tel: 8127477346 Email: brayanmata9385@gmail.com Idioma: español Vuelo: compartido Pax: 2 Pesos: Adulto 1: BRAYAN YAHIR MATA SANCHEZ Peso en kilogramos o Libras: 105 kilos Adulto 2: CARLA ARELY BRAVO CASTRO Peso en kilogramos o Libras: 55 KILOGRAMOS Pickup: 📍 Desayuno: Buffet Guía: No Extras: Transporte Privado, Ramo de flores y chocolates, Banner, Video drone Motivo del vuelo: Aniversario Precio total: 14,560 MXN Importe abonado: 14,560 MXN Importe debido: 450 MXN Marca: We Fly Asesor: Debora 🧚🏻‍♀️ Notas operativas: Peso extra 10 kg",
+    "summary": "2P BRAYAN YAHIR MATA SANCHEZ NC",
+    "desc": "Número de reserva: 1574604308608362 Fecha de vuelo: jueves, 7 mayo 2026 Nombre: Brayan Yahir Mata Sanchez Tel: 8127477346 Email: brayanmata9385@gmail.com Idioma: español Vuelo: Privado Pax: 2 Pesos: Adulto 1: BRAYAN YAHIR MATA SANCHEZ Peso en kilogramos o Libras: 105 kilos Adulto 2: CARLA ARELY BRAVO CASTRO Peso en kilogramos o Libras: 55 KILOGRAMOS Pickup: 📍 Desayuno: Buffet Guía: Sí Extras: Transporte Privado, Ramo de flores y chocolates, Banner, Video drone, Pirámides con guía Motivo del vuelo: Aniversario Precio total: 14,560 MXN Importe abonado: 14,560 MXN Importe debido: 450 MXN Marca: We Fly Asesor: Debora 🧚🏻‍♀️ Notas operativas: Peso extra 10 kg",
     "calendar": "BOOKEO",
     "emails": [
       "brayanmata9385@gmail.com"
@@ -518,7 +518,20 @@
   },
   {
     "date": "2026-05-08",
-    "summary": "2P Sophie Carmichael",
+    "summary": "*2P Theophile Bacon",
+    "desc": "Fecha de compra: sábado 7 marzo No.Reserva: 1574603071085293 Nombre: Theophile Bacon Fecha de Vuelo: viernes, 8 mayo 2026 Tipo de Servicio: ALL INCLUSIVE + Transporte redondo + Desayuno La Cueva + Pirámides con guía certificado Motivo de Vuelo: Nombre y peso de los pax: Adulto 1: Theophile Bacon 90 kg Adulto 2: Julia Fremi 64 kg Tel: +33 6 29 13 09 22 Correo: tt.bacon@icloud.com Vuelo: 3,500 MXN x2 Precio total con comisión: 7,280 MXN Importe abonado: 7,280 MXN Importe debido: 0 MXN Notas Adicionales: Staff: Débora 🧚🏻‍♀️",
+    "calendar": "PRIMARY",
+    "emails": [
+      "tt.bacon@icloud.com"
+    ],
+    "phones": [
+      "3071085293",
+      "3629130922"
+    ]
+  },
+  {
+    "date": "2026-05-08",
+    "summary": "*2P Sophie Carmichael",
     "desc": "Fecha de compra: martes 14 abril No.Reserva: 1574604147860578 Nombre: Sophie Carmichael Fecha de Vuelo: viernes, 8 mayo 2026 Tipo de Servicio: ALL INCLUSIVE + Transporte redondo + Desayuno La Cueva + Pirámides con guía certificado Motivo de Vuelo: Nombre y peso de los pax: Adulto 1: Sophie Carmichael 65 kg Adulto 2: Tyson Hay 72.5 kg Tel: +1 5875828906 Correo: sophiecarmichael@hotmail.com Vuelo: 3,500 MXN x2 Precio total con comisión: 7,280 MXN Importe abonado: 7,280 MXN Importe debido: 0 MXN Notas Adicionales: Staff: Débora 🧚🏻‍♀️",
     "calendar": "PRIMARY",
     "emails": [
@@ -531,15 +544,28 @@
   },
   {
     "date": "2026-05-08",
-    "summary": "2P Theophile Bacon",
-    "desc": "Fecha de compra: sábado 7 marzo No.Reserva: 1574603071085293 Nombre: Theophile Bacon Fecha de Vuelo: viernes, 8 mayo 2026 Tipo de Servicio: ALL INCLUSIVE + Transporte redondo + Desayuno La Cueva + Pirámides con guía certificado Motivo de Vuelo: Nombre y peso de los pax: Adulto 1: Theophile Bacon 90 kg Adulto 2: Julia Fremi 64 kg Tel: +33 6 29 13 09 22 Correo: tt.bacon@icloud.com Vuelo: 3,500 MXN x2 Precio total con comisión: 7,280 MXN Importe abonado: 7,280 MXN Importe debido: 0 MXN Notas Adicionales: Staff: Débora 🧚🏻‍♀️",
+    "summary": "*2P Lithzy Melissa Delgado Enriquez",
+    "desc": "Fecha de vuelo: viernes, 8 mayo 2026 Número de reserva: 1574605051682753 Nombre: Lithzy Melissa Delgado Enriquez Tel: 6141270225 Email: lithzydelgado22@gmail.com Idioma: Español Vuelo: Compartido Pax: 2 Pesos: Lithzy Melissa Delgado Enriquez 78 kg, Daniel Alexis Chavez Meza 90 kg Pickup: 📍Hotel Fontan Reforma dirección: Av. P.º de la Reforma 24, Colonia Centro, Cuauhtémoc, 06040 Ciudad de México, CDMX Desayuno: Cueva Guía: Sí Extras: Motivo del vuelo: Precio total: 7,280 MXN Importe abonado: 7,280 MXN Importe pendiente: 0 Marca: We Fly Asesor: Debora 🧚🏻‍♀️ Notas operativas:",
     "calendar": "PRIMARY",
     "emails": [
-      "tt.bacon@icloud.com"
+      "lithzydelgado22@gmail.com"
     ],
     "phones": [
-      "3071085293",
-      "3629130922"
+      "5051682753",
+      "6141270225"
+    ]
+  },
+  {
+    "date": "2026-05-08",
+    "summary": "*2P Anuja Saxena",
+    "desc": "Fecha de compra: jueves 9 abril No.Reserva: 1574604095216566 Nombre: Anuja Saxena Fecha de Vuelo: viernes, 8 mayo 2026 Tipo de Servicio: Vuelo Compartido en Teotihuacán Promo Lunes a Viernes Motivo de Vuelo: Nombre y peso de los pax: Adulto 1: Anuja Saxena 68 KG Adulto 2: Giri Venkatakrishniah Kodur 90 KG Tel: CA +1 4378683391 Correo: anujasaxena.can@gmail.com Vuelo: 1,990 MXN x2 Precio total con comisión: 4,139.20 MXN Importe abonado: 4,139.20 MXN Importe debido: 0 MXN Notas Adicionales: Staff: Débora 🧚🏻‍♀️",
+    "calendar": "PRIMARY",
+    "emails": [
+      "anujasaxena.can@gmail.com"
+    ],
+    "phones": [
+      "4095216566",
+      "4378683391"
     ]
   },
   {
@@ -556,20 +582,7 @@
   },
   {
     "date": "2026-05-08",
-    "summary": "2P Anuja Saxena",
-    "desc": "Fecha de compra: jueves 9 abril No.Reserva: 1574604095216566 Nombre: Anuja Saxena Fecha de Vuelo: viernes, 8 mayo 2026 Tipo de Servicio: Vuelo Compartido en Teotihuacán Promo Lunes a Viernes Motivo de Vuelo: Nombre y peso de los pax: Adulto 1: Anuja Saxena 68 KG Adulto 2: Giri Venkatakrishniah Kodur 90 KG Tel: CA +1 4378683391 Correo: anujasaxena.can@gmail.com Vuelo: 1,990 MXN x2 Precio total con comisión: 4,139.20 MXN Importe abonado: 4,139.20 MXN Importe debido: 0 MXN Notas Adicionales: Staff: Débora 🧚🏻‍♀️",
-    "calendar": "PRIMARY",
-    "emails": [
-      "anujasaxena.can@gmail.com"
-    ],
-    "phones": [
-      "4095216566",
-      "4378683391"
-    ]
-  },
-  {
-    "date": "2026-05-08",
-    "summary": "2P Xinyi Fang",
+    "summary": "*2P Xinyi Fang",
     "desc": "RESERVA VGMX Fecha: viernes 8 mayo, 2026 Nombre: Xinyi Fang Tel: +1 (548) 577-5675 Email: xinyifang22@gmail.com Idioma: español Vuelo: compartido Pax: 2 Pesos: 55 y 80 Pickup: NO Desayuno: NO Guía: NO Extras: NO Motivo del vuelo: Precio total: $ 4,139.20 Importe abonado: $ 4,139.20 Brand: VGMX Asesor: Olimpia 🧜🏻‍♀️ Notas operativas:",
     "calendar": "VGMX",
     "emails": [
@@ -581,7 +594,7 @@
   },
   {
     "date": "2026-05-08",
-    "summary": "2px Mauricio Jaschkowitz",
+    "summary": "*2px Mauricio Jaschkowitz",
     "desc": "Nombre: Mauricio Jaschkowitz Número de reserva: G465-260327-1 Fecha de reservación: 27 de marzo 2026 Fecha de Vuelo: (Viernes) 8 Mayo 2026 Tipo de Vuelo: Vuelo Compartido Promo, AGREGA TRANSPORTE PRIVADO PICK UP : AVENIDA HOMERO 206,MÉXICO CITY,MÉXICO CITY 11560,MÉXICO SOLO TRANSPORTE PRIVADO SIN DESAYUNO Motivo de Vuelo: Experiencia No. Pasajero: 2px x 1,990MXN Peso en Kgs: Mauricio Jaschkowitz 82kg, Sonja Stuempfig 65kg Tel: +50255789306 Correo: ✉ morisj23m@gmail.com TOTAL 4,179MXN PAGADO Notas adicionales: Sin desayuno ni transporte Staff: Anael 🌻",
     "calendar": "GAT",
     "emails": [
@@ -1057,6 +1070,19 @@
     "phones": [
       "3313859280",
       "4072699776"
+    ]
+  },
+  {
+    "date": "2026-05-17",
+    "summary": "2P  Timothy Ng (TG)",
+    "desc": "RESERVA VGMX No reserva: V212-260504-1 Fecha: domingo 17 mayo, 2026 Nombre: Timothy Ng ✉ labtimng@gmail.com ☎ +526262578866 Idioma: inglés Vuelo: compartido Pax: 2 Adulto 1: Timothy Ng 65 KG, Adulto 2: William Ng 65 KG Pickup: si Desayuno: bueffet Guía: NO Extras: NO Motivo del vuelo:experiencia Precio total: $ 6,195 Importe abonado: $ 6,195 SALDO $ NO Brand: VGMX Vendedor: Olimpia 🧜🏻‍♀️",
+    "calendar": "VGMX",
+    "emails": [
+      "labtimng@gmail.com"
+    ],
+    "phones": [
+      "2122605041",
+      "6262578866"
     ]
   },
   {
