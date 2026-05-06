@@ -1,8 +1,8 @@
 {
-  "requested_from": "2026-05-04",
-  "requested_to": "2026-05-20",
-  "generated_at": "2026-05-05T22:53:49.813990",
-  "events_count": 94,
+  "requested_from": "2026-05-05",
+  "requested_to": "2026-05-21",
+  "generated_at": "2026-05-06T02:40:48.787393",
+  "events_count": 80,
   "calendars_present": [
     "BOOKEO",
     "GAT",
