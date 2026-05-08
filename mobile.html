@@ -1685,18 +1685,45 @@ window.jumpToOffset = function(offset) {
   window.scrollTo({ top: 0, behavior: 'smooth' });
 };
 
+// Reset robusto del input native al estado escondido off-screen
+function _hideDjInput(input) {
+  if (!input) return;
+  input.style.left = '-1000px';
+  input.style.top = '';
+  input.style.width = '';
+  input.style.height = '';
+  input.style.pointerEvents = 'none';
+  input.style.opacity = '0';
+  input.style.zIndex = '';
+}
+
 window.openDatePicker = function() {
   const input = $('#dj-native');
-  if (!input) return;
-  input.min = today();
+  // Posicionar encima del chip "Otra" para que el picker abra ahí.
+  // Browsers requieren que el input esté visible y dentro del viewport
+  // para que .click() o .showPicker() abran el calendario nativo.
+  const pickBtn = document.querySelector('.dj-chip.pick');
+  if (!input || !pickBtn) return;
+  input.removeAttribute('min'); // sin restricción → permite fechas pasadas/lejanas
   input.value = selectedDay || today();
-  input.style.left = '50%';
+  const rect = pickBtn.getBoundingClientRect();
+  input.style.position = 'fixed';
+  input.style.left = rect.left + 'px';
+  input.style.top  = rect.top + 'px';
+  input.style.width  = rect.width + 'px';
+  input.style.height = rect.height + 'px';
+  input.style.opacity = '0.01';     // casi invisible pero el browser lo cuenta como visible
   input.style.pointerEvents = 'auto';
-  input.focus();
-  input.click();
-  if (typeof input.showPicker === 'function') {
-    try { input.showPicker(); } catch(_) {}
-  }
+  input.style.zIndex = '9999';
+  // Disparar picker en el siguiente frame para que el browser registre el rect
+  requestAnimationFrame(() => {
+    if (typeof input.showPicker === 'function') {
+      try { input.showPicker(); return; } catch(_) {}
+    }
+    // Fallback: focus + click (Chrome desktop legacy, Edge)
+    input.focus();
+    input.click();
+  });
 };
 
 // Listener del date input (attach una vez listo)
@@ -1706,12 +1733,17 @@ window.openDatePicker = function() {
     if (!input || input._attached) return;
     input._attached = true;
     input.addEventListener('change', () => {
-      if (!input.value) return;
+      if (!input.value) { _hideDjInput(input); return; }
       const d = new Date(input.value + 'T00:00:00');
       const offset = Math.round((d - new Date(today() + 'T00:00:00')) / 86400000);
-      input.style.left = '-1000px';
-      input.style.pointerEvents = 'none';
+      _hideDjInput(input);
       jumpToOffset(offset);
+    });
+    // Si el usuario cierra el picker sin elegir (Esc / click fuera), reseteamos
+    input.addEventListener('blur', () => {
+      setTimeout(() => {
+        if (input.style.opacity !== '0') _hideDjInput(input);
+      }, 200);
     });
   };
   if (document.readyState === 'loading') {
