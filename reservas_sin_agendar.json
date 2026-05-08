@@ -1,6 +1,6 @@
 {
-  "generated_at": "2026-05-07 23:00",
-  "window": "2026-05-06 → 2026-05-22",
+  "generated_at": "2026-05-08 02:47",
+  "window": "2026-05-07 → 2026-05-23",
   "slack_days": 1,
   "calendars_in_source": [
     "BOOKEO",
@@ -12,16 +12,16 @@
   "fuentes": {
     "Turitop": {
       "total": 10,
-      "matched": 10,
-      "sin_agendar": 0,
+      "matched": 9,
+      "sin_agendar": 1,
       "match_by_strategy": {
-        "reserva_id": 7,
+        "reserva_id": 6,
         "reserva_id_digits": 1,
         "name1rare": 1,
         "email": 1
       },
       "match_by_calendar": {
-        "GAT": 7,
+        "GAT": 6,
         "VGMX": 2,
         "PRIMARY": 1
       }
@@ -35,6 +35,20 @@
     }
   },
   "total_fuentes": 10,
-  "total_sin_agendar": 0,
-  "bookings": []
+  "total_sin_agendar": 1,
+  "bookings": [
+    {
+      "reserva": "V212-260416-2",
+      "marca": "M2",
+      "fecha": "2026-05-23",
+      "hora": "06:00",
+      "pax": 4,
+      "nombre": "Megha Patel",
+      "email": "megbhs@hotmail.com",
+      "phone": "+1(504)813-6521",
+      "producto": "Vuelo Privado en Teotihuacan",
+      "total": "18500.00",
+      "fuente": "Turitop"
+    }
+  ]
 }
