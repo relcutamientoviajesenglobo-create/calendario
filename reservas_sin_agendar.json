@@ -1,6 +1,6 @@
 {
-  "generated_at": "2026-05-09 12:00",
-  "window": "2026-05-08 → 2026-05-16",
+  "generated_at": "2026-05-09 13:14",
+  "window": "2026-05-08 → 2026-05-24",
   "slack_days": 1,
   "calendars_in_source": [
     "BOOKEO",
@@ -11,17 +11,17 @@
   ],
   "fuentes": {
     "Turitop": {
-      "total": 6,
-      "matched": 6,
-      "sin_agendar": 0,
+      "total": 10,
+      "matched": 9,
+      "sin_agendar": 1,
       "match_by_strategy": {
-        "reserva_id": 4,
+        "reserva_id": 7,
         "name1rare": 1,
         "email": 1
       },
       "match_by_calendar": {
-        "GAT": 4,
-        "VGMX": 1,
+        "GAT": 5,
+        "VGMX": 3,
         "PRIMARY": 1
       }
     },
@@ -33,7 +33,21 @@
       "match_by_calendar": {}
     }
   },
-  "total_fuentes": 6,
-  "total_sin_agendar": 0,
-  "bookings": []
+  "total_fuentes": 10,
+  "total_sin_agendar": 1,
+  "bookings": [
+    {
+      "reserva": "V212-260408-4",
+      "marca": "M2",
+      "fecha": "2026-05-24",
+      "hora": "06:00",
+      "pax": 3,
+      "nombre": "Mimosa Dinh",
+      "email": "mimosadinh@hotmail.com",
+      "phone": "+18054057879",
+      "producto": "Vuelo en Globo Tradicional en Teotihuacán",
+      "total": "6615.00",
+      "fuente": "Turitop"
+    }
+  ]
 }
