@@ -153,6 +153,17 @@ function getDefaultBriefingMode() {
   return now.getHours() < 11 ? 'today' : 'tomorrow';
 }
 
+// Datos se consideran "stale" si pasaron más de 2 min desde el último fetch.
+// Cuando el usuario toggle Hoy/Mañana y los datos están stale, disparamos
+// un refresh automático en background — feedback de display es inmediato,
+// pero al rato llega data fresca del Apps Script.
+const STALE_THRESHOLD_MS = 2 * 60 * 1000;
+function isDataStale() {
+  const ts = window.WEFLY?._fetchTs || 0;
+  if (!ts) return true;
+  return (Date.now() - ts) > STALE_THRESHOLD_MS;
+}
+
 function App() {
   const [view, setView] = useState('briefing');
   const [search, setSearch] = useState('');
@@ -191,13 +202,21 @@ function App() {
     pending: WEFLY.gaps.length,
   };
 
-  // CTA "Ver agenda completa": va a la tabla filtrada al día del briefing
-  // (HOY si estás antes de las 11, MAÑANA si después).
+  // CTA "Ver agenda completa": va a la tabla filtrada al día del briefing.
   function jumpToBriefingDay() {
     setView('table');
     setDateRange([briefingDate, briefingDate]);
   }
   function showGapsList() { setView('pending'); }
+
+  // Toggle Hoy/Mañana: cambia display inmediato + refresh background si stale
+  function handleToggleBriefingMode(newMode) {
+    setBriefingMode(newMode);
+    // Si los datos llevan >2 min desde el último fetch → refresh real
+    if (isDataStale() && !refreshing) {
+      setRefreshing(true);
+    }
+  }
 
   // CSV export — formato IDÉNTICO al backup:
   // headers: date,time,calendar,name,pax,total_weight,status,staff,pickup,phone,email
@@ -317,7 +336,7 @@ tr:nth-child(even) td{background:#fafbfc}
                 <HeroTomorrow
                   date={briefingDate}
                   mode={briefingMode}
-                  onToggleMode={setBriefingMode}
+                  onToggleMode={handleToggleBriefingMode}
                   onJump={jumpToBriefingDay}
                   onShowGaps={showGapsList}/>
                 <CriticalGaps date={briefingDate} onSelect={g => setModal({ gap: g })}/>
