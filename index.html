@@ -163,6 +163,36 @@
   .filters button:hover{background:var(--surface3); border-color:var(--border-2)}
   .filters button.primary{background:var(--grad-1); border-color:transparent; color:#fff}
   .filters button.primary:hover{filter:brightness(1.1)}
+  /* Date range con botón Aplicar visible */
+  .filters .date-range{
+    display:inline-flex; align-items:center; gap:6px;
+    background:var(--surface2); border:1px solid var(--border);
+    border-radius:var(--r-md); padding:2px 4px;
+  }
+  .filters .date-range input[type="date"]{
+    border:0; background:transparent; min-width:130px;
+    padding:8px 6px; box-shadow:none;
+  }
+  .filters .date-range input[type="date"]:focus{
+    outline:0; box-shadow:none; background:rgba(138,180,248,.08); border-radius:6px;
+  }
+  .filters .date-range .dr-sep{
+    color:var(--mut); font-size:13px; user-select:none; padding:0 2px;
+  }
+  .filters .date-range #dr-apply{
+    background:var(--grad-1); color:#fff; border:0; padding:6px 12px;
+    border-radius:6px; font-weight:600; font-size:12px; cursor:pointer;
+    transition:filter .15s;
+  }
+  .filters .date-range #dr-apply:hover{ filter:brightness(1.1); }
+  .filters .date-range #dr-apply:active{ transform:scale(.96); }
+  .filters .date-range.dirty #dr-apply{
+    animation:pulseApply 1.4s ease-in-out infinite;
+  }
+  @keyframes pulseApply{
+    0%,100%{ box-shadow:0 0 0 0 rgba(245,158,11,.6); }
+    50%    { box-shadow:0 0 0 6px rgba(245,158,11,0); }
+  }
 
   /* ── Main views ─────────────────────────────── */
   main{padding:24px 28px 60px}
@@ -664,8 +694,12 @@
   <input id="q" placeholder="🔎 Buscar nombre, teléfono, hotel, correo…">
   <select id="fcal"><option value="">Todos los calendarios</option></select>
   <select id="fstatus"><option value="">Todos los estados</option></select>
-  <input type="date" id="fdate1" title="Desde">
-  <input type="date" id="fdate2" title="Hasta">
+  <span class="date-range" title="Rango de fechas">
+    <input type="date" id="fdate1" title="Desde" placeholder="Desde">
+    <span class="dr-sep">→</span>
+    <input type="date" id="fdate2" title="Hasta" placeholder="Hasta">
+    <button id="dr-apply" type="button" onclick="applyDateRange()" title="Aplicar rango">Aplicar</button>
+  </span>
   <button onclick="clearFilters()">↻ Limpiar</button>
   <button class="primary" onclick="exportCSV()">📥 Exportar CSV</button>
   <button class="primary" onclick="printRoute()">🖨 Ruta del día · PDF</button>
@@ -1863,8 +1897,26 @@ function exportCSV(){
 }
 function clearFilters(){
   $('#q').value=''; fcal.value=''; fstatus.value=''; $('#fdate1').value=''; $('#fdate2').value='';
+  const dr = document.querySelector('.filters .date-range');
+  if (dr) dr.classList.remove('dirty');
   renderTable(); renderCal(); renderPending();
 }
+
+// Aplicar el rango de fechas explícitamente (botón "Aplicar"). Sirve como
+// fallback UX cuando el auto-update por evento change no es perceptible
+// (algunos browsers no disparan change hasta blur). También permite armar
+// el rango completo Desde+Hasta antes de filtrar.
+window.applyDateRange = function(){
+  const d1 = $('#fdate1').value, d2 = $('#fdate2').value;
+  // Auto-corrección: si d1 > d2, swap
+  if (d1 && d2 && d1 > d2) {
+    $('#fdate1').value = d2;
+    $('#fdate2').value = d1;
+  }
+  const dr = document.querySelector('.filters .date-range');
+  if (dr) dr.classList.remove('dirty');
+  renderTable(); renderCal(); renderPending();
+};
 // Re-render en cualquier cambio del filtro. Escuchamos `input` Y `change`
 // porque <input type="date"> NO dispara `input` cuando el usuario elige una
 // fecha desde el calendario nativo en Safari / Edge / móvil — solo dispara
@@ -1882,11 +1934,35 @@ function clearFilters(){
       renderTable(); renderCal(); renderPending();
     });
   }
-  ['q','fcal','fstatus','fdate1','fdate2'].forEach(id=>{
+  // Inputs simples (texto, selects): re-render automático en cada input/change
+  ['q','fcal','fstatus'].forEach(id=>{
     const el = $('#'+id);
     if (!el) return;
     el.addEventListener('input',  rerender);
     el.addEventListener('change', rerender);
+  });
+  // Inputs de fecha: auto-render en change PERO también marcamos visualmente
+  // el botón "Aplicar" como pulsante mientras el usuario modifica para que
+  // sepa que puede confirmar/aplicar el rango completo.
+  const dr = document.querySelector('.filters .date-range');
+  ['fdate1','fdate2'].forEach(id=>{
+    const el = $('#'+id);
+    if (!el) return;
+    el.addEventListener('input', () => { if (dr) dr.classList.add('dirty'); });
+    el.addEventListener('change', () => {
+      // Auto-render al cambiar (mantener comportamiento previo)
+      rerender();
+      // Si AMBAS fechas están llenas, el rango ya quedó aplicado y limpiamos pulso
+      if ($('#fdate1').value && $('#fdate2').value) {
+        if (dr) dr.classList.remove('dirty');
+      } else {
+        if (dr) dr.classList.add('dirty');
+      }
+    });
+    // Enter dentro del input dispara aplicar
+    el.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter') { e.preventDefault(); window.applyDateRange(); }
+    });
   });
 })();
 

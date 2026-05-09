@@ -484,9 +484,20 @@
   .dj-chip.has-gap .dj-count { background: #f59e0b; color: #1f1203; font-weight: 800; }
   .dj-chip.pick {
     background: var(--surface2); border-style: dashed;
-    min-width: 64px;
+    min-width: 64px; position: relative;
   }
   .dj-chip.pick .dj-num { font-size: 22px; }
+  /* Input native ENCIMA del chip como overlay transparente — el click
+     del usuario lo abre directo, sin trucos JS frágiles. */
+  .dj-chip.pick #dj-native {
+    position: absolute; inset: 0; width: 100%; height: 100%;
+    opacity: 0; cursor: pointer; border: 0; background: transparent;
+    color: transparent; font-size: 16px; padding: 0; margin: 0;
+    -webkit-appearance: none; appearance: none;
+  }
+  /* En iOS algunos elementos quedan visibles; forzamos esconder */
+  .dj-chip.pick #dj-native::-webkit-calendar-picker-indicator { opacity: 0; }
+  .dj-chip.pick #dj-native::-webkit-date-and-time-value { opacity: 0; }
 
   /* ── CRITICAL BANNER (MAÑANA sin agendar) ─── */
   .critical-banner {
@@ -884,7 +895,6 @@
     <div class="date-jumper">
       <div class="dj-label">📅 Ir a otro día</div>
       <div class="dj-chips" id="dj-chips"></div>
-      <input type="date" id="dj-native" style="position:fixed; opacity:0; pointer-events:none; left:-1000px;" />
     </div>
 
     <div class="stats-strip">
@@ -1665,12 +1675,15 @@ function renderDateJumper(evs, gapsList, todayStr) {
       <div class="dj-count">${c.hasGap ? '⚠️ ' + c.gapCount : c.evCount}</div>
     </button>
   `).join('') + `
-    <button class="dj-chip pick" onclick="openDatePicker()" title="Elegir otra fecha">
+    <div class="dj-chip pick" title="Elegir otra fecha">
       <div class="dj-day">Otra</div>
       <div class="dj-num">📆</div>
       <div class="dj-count">&nbsp;</div>
-    </button>
+      <input type="date" id="dj-native" aria-label="Elegir fecha" value="${selectedDay || today()}" />
+    </div>
   `;
+  // El chip-row se re-renderiza, así que re-atamos el listener al input
+  attachDateInputListener();
 }
 
 window.jumpToOffset = function(offset) {
@@ -1685,73 +1698,26 @@ window.jumpToOffset = function(offset) {
   window.scrollTo({ top: 0, behavior: 'smooth' });
 };
 
-// Reset robusto del input native al estado escondido off-screen
-function _hideDjInput(input) {
-  if (!input) return;
-  input.style.left = '-1000px';
-  input.style.top = '';
-  input.style.width = '';
-  input.style.height = '';
-  input.style.pointerEvents = 'none';
-  input.style.opacity = '0';
-  input.style.zIndex = '';
+// Re-ata el listener change al input #dj-native cada vez que el chip-row
+// se re-renderiza. El input vive DENTRO del chip "Otra" como overlay
+// transparente (CSS .dj-chip.pick #dj-native), así que el click del
+// usuario abre el datepicker nativo del browser sin trucos JS.
+function attachDateInputListener() {
+  const input = document.getElementById('dj-native');
+  if (!input || input._attached) return;
+  input._attached = true;
+  input.addEventListener('change', () => {
+    if (!input.value) return;
+    const d = new Date(input.value + 'T00:00:00');
+    const offset = Math.round((d - new Date(today() + 'T00:00:00')) / 86400000);
+    jumpToOffset(offset);
+  });
 }
 
-window.openDatePicker = function() {
-  const input = $('#dj-native');
-  // Posicionar encima del chip "Otra" para que el picker abra ahí.
-  // Browsers requieren que el input esté visible y dentro del viewport
-  // para que .click() o .showPicker() abran el calendario nativo.
-  const pickBtn = document.querySelector('.dj-chip.pick');
-  if (!input || !pickBtn) return;
-  input.removeAttribute('min'); // sin restricción → permite fechas pasadas/lejanas
-  input.value = selectedDay || today();
-  const rect = pickBtn.getBoundingClientRect();
-  input.style.position = 'fixed';
-  input.style.left = rect.left + 'px';
-  input.style.top  = rect.top + 'px';
-  input.style.width  = rect.width + 'px';
-  input.style.height = rect.height + 'px';
-  input.style.opacity = '0.01';     // casi invisible pero el browser lo cuenta como visible
-  input.style.pointerEvents = 'auto';
-  input.style.zIndex = '9999';
-  // Disparar picker en el siguiente frame para que el browser registre el rect
-  requestAnimationFrame(() => {
-    if (typeof input.showPicker === 'function') {
-      try { input.showPicker(); return; } catch(_) {}
-    }
-    // Fallback: focus + click (Chrome desktop legacy, Edge)
-    input.focus();
-    input.click();
-  });
-};
-
-// Listener del date input (attach una vez listo)
-(function attachDateInput() {
-  const tryAttach = () => {
-    const input = document.getElementById('dj-native');
-    if (!input || input._attached) return;
-    input._attached = true;
-    input.addEventListener('change', () => {
-      if (!input.value) { _hideDjInput(input); return; }
-      const d = new Date(input.value + 'T00:00:00');
-      const offset = Math.round((d - new Date(today() + 'T00:00:00')) / 86400000);
-      _hideDjInput(input);
-      jumpToOffset(offset);
-    });
-    // Si el usuario cierra el picker sin elegir (Esc / click fuera), reseteamos
-    input.addEventListener('blur', () => {
-      setTimeout(() => {
-        if (input.style.opacity !== '0') _hideDjInput(input);
-      }, 200);
-    });
-  };
-  if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', tryAttach);
-  } else {
-    tryAttach();
-  }
-})();
+// Compat: la función openDatePicker ya no se usa porque el input está
+// como overlay transparente y absorbe el click directo. Se mantiene
+// como no-op por si algún onclick legacy la invoca.
+window.openDatePicker = function() {};
 
 window.jumpToTomorrow = function() {
   selectedDay = tomorrow();
