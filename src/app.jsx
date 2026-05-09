@@ -74,25 +74,22 @@ function FilterBar({ search, setSearch, dateRange, setDateRange, calendarFilter,
 }
 
 // ── Initial Loader ─────────────────────────────────────────────────
-// Mismo patrón visual que RefreshModal pero como página completa.
-// Escucha window events 'wefly:step' que data.js emite mientras fetcha.
+// Versión portada del backup mobile.html (spinner SVG con timer en
+// el centro + steps en card), adaptada al palette amber del rediseño.
 function InitialLoader() {
-  // Hidratar desde window._weflyStepState (data.js puede haber emitido eventos
-  // antes de que este componente montara — los recuperamos del estado global).
   const initial = window._weflyStepState || {};
   const seed = {
-    cal:  initial.cal  || { state: 'pending', hint: '' },
-    mail: initial.mail || { state: 'pending', hint: '' },
-    tt:   initial.tt   || { state: 'pending', hint: '' },
-    mtch: initial.mtch || { state: 'pending', hint: '' },
+    cal:  initial.cal  || { state: 'pending', hint: '—' },
+    mail: initial.mail || { state: 'pending', hint: '—' },
+    tt:   initial.tt   || { state: 'pending', hint: '—' },
+    mtch: initial.mtch || { state: 'pending', hint: '—' },
   };
   const [steps, setSteps] = useState(seed);
   const [secs, setSecs] = useState(0);
   const stepDefs = [
-    { key: 'cal',  label: 'Google Calendar · 9 calendarios' },
-    { key: 'mail', label: 'Gmail · Bookeo + Viator' },
-    { key: 'tt',   label: 'Turitop · API + correos' },
-    { key: 'mtch', label: 'Cruce de fuentes · matching' },
+    { key: 'cal',  label: '9 calendarios de Google' },
+    { key: 'tt',   label: 'Reservas sin agendar' },
+    { key: 'mtch', label: 'Armando dashboard' },
   ];
 
   useEffect(() => {
@@ -100,57 +97,49 @@ function InitialLoader() {
     const tick = setInterval(() => setSecs(Math.floor((Date.now() - t0) / 1000)), 250);
     function onStep(e) {
       const { key, state, hint } = e.detail;
-      setSteps(s => ({ ...s, [key]: { state, hint: hint || s[key]?.hint || '' } }));
+      setSteps(s => ({ ...s, [key]: { state, hint: hint || s[key]?.hint || '—' } }));
     }
     window.addEventListener('wefly:step', onStep);
     return () => { clearInterval(tick); window.removeEventListener('wefly:step', onStep); };
   }, []);
 
-  const anyError = Object.values(steps).some(s => s.state === 'error');
-
   return (
-    <div style={{
-      minHeight: '100vh', display: 'grid', placeItems: 'center',
-      background: 'var(--bg)', padding: 24,
-    }}>
-      <div className="initial-loader-card" style={{
-        background: 'var(--panel)', borderRadius: 'var(--r-4)',
-        padding: '28px 32px', maxWidth: 480, width: '100%',
-        boxShadow: 'var(--shadow-2)', border: '1px solid var(--line)',
-      }}>
-        <div style={{ display: 'flex', alignItems: 'center', gap: 14, marginBottom: 20 }}>
-          <div className="sb-mark" style={{ width: 44, height: 44, fontSize: 16, flexShrink: 0 }}>WF</div>
-          <div style={{ flex: 1 }}>
-            <div style={{ fontSize: 16, fontWeight: 700, letterSpacing: '-.01em' }}>Cargando dashboard</div>
-            <div style={{ fontSize: 12.5, color: 'var(--ink-3)', marginTop: 2 }}>
-              {anyError ? 'Algunos endpoints fallaron' : 'Conectando con Google Calendar · Gmail · Turitop'}
-            </div>
-          </div>
-          <div style={{
-            fontFamily: 'var(--mono)', fontSize: 13, fontWeight: 600,
-            color: 'var(--ink-3)', minWidth: 38, textAlign: 'right',
-          }}>{secs}s</div>
+    <div className="ldr-overlay">
+      <div className="ldr-card">
+        <div className="ldr-spinner-wrap">
+          <svg viewBox="0 0 72 72" className="ldr-svg">
+            <circle cx="36" cy="36" r="30" fill="none" stroke="rgba(245,158,11,.18)" strokeWidth="5"/>
+            <circle cx="36" cy="36" r="30" fill="none" stroke="url(#ldrGrad)" strokeWidth="5" strokeLinecap="round" strokeDasharray="60 130"/>
+            <defs>
+              <linearGradient id="ldrGrad" x1="0" y1="0" x2="1" y2="1">
+                <stop offset="0%" stopColor="#F59E0B"/>
+                <stop offset="100%" stopColor="#C2410C"/>
+              </linearGradient>
+            </defs>
+          </svg>
+          <div className="ldr-timer">{secs}s</div>
         </div>
-        <div style={{ display: 'flex', flexDirection: 'column', gap: 4 }}>
+        <h3 className="ldr-title">Actualizando en vivo</h3>
+        <div className="ldr-sub">Consultando Google Calendar…</div>
+        <div className="ldr-steps">
           {stepDefs.map(s => {
             const cur = steps[s.key];
+            const cls = 'ldr-step ' + (cur.state === 'pending' ? '' : cur.state);
             return (
-              <div key={s.key} className={'step ' + (cur.state === 'pending' ? '' : cur.state)}>
-                <div className="sd"></div>
-                <div className="sl">{s.label}</div>
-                <div className="sh">
-                  {cur.state === 'done'   ? (cur.hint || '✓')
+              <div key={s.key} className={cls}>
+                <span className="ldr-dot"></span>
+                <span className="ldr-lbl">{s.label}</span>
+                <span className="ldr-hint">
+                  {cur.state === 'done' ? (cur.hint || '✓')
                  : cur.state === 'active' ? '…'
-                 : cur.state === 'error'  ? <span style={{ color: 'var(--bad)' }}>⚠ {cur.hint || 'error'}</span>
+                 : cur.state === 'error' ? '⚠'
                  : '—'}
-                </div>
+                </span>
               </div>
             );
           })}
         </div>
-        <div style={{ marginTop: 16, fontSize: 11.5, color: 'var(--ink-4)', textAlign: 'center' }}>
-          Apps Script en cold start puede tardar 30–60s la primera vez
-        </div>
+        <div className="ldr-footer">Primera carga ~15-30s · Cache local 5 min</div>
       </div>
     </div>
   );

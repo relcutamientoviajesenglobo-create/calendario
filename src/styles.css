@@ -1423,32 +1423,124 @@ a { color: inherit; text-decoration: none; }
 /* Operator dot */
 .dot-op { width: 7px; height: 7px; border-radius: 50%; display: inline-block; }
 
-/* Initial loader steps (reusa visual del RefreshModal pero sin .rmw wrapper) */
-.initial-loader-card .step {
-  display: grid; grid-template-columns: 18px 1fr auto;
+/* ── Initial Loader (portado del backup mobile.html) ────────────────
+   Spinner SVG con timer en el centro + 3 steps en card. Adaptado del
+   theme oscuro original al palette claro / sunrise amber del rediseño.
+*/
+.ldr-overlay {
+  position: fixed; inset: 0; z-index: 100;
+  background: rgba(244, 241, 233, .92);
+  backdrop-filter: blur(6px); -webkit-backdrop-filter: blur(6px);
+  display: flex; align-items: center; justify-content: center;
+  padding: 20px;
+  animation: ldrFadeIn .25s ease-out;
+}
+@keyframes ldrFadeIn { from { opacity: 0; } to { opacity: 1; } }
+@keyframes ldrPulse  { 0%, 100% { opacity: 1; } 50% { opacity: .4; } }
+@keyframes ldrSpin   { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
+@keyframes ldrCardIn {
+  from { opacity: 0; transform: scale(.94) translateY(8px); }
+  to   { opacity: 1; transform: scale(1) translateY(0); }
+}
+
+.ldr-card {
+  background: var(--panel);
+  border: 1px solid var(--line);
+  border-radius: 22px;
+  padding: 30px 26px 24px;
+  width: 100%; max-width: 420px;
+  box-shadow: 0 30px 80px rgba(24,24,27,.18), 0 0 0 1px rgba(245,158,11,.1);
+  text-align: center;
+  animation: ldrCardIn .3s cubic-bezier(.2,.9,.4,1.1);
+}
+
+.ldr-spinner-wrap {
+  position: relative; width: 72px; height: 72px; margin: 0 auto 18px;
+}
+.ldr-svg {
+  width: 100%; height: 100%; animation: ldrSpin 1.1s linear infinite;
+  filter: drop-shadow(0 0 12px rgba(245,158,11,.4));
+}
+.ldr-timer {
+  position: absolute; inset: 0;
+  display: flex; align-items: center; justify-content: center;
+  font-weight: 700; color: var(--amber); font-size: 17px;
+  font-variant-numeric: tabular-nums; letter-spacing: -.5px;
+  font-family: var(--mono);
+}
+
+.ldr-title {
+  font-size: 17px; font-weight: 700; color: var(--ink);
+  margin: 0 0 4px; letter-spacing: -.01em;
+}
+.ldr-sub {
+  font-size: 12.5px; color: var(--ink-3); margin-bottom: 20px;
+}
+
+.ldr-steps {
+  display: flex; flex-direction: column; gap: 8px;
+  text-align: left; margin-bottom: 16px;
+}
+.ldr-step {
+  display: grid; grid-template-columns: 22px 1fr auto;
   align-items: center; gap: 10px;
-  padding: 9px 12px; border-radius: var(--r-2);
-  border: 1px solid transparent; transition: background .2s, border-color .2s;
+  padding: 10px 12px;
+  background: var(--panel-3);
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  transition: all .3s ease;
 }
-.initial-loader-card .step .sd {
-  width: 12px; height: 12px; border-radius: 50%;
-  background: var(--ink-5); transition: background .2s;
+.ldr-step .ldr-dot {
+  width: 10px; height: 10px; border-radius: 50%;
+  background: var(--ink-5); border: 2px solid var(--ink-4);
+  transition: all .3s; position: relative;
 }
-.initial-loader-card .step .sl { font-size: 13px; color: var(--ink-2); font-weight: 500; }
-.initial-loader-card .step .sh { font-size: 11.5px; color: var(--ink-3); font-variant-numeric: tabular-nums; }
-.initial-loader-card .step.active { background: var(--info-tint); border-color: var(--info-soft); }
-.initial-loader-card .step.active .sd { background: var(--info); animation: stepPulse 1.2s ease-in-out infinite; }
-.initial-loader-card .step.active .sl { color: var(--ink); }
-.initial-loader-card .step.done { background: var(--ok-tint); border-color: var(--ok-soft); }
-.initial-loader-card .step.done .sd { background: var(--ok); position: relative; }
-.initial-loader-card .step.done .sd::after {
-  content: '✓'; position: absolute; inset: 0;
-  display: grid; place-items: center; color: white; font-size: 9px; font-weight: 800;
+.ldr-step .ldr-lbl {
+  font-size: 13px; color: var(--ink-2); font-weight: 500;
 }
-.initial-loader-card .step.done .sh { color: var(--ok); font-weight: 600; }
-.initial-loader-card .step.error { background: var(--bad-tint); border-color: var(--bad-soft); }
-.initial-loader-card .step.error .sd { background: var(--bad); }
-.initial-loader-card .step.error .sl { color: var(--ink); }
+.ldr-step .ldr-hint {
+  font-size: 11px; color: var(--ink-3);
+  font-variant-numeric: tabular-nums; font-family: var(--mono);
+}
+
+.ldr-step.active {
+  background: var(--amber-tint);
+  border-color: var(--amber-soft);
+}
+.ldr-step.active .ldr-dot {
+  background: var(--amber-3); border-color: var(--amber);
+  animation: ldrPulse 1.2s ease-in-out infinite;
+  box-shadow: 0 0 10px rgba(245,158,11,.5);
+}
+.ldr-step.active .ldr-lbl { color: var(--ink); }
+
+.ldr-step.done {
+  background: var(--ok-tint);
+  border-color: var(--ok-soft);
+}
+.ldr-step.done .ldr-dot {
+  background: var(--ok); border-color: var(--ok);
+  box-shadow: 0 0 0 2px rgba(21,128,61,.15);
+}
+.ldr-step.done .ldr-dot::after {
+  content: '✓'; position: absolute;
+  top: -8px; left: 0; right: 0;
+  font-size: 11px; color: white; font-weight: 900;
+  text-align: center;
+}
+.ldr-step.done .ldr-hint { color: var(--ok); font-weight: 600; }
+
+.ldr-step.error {
+  background: var(--bad-tint);
+  border-color: var(--bad-soft);
+}
+.ldr-step.error .ldr-dot { background: var(--bad); border-color: var(--bad); }
+.ldr-step.error .ldr-hint { color: var(--bad); font-weight: 600; }
+
+.ldr-footer {
+  font-size: 10px; color: var(--ink-4); line-height: 1.5;
+  text-transform: uppercase; letter-spacing: .5px;
+}
 
 /* Responsive */
 @media (max-width: 1180px) {
