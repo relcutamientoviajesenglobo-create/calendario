@@ -1,104 +1,17 @@
 {
-  "generated_at": "2026-05-08 15:05",
-  "total_events": 92,
+  "generated_at": "2026-05-09T12:00:23.413282+00:00",
+  "total_events": 71,
   "by_date": {
-    "2026-05-07": [
-      {
-        "summary": "📝✅*2P Nathália Gotardo Dutra",
-        "time": "",
-        "calendar": "PRIMARY"
-      },
-      {
-        "summary": "✅📝🏨.*2P Alex Reavley",
-        "time": "",
-        "calendar": "PRIMARY"
-      },
-      {
-        "summary": "✅.*4P Lucina Perez",
-        "time": "",
-        "calendar": "PRIMARY"
-      },
-      {
-        "summary": "✅.*2P Jose Ines Gonzalez Calvo",
-        "time": "",
-        "calendar": "PRIMARY"
-      },
-      {
-        "summary": "✅.*2P Mark Gagliardi",
-        "time": "",
-        "calendar": "PRIMARY"
-      },
-      {
-        "summary": "✅.*6p VALERIA SOLANO",
-        "time": "",
-        "calendar": "GAT"
-      },
-      {
-        "summary": "✅.*2p Arlin Rivera",
-        "time": "",
-        "calendar": "GAT"
-      },
-      {
-        "summary": "✅📝🏨.*4P Eber. Israel. Evelyn. Ashley Matias",
-        "time": "",
-        "calendar": "BOOKEO"
-      },
-      {
-        "summary": "📝✅.*3P Francini Calderon Carranza",
-        "time": "",
-        "calendar": "BOOKEO"
-      },
-      {
-        "summary": "📝✅.*4P Cristina Fantini",
-        "time": "",
-        "calendar": "BOOKEO"
-      },
-      {
-        "summary": "📝✅.*4P Laura Daellenbach",
-        "time": "",
-        "calendar": "BOOKEO"
-      },
-      {
-        "summary": "✅📝🏨.*2P Tim Barrier",
-        "time": "",
-        "calendar": "BOOKEO"
-      },
-      {
-        "summary": "✅📝🏨.*2P Natelle Nakhnikian",
-        "time": "",
-        "calendar": "BOOKEO"
-      },
-      {
-        "summary": "✅.*2P BRAYAN YAHIR MATA SANCHEZ NC",
-        "time": "",
-        "calendar": "BOOKEO"
-      },
-      {
-        "summary": "✅.*2P Mathieu Miron",
-        "time": "",
-        "calendar": "BOOKEO"
-      }
-    ],
     "2026-05-08": [
       {
-        "summary": "📝✅🏨.*2P Lithzy Melissa Delgado Enriquez",
+        "summary": "DISPONIBILIDAD",
         "time": "",
         "calendar": "PRIMARY"
       },
       {
-        "summary": "✅.*2P Maria Splitt",
+        "summary": "✅*2P Javier Vázquez González",
         "time": "",
-        "calendar": "PRIMARY"
-      },
-      {
-        "summary": "✅.*2P Sophie Carmichael",
-        "time": "",
-        "calendar": "PRIMARY"
-      },
-      {
-        "summary": "✅.*2P Theophile Bacon",
-        "time": "",
-        "calendar": "PRIMARY"
+        "calendar": "VGMX"
       },
       {
         "summary": "✅*3P Laura Aurora Flores Heras",
@@ -121,14 +34,19 @@
         "calendar": "PRIMARY"
       },
       {
-        "summary": "✅.*4P Anita Cortinas",
+        "summary": "✅.*2P Maria Splitt",
         "time": "",
         "calendar": "PRIMARY"
       },
       {
-        "summary": "✅*2P Javier Vázquez González",
+        "summary": "✅.*2P Sophie Carmichael",
         "time": "",
-        "calendar": "VGMX"
+        "calendar": "PRIMARY"
+      },
+      {
+        "summary": "✅.*2P Theophile Bacon",
+        "time": "",
+        "calendar": "PRIMARY"
       },
       {
         "summary": "✅.*2P Xinyi Fang",
@@ -136,61 +54,96 @@
         "calendar": "VGMX"
       },
       {
+        "summary": "✅.*2px Mauricio Jaschkowitz",
+        "time": "",
+        "calendar": "GAT"
+      },
+      {
         "summary": "✅.*3p KARLA VARGAS",
         "time": "",
         "calendar": "GAT"
       },
       {
-        "summary": "✅.*2px Mauricio Jaschkowitz",
+        "summary": "✅.*4P Anita Cortinas",
         "time": "",
-        "calendar": "GAT"
+        "calendar": "PRIMARY"
+      },
+      {
+        "summary": "📝✅🏨.*2P Lithzy Melissa Delgado Enriquez",
+        "time": "",
+        "calendar": "PRIMARY"
       }
     ],
     "2026-05-09": [
       {
-        "summary": "*2P Laine Campbell",
+        "summary": "DISPONIBILIDAD",
         "time": "",
         "calendar": "PRIMARY"
       },
       {
-        "summary": "*2P Amaia Muro Goicoechea",
+        "summary": "☑️*3P Sebastian Ortega",
         "time": "",
         "calendar": "PRIMARY"
       },
       {
-        "summary": "*2P Hector Johan Garcia Zaragoza",
+        "summary": "✅*2P Zain Lambat",
         "time": "",
         "calendar": "PRIMARY"
       },
       {
-        "summary": "*7P Paulina Paulina Garcia Owens (TE) ",
+        "summary": "✅*6P María del Carmen Maldonado",
         "time": "",
         "calendar": "VGMX"
       },
       {
-        "summary": "*2P Maria Monsalve",
+        "summary": "✅*7P Paulina Paulina Garcia Owens (TE)",
         "time": "",
         "calendar": "VGMX"
       },
       {
-        "summary": "*2P Marjan Goossens (TG)",
+        "summary": "✅.*2P Hector Johan Garcia Zaragoza",
+        "time": "",
+        "calendar": "PRIMARY"
+      },
+      {
+        "summary": "✅.*2P Maria Monsalve",
         "time": "",
         "calendar": "VGMX"
+      },
+      {
+        "summary": "✅📝1er PU.🏨*2P Marjan Goossens (TG)",
+        "time": "",
+        "calendar": "VGMX"
+      },
+      {
+        "summary": "✅📝2do PU 🏨*2P Lindsay Kruit (TG)",
+        "time": "",
+        "calendar": "VGMX"
+      },
+      {
+        "summary": "✅📝3er PU 🏨*2P Aida Araiza Zavala (TG)",
+        "time": "",
+        "calendar": "VGMX"
+      },
+      {
+        "summary": "✅📝4to PU .🏨*2P Laine Campbell",
+        "time": "",
+        "calendar": "PRIMARY"
+      },
+      {
+        "summary": "✅📝5to PU .🏨*2P Amaia Muro Goicoechea",
+        "time": "",
+        "calendar": "PRIMARY"
       }
     ],
     "2026-05-10": [
-      {
-        "summary": "*2P Denis Gribincea",
-        "time": "",
-        "calendar": "PRIMARY"
-      },
       {
         "summary": "*2P Bridget Douglas",
         "time": "",
         "calendar": "PRIMARY"
       },
       {
-        "summary": "*2P Sergio Angel Galicia Rosales NC",
+        "summary": "*2P Denis Gribincea",
         "time": "",
         "calendar": "PRIMARY"
       },
@@ -198,6 +151,11 @@
         "summary": "*2P Karen Marisol Tello Rosales",
         "time": "",
         "calendar": "BOOKEO"
+      },
+      {
+        "summary": "*2P Sergio Angel Galicia Rosales NC",
+        "time": "",
+        "calendar": "PRIMARY"
       }
     ],
     "2026-05-11": [
@@ -212,31 +170,6 @@
         "calendar": "PRIMARY"
       },
       {
-        "summary": "*2P Roberto Carlos Diaz Sanchez",
-        "time": "",
-        "calendar": "PRIMARY"
-      },
-      {
-        "summary": "*3P Ben Leonard",
-        "time": "",
-        "calendar": "PRIMARY"
-      },
-      {
-        "summary": "*3P Maria Jose Alpire Gomez",
-        "time": "",
-        "calendar": "PRIMARY"
-      },
-      {
-        "summary": "*4P Esteban Mata Soto",
-        "time": "",
-        "calendar": "PRIMARY"
-      },
-      {
-        "summary": "*1P Marisol Félix (TG)",
-        "time": "",
-        "calendar": "VGMX"
-      },
-      {
         "summary": "*2p ANA VON CHRISMAR",
         "time": "",
         "calendar": "GAT"
@@ -247,29 +180,59 @@
         "calendar": "GAT"
       },
       {
-        "summary": "*MOD 1P Morgan Wahlstrom (📌Vienen juntos)",
+        "summary": "*3P Maria Jose Alpire Gomez",
+        "time": "",
+        "calendar": "PRIMARY"
+      },
+      {
+        "summary": "*MOD 1P Morgan Wahlstrom",
         "time": "",
         "calendar": "VIATOR"
       },
       {
-        "summary": "*MOD 1P Nicholas Mossuto (📌Vienen juntos)",
+        "summary": "*MOD 1P Nicholas Mossuto",
         "time": "",
         "calendar": "VIATOR"
       },
       {
-        "summary": "*4P Arantxa Lebron Ortiz",
+        "summary": "DISPONIBILIDAD",
+        "time": "",
+        "calendar": "PRIMARY"
+      },
+      {
+        "summary": "FORD 🏨*2P Roberto Carlos Diaz Sanchez",
+        "time": "",
+        "calendar": "PRIMARY"
+      },
+      {
+        "summary": "FORD 🏨*4P Esteban Mata Soto",
+        "time": "",
+        "calendar": "PRIMARY"
+      },
+      {
+        "summary": "🏨*1P Marisol Félix (TG)",
+        "time": "",
+        "calendar": "VGMX"
+      },
+      {
+        "summary": "🏨*3P Ben Leonard",
+        "time": "",
+        "calendar": "PRIMARY"
+      },
+      {
+        "summary": "🏨*4P Arantxa Lebron Ortiz",
         "time": "",
         "calendar": "VIATOR"
       }
     ],
     "2026-05-12": [
       {
-        "summary": "2P Oleymi Cortazar Olan",
+        "summary": "2P Javier De Jesús Santiago Gutiérrez",
         "time": "",
         "calendar": "PRIMARY"
       },
       {
-        "summary": "2P Javier De Jesús Santiago Gutiérrez",
+        "summary": "2P Oleymi Cortazar Olan",
         "time": "",
         "calendar": "PRIMARY"
       },
@@ -281,39 +244,44 @@
     ],
     "2026-05-13": [
       {
+        "summary": "1P Dulce Fernanda Domínguez Hirales (📌vienen juntas)",
+        "time": "",
+        "calendar": "PRIMARY"
+      },
+      {
+        "summary": "1P Estefania Margarita Rosales Aceves (📌vienen juntas)",
+        "time": "",
+        "calendar": "PRIMARY"
+      },
+      {
+        "summary": "1P Nallely De Jesús Montes Valdez (📌vienen juntas)",
+        "time": "",
+        "calendar": "PRIMARY"
+      },
+      {
+        "summary": "1P Ruth Maribel Monroy Manjarrez (📌 vienen juntas)",
+        "time": "",
+        "calendar": "PRIMARY"
+      },
+      {
         "summary": "2P Claire Hernandez",
         "time": "",
         "calendar": "PRIMARY"
       },
       {
-        "summary": "5P Javier Vargas",
-        "time": "",
-        "calendar": "VGMX"
-      },
-      {
         "summary": "2p Tomas Pinzón",
         "time": "",
         "calendar": "GAT"
+      },
+      {
+        "summary": "5P Javier Vargas",
+        "time": "",
+        "calendar": "VGMX"
       }
     ],
     "2026-05-14": [
       {
-        "summary": "2P Weimin Hung",
-        "time": "",
-        "calendar": "PRIMARY"
-      },
-      {
         "summary": "2P Eabha Ducey",
-        "time": "",
-        "calendar": "PRIMARY"
-      },
-      {
-        "summary": "6P Juan Miranda",
-        "time": "",
-        "calendar": "PRIMARY"
-      },
-      {
-        "summary": "2P Jeffrey Connor",
         "time": "",
         "calendar": "PRIMARY"
       },
@@ -323,31 +291,41 @@
         "calendar": "PRIMARY"
       },
       {
-        "summary": "2P Jorge Alejandro Rivera Tabares (TG)",
-        "time": "",
-        "calendar": "VGMX"
-      }
-    ],
-    "2026-05-15": [
-      {
-        "summary": "2P Rene Zavala",
+        "summary": "2P Jeffrey Connor",
         "time": "",
         "calendar": "PRIMARY"
       },
+      {
+        "summary": "2P Jorge Alejandro Rivera Tabares (TG)",
+        "time": "",
+        "calendar": "VGMX"
+      },
+      {
+        "summary": "2P Weimin Hung",
+        "time": "",
+        "calendar": "PRIMARY"
+      },
+      {
+        "summary": "6P Juan Miranda",
+        "time": "",
+        "calendar": "PRIMARY"
+      },
+      {
+        "summary": "DISPONIBILIDAD",
+        "time": "",
+        "calendar": "PRIMARY"
+      }
+    ],
+    "2026-05-15": [
       {
         "summary": "1P Felipe Ribeiro",
         "time": "",
         "calendar": "PRIMARY"
       },
       {
-        "summary": "8P Jhonathan Steven Castiblanco Suarez",
+        "summary": "2P Rene Zavala",
         "time": "",
         "calendar": "PRIMARY"
-      },
-      {
-        "summary": "3P Natalie Bourgeois (TG)",
-        "time": "",
-        "calendar": "VGMX"
       },
       {
         "summary": "2p Lucero Martinez",
@@ -355,21 +333,36 @@
         "calendar": "GAT"
       },
       {
+        "summary": "3P Natalie Bourgeois (TG)",
+        "time": "",
+        "calendar": "VGMX"
+      },
+      {
         "summary": "3p Anastasiia Chovpin",
         "time": "",
         "calendar": "BOOKEO"
-      }
-    ],
-    "2026-05-16": [
+      },
       {
-        "summary": "3P Qimiao Tang",
+        "summary": "8P Jhonathan Steven Castiblanco Suarez",
         "time": "",
         "calendar": "PRIMARY"
       },
       {
+        "summary": "DISPONIBILIDAD",
+        "time": "",
+        "calendar": "PRIMARY"
+      }
+    ],
+    "2026-05-16": [
+      {
         "summary": "3P Gerardo Ruiz Muñoz (TG)",
         "time": "",
         "calendar": "VGMX"
+      },
+      {
+        "summary": "3P Qimiao Tang",
+        "time": "",
+        "calendar": "PRIMARY"
       },
       {
         "summary": "3P Socorro Santiago (TG)",
@@ -380,118 +373,6 @@
         "summary": "CANCELADO 2P Siresha Samineni",
         "time": "",
         "calendar": "VIATOR"
-      }
-    ],
-    "2026-05-17": [
-      {
-        "summary": "2P Fernando Nino",
-        "time": "",
-        "calendar": "PRIMARY"
-      },
-      {
-        "summary": "2P Mahalakshmi Venkatesh (TG)",
-        "time": "",
-        "calendar": "VGMX"
-      },
-      {
-        "summary": "2P  Timothy Ng (TG)",
-        "time": "",
-        "calendar": "VGMX"
-      },
-      {
-        "summary": "2P Enrique Raul Delgado Escalante",
-        "time": "",
-        "calendar": "VGMX"
-      }
-    ],
-    "2026-05-18": [
-      {
-        "summary": "2P Victor Vega",
-        "time": "",
-        "calendar": "PRIMARY"
-      },
-      {
-        "summary": "1P Shelia Clark",
-        "time": "",
-        "calendar": "PRIMARY"
-      },
-      {
-        "summary": "2P Scott Kirton",
-        "time": "",
-        "calendar": "PRIMARY"
-      },
-      {
-        "summary": "7P Isael Figueroa",
-        "time": "",
-        "calendar": "VGMX"
-      }
-    ],
-    "2026-05-19": [
-      {
-        "summary": "2P Kristian Gomez",
-        "time": "",
-        "calendar": "PRIMARY"
-      }
-    ],
-    "2026-05-20": [
-      {
-        "summary": "2P Jose Valadez",
-        "time": "",
-        "calendar": "PRIMARY"
-      },
-      {
-        "summary": "2P Vikas Akkaraju (TP) NC",
-        "time": "",
-        "calendar": "PRIMARY"
-      },
-      {
-        "summary": "2p Mayra Montas",
-        "time": "",
-        "calendar": "GAT"
-      }
-    ],
-    "2026-05-21": [
-      {
-        "summary": "2P Linda Vargas Luna",
-        "time": "",
-        "calendar": "PRIMARY"
-      },
-      {
-        "summary": "2P Mauricio Andres Perez Lavin",
-        "time": "",
-        "calendar": "PRIMARY"
-      },
-      {
-        "summary": "2P Felix Castellanos",
-        "time": "",
-        "calendar": "PRIMARY"
-      },
-      {
-        "summary": "2P Vanessa Yanisselli",
-        "time": "",
-        "calendar": "PRIMARY"
-      },
-      {
-        "summary": "2P Kristine Stahl",
-        "time": "",
-        "calendar": "PRIMARY"
-      },
-      {
-        "summary": "2P Eliana Monsalve",
-        "time": "",
-        "calendar": "PRIMARY"
-      },
-      {
-        "summary": "2P Pratik Vaidya",
-        "time": "",
-        "calendar": "BOOKEO"
-      }
-    ],
-    "2026-05-22": [
-      {
-        "summary": "2P Shaina Galeano (TG)",
-        "time": "",
-        "calendar": "VGMX"
       }
     ]
   }
