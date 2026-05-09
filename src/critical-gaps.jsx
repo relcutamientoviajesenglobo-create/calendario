@@ -1,19 +1,26 @@
-function CriticalGaps({ onSelect }) {
-  const gaps = WEFLY.gapsTomorrow;
+/* CriticalGaps — lista de reservas sin agendar para el día seleccionado
+ * (HOY o MAÑANA). Si no se pasa `date`, usa TOMORROW por compat.
+ */
+function CriticalGaps({ onSelect, date }) {
+  const targetDate = date || WEFLY.TOMORROW;
+  const isToday = targetDate === WEFLY.TODAY;
+  const gaps = WEFLY.gaps.filter(g => g.fecha === targetDate);
+  const dayWord = isToday ? 'hoy' : 'mañana';
+
   if (!gaps.length) {
     return (
       <div className="brief-side empty">
         <div className="brief-side-head">
           <div className="ttl">
             <span className="icon-warn" style={{ background: 'var(--ok-soft)', color: 'var(--ok)' }}><Icon name="check" size={13}/></span>
-            Sin agendar · mañana
+            Sin agendar · {dayWord}
           </div>
           <span className="num zero">0</span>
         </div>
         <div className="brief-empty">
           <div className="check"><Icon name="check" size={22}/></div>
           <div className="ttl">Todas las reservas agendadas</div>
-          <div className="sub">No hay pasajeros pendientes para el día de mañana</div>
+          <div className="sub">No hay pasajeros pendientes para el día de {dayWord}</div>
         </div>
       </div>
     );
@@ -23,7 +30,7 @@ function CriticalGaps({ onSelect }) {
       <div className="brief-side-head">
         <div className="ttl">
           <span className="icon-warn">!</span>
-          Sin agendar · mañana
+          Sin agendar · {dayWord}
         </div>
         <span className="num">{gaps.length}</span>
       </div>

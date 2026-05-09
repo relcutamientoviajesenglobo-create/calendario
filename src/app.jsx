@@ -145,6 +145,14 @@ function InitialLoader() {
   );
 }
 
+// Default del briefing según hora local: <11:00 → 'today', ≥11:00 → 'tomorrow'.
+// El equipo termina la operación de la mañana ~11AM; después tiene sentido
+// que el dashboard ya muestre el día siguiente.
+function getDefaultBriefingMode() {
+  const now = new Date();
+  return now.getHours() < 11 ? 'today' : 'tomorrow';
+}
+
 function App() {
   const [view, setView] = useState('briefing');
   const [search, setSearch] = useState('');
@@ -155,6 +163,10 @@ function App() {
   const [modal, setModal] = useState(null);
   const [tick, setTick] = useState(0); // forzar re-render cuando WEFLY cambia
   const [loadState, setLoadState] = useState(window.WEFLY?._mode || 'loading');
+  const [briefingMode, setBriefingMode] = useState(getDefaultBriefingMode());
+
+  // Día efectivo del briefing (calculado a partir del modo + WEFLY)
+  const briefingDate = briefingMode === 'today' ? WEFLY.TODAY : WEFLY.TOMORROW;
 
   // Listener: cuando data.js termina el fetch inicial o cuando un Refresh se completa
   useEffect(() => {
@@ -179,9 +191,11 @@ function App() {
     pending: WEFLY.gaps.length,
   };
 
-  function jumpToTomorrow() {
+  // CTA "Ver agenda completa": va a la tabla filtrada al día del briefing
+  // (HOY si estás antes de las 11, MAÑANA si después).
+  function jumpToBriefingDay() {
     setView('table');
-    setDateRange([WEFLY.TOMORROW, WEFLY.TOMORROW]);
+    setDateRange([briefingDate, briefingDate]);
   }
   function showGapsList() { setView('pending'); }
 
@@ -300,8 +314,13 @@ tr:nth-child(even) td{background:#fafbfc}
           {view === 'briefing' && (
             <>
               <div className="briefing">
-                <HeroTomorrow onJump={jumpToTomorrow} onShowGaps={showGapsList}/>
-                <CriticalGaps onSelect={g => setModal({ gap: g })}/>
+                <HeroTomorrow
+                  date={briefingDate}
+                  mode={briefingMode}
+                  onToggleMode={setBriefingMode}
+                  onJump={jumpToBriefingDay}
+                  onShowGaps={showGapsList}/>
+                <CriticalGaps date={briefingDate} onSelect={g => setModal({ gap: g })}/>
               </div>
               <KpiStrip/>
               <DashboardView onSelectDate={d => setModal({ date: d })}/>
