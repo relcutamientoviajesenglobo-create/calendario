@@ -4,7 +4,10 @@ function TableView({ search, dateRange, calendarFilter, statusFilter, onSelect }
     return WEFLY.events.filter(e => {
       if (search) {
         const q = search.toLowerCase();
-        if (!(e.name + ' ' + WEFLY.opLabel(e.calendar) + ' ' + e.rawSummary).toLowerCase().includes(q)) return false;
+        // Search incluye name + operador + summary + phone + email + pickup + staff + reserva (paridad backup)
+        const hay = [e.name, WEFLY.opLabel(e.calendar), e.rawSummary,
+                     e.phone, e.email, e.pickup, e.staff, e.reserva].join(' ').toLowerCase();
+        if (!hay.includes(q)) return false;
       }
       if (calendarFilter && e.calendar !== calendarFilter) return false;
       if (dateRange[0] && e.date < dateRange[0]) return false;

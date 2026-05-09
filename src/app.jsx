@@ -113,21 +113,85 @@ function App() {
   }
   function showGapsList() { setView('pending'); }
 
+  // CSV export — formato IDÉNTICO al backup:
+  // headers: date,time,calendar,name,pax,total_weight,status,staff,pickup,phone,email
   function exportCSV() {
-    const rows = [['fecha','hora','operador','nombre','pax','pagado','hotel','resumen']];
+    const header = ['date','time','calendar','name','pax','total_weight','status','staff','pickup','phone','email'];
+    const lines = [header.join(',')];
     WEFLY.events.forEach(e => {
-      rows.push([e.date, e.time, WEFLY.opLabel(e.calendar), e.name, e.pax,
-                 e.flags.paid ? 'sí' : 'no', e.flags.hotel ? 'sí' : 'no',
-                 e.rawSummary.replace(/[",]/g,' ')]);
+      const row = [e.date, e.time, WEFLY.opLabel(e.calendar), e.name, e.pax,
+                   e.total_weight || '', e.status || '', e.staff || '',
+                   e.pickup || '', e.phone || '', e.email || ''];
+      lines.push(row.map(v => {
+        const s = (v ?? '').toString().replace(/"/g, '""');
+        return /[,"\n]/.test(s) ? `"${s}"` : s;
+      }).join(','));
     });
-    const csv = rows.map(r => r.map(v => '"' + String(v).replace(/"/g,'""') + '"').join(',')).join('\n');
-    const blob = new Blob([csv], { type: 'text/csv' });
-    const url = URL.createObjectURL(blob);
+    const blob = new Blob([lines.join('\n')], { type: 'text/csv;charset=utf-8' });
     const a = document.createElement('a');
-    a.href = url; a.download = 'wefly-eventos.csv'; a.click();
-    setTimeout(() => URL.revokeObjectURL(url), 500);
+    a.href = URL.createObjectURL(blob);
+    const today = WEFLY.TODAY || new Date().toISOString().slice(0,10);
+    a.download = `wefly-logistica-${today}.csv`;
+    a.click();
+    setTimeout(() => URL.revokeObjectURL(a.href), 500);
   }
-  function printRoute() { window.print(); }
+
+  // Ruta del día PDF — formato IDÉNTICO al backup:
+  // tabla 8 columnas (Hora, Operador, Pasajero, Pax, Peso, Pickup, Staff, Tel),
+  // totals, fonts Google Sans, abre nueva ventana → window.print()
+  function printRoute() {
+    const today = WEFLY.TODAY;
+    const evs = WEFLY.events
+      .filter(e => e.date === today)
+      .sort((a, b) => (a.time || '').localeCompare(b.time || ''));
+    const totalPax = evs.reduce((a, e) => a + (e.pax || 0), 0);
+    const totalKg  = evs.reduce((a, e) => a + (e.total_weight || 0), 0);
+    const esc = s => String(s ?? '').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'})[c]);
+    const html = `<!doctype html><html><head><meta charset="utf-8"><title>Ruta WE FLY · ${today}</title>
+<link href="https://fonts.googleapis.com/css2?family=Google+Sans:wght@400;500;700&family=Google+Sans+Text:wght@400;500&display=swap" rel="stylesheet">
+<style>
+body{font-family:'Google Sans Text','Google Sans',sans-serif;padding:36px;color:#111;max-width:960px;margin:0 auto}
+h1{font-family:'Google Sans',sans-serif;margin:0 0 4px;font-size:24px;letter-spacing:-.02em}
+.sub{color:#666;font-size:13px;margin-bottom:20px}
+table{width:100%;border-collapse:collapse;margin-top:8px}
+th{background:#f5f7fa;text-align:left;padding:10px 8px;font-size:11px;text-transform:uppercase;letter-spacing:.5px;border-bottom:2px solid #333;font-family:'Google Sans',sans-serif}
+td{padding:10px 8px;border-bottom:1px solid #e5e7eb;font-size:12.5px;vertical-align:top}
+tr:nth-child(even) td{background:#fafbfc}
+.num{font-family:'Google Sans',sans-serif;font-weight:700;text-align:right}
+.totals{margin-top:24px;padding:16px 20px;background:#f5f7fa;border-radius:10px;font-family:'Google Sans',sans-serif;display:flex;gap:30px;font-size:14px}
+.totals b{display:block;font-size:20px;margin-top:2px}
+.foot{margin-top:28px;font-size:11px;color:#888;border-top:1px solid #e5e7eb;padding-top:12px}
+@media print{body{padding:20px}.totals{background:#eee}}
+</style></head><body>
+<h1>✈ Ruta WE FLY · ${today}</h1>
+<div class="sub">${evs.length} vuelos programados · ${totalPax} pasajeros · generado ${new Date().toLocaleString('es-MX')}</div>
+<table>
+  <thead><tr><th>Hora</th><th>Operador</th><th>Pasajero</th><th class="num">Pax</th><th class="num">Peso</th><th>Pickup</th><th>Staff</th><th>Tel</th></tr></thead>
+  <tbody>
+  ${evs.map(e => `<tr>
+    <td><b>${esc(e.timeKnown ? e.time : '—')}</b></td>
+    <td>${esc(WEFLY.opLabel(e.calendar))}</td>
+    <td><b>${esc(e.name)}</b>${e.celebration ? ' 🎂' : ''}${e.overweight ? ' ⚠' : ''}</td>
+    <td class="num">${e.pax || 0}</td>
+    <td class="num">${e.total_weight ? e.total_weight + ' kg' : ''}</td>
+    <td>${esc(e.pickup || '')}</td>
+    <td>${esc(e.staff || '')}</td>
+    <td>${esc(e.phone || '')}</td>
+  </tr>`).join('')}
+  </tbody>
+</table>
+<div class="totals">
+  <div>Vuelos<b>${evs.length}</b></div>
+  <div>Pasajeros<b>${totalPax}</b></div>
+  <div>Peso total<b>${totalKg.toLocaleString()} kg</b></div>
+</div>
+<div class="foot">WE FLY · Logística de vuelos · Origen: Río Lerma 98 · Destino final: Ángel de la Independencia</div>
+</body></html>`;
+    const w = window.open('', '_blank');
+    if (!w) { alert('Permite popups para imprimir la ruta del día'); return; }
+    w.document.open(); w.document.write(html); w.document.close();
+    setTimeout(() => { try { w.focus(); w.print(); } catch(_){} }, 700);
+  }
 
   // Loading state inicial
   if (loadState === 'loading' && WEFLY.events.length === 0) {

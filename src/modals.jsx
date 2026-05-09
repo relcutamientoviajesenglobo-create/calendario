@@ -88,6 +88,14 @@ function RefreshModal({ open, onClose }) {
             summary: e.title_raw || e.summary || e.name || '',
             time: e.time || '',
             calendar: normCal(e.calendar),
+            _pax: e.pax, _name: e.name,
+            _staff: e.staff || '', _pickup: e.pickup || '',
+            _phone: e.phone || '', _email: e.email || '',
+            _reserva: e.reserva || '', _total: e.total || '',
+            _total_weight: e.total_weight || 0,
+            _weights: e.weights || [], _service: e.service || '',
+            _status: e.status || '',
+            _celebration: !!e.celebration, _overweight: !!e.overweight,
           });
           RAW.total_events++;
         });
@@ -155,36 +163,54 @@ function RefreshModal({ open, onClose }) {
   );
 }
 
-// ── Event/Gap/Date Modal ─────────────────────────────────────────────
-// Helper: construye URL template Google Calendar para "Agregar evento"
-// Mismo patrón que el index.html actual (modal "Agendar al Calendario").
+// ── Google Calendar URL builder (formato IDÉNTICO al backup) ─────────
+// Title: "🤖 *NP Nombre Capitalizado"
+// Description: 11 líneas con emojis (No.Reserva, Nombre, Fecha, Servicio, etc.)
+// Duration: 3 horas. Location: Teotihuacán, México. src: weflymx@gmail.com
+function buildAgendarPayload(g) {
+  const rawName = (g.nombre || 'Sin nombre').trim().replace(/\s+/g, ' ');
+  const nameNice = rawName.replace(/\b([\wáéíóúñ])([\wáéíóúñ]*)/gi, (m, f, r) => f.toUpperCase() + r.toLowerCase());
+  const paxNum = parseInt(g.pax) || 1;
+  const calName = 'We fly';
+  const title = '🤖 *' + paxNum + 'P ' + nameNice;
+  const descLines = [
+    '📝 No.Reserva: ' + (g.reserva || '-'),
+    '👤 Nombre: ' + nameNice,
+    '📅 Fecha de Vuelo: ' + (g.fecha || '') + (g.hora ? ' ' + g.hora : ''),
+    '✈️ Tipo de Servicio: ' + (g.producto || '-'),
+    '👥 Participantes: ' + paxNum + ' pax',
+  ];
+  if (g.email) descLines.push('📧 Email: ' + g.email);
+  if (g.phone) descLines.push('📱 Tel: ' + g.phone);
+  if (g.total) descLines.push('💰 Total: ' + g.total);
+  if (g.pesos) descLines.push('⚖️ Pesos: ' + g.pesos);
+  if (g.estado) descLines.push('🏷️ Estado: ' + g.estado);
+  descLines.push('');
+  descLines.push('🤖 Agendado manualmente desde WE FLY Gap Detector');
+  descLines.push('🏷️ Fuente: ' + (g.fuente || calName));
+  descLines.push('📌 Calendario destino sugerido: ' + calName);
+  return { title, description: descLines.join('\n'), calName, startDate: g.fecha, startTime: g.hora || '06:00' };
+}
+
 function googleCalendarUrl(gap) {
-  const base = 'https://calendar.google.com/calendar/render?action=TEMPLATE';
-  // Title: "✅.*{pax}P {nombre}" — lo dejamos solo nombre + pax para que el dispatcher edite
-  const title = `${gap.pax || ''}P ${gap.nombre || ''}`.trim();
-  // Fecha: YYYYMMDDTHHMMSS (24hr Mexico City). Hora default 06:00 local.
-  const fecha = (gap.fecha || '').replace(/-/g, '');
-  const horaRaw = (gap.hora || '06:00').padStart(5, '0');
-  const [hh, mm] = horaRaw.split(':');
-  const start = `${fecha}T${hh}${mm}00`;
-  const endHh = String((parseInt(hh) + 4) % 24).padStart(2, '0'); // +4hrs default
-  const end   = `${fecha}T${endHh}${mm}00`;
-  const dates = `${start}/${end}`;
-  // Description con los datos del booking
-  const lines = [
-    `Reserva: ${gap.reserva || ''}`,
-    `Pax: ${gap.pax || ''}`,
-    gap.email ? `Email: ${gap.email}` : '',
-    gap.phone ? `Teléfono: ${gap.phone}` : '',
-    gap.producto ? `Producto: ${gap.producto}` : '',
-    gap.total ? `Total: ${gap.total}` : '',
-    gap.estado ? `Estado: ${gap.estado}` : '',
-    gap.pesos ? `Pesos: ${gap.pesos}` : '',
-    `Fuente: ${gap.fuente || 'Turitop'}`,
-  ].filter(Boolean);
-  const details = encodeURIComponent(lines.join('\n'));
-  const text = encodeURIComponent(title);
-  return `${base}&text=${text}&dates=${dates}&details=${details}&ctz=America/Mexico_City`;
+  const p = buildAgendarPayload(gap);
+  const [yr, mo, d] = (p.startDate || '').split('-');
+  const [hh, mm] = (p.startTime || '06:00').split(':');
+  if (!yr || !mo || !d) return null;
+  const pad = n => String(n).padStart(2, '0');
+  const startStr = yr + pad(mo) + pad(d) + 'T' + pad(hh) + pad(mm) + '00';
+  const startMs = new Date(+yr, +mo - 1, +d, +hh, +mm).getTime();
+  const endDate = new Date(startMs + 3 * 3600 * 1000);  // +3 horas (no 4)
+  const endStr = endDate.getFullYear() + pad(endDate.getMonth()+1) + pad(endDate.getDate()) + 'T' + pad(endDate.getHours()) + pad(endDate.getMinutes()) + '00';
+  const params = new URLSearchParams({
+    action: 'TEMPLATE',
+    text: p.title,
+    dates: startStr + '/' + endStr,
+    details: p.description,
+    location: 'Teotihuacán, México',
+    src: 'weflymx@gmail.com',  // pre-selecciona calendario WE FLY
+  });
+  return 'https://calendar.google.com/calendar/render?' + params.toString();
 }
 
 function EventModal({ event, gap, dateBundle, onClose }) {
@@ -201,12 +227,22 @@ function EventModal({ event, gap, dateBundle, onClose }) {
           {event.flags.noted && <Pill tone="warn">Pickup noted</Pill>}
           {event.flags.hotel && <Pill tone="ok">Pickup en hotel</Pill>}
           {event.flags.privado && <Pill tone="bad">Privado</Pill>}
+          {event.celebration && <Pill tone="warn">🎂 Celebración</Pill>}
+          {event.overweight && <Pill tone="bad">⚠ Sobrepeso</Pill>}
         </div>
         <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 14 }}>
           <Field k="Pasajeros" v={`${event.pax}P`} />
           <Field k="Operador" v={WEFLY.opLabel(event.calendar)} />
           <Field k="Fecha" v={lbl.full} />
           <Field k="Hora" v={event.timeKnown ? fmtTime(event.time) : 'Sin confirmar'} />
+          {event.total_weight ? <Field k="Peso total" v={`${event.total_weight} kg`} /> : null}
+          {event.staff ? <Field k="Staff" v={event.staff} /> : null}
+          {event.pickup ? <Field k="Pickup" v={event.pickup} /> : null}
+          {event.phone ? <Field k="Teléfono" v={event.phone} /> : null}
+          {event.email ? <Field k="Email" v={event.email} /> : null}
+          {event.reserva ? <Field k="Reserva" v={event.reserva} mono /> : null}
+          {event.total ? <Field k="Total" v={event.total} /> : null}
+          {event.service ? <Field k="Servicio" v={event.service} /> : null}
         </div>
         <div>
           <div style={{ fontSize: 11, fontWeight: 700, letterSpacing: '.06em', textTransform: 'uppercase', color: 'var(--ink-3)', marginBottom: 6 }}>Resumen original</div>

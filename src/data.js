@@ -84,6 +84,9 @@
       const list = Array.isArray(arr) ? arr : Object.values(arr);
       list.forEach((ev, i) => {
         const p = parseSummary(ev.summary);
+        // Si Apps Script ya entregó pax/name parseados, preferirlos sobre el regex
+        const pax = (typeof ev._pax === 'number' && ev._pax > 0) ? ev._pax : p.pax;
+        const name = (ev._name && ev._name.trim() && ev._name !== 'DISPONIBILIDAD') ? ev._name : p.name;
         events.push({
           id: date + ':' + i,
           date,
@@ -91,7 +94,21 @@
           timeKnown: !!(ev.time && ev.time.trim()),
           calendar: ev.calendar || 'OTHER',
           rawSummary: ev.summary,
+          // Campos extra del Apps Script live (para printRoute / exportCSV / Agendar)
+          staff: ev._staff || '',
+          pickup: ev._pickup || '',
+          phone: ev._phone || '',
+          email: ev._email || '',
+          reserva: ev._reserva || '',
+          total: ev._total || '',
+          total_weight: ev._total_weight || 0,
+          weights: ev._weights || [],
+          service: ev._service || '',
+          status: ev._status || '',
+          celebration: !!ev._celebration,
+          overweight: !!ev._overweight,
           ...p,
+          pax, name,
         });
       });
     });
@@ -323,6 +340,15 @@
           summary: e.title_raw || e.summary || e.name || '',
           time: e.time || '',
           calendar: normalizeCal(e.calendar),
+          // Pasar campos extra del Apps Script para printRoute/exportCSV/Agendar
+          _pax: e.pax, _name: e.name,
+          _staff: e.staff || '', _pickup: e.pickup || '',
+          _phone: e.phone || '', _email: e.email || '',
+          _reserva: e.reserva || '', _total: e.total || '',
+          _total_weight: e.total_weight || 0,
+          _weights: e.weights || [], _service: e.service || '',
+          _status: e.status || '',
+          _celebration: !!e.celebration, _overweight: !!e.overweight,
         });
         kept++;
       });
