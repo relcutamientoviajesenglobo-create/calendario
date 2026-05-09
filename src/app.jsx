@@ -73,6 +73,89 @@ function FilterBar({ search, setSearch, dateRange, setDateRange, calendarFilter,
   );
 }
 
+// ── Initial Loader ─────────────────────────────────────────────────
+// Mismo patrón visual que RefreshModal pero como página completa.
+// Escucha window events 'wefly:step' que data.js emite mientras fetcha.
+function InitialLoader() {
+  // Hidratar desde window._weflyStepState (data.js puede haber emitido eventos
+  // antes de que este componente montara — los recuperamos del estado global).
+  const initial = window._weflyStepState || {};
+  const seed = {
+    cal:  initial.cal  || { state: 'pending', hint: '' },
+    mail: initial.mail || { state: 'pending', hint: '' },
+    tt:   initial.tt   || { state: 'pending', hint: '' },
+    mtch: initial.mtch || { state: 'pending', hint: '' },
+  };
+  const [steps, setSteps] = useState(seed);
+  const [secs, setSecs] = useState(0);
+  const stepDefs = [
+    { key: 'cal',  label: 'Google Calendar · 9 calendarios' },
+    { key: 'mail', label: 'Gmail · Bookeo + Viator' },
+    { key: 'tt',   label: 'Turitop · API + correos' },
+    { key: 'mtch', label: 'Cruce de fuentes · matching' },
+  ];
+
+  useEffect(() => {
+    const t0 = Date.now();
+    const tick = setInterval(() => setSecs(Math.floor((Date.now() - t0) / 1000)), 250);
+    function onStep(e) {
+      const { key, state, hint } = e.detail;
+      setSteps(s => ({ ...s, [key]: { state, hint: hint || s[key]?.hint || '' } }));
+    }
+    window.addEventListener('wefly:step', onStep);
+    return () => { clearInterval(tick); window.removeEventListener('wefly:step', onStep); };
+  }, []);
+
+  const anyError = Object.values(steps).some(s => s.state === 'error');
+
+  return (
+    <div style={{
+      minHeight: '100vh', display: 'grid', placeItems: 'center',
+      background: 'var(--bg)', padding: 24,
+    }}>
+      <div className="initial-loader-card" style={{
+        background: 'var(--panel)', borderRadius: 'var(--r-4)',
+        padding: '28px 32px', maxWidth: 480, width: '100%',
+        boxShadow: 'var(--shadow-2)', border: '1px solid var(--line)',
+      }}>
+        <div style={{ display: 'flex', alignItems: 'center', gap: 14, marginBottom: 20 }}>
+          <div className="sb-mark" style={{ width: 44, height: 44, fontSize: 16, flexShrink: 0 }}>WF</div>
+          <div style={{ flex: 1 }}>
+            <div style={{ fontSize: 16, fontWeight: 700, letterSpacing: '-.01em' }}>Cargando dashboard</div>
+            <div style={{ fontSize: 12.5, color: 'var(--ink-3)', marginTop: 2 }}>
+              {anyError ? 'Algunos endpoints fallaron' : 'Conectando con Google Calendar · Gmail · Turitop'}
+            </div>
+          </div>
+          <div style={{
+            fontFamily: 'var(--mono)', fontSize: 13, fontWeight: 600,
+            color: 'var(--ink-3)', minWidth: 38, textAlign: 'right',
+          }}>{secs}s</div>
+        </div>
+        <div style={{ display: 'flex', flexDirection: 'column', gap: 4 }}>
+          {stepDefs.map(s => {
+            const cur = steps[s.key];
+            return (
+              <div key={s.key} className={'step ' + (cur.state === 'pending' ? '' : cur.state)}>
+                <div className="sd"></div>
+                <div className="sl">{s.label}</div>
+                <div className="sh">
+                  {cur.state === 'done'   ? (cur.hint || '✓')
+                 : cur.state === 'active' ? '…'
+                 : cur.state === 'error'  ? <span style={{ color: 'var(--bad)' }}>⚠ {cur.hint || 'error'}</span>
+                 : '—'}
+                </div>
+              </div>
+            );
+          })}
+        </div>
+        <div style={{ marginTop: 16, fontSize: 11.5, color: 'var(--ink-4)', textAlign: 'center' }}>
+          Apps Script en cold start puede tardar 30–60s la primera vez
+        </div>
+      </div>
+    </div>
+  );
+}
+
 function App() {
   const [view, setView] = useState('briefing');
   const [search, setSearch] = useState('');
@@ -193,18 +276,11 @@ tr:nth-child(even) td{background:#fafbfc}
     setTimeout(() => { try { w.focus(); w.print(); } catch(_){} }, 700);
   }
 
-  // Loading state inicial
+  // Loading state inicial — usa el mismo patrón visual del RefreshModal:
+  // 4 steps animados (Calendar → Gmail → Turitop → Matching) con timer real
+  // y hints de progreso emitidos por data.js (window event 'wefly:step').
   if (loadState === 'loading' && WEFLY.events.length === 0) {
-    return (
-      <div style={{ minHeight: '100vh', display: 'grid', placeItems: 'center', background: 'var(--bg)' }}>
-        <div style={{ textAlign: 'center', padding: 40 }}>
-          <div className="sb-mark" style={{ width: 64, height: 64, fontSize: 24, margin: '0 auto 18px' }}>WF</div>
-          <div style={{ fontSize: 18, fontWeight: 700, marginBottom: 8 }}>Cargando dashboard</div>
-          <div style={{ color: 'var(--ink-3)', fontSize: 13.5 }}>Consultando Google Calendar · Gmail · Turitop…</div>
-          <div style={{ marginTop: 24, fontSize: 12, color: 'var(--ink-4)' }}>Apps Script puede tardar 30–60s en cold start</div>
-        </div>
-      </div>
-    );
+    return <InitialLoader/>;
   }
 
   // Error state

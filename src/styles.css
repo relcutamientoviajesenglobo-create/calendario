@@ -1423,6 +1423,33 @@ a { color: inherit; text-decoration: none; }
 /* Operator dot */
 .dot-op { width: 7px; height: 7px; border-radius: 50%; display: inline-block; }
 
+/* Initial loader steps (reusa visual del RefreshModal pero sin .rmw wrapper) */
+.initial-loader-card .step {
+  display: grid; grid-template-columns: 18px 1fr auto;
+  align-items: center; gap: 10px;
+  padding: 9px 12px; border-radius: var(--r-2);
+  border: 1px solid transparent; transition: background .2s, border-color .2s;
+}
+.initial-loader-card .step .sd {
+  width: 12px; height: 12px; border-radius: 50%;
+  background: var(--ink-5); transition: background .2s;
+}
+.initial-loader-card .step .sl { font-size: 13px; color: var(--ink-2); font-weight: 500; }
+.initial-loader-card .step .sh { font-size: 11.5px; color: var(--ink-3); font-variant-numeric: tabular-nums; }
+.initial-loader-card .step.active { background: var(--info-tint); border-color: var(--info-soft); }
+.initial-loader-card .step.active .sd { background: var(--info); animation: stepPulse 1.2s ease-in-out infinite; }
+.initial-loader-card .step.active .sl { color: var(--ink); }
+.initial-loader-card .step.done { background: var(--ok-tint); border-color: var(--ok-soft); }
+.initial-loader-card .step.done .sd { background: var(--ok); position: relative; }
+.initial-loader-card .step.done .sd::after {
+  content: '✓'; position: absolute; inset: 0;
+  display: grid; place-items: center; color: white; font-size: 9px; font-weight: 800;
+}
+.initial-loader-card .step.done .sh { color: var(--ok); font-weight: 600; }
+.initial-loader-card .step.error { background: var(--bad-tint); border-color: var(--bad-soft); }
+.initial-loader-card .step.error .sd { background: var(--bad); }
+.initial-loader-card .step.error .sl { color: var(--ink); }
+
 /* Responsive */
 @media (max-width: 1180px) {
   .briefing { grid-template-columns: 1fr; }

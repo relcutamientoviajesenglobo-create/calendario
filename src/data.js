@@ -282,14 +282,42 @@
   window.WEFLY = buildState({ by_date: {}, total_events: 0, generated_at: '' }, { bookings: [] }, []);
   window.WEFLY._mode = 'loading';
 
-  // Fetch los 3 endpoints en paralelo
+  // Helper: emite evento de progreso + guarda estado global para que el
+  // loader pueda hidratarse incluso si monta después del primer event.
+  window._weflyStepState = window._weflyStepState || {};
+  function step(key, state, hint) {
+    const prev = window._weflyStepState[key] || {};
+    window._weflyStepState[key] = { state, hint: (hint != null ? hint : prev.hint) || '' };
+    window.dispatchEvent(new CustomEvent('wefly:step', { detail: { key, state, hint } }));
+  }
+
+  // Anuncia los 4 pasos como pendientes al iniciar
+  ['cal', 'mail', 'tt', 'mtch'].forEach(k => step(k, 'pending'));
+  step('cal', 'active');
+
+  // Fetch los 3 endpoints en paralelo, cada uno emite su propio evento al completar
   const ctrl = (typeof AbortSignal !== 'undefined' && AbortSignal.timeout) ? AbortSignal.timeout(90000) : undefined;
-  Promise.allSettled([
-    fetch(window.APPS_SCRIPT_URL + '?t=' + Date.now(), { signal: ctrl }).then(r => r.ok ? r.json() : null),
-    fetch('./reservas_sin_agendar.json?t=' + Date.now(), { cache: 'no-store' }).then(r => r.ok ? r.json() : null).catch(() => null),
-    fetch(window.TURITOP_EMAIL_READER_URL + '?action=turitop_emails&t=' + Date.now(), { signal: ctrl }).then(r => r.ok ? r.json() : null).catch(() => null),
-  ]).then(results => {
+  const calP = fetch(window.APPS_SCRIPT_URL + '?t=' + Date.now(), { signal: ctrl })
+    .then(r => r.ok ? r.json() : null)
+    .then(d => {
+      const n = d?.events?.length || 0;
+      step('cal', 'done', `${n} eventos`);
+      step('mail', 'done', `${(d?.bookeo_emails||[]).length} Bookeo · ${(d?.viator_emails||[]).length} Viator`);
+      return d;
+    }).catch(err => { step('cal', 'error', err.message || 'falló'); return null; });
+
+  step('tt', 'active');
+  const gapsP = fetch('./reservas_sin_agendar.json?t=' + Date.now(), { cache: 'no-store' })
+    .then(r => r.ok ? r.json() : null).catch(() => null);
+  const emailP = fetch(window.TURITOP_EMAIL_READER_URL + '?action=turitop_emails&t=' + Date.now(), { signal: ctrl })
+    .then(r => r.ok ? r.json() : null).catch(() => null);
+
+  Promise.allSettled([calP, gapsP, emailP]).then(results => {
     const [dashRes, gapsRes, emailRes] = results.map(r => r.status === 'fulfilled' ? r.value : null);
+    const ttCount = (gapsRes?.fuentes?.Turitop?.total) || 0;
+    const emCount = emailRes?.emails?.length || 0;
+    step('tt', 'done', `${ttCount} API · ${emCount} correos`);
+    step('mtch', 'active');
 
     // Adaptar respuesta del Apps Script principal al formato esperado.
     // El endpoint default retorna events[] con: title_raw (summary raw),
@@ -366,11 +394,15 @@
     window.WEFLY = buildState(RAW, GAPS, EMAILS);
     window.WEFLY._mode = 'live';
     window.WEFLY._fetchTs = Date.now();
+    const matched = (gapsRes?.fuentes?.Turitop?.matched) || 0;
+    const total   = (gapsRes?.fuentes?.Turitop?.total) || 0;
+    step('mtch', 'done', `${matched}/${total} matched · ${window.WEFLY.gaps.length} gaps`);
     window.dispatchEvent(new CustomEvent('wefly:loaded', { detail: window.WEFLY }));
   }).catch(err => {
     console.error('[wefly:fetch]', err);
     window.WEFLY._mode = 'error';
     window.WEFLY._error = err.message || String(err);
+    step('mtch', 'error', err.message || 'falló');
     window.dispatchEvent(new CustomEvent('wefly:error', { detail: err }));
   });
 })();
