@@ -740,7 +740,21 @@ a { color: inherit; text-decoration: none; }
   flex-direction: column;
   gap: 4px;
   box-shadow: var(--shadow-1);
+  transition: box-shadow .15s, transform .15s, border-color .15s;
 }
+.kpi.clickable { cursor: pointer; }
+.kpi.clickable:hover {
+  box-shadow: var(--shadow-2);
+  transform: translateY(-1px);
+  border-color: var(--line-2);
+}
+.kpi.clickable:active { transform: translateY(0); }
+.kpi.clickable:focus-visible {
+  outline: 2px solid var(--amber-3);
+  outline-offset: 2px;
+}
+.kpi.alert-tone.clickable:hover { border-color: var(--bad); }
+.kpi.alert-tone.clickable:hover .value { color: var(--bad) !important; }
 .kpi .label {
   font-size: 11.5px;
   color: var(--ink-3);

@@ -1,6 +1,6 @@
 /* App composition + state management */
 
-function KpiStrip() {
+function KpiStrip({ onShowAllEvents, onShowOperators, onShowHotelPickups, onShowGaps }) {
   const total = WEFLY.events.length;
   const totalPax = WEFLY.events.reduce((s, e) => s + e.pax, 0);
   const ops = WEFLY.operatorBreakdown();
@@ -9,22 +9,40 @@ function KpiStrip() {
 
   return (
     <div className="kpi-strip">
-      <div className="kpi">
+      <div className="kpi clickable"
+           onClick={onShowAllEvents}
+           role="button" tabIndex={0}
+           onKeyDown={e => (e.key === 'Enter' || e.key === ' ') && onShowAllEvents && onShowAllEvents()}
+           title="Ver todos los eventos en la tabla">
         <div className="label">Eventos en ventana</div>
         <div className="value">{total}</div>
         <div className="sub"><b>{totalPax}</b> pasajeros · próximos 16 días</div>
       </div>
-      <div className="kpi">
+      <div className="kpi clickable"
+           onClick={onShowOperators}
+           role="button" tabIndex={0}
+           onKeyDown={e => (e.key === 'Enter' || e.key === ' ') && onShowOperators && onShowOperators()}
+           title="Ver desglose por operador">
         <div className="label">Operadores activos</div>
         <div className="value">{ops.length}</div>
         <div className="sub">Líder: <b>{ops[0]?.label || '—'}</b> con <b>{ops[0]?.pax || 0}</b> pax</div>
       </div>
-      <div className="kpi">
+      <div className={clsx('kpi', hotelPickups > 0 && 'clickable')}
+           onClick={hotelPickups > 0 ? onShowHotelPickups : undefined}
+           role={hotelPickups > 0 ? 'button' : undefined}
+           tabIndex={hotelPickups > 0 ? 0 : undefined}
+           onKeyDown={e => hotelPickups > 0 && (e.key === 'Enter' || e.key === ' ') && onShowHotelPickups && onShowHotelPickups()}
+           title={hotelPickups > 0 ? 'Ver pickups en hotel' : ''}>
         <div className="label">Pickups en hotel</div>
         <div className="value">{hotelPickups}</div>
         <div className="sub">requieren coordinación de transporte</div>
       </div>
-      <div className="kpi">
+      <div className={clsx('kpi', gapTotal > 0 && 'clickable alert-tone')}
+           onClick={gapTotal > 0 ? onShowGaps : undefined}
+           role={gapTotal > 0 ? 'button' : undefined}
+           tabIndex={gapTotal > 0 ? 0 : undefined}
+           onKeyDown={e => gapTotal > 0 && (e.key === 'Enter' || e.key === ' ') && onShowGaps && onShowGaps()}
+           title={gapTotal > 0 ? 'Ver lista de reservas sin agendar' : ''}>
         <div className="label">Sin agendar · ventana</div>
         <div className="value" style={{ color: gapTotal ? 'var(--bad)' : 'var(--ok)' }}>{gapTotal}</div>
         <div className="sub">{gapTotal ? 'Reservas pendientes de pasar a calendario' : 'Todas las reservas agendadas'}</div>
@@ -341,7 +359,12 @@ tr:nth-child(even) td{background:#fafbfc}
                   onShowGaps={showGapsList}/>
                 <CriticalGaps date={briefingDate} onSelect={g => setModal({ gap: g })}/>
               </div>
-              <KpiStrip/>
+              <KpiStrip
+                onShowAllEvents={() => { setStatusFilter(''); setCalendarFilter(''); setDateRange(['','']); setSearch(''); setView('table'); }}
+                onShowOperators={() => setView('dashboard')}
+                onShowHotelPickups={() => { setStatusFilter('hotel'); setCalendarFilter(''); setDateRange(['','']); setSearch(''); setView('table'); }}
+                onShowGaps={() => setView('pending')}
+              />
               <DashboardView onSelectDate={d => setModal({ date: d })}/>
             </>
           )}
@@ -360,7 +383,12 @@ tr:nth-child(even) td{background:#fafbfc}
 
           {view === 'dashboard' && (
             <>
-              <KpiStrip/>
+              <KpiStrip
+                onShowAllEvents={() => { setStatusFilter(''); setCalendarFilter(''); setDateRange(['','']); setSearch(''); setView('table'); }}
+                onShowOperators={() => setView('dashboard')}
+                onShowHotelPickups={() => { setStatusFilter('hotel'); setCalendarFilter(''); setDateRange(['','']); setSearch(''); setView('table'); }}
+                onShowGaps={() => setView('pending')}
+              />
               <DashboardView onSelectDate={d => setModal({ date: d })}/>
             </>
           )}
