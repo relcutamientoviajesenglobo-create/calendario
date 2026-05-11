@@ -1,6 +1,6 @@
 {
-  "generated_at": "2026-05-10 22:44",
-  "window": "2026-05-09 → 2026-05-25",
+  "generated_at": "2026-05-11 02:57",
+  "window": "2026-05-10 → 2026-05-26",
   "slack_days": 1,
   "calendars_in_source": [
     "BOOKEO",
@@ -11,18 +11,16 @@
   ],
   "fuentes": {
     "Turitop": {
-      "total": 9,
-      "matched": 8,
-      "sin_agendar": 1,
+      "total": 7,
+      "matched": 7,
+      "sin_agendar": 0,
       "match_by_strategy": {
         "reserva_id": 6,
-        "name1rare": 1,
         "email": 1
       },
       "match_by_calendar": {
-        "VGMX": 4,
-        "PRIMARY": 1,
-        "GAT": 3
+        "GAT": 3,
+        "VGMX": 4
       }
     },
     "Bookeo": {
@@ -33,21 +31,7 @@
       "match_by_calendar": {}
     }
   },
-  "total_fuentes": 9,
-  "total_sin_agendar": 1,
-  "bookings": [
-    {
-      "reserva": "V212-260422-1",
-      "marca": "M2",
-      "fecha": "2026-05-25",
-      "hora": "06:00",
-      "pax": 8,
-      "nombre": "Luis Hernandez",
-      "email": "Shortforlu@gmail.com",
-      "phone": "+15612758370",
-      "producto": "Vuelo en Globo Tradicional en Teotihuacán",
-      "total": "16800.00",
-      "fuente": "Turitop"
-    }
-  ]
+  "total_fuentes": 7,
+  "total_sin_agendar": 0,
+  "bookings": []
 }
