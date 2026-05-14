@@ -1,6 +1,6 @@
 {
-  "generated_at": "2026-05-13 23:12",
-  "window": "2026-05-12 → 2026-05-20",
+  "generated_at": "2026-05-14 02:56",
+  "window": "2026-05-13 → 2026-05-29",
   "slack_days": 1,
   "calendars_in_source": [
     "BOOKEO",
@@ -11,17 +11,18 @@
   ],
   "fuentes": {
     "Turitop": {
-      "total": 4,
-      "matched": 4,
-      "sin_agendar": 0,
+      "total": 8,
+      "matched": 7,
+      "sin_agendar": 1,
       "match_by_strategy": {
-        "reserva_id": 2,
+        "reserva_id": 5,
         "email": 1,
         "name1rare": 1
       },
       "match_by_calendar": {
         "GAT": 3,
-        "PRIMARY": 1
+        "PRIMARY": 1,
+        "VGMX": 3
       }
     },
     "Bookeo": {
@@ -32,7 +33,21 @@
       "match_by_calendar": {}
     }
   },
-  "total_fuentes": 4,
-  "total_sin_agendar": 0,
-  "bookings": []
+  "total_fuentes": 8,
+  "total_sin_agendar": 1,
+  "bookings": [
+    {
+      "reserva": "G465-260429-5",
+      "marca": "M1",
+      "fecha": "2026-05-29",
+      "hora": "05:00",
+      "pax": 4,
+      "nombre": "DIEGO PALLARES CRUZ",
+      "email": "palladie@hotmail.com",
+      "phone": "+50240330780",
+      "producto": "Transporte Privado + Vuelo en Globo + Acceso a las Pirámides de Teotihuacán",
+      "total": "13600.00",
+      "fuente": "Turitop"
+    }
+  ]
 }
