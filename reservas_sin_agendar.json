@@ -1,6 +1,6 @@
 {
-  "generated_at": "2026-05-17 22:52",
-  "window": "2026-05-16 → 2026-06-01",
+  "generated_at": "2026-05-18 03:32",
+  "window": "2026-05-17 → 2026-06-02",
   "slack_days": 1,
   "calendars_in_source": [
     "BOOKEO",
@@ -15,13 +15,11 @@
       "matched": 6,
       "sin_agendar": 0,
       "match_by_strategy": {
-        "name1rare": 1,
-        "reserva_id": 5
+        "reserva_id": 6
       },
       "match_by_calendar": {
-        "PRIMARY": 1,
-        "GAT": 2,
-        "VGMX": 3
+        "VGMX": 4,
+        "GAT": 2
       }
     },
     "Bookeo": {
