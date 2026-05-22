@@ -465,7 +465,7 @@
   },
   {
     "date": "2026-05-23",
-    "summary": "1P Madelon Heerema",
+    "summary": "*1P Madelon Heerema",
     "desc": "Fecha de vuelo: sábado, 23 mayo 2026 Número de reserva: 1574605225691713 Nombre: Madelon Heerema Tel: +316655505777 Email: madelonheerema@live.nl Idioma: español Vuelo: compartido Pax: 1 Pesos: 75 kgs Pickup: 📍Altata 9, Hipódromo, Cuauhtémoc, 06100 Ciudad de México, CDMX Desayuno: Buffet Guía: no Extras: transporte grupal y pirámides Motivo del vuelo: Precio total: 3,109.60 MXN Importe abonado: 3,109.60 MXN Importe pendiente: 0 Marca: We Fly Asesor: Debora 🧚🏻‍♀️ Notas operativas:",
     "calendar": "PRIMARY",
     "emails": [
@@ -634,7 +634,7 @@
   },
   {
     "date": "2026-05-23",
-    "summary": "2P Sergio Bruno Sanchez Aguilar",
+    "summary": "*2P Sergio Bruno Sanchez Aguilar",
     "desc": "RESERVA VGMX No reserva: 1576605223222831 Fecha: sábado 23 mayo, 2026 Nombre: Sergio Bruno Sanchez Aguilar ✉ ssaguilar92@gmail.com Teléfono: +51970947602 Idioma:español Vuelo: compartido Pax: 2 Adulto 1: Sergio Bruno Sanchez Aguilar 90 kg Adulto 2: Roberto Oliveria 97 kg Pickup: NO Desayuno: NO Guía: NO Extras: video DRON Motivo del vuelo: experiencia Tarifa individual 2 x 1,990 Video con Drone 1,000 Subtotal $4,980 (antes de pasarela) Anticipo $4,980 (antes de pasarela) SALDO $ NO Brand: VGMX Vendedor: Olimpia 🧜🏻‍♀️",
     "calendar": "VGMX",
     "emails": [
@@ -643,6 +643,19 @@
     "phones": [
       "1970947602",
       "5223222831"
+    ]
+  },
+  {
+    "date": "2026-05-23",
+    "summary": "2P Pratiksha Gupta (TG)",
+    "desc": "RESERVA VGMX No reserva: 1576605203690889 Fecha: sábado 23 mayo, 2026 Nombre: Pratiksha Gupta ✉ guptapratiksha9@gmail.com Teléfono: +918140315855 Idioma: ingles Vuelo: compartido + Transporte grupal + Desayuno en Cueva + Acceso a las Pirámides + guía en pirámides Pax: 2 Adulto 1: Pratiksha Gupta 62kg Adulto 2: Suhad Mohammadi 61kg Pickup: Cordoba 51, Roma Norte, Cuauhtemoc, 06700 Desayuno: cueva Guía: si Extras: NO Motivo del vuelo: experiencia Tarifa individual 2 x 2,990 Subtotal $7,200 (antes de pasarela) Anticipo $7,200 (antes de pasarela) SALDO $ NO Brand: VGMX Vendedor: Olimpia 🧜🏻‍♀️",
+    "calendar": "VGMX",
+    "emails": [
+      "guptapratiksha9@gmail.com"
+    ],
+    "phones": [
+      "5203690889",
+      "8140315855"
     ]
   },
   {
@@ -1464,6 +1477,19 @@
     "phones": [
       "3042486074",
       "5082725830"
+    ]
+  },
+  {
+    "date": "2026-06-05",
+    "summary": "2P Miguela Coronel Lezcano (TG)",
+    "desc": "RESERVA VGMX No reserva: 1576605228993085 Fecha: viernes 5 junio, 2026 Nombre: Miguela Coronel Lezcano ✉ migue_pioneer@hotmail.com Teléfono: +595 973 677582 Idioma:español Vuelo: compartido Pax: 2 Adulto 1: Miguela Coronel Lezcano 74kg Adulto 2: Natalia Lidia Gil Romero 66 kg Pickup: calle 20 noviembre #36, centro Historico Desayuno: buffet Guía: NO Extras: NO Motivo del vuelo: experiencia Tarifa individual 2 x 2,990 Subtotal $5,980 (antes de pasarela) Anticipo $2,990 (antes de pasarela) SALDO $ 2,990 Brand: VGMX Vendedor: Olimpia 🧜🏻‍♀️",
+    "calendar": "VGMX",
+    "emails": [
+      "migue_pioneer@hotmail.com"
+    ],
+    "phones": [
+      "5228993085",
+      "5973677582"
     ]
   }
 ]
