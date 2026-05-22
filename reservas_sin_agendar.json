@@ -1,6 +1,6 @@
 {
-  "generated_at": "2026-05-21 23:01",
-  "window": "2026-05-20 → 2026-06-05",
+  "generated_at": "2026-05-22 03:30",
+  "window": "2026-05-21 → 2026-06-06",
   "slack_days": 1,
   "calendars_in_source": [
     "BOOKEO",
@@ -11,17 +11,17 @@
   ],
   "fuentes": {
     "Turitop": {
-      "total": 5,
-      "matched": 5,
+      "total": 4,
+      "matched": 4,
       "sin_agendar": 0,
       "match_by_strategy": {
-        "reserva_id": 4,
+        "reserva_id": 3,
         "name1rare": 1
       },
       "match_by_calendar": {
-        "GAT": 2,
         "VGMX": 2,
-        "PRIMARY": 1
+        "PRIMARY": 1,
+        "GAT": 1
       }
     },
     "Bookeo": {
@@ -32,7 +32,7 @@
       "match_by_calendar": {}
     }
   },
-  "total_fuentes": 5,
+  "total_fuentes": 4,
   "total_sin_agendar": 0,
   "bookings": []
 }
