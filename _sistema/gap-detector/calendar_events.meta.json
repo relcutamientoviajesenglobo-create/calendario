@@ -1,10 +1,11 @@
 {
   "requested_from": "2026-05-24",
   "requested_to": "2026-06-09",
-  "generated_at": "2026-05-25T13:28:03.356998",
-  "events_count": 89,
+  "generated_at": "2026-05-25T16:21:46.980939",
+  "events_count": 99,
   "calendars_present": [
     "BOOKEO",
+    "GAMX_MONSE",
     "GAT",
     "PRIMARY",
     "VGMX",

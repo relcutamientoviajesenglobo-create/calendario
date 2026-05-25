@@ -1,9 +1,10 @@
 {
-  "generated_at": "2026-05-25 13:28",
+  "generated_at": "2026-05-25 16:21",
   "window": "2026-05-24 → 2026-06-09",
   "slack_days": 1,
   "calendars_in_source": [
     "BOOKEO",
+    "GAMX_MONSE",
     "GAT",
     "PRIMARY",
     "VGMX",
