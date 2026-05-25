@@ -427,6 +427,14 @@
   },
   {
     "date": "2026-05-25",
+    "summary": "",
+    "desc": "============ RESERVA WE FLY ============ Nombre: Número de reserva: Tel: + Email: Idioma: Vuelo: Pax: Pesos: Pickup: Desayuno: Guía: Extras: Motivo del vuelo: Precio total: $ MXN Importe abonado: $ MXN Saldo pendiente: $ MXN Marca: Asesor: Notas operativas:",
+    "calendar": "GAT",
+    "emails": [],
+    "phones": []
+  },
+  {
+    "date": "2026-05-25",
     "summary": "✅ *3P ANDREA KONINGS ",
     "desc": "============ RESERVA WE FLY ============ Nombre: ANDREA KONINGS Número de reserva: Tel:+16462033934 Email: Idioma: ESPAÑOL Vuelo:VIUELO COMPARTIDO PROMO Pax: 3 Pesos: ROBERTO 73 KG ANTONIO 68 KG ANDREA 59 KG Pickup: NO Desayuno: NO Guía: NO Extras: NO Motivo del vuelo: EXPERIENCIA Precio total: $ 5970MXN Importe abonado: PAGADO Saldo pendiente: PAGADO Marca: GAT Asesor: THONY Notas operativas: NO",
     "calendar": "GAT",
@@ -450,33 +458,7 @@
   },
   {
     "date": "2026-05-26",
-    "summary": "2P Nancy Limbu",
-    "desc": "Fecha de vuelo: martes, 26 mayo 2026 Número de reserva: 1574605232778927 Nombre: Nancy Limbu Tel: +1 3473027155 Email: Nancylimbu2305@gmail.com Idioma: inglés Vuelo: Compartido Pax: 2 Pesos: Nancy Limbu 59 kg, Krishna Raj Ghale 85 kg Pickup: 📍Stanza Hotel Avenida Álvaro Obregón 13 North Rome 06700 Cuauhtémoc, Mexico City Mexico Desayuno: Cueva Guía: Sí Extras: Motivo del vuelo: Precio total: 7,280 MXN Importe abonado: 7,280 MXN Importe pendiente: 0 Marca: We Fly Asesor: Debora 🧚🏻‍♀️ Notas operativas:",
-    "calendar": "PRIMARY",
-    "emails": [
-      "nancylimbu2305@gmail.com"
-    ],
-    "phones": [
-      "3473027155",
-      "5232778927"
-    ]
-  },
-  {
-    "date": "2026-05-26",
-    "summary": "1P Cinthya Perez Bravo",
-    "desc": "Fecha de vuelo: martes, 26 mayo 2026 Número de reserva: 1574605224533522 Nombre: Cinthya Perez Bravo Tel: +529842057323 Email: cynthiadomenicaperez@gmail.com Idioma: español Vuelo: Compartido Pax: 1 Pesos: 78 kgs Pickup: puso pick up pero rebasa los 4km, citar en el Ángel Desayuno: Cueva Guía: Sí Extras: Motivo del vuelo: Precio total: 3,640 MXN Importe abonado: 3,640 MXN Importe pendiente: 0 Marca: We Fly Asesor: Debora 🧚🏻‍♀️ Notas operativas:",
-    "calendar": "PRIMARY",
-    "emails": [
-      "cynthiadomenicaperez@gmail.com"
-    ],
-    "phones": [
-      "5224533522",
-      "9842057323"
-    ]
-  },
-  {
-    "date": "2026-05-26",
-    "summary": "2P Raul Rodriguez",
+    "summary": "*2P Raul Rodriguez",
     "desc": "Fecha de compra: jueves 2 abril No.Reserva: 1574604024141498 Nombre: Raul Rodriguez Fecha de Vuelo: martes, 26 mayo 2026 Tipo de Servicio: ALL INCLUSIVE + Transporte redondo + Desayuno La Cueva + Pirámides con guía certificado Motivo de Vuelo: Nombre y peso de los pax: Raul Rodriguez 125 kg, Xavier Romero 106 kg Tel: +1 2103264939 Correo: raulrod2013@gmail.com Vuelo: 3,500 MXN x2 Precio total con comisión: 7,280 MXN Importe abonado: 7,280 MXN Importe debido: 1,845 MXN Notas Adicionales: Peso extra 41 kg, 1,845 pesos Staff: Débora 🧚🏻‍♀️",
     "calendar": "PRIMARY",
     "emails": [
@@ -489,7 +471,20 @@
   },
   {
     "date": "2026-05-26",
-    "summary": "2p Amauri Soares De Andrade Junior",
+    "summary": "*1P Cinthya Perez Bravo",
+    "desc": "Fecha de vuelo: martes, 26 mayo 2026 Número de reserva: 1574605224533522 Nombre: Cinthya Perez Bravo Tel: +529842057323 Email: cynthiadomenicaperez@gmail.com Idioma: español Vuelo: Compartido Pax: 1 Pesos: 78 kgs Pickup: puso pick up pero rebasa los 4km, citar en el Ángel Desayuno: Cueva Guía: Sí Extras: Motivo del vuelo: Precio total: 3,640 MXN Importe abonado: 3,640 MXN Importe pendiente: 0 Marca: We Fly Asesor: Debora 🧚🏻‍♀️ Notas operativas:",
+    "calendar": "PRIMARY",
+    "emails": [
+      "cynthiadomenicaperez@gmail.com"
+    ],
+    "phones": [
+      "5224533522",
+      "9842057323"
+    ]
+  },
+  {
+    "date": "2026-05-26",
+    "summary": "*2p Amauri Soares De Andrade Junior",
     "desc": "Número de reserva: 1574605218262976 Fecha de vuelo: martes, 26 mayo 2026 Nombre: Amauri Soares De Andrade Junior Tel: +55 21993476000 Email: amaurisandrade@yahoo.com.br Idioma: español Vuelo: compartido Pax: 2 Pesos: Adulto 1: Amauri Soares De Andrade Junior Peso en kilogramos o Libras: 100kg Adulto 2: Bruno Pacheco De Araujo Peso en kilogramos o Libras: 80kg Pickup: 📍Av. P.º de la Reforma 410, Juárez, Cuauhtémoc, 06600 Juárez, CDMX Desayuno: cueva Guía: sí Extras: Motivo del vuelo: Precio total: 7,280 MXN Importe abonado: 7,280 MXN Importe debido: 0 Marca: We Fly Asesor: Debora 🧚🏻‍♀️ Notas operativas:",
     "calendar": "PRIMARY",
     "emails": [
@@ -498,6 +493,19 @@
     "phones": [
       "1993476000",
       "5218262976"
+    ]
+  },
+  {
+    "date": "2026-05-26",
+    "summary": "*2P Nancy Limbu",
+    "desc": "Fecha de vuelo: martes, 26 mayo 2026 Número de reserva: 1574605232778927 Nombre: Nancy Limbu Tel: +1 3473027155 Email: Nancylimbu2305@gmail.com Idioma: inglés Vuelo: Compartido Pax: 2 Pesos: Nancy Limbu 59 kg, Krishna Raj Ghale 85 kg Pickup: 📍Stanza Hotel Avenida Álvaro Obregón 13 North Rome 06700 Cuauhtémoc, Mexico City Mexico Desayuno: Cueva Guía: Sí Extras: Motivo del vuelo: Precio total: 7,280 MXN Importe abonado: 7,280 MXN Importe pendiente: 0 Marca: We Fly Asesor: Debora 🧚🏻‍♀️ Notas operativas:",
+    "calendar": "PRIMARY",
+    "emails": [
+      "nancylimbu2305@gmail.com"
+    ],
+    "phones": [
+      "3473027155",
+      "5232778927"
     ]
   },
   {
@@ -515,7 +523,7 @@
   },
   {
     "date": "2026-05-26",
-    "summary": "2P Robert Seekford NC",
+    "summary": "*2P Robert Seekford NC",
     "desc": "Fecha de vuelo: martes, 26 mayo 2026 Número de reserva: 1574605127010256 Nombre: Robert Seekford Tel: +1 5129637667 Email: rhcp.cork@gmail.com Idioma: inglés Vuelo: Privado Pax: 2 Pesos: Robert Seekford 88 kg, Tara Biart 57 kg Pickup: Desayuno: no Guía: no Extras: no Motivo del vuelo: Precio total: 7,800 MXN Importe abonado: 7,800 MXN Importe pendiente: 0 Marca: We Fly Asesor: Debora 🧚🏻‍♀️ Notas operativas:",
     "calendar": "PRIMARY",
     "emails": [
@@ -528,7 +536,7 @@
   },
   {
     "date": "2026-05-26",
-    "summary": "1p PEDRO LANDEROS HERNANDEZ",
+    "summary": "*1p PEDRO LANDEROS HERNANDEZ",
     "desc": "============ RESERVA WE FLY ============ Nombre: PEDRO LANDEROS HERNANDEZ Número de reserva: G465-260505-2 Tel: +526561350876 Email: mailto:pedrolh21@hotmail.com Idioma: español Vuelo: Transporte Redondo CDMX + Vuelo en Globo + Desayuno en Cueva + Visita a la Zona Arqueológica Pax: 1 Pesos: 110 kg Pickup: Angel de la Independencia Desayuno: cueva Guía: no Extras: no Motivo del vuelo: experiencia Precio total: $ 3775MXN Importe abonado: $ 1550MXN Saldo pendiente: $2225MXN Marca: GAT Asesor: THONY 🐶 Notas operativas:no",
     "calendar": "GAT",
     "emails": [
@@ -538,6 +546,14 @@
       "4652605052",
       "6561350876"
     ]
+  },
+  {
+    "date": "2026-05-27",
+    "summary": "4P Nhi Nguyen",
+    "desc": "Fecha de vuelo: Número de reserva: Nombre: Nhi Nguyen Tel: Email: Idioma: inglés Vuelo: compartido Pax: 4 Pesos: Pickup: Desayuno: no Guía: no Extras: no Motivo del vuelo: Precio total: Importe abonado: Importe pendiente: 0 Marca: We Fly Asesor: Debora 🧚🏻‍♀️ Notas operativas:",
+    "calendar": "PRIMARY",
+    "emails": [],
+    "phones": []
   },
   {
     "date": "2026-05-27",
@@ -663,6 +679,19 @@
     "phones": [
       "2122605141",
       "5743128271"
+    ]
+  },
+  {
+    "date": "2026-05-28",
+    "summary": "3P Annabel Quiroga-Rivera",
+    "desc": "============ RESERVA WE FLY ============ Nombre: Annabel Quiroga-Rivera Número de reserva: G465-260524-2 Tel: +525577287061 Email: annabelqr@gmail.com Idioma: ESPAÑOL Vuelo: Vuelo Compartido Promo Pax: 3 Pesos: Annabel Quiroga 70kg, Erika Rivera 55kg, Ximena Rivera 65kg Pickup: NO Desayuno: NO Guía: NO Extras: NO Motivo del vuelo: EXPERIENCIA Precio total: $ 6268.50MXN Importe abonado: PAGADO Saldo pendiente: PAGADO Marca: GAT Asesor: THONY Notas operativas: NO",
+    "calendar": "GAT",
+    "emails": [
+      "annabelqr@gmail.com"
+    ],
+    "phones": [
+      "4652605242",
+      "5577287061"
     ]
   },
   {
@@ -841,6 +870,19 @@
     "phones": [
       "3325141438",
       "5056235327"
+    ]
+  },
+  {
+    "date": "2026-05-31",
+    "summary": "2P Daniela Venehas",
+    "desc": "============ RESERVA WE FLY ============ Nombre: daniela venehas Número de reserva: G465-260523-1 Tel: +50660530100 Email: danny96b@gmail.com Idioma: ESPAÑOL Vuelo: Transporte Redondo CDMX + Vuelo en Globo + Desayuno en Cueva + Visita a la Zona Arqueológica Pax: 2 Pesos: Daniela Venegas 70 kilos, Juan José Cotos 98 kilos Pickup: ANGEL DE LA INDEPENDENCIA Desayuno: CUEVA Guía: NO Extras: NO Motivo del vuelo: EXPERIENCIA Precio total: $6510 MXN Importe abonado: PAGADO Saldo pendiente: PAGADO Marca: GAT Asesor: THONY Notas operativas: NO",
+    "calendar": "GAT",
+    "emails": [
+      "danny96b@gmail.com"
+    ],
+    "phones": [
+      "4652605231",
+      "0660530100"
     ]
   },
   {
