@@ -1,10 +1,9 @@
 {
-  "requested_from": "2026-05-31",
-  "requested_to": "2026-06-16",
-  "generated_at": "2026-06-01T23:26:06.612441",
-  "events_count": 98,
+  "requested_from": "2026-06-01",
+  "requested_to": "2026-06-17",
+  "generated_at": "2026-06-02T03:46:12.240539",
+  "events_count": 101,
   "calendars_present": [
-    "GAMX_MONSE",
     "GAT",
     "PRIMARY",
     "VGMX",
