@@ -1,6 +1,6 @@
 {
-  "generated_at": "2026-06-02 22:21",
-  "window": "2026-06-01 → 2026-06-17",
+  "generated_at": "2026-06-03 03:55",
+  "window": "2026-06-02 → 2026-06-18",
   "slack_days": 1,
   "calendars_in_source": [
     "BOOKEO",
@@ -12,13 +12,14 @@
   "fuentes": {
     "Turitop": {
       "total": 3,
-      "matched": 2,
-      "sin_agendar": 1,
+      "matched": 3,
+      "sin_agendar": 0,
       "match_by_strategy": {
-        "reserva_id": 2
+        "reserva_id": 2,
+        "email": 1
       },
       "match_by_calendar": {
-        "VGMX": 1,
+        "VGMX": 2,
         "GAT": 1
       }
     },
@@ -31,20 +32,6 @@
     }
   },
   "total_fuentes": 3,
-  "total_sin_agendar": 1,
-  "bookings": [
-    {
-      "reserva": "V212-260420-1",
-      "marca": "M2",
-      "fecha": "2026-06-17",
-      "hora": "06:00",
-      "pax": 2,
-      "nombre": "Héctor Ardila",
-      "email": "Ticorardila1@yahoo.es",
-      "phone": "+19737274257",
-      "producto": "Vuelo Privado en Teotihuacan",
-      "total": "9800.00",
-      "fuente": "Turitop"
-    }
-  ]
+  "total_sin_agendar": 0,
+  "bookings": []
 }
