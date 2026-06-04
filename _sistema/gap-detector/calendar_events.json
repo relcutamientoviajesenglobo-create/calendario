@@ -1,31 +1,5 @@
 [
   {
-    "date": "2026-06-02",
-    "summary": "✅*2P Tommy Lee Fryer",
-    "desc": "Fecha de vuelo: martes, 2 junio 2026 Número de reserva: 1574606019958759 Nombre: Tommy Lee Fryer Tel: +447825359808 Email: Tommyleefryer97@hotmail.com Idioma: Ingles Vuelo: compartido Pax: 2 Pesos: Tommy Lee Fryer 94 kg, Joely Daisy Stevens 60 kg Pickup: Desayuno: no Guía: no Extras: no Motivo del vuelo: Precio total: 4,139.20 MXN Importe abonado: 4,139.20 MXN Importe pendiente: 0 Marca: We Fly Asesor: Debora 🧚🏻‍♀️ Notas operativas:",
-    "calendar": "PRIMARY",
-    "emails": [
-      "tommyleefryer97@hotmail.com"
-    ],
-    "phones": [
-      "6019958759",
-      "7825359808"
-    ]
-  },
-  {
-    "date": "2026-06-02",
-    "summary": "✅ 3P Angel Caballero Hernandez",
-    "desc": "Fecha de vuelo: martes, 2 junio 2026 Número de reserva: 1574606015839474 Nombre: Angel Caballero Hernandez Tel: +1 6692499462 Email: Angelcaballerohdz@gmail.com Idioma: español Vuelo: compartido Pax: 3 Pesos: Angel Caballero Hernandez 95 kg, Silvia Nallely Cornejo Mandujano 80 kg, Paulina Caballero Cornejo 25 kg Pickup: Desayuno: no Guía: no Extras: no Motivo del vuelo: Precio total: 6,208.80 MXN Importe abonado: 6,208.80 MXN Importe pendiente: 0 Marca: We Fly Asesor: Debora 🧚🏻‍♀️ Notas operativas:",
-    "calendar": "PRIMARY",
-    "emails": [
-      "angelcaballerohdz@gmail.com"
-    ],
-    "phones": [
-      "6015839474",
-      "6692499462"
-    ]
-  },
-  {
     "date": "2026-06-03",
     "summary": "✅.🏨*1P Adriana Munoz",
     "desc": "Fecha de vuelo: miércoles, 3 junio 2026 Número de reserva: 1574605318188682 Nombre: Adriana Muñoz Tel: +1 2099967424 Email: munozadriana661@gmail.com Idioma: Vuelo: Compartido Pax: 1 Pesos: 65.7 kgs Pickup: 📍Calle de Salamanca 35 Roma Norte 06700 Cuauhtémoc, CDMX Mexico Desayuno: Cueva Guía: Si Extras: Motivo del vuelo: Precio total: 3,640 MXN Importe abonado: 3,640 MXN Importe pendiente: 0 Marca: We Fly Asesor: Debora 🧚🏻‍♀️ Notas operativas:",
@@ -105,7 +79,7 @@
   },
   {
     "date": "2026-06-04",
-    "summary": "1P Gloria Zhang",
+    "summary": "✅ 1P Gloria Zhang",
     "desc": "Fecha de vuelo: jueves, 4 junio 2026 Número de reserva: 1574606034787465 Nombre: Gloria Zhang Tel: +1 9843277763 Email: gloriazhanghk@gmail.com Idioma: inglés Vuelo: compartido Pax: 1 Pesos: 52 kg Pickup: 📍Hotel Parian, Av. Álvaro Obregón 130, Roma Nte., Cuauhtémoc, 06700 Ciudad de México, CDMX Desayuno: buffet Guía: no Extras: transporte grupal y pirámides Motivo del vuelo: Precio total: 3,109.60 MXN Importe abonado: 3,109.60 MXN Importe pendiente: 0 Marca: We Fly Asesor: Debora 🧚🏻‍♀️ Notas operativas:",
     "calendar": "PRIMARY",
     "emails": [
@@ -115,6 +89,14 @@
       "6034787465",
       "9843277763"
     ]
+  },
+  {
+    "date": "2026-06-04",
+    "summary": "✅ 1P Debora",
+    "desc": "Peso: 48 kg",
+    "calendar": "PRIMARY",
+    "emails": [],
+    "phones": []
   },
   {
     "date": "2026-06-04",
@@ -144,11 +126,41 @@
   },
   {
     "date": "2026-06-04",
-    "summary": "1P Debora",
-    "desc": "Peso: 48 kg",
+    "summary": "✅ 1P Gustavo Lopez",
+    "desc": "Fecha de vuelo: jueves, 4 junio 2026 Número de reserva: 1574606044515535 Nombre: Gustavo Lopez Tel: +1 7025427536 Email: Gus90606@gmail.com Idioma: Vuelo: Compartido Pax: 1 Pesos: 102 kg Pickup: Desayuno: no Guía: no Extras: no Motivo del vuelo: Precio total: 2,069.60 MXN Importe abonado: 2,069.60 MXN Importe pendiente: 0 Marca: We Fly Asesor: Debora 🧚🏻‍♀️ Notas operativas:",
     "calendar": "PRIMARY",
-    "emails": [],
-    "phones": []
+    "emails": [
+      "gus90606@gmail.com"
+    ],
+    "phones": [
+      "6044515535",
+      "7025427536"
+    ]
+  },
+  {
+    "date": "2026-06-04",
+    "summary": "✅ 3P Rebecca Alfaro",
+    "desc": "Fecha de vuelo: jueves, 4 junio 2026 Número de reserva: 1574606048212792 Nombre: Rebecca Alfaro Tel: +1 7024697997 Email: ralfaro93@gmail.com Idioma: Vuelo: Compartido Pax: 3 Pesos: Adulto 1: Rebecca Alfaro 124 kg Adulto 2: Vanessa Alfaro 75 kg Adulto 3: Chandlyre Raygoza 75 kg Pickup: Desayuno: no Guía: no Extras: no Motivo del vuelo: Precio total: 6,208.80 MXN Importe abonado: 6,208.80 MXN Importe pendiente: 0 Marca: We Fly Asesor: Debora 🧚🏻‍♀️ Notas operativas:",
+    "calendar": "PRIMARY",
+    "emails": [
+      "ralfaro93@gmail.com"
+    ],
+    "phones": [
+      "6048212792",
+      "7024697997"
+    ]
+  },
+  {
+    "date": "2026-06-04",
+    "summary": "✅ 1P Karja Carter",
+    "desc": "Fecha de vuelo: jueves, 4 junio 2026 Número de reserva: Nombre: Karja Carter Tel: +1 7573033267 Email: mercy_bne@yahoo.com Idioma: Vuelo: Compartido Pax: 1 Pesos: 99 kg Pickup: Desayuno: no Guía: no Extras: no Motivo del vuelo: Precio total: 2,069.60 MXN Importe abonado: 2,069.60 MXN Importe pendiente: 0 Marca: We Fly Asesor: Debora 🧚🏻‍♀️ Notas operativas:",
+    "calendar": "PRIMARY",
+    "emails": [
+      "mercy_bne@yahoo.com"
+    ],
+    "phones": [
+      "7573033267"
+    ]
   },
   {
     "date": "2026-06-04",
@@ -174,6 +186,19 @@
     "phones": [
       "5289407890",
       "5512959671"
+    ]
+  },
+  {
+    "date": "2026-06-04",
+    "summary": "✅ 2p ROMINA DE LA PEÑA",
+    "desc": "============ RESERVA WE FLY ============ Nombre: ROMINA DE LA PEÑA Número de reserva: G465-260603-3 Tel: +525525619502 Email: mailto:romina.delapc@gmail.com Idioma: español. Vuelo: vuelo promo Pax: 2 Pesos: ALAN BORKOWSKI 90 KG , ROMINA DE LA PEÑA 55KG Pickup: no Desayuno: no Guía: no Extras: no Motivo del vuelo: experiencia Precio total: $ 4059MXN Importe abonado: $ 2069MXN Saldo pendiente: $ 1990 MXN Marca: GAT Asesor: THONY Notas operativas:NO",
+    "calendar": "GAT",
+    "emails": [
+      "romina.delapc@gmail.com"
+    ],
+    "phones": [
+      "4652606033",
+      "5525619502"
     ]
   },
   {
@@ -670,6 +695,19 @@
     "phones": [
       "1404390313",
       "6199926242"
+    ]
+  },
+  {
+    "date": "2026-06-09",
+    "summary": "3P Miri Chavarria",
+    "desc": "Fecha de vuelo: martes, 9 junio 2026 Número de reserva: 1574606039569259 Nombre: Miri Chavarria Tel: 7785354850 Email: Mirichavarria00@gmail.com Idioma: español Vuelo: compartido Pax: 3 Pesos: 53 kg, 77 kg, 61 kg Pickup: Desayuno: cueva Guía: no Extras: transporte grupal y pirámides Motivo del vuelo: Precio total: 10,888.80 MXN Importe abonado: 10,888.80 MXN Importe pendiente: 0 Marca: We Fly Asesor: Debora 🧚🏻‍♀️ Notas operativas:",
+    "calendar": "PRIMARY",
+    "emails": [
+      "mirichavarria00@gmail.com"
+    ],
+    "phones": [
+      "6039569259",
+      "7785354850"
     ]
   },
   {
@@ -1459,6 +1497,71 @@
     ],
     "phones": [
       "9737274257"
+    ]
+  },
+  {
+    "date": "2026-06-18",
+    "summary": "1P Richard Norwood",
+    "desc": "Fecha de vuelo: jueves, 18 junio 2026 Número de reserva: 1574606034276109 Nombre: Richard Norwood Tel: +1 7202159596 Email: Richardjr1994@gmail.com Idioma: ingles Vuelo: compartido Pax: 1 Pesos: 93 kgs Pickup: 📍Hotel Segovia Regency Av Chapultepec 328, Roma Nte., Cuauhtémoc, 06700 Ciudad de México, CDMX, Mexico Desayuno: Cueva Guía: Sí Extras: Motivo del vuelo: Precio total: 3,640 MXN Importe abonado: 3,640 MXN Importe pendiente: 0 Marca: We Fly Asesor: Debora 🧚🏻‍♀️ Notas operativas:",
+    "calendar": "PRIMARY",
+    "emails": [
+      "richardjr1994@gmail.com"
+    ],
+    "phones": [
+      "6034276109",
+      "7202159596"
+    ]
+  },
+  {
+    "date": "2026-06-18",
+    "summary": "2P Tatiana Salazar",
+    "desc": "Fecha de vuelo: jueves, 18 junio 2026 Número de reserva: 1574604298626960 Nombre: Tatiana Salazar Tel: +573217677033 Email: Tati7salazar@gmail.com Idioma: español Vuelo: Compartido Pax: 2 Pesos: 54 kg, falta peso del acompañante Pickup: Desayuno: Buffet Guía: no Extras: no Motivo del vuelo: Precio total: 6,219.20 MXN Importe abonado: 6,219.20 MXN Importe pendiente: 0 Marca: We Fly Asesor: Debora 🧚🏻‍♀️ Notas operativas:",
+    "calendar": "PRIMARY",
+    "emails": [
+      "tati7salazar@gmail.com"
+    ],
+    "phones": [
+      "3217677033",
+      "4298626960"
+    ]
+  },
+  {
+    "date": "2026-06-18",
+    "summary": "3P ROBIN DANIEL MONJE BONILLA",
+    "desc": "Fecha de compra: Viernes 20 febrero No.Reserva: 1574602191382326 Nombre: ROBIN DANIEL MONJE BONILLA Fecha de Vuelo: jueves, 18 junio 2026 Tipo de Servicio: ALL INCLUSIVE + Transporte redondo + Desayuno La Cueva + Pirámides con guía certificado Motivo de Vuelo: Nombre y peso de los pax: Adulto 1: ROBIN DANIEL MONJE BONILLA 90 kg Adulto 2: Paola Katerine Salamanca Urrea 65 kg Adulto 3: Juan Felipe Fugueroa Salamanca 55 kg Tel: +57 3108588404 Correo: robin.monje@gmail.com Vuelo: 3,500 x3 10,500 MXN Precio total con comisión: 10,920 MXN Importe abonado: 10,920 MXN Importe debido: 0 MXN Notas Adicionales: pagado Staff: Débora 🧚🏻‍♀️",
+    "calendar": "PRIMARY",
+    "emails": [
+      "robin.monje@gmail.com"
+    ],
+    "phones": [
+      "2191382326",
+      "3108588404"
+    ]
+  },
+  {
+    "date": "2026-06-18",
+    "summary": "2P MELISSA DELGADO REYNOSO,",
+    "desc": "Fecha de compra:20 de diciembre No. Reserva: G465-251220-1 Nombre: MELISSA DELGADO REYNOSO, Fecha de Vuelo:18 de junio 2026 Tipo de Servicio: Transporte Redondo CDMX + Vuelo en Globo + Desayuno en Cueva + Visita a la Zona Arqueológica Motivo de Vuelo: regalo Nombre y peso de pax: sergio alejandro delgado balbuena 70 kg, Alvaro vidal montiel 70 kg Tel.: +525534579298 Total: $ 6,510MX Pagado oline Correo:melissaitzelreynoso@hotmail.com NOTAS ADICIONALES: STAFF:angel",
+    "calendar": "GAT",
+    "emails": [
+      "melissaitzelreynoso@hotmail.com"
+    ],
+    "phones": [
+      "4652512201",
+      "5534579298"
+    ]
+  },
+  {
+    "date": "2026-06-18",
+    "summary": "2p Nilaurys Garcia",
+    "desc": "============ RESERVA WE FLY ============ Nombre: Nilaurys Garcia Número de reserva: G465-260527-1 Tel: +12368185642 Email: mailto:nilaurysgarcia@gmail.com Idioma: Inglés Vuelo: vuelo compartido promo Pax: 2 Pesos: Nilaurys Garcia 68 kg, Ricardo Montejo 90kg Pickup: no Desayuno: no Guía: no Extras: no Motivo del vuelo: experiencia Precio total: $ 4179MXN Importe abonado: PAGADO Saldo pendiente: PAGADO Marca: GAT Asesor: THONY Notas operativas:NO",
+    "calendar": "GAT",
+    "emails": [
+      "nilaurysgarcia@gmail.com"
+    ],
+    "phones": [
+      "2368185642",
+      "4652605271"
     ]
   }
 ]
