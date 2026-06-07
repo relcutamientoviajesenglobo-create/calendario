@@ -497,7 +497,7 @@
   },
   {
     "date": "2026-06-09",
-    "summary": "1P NICHOLAS PATNODE",
+    "summary": "🏨 1P NICHOLAS PATNODE",
     "desc": "Fecha de vuelo: Tue, Jun 09, 2026 Número de reserva: BR-1407317029 Nombre: NICHOLAS PATNODE Tel: +1-866-259-7766 Email: n/a Idioma: inglés Vuelo: compartido Pax: 1 Pesos: NICHOLAS PATNODE: 83.9 kgs Pickup: Avenida Baja California 165 Desayuno: Cueva Guía: Sí Extras: Motivo del vuelo: Precio total: MXN 3,267.60 Importe abonado: MXN 3,267.60 Importe pendiente: 0 Marca: We Fly Asesor: Debora 🧚🏻‍♀️ Notas operativas:",
     "calendar": "PRIMARY",
     "emails": [],
@@ -508,7 +508,7 @@
   },
   {
     "date": "2026-06-09",
-    "summary": "*2P Darly Yadisa Echeverri Patiño",
+    "summary": "🏨*2P Darly Yadisa Echeverri Patiño",
     "desc": "Fecha de vuelo: martes, 9 junio 2026 Número de reserva: 1574605284342356 Nombre: Darly Yadisa Echeverri Patiño Tel: +57 3147989170 Email: darli009@hotmail.com Idioma: español Vuelo: compartido Pax: 2 Pesos: Darly Yadisa Echeverri Patiño 68 KG, Laura Barreneche Valencia 90 KG Pickup: 📍Hotel Suites Capri, Av. Paseo de la Reforma 380 Col. Juárez, 06600 Ciudad de México Desayuno: Cueva Guía: Sí Extras: Motivo del vuelo: Precio total: 7,280 MXN Importe abonado: 7,280 MXN Importe pendiente: 0 Marca: We Fly Asesor: Debora 🧚🏻‍♀️ Notas operativas:",
     "calendar": "PRIMARY",
     "emails": [
@@ -586,19 +586,6 @@
   },
   {
     "date": "2026-06-09",
-    "summary": "*2p Vincenzo Federico",
-    "desc": "============ RESERVA WE FLY ============ Nombre: Vincenzo Federico Número de reserva: G465-260603-1 Tel: +393803824906 Email: mailto:vincenzofederico97@gmail.com Idioma: inglés Vuelo: Transporte Redondo CDMX + Vuelo en Globo + Desayuno en Cueva + Visita a la Zona Arqueológica Pax: 2 Pesos: Vincenzo Federico 78kg, Paulina Federico 65 kg Pickup: Angel de la Independencia Desayuno: cueva Guía: no Extras: no Motivo del vuelo: experiencia Precio total: $ 6510MXN Importe abonado: PAGADO Saldo pendiente: PAGADO Marca: GAT Asesor: THONY Notas operativas:NO",
-    "calendar": "GAT",
-    "emails": [
-      "vincenzofederico97@gmail.com"
-    ],
-    "phones": [
-      "3803824906",
-      "4652606031"
-    ]
-  },
-  {
-    "date": "2026-06-09",
     "summary": "*1p Carlos Proano",
     "desc": "============ RESERVA WE FLY ============ Nombre: Carlos Proano Número de reserva: G465-260503-3 Tel: +593997463640 Email: mailto:carproma@hotmail.com Idioma: español Vuelo: Transporte Redondo CDMX + Vuelo en Globo + Desayuno en Cueva + Visita a la Zona Arqueológica Pax: 1 Pesos: CARLOS PROANO 80KG Pickup: Angel de la Independencia Desayuno: cueva Guía: no Extras: no Motivo del vuelo: experiencia Precio total: $ 3255MXN Importe abonado: PAGADO Saldo pendiente: PAGADO Marca: GAT Asesor: THONY Notas operativas:NO",
     "calendar": "GAT",
@@ -608,6 +595,19 @@
     "phones": [
       "3997463640",
       "4652605033"
+    ]
+  },
+  {
+    "date": "2026-06-09",
+    "summary": "*2p Vincenzo Federico",
+    "desc": "============ RESERVA WE FLY ============ Nombre: Vincenzo Federico Número de reserva: G465-260603-1 Tel: +393803824906 Email: mailto:vincenzofederico97@gmail.com Idioma: inglés Vuelo: Transporte Redondo CDMX + Vuelo en Globo + Desayuno en Cueva + Visita a la Zona Arqueológica Pax: 2 Pesos: Vincenzo Federico 78kg, Paulina Federico 65 kg Pickup: Angel de la Independencia Desayuno: cueva Guía: no Extras: no Motivo del vuelo: experiencia Precio total: $ 6510MXN Importe abonado: PAGADO Saldo pendiente: PAGADO Marca: GAT Asesor: THONY Notas operativas:NO",
+    "calendar": "GAT",
+    "emails": [
+      "vincenzofederico97@gmail.com"
+    ],
+    "phones": [
+      "3803824906",
+      "4652606031"
     ]
   },
   {
