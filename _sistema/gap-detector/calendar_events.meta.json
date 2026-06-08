@@ -1,9 +1,10 @@
 {
   "requested_from": "2026-06-07",
   "requested_to": "2026-06-23",
-  "generated_at": "2026-06-08T08:53:40.786670",
-  "events_count": 130,
+  "generated_at": "2026-06-08T14:05:01.255917",
+  "events_count": 131,
   "calendars_present": [
+    "BOOKEO",
     "GAT",
     "PRIMARY",
     "VGMX",
