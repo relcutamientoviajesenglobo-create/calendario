@@ -1,8 +1,8 @@
 {
-  "requested_from": "2026-06-06",
-  "requested_to": "2026-06-22",
-  "generated_at": "2026-06-07T23:03:33.018058",
-  "events_count": 136,
+  "requested_from": "2026-06-07",
+  "requested_to": "2026-06-23",
+  "generated_at": "2026-06-08T03:51:22.759677",
+  "events_count": 130,
   "calendars_present": [
     "GAT",
     "PRIMARY",
